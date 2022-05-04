@@ -3,6 +3,11 @@ using System;
 using System.Drawing;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using DreamCar.Properties;
+using DreamCar.Data;
+using System.Linq;
+using DreamCar.Models;
+using System.Text.RegularExpressions;
 
 namespace DreamCar
 {
@@ -17,7 +22,7 @@ namespace DreamCar
             buttonProfile.Enabled = false;
             buttonPublish.Enabled = false;
 
-            Color color = ColorTranslator.FromHtml("#33334c");
+            Color color = ColorTranslator.FromHtml("#74d484");
 
             buttonCollection.BackColor = ThemeColor.ChangeColorBrightness(color, 0.5);
             buttonCollection.ForeColor = Color.Gainsboro;
@@ -64,8 +69,8 @@ namespace DreamCar
             {
                 if (previousButton.GetType() == typeof(Button))
                 {
-                    previousButton.BackColor = Color.FromArgb(51, 51, 76);
-                    previousButton.ForeColor = Color.Gainsboro;
+                    previousButton.BackColor = ColorTranslator.FromHtml("#74d484");
+                    previousButton.ForeColor = ColorTranslator.FromHtml("#414141");
                 }
             }
         }
@@ -95,6 +100,7 @@ namespace DreamCar
             buttonCollection.Enabled = false;
             buttonProfile.Enabled = true;
             buttonPublish.Enabled = true;
+            buttonProfile.BackgroundImage = Resources.logout;
             OpenChildForm(new Forms.FormCollection(), sender);
         }
 
@@ -231,6 +237,230 @@ namespace DreamCar
             labelTitle.Text = "HOME";
             currentButton = null;
             buttonTimes.Visible = false;
+        }
+
+        // LOGOUT
+        private void ButtonTimes_Click(object sender, EventArgs e)
+        {
+            CurrentUser[0] = "Username";
+            CurrentUser[1] = "Password";
+            if (currentForm != null)
+            {
+                labelTitle.Text = currentForm.Text;
+                buttonRanking.Enabled = true;
+                buttonSettings.Enabled = true;
+                buttonPlay.Enabled = true;
+                currentForm.Close();
+            }
+            Reset();
+        }
+
+        private void Reset()
+        {
+            DisableButton();
+            labelTitle.Text = "HOME";
+            currentButton = null;
+            buttonTimes.Visible = false;
+        }
+
+        // SHOW PASSWORD FOR SIGNUP
+        private void CheckBoxShowPassword_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBoxShowPassword.Checked)
+            {
+                textBoxPassword.PasswordChar = '\0';
+                textBoxConfirmPassword.PasswordChar = '\0';
+            }
+            else
+            {
+                textBoxPassword.PasswordChar = '?';
+                textBoxConfirmPassword.PasswordChar = '?';
+            }
+        }
+
+        // iS PHONE NUMBER
+        public static bool IsPhoneNbr(string number, string motif)
+        {
+            if (number != null) return Regex.IsMatch(number, motif);
+            else return false;
+        }
+
+        // SIGN UP
+        private void ButtonSignup_Click(object sender, EventArgs e)
+        {
+            DreamCarContext contextUserExists = new DreamCarContext();
+            DreamCarContext contextSignUp = new DreamCarContext();
+            var userExists = contextUserExists.Users.Where(u => u.UserUsername == textBoxUsername.Text).FirstOrDefault();
+
+            if (textBoxUsername.Text == "" && textBoxPassword.Text == "" && textBoxConfirmPassword.Text == "")
+            {
+                MessageBox.Show("Username and Password fields empty", "Registration failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                textBoxUsername.Text = "";
+                textBoxPassword.Text = "";
+                textBoxConfirmPassword.Text = "";
+                textBoxUsername.Focus();
+                return;
+            }
+
+            if (textBoxUsername.Text.Length > 16)
+            {
+                MessageBox.Show("Username can contain max 7 characters.", "Registration failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                textBoxUsername.Text = "";
+                textBoxPassword.Text = "";
+                textBoxConfirmPassword.Text = "";
+                textBoxUsername.Focus();
+                return;
+            }
+
+            if (userExists != null)
+            {
+                MessageBox.Show("User with current username exists, choose another username.", "Registration failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                textBoxUsername.Text = "";
+                textBoxPassword.Text = "";
+                textBoxConfirmPassword.Text = "";
+                textBoxUsername.Focus();
+                return;
+            }
+
+            if(!IsPhoneNbr(textBoxUsername.Text, @"^([\+]?48 [-]?|[0])?[1-9]{3} [0-9]{3} [0-9]{3}$"))
+            {
+                MessageBox.Show("Please enter valid phone number. Sample current format: '+48 *** *** ***' (For you location onyl Polish numbers accepted).", "Registration failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                textBoxPassword.Text = "";
+                textBoxConfirmPassword.Text = "";
+                return;
+            }
+
+            if (textBoxPassword.Text == textBoxConfirmPassword.Text)
+            {
+                contextSignUp.Add(new User()
+                {
+                    UserUsername = textBoxUsername.Text,
+                    UserPassword = textBoxPassword.Text,
+                    UserFirstName = textBoxPassword.Text,
+                    UserLastName = textBoxPassword.Text,
+                    UserCountry = textBoxPassword.Text,
+                    UserCity = textBoxPassword.Text,
+                    UserAddress = textBoxPassword.Text,
+                    UserPhone = textBoxPassword.Text,
+                    UserEmail = textBoxPassword.Text,
+                });
+                contextSignUp.SaveChanges();
+
+                textBoxUsername.Text = "";
+                textBoxPassword.Text = "";
+                textBoxConfirmPassword.Text = "";
+
+                MessageBox.Show("Your account has been successfully created!", "Registration Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                SignIn.Visible = true;
+                SignUp.Visible = false;
+                return;
+            }
+            else
+            {
+                MessageBox.Show("Passwords don't match, Please enter valid credentials.", "Registration Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                textBoxPassword.Text = "";
+                textBoxConfirmPassword.Text = "";
+                textBoxPassword.Focus();
+                return;
+            }
+        }
+
+        private void ButtonClear_Click(object sender, EventArgs e)
+        {
+            textBoxUsername.Text = "";
+            textBoxPassword.Text = "";
+            textBoxConfirmPassword.Text = "";
+            textBoxUsername.Focus();
+        }
+
+        private void LabelChangeToSignin_Click(object sender, EventArgs e)
+        {
+            checkBoxShowPassword.Checked = false;
+            textBoxUsername.Text = "";
+            textBoxPassword.Text = "";
+            textBoxConfirmPassword.Text = "";
+            SignIn.Visible = true;
+            SignUp.Visible = false;
+        }
+
+        // SHOW PASSWORD FOR SIGNIN
+        private void CheckBoxShowPasswordSignin_CheckedChange(object sender, EventArgs e)
+        {
+            if (checkBoxShowPasswordSignin.Checked)
+            {
+                textBoxPasswordSignin.PasswordChar = '\0';
+            }
+            else
+            {
+                textBoxPasswordSignin.PasswordChar = '?';
+            }
+        }
+
+        // SIGN IN
+        private void ButtonSignin_Click(object sender, EventArgs e)
+        {
+            connection.Open();
+            string userLogin = "SELECT * FROM table_users WHERE username='" + textBoxUsernameSignin.Text + "' AND password='" + textBoxPasswordSignin.Text + "'";
+            command = new OleDbCommand(userLogin, connection);
+            OleDbDataReader dr = command.ExecuteReader();
+
+            if (dr.Read() == true)
+            {
+                CurrentUser[0] = textBoxUsernameSignin.Text;
+                CurrentUser[1] = textBoxPasswordSignin.Text;
+                buttonPlay.Enabled = true;
+                buttonRanking.Enabled = true;
+                buttonSettings.Enabled = true;
+
+                if (currentForm != null)
+                {
+                    labelTitle.Text = currentForm.Text;
+                    currentForm.Close();
+                }
+                textBoxUsernameSignin.Text = "";
+                textBoxPasswordSignin.Text = "";
+                OpenChildForm(new Forms.FormPlay(), buttonPlay);
+                Reset();
+                buttonTimes.Visible = true;
+                connection.Close();
+            }
+            else
+            {
+                MessageBox.Show("Invalid Username or Password, Please try again", "Login Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                textBoxUsernameSignin.Text = "";
+                textBoxPasswordSignin.Text = "";
+                textBoxUsernameSignin.Focus();
+                connection.Close();
+            }
+        }
+
+        private void ButtonClearSignin(object sender, EventArgs e)
+        {
+            textBoxUsernameSignin.Text = "";
+            textBoxPasswordSignin.Text = "";
+            textBoxUsernameSignin.Focus();
+        }
+
+
+        private void LabelChangeToSignup_Click(object sender, EventArgs e)
+        {
+            checkBoxShowPasswordSignin.Checked = false;
+            textBoxUsernameSignin.Text = "";
+            textBoxPasswordSignin.Text = "";
+            SignIn.Visible = false;
+            SignUp.Visible = true;
+        }
+
+        private void panelMain_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void labelChangeToSignin_Click_1(object sender, EventArgs e)
+        {
+
         }
     }
 

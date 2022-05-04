@@ -10,9 +10,9 @@ namespace DreamCar.Helpers
         public static Color TertiaryColor { get; set; }
 
         public static Dictionary<string, string> colorList = new Dictionary<string, string>() {
-            {"buttonSettings", "#2196f3" },
-            {"buttonPlay", "#2196f3" },
-            {"buttonRanking", "#2196f3" },
+            {"buttonSettings", "#74d484" },
+            {"buttonPlay", "#74d484" },
+            {"buttonRanking", "#74d484" },
         };
 
         //public static Dictionary<string, string> colorList = new Dictionary<string, string>() {
