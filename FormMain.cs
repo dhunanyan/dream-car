@@ -218,38 +218,12 @@ namespace DreamCar
         // LOGOUT
         private void ButtonTimes_Click(object sender, EventArgs e)
         {
-            //CurrentUser[0] = "Username";
-            //CurrentUser[1] = "Password";
             if (currentForm != null)
             {
                 labelTitle.Text = currentForm.Text;
                 buttonProfile.Enabled = true;
                 buttonPublish.Enabled = true;
                 buttonCollection.Enabled = true;
-                currentForm.Close();
-            }
-            Reset();
-        }
-
-        private void Reset()
-        {
-            DisableButton();
-            labelTitle.Text = "HOME";
-            currentButton = null;
-            buttonTimes.Visible = false;
-        }
-
-        // LOGOUT
-        private void ButtonTimes_Click(object sender, EventArgs e)
-        {
-            CurrentUser[0] = "Username";
-            CurrentUser[1] = "Password";
-            if (currentForm != null)
-            {
-                labelTitle.Text = currentForm.Text;
-                buttonRanking.Enabled = true;
-                buttonSettings.Enabled = true;
-                buttonPlay.Enabled = true;
                 currentForm.Close();
             }
             Reset();
@@ -273,8 +247,8 @@ namespace DreamCar
             }
             else
             {
-                textBoxPassword.PasswordChar = '?';
-                textBoxConfirmPassword.PasswordChar = '?';
+                textBoxPassword.PasswordChar = '\u25CF';
+                textBoxConfirmPassword.PasswordChar = '\u25CF';
             }
         }
 
@@ -322,27 +296,27 @@ namespace DreamCar
                 return;
             }
 
-            if(!IsPhoneNbr(textBoxUsername.Text, @"^([\+]?48 [-]?|[0])?[1-9]{3} [0-9]{3} [0-9]{3}$"))
-            {
-                MessageBox.Show("Please enter valid phone number. Sample current format: '+48 *** *** ***' (For you location onyl Polish numbers accepted).", "Registration failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                textBoxPassword.Text = "";
-                textBoxConfirmPassword.Text = "";
-                return;
-            }
+            //if(!IsPhoneNbr(textBoxPhone.Text.ToString(), @"^+48 [0-9]{3} [0-9]{3} [0-9]{3}$"))
+            //{
+            //    MessageBox.Show("Please enter valid phone number. Sample current format: '+48 *** *** ***' (For you location onyl Polish numbers accepted).", "Registration failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            //    textBoxPassword.Text = "";
+            //    textBoxConfirmPassword.Text = "";
+            //    return;
+            //}
 
             if (textBoxPassword.Text == textBoxConfirmPassword.Text)
             {
                 contextSignUp.Add(new User()
                 {
-                    UserUsername = textBoxUsername.Text,
-                    UserPassword = textBoxPassword.Text,
-                    UserFirstName = textBoxPassword.Text,
-                    UserLastName = textBoxPassword.Text,
-                    UserCountry = textBoxPassword.Text,
-                    UserCity = textBoxPassword.Text,
-                    UserAddress = textBoxPassword.Text,
-                    UserPhone = textBoxPassword.Text,
+                    UserUsername = textBoxFirstName.Text,
+                    UserPassword = textBoxLastName.Text,
+                    UserFirstName = textBoxUsername.Text,
                     UserEmail = textBoxPassword.Text,
+                    UserLastName = textBoxCountry.Text,
+                    UserCountry = textBoxCity.Text,
+                    UserCity = textBoxAddress.Text,
+                    UserAddress = textBoxPhone.Text,
+                    UserPhone = textBoxEmail.Text,
                 });
                 contextSignUp.SaveChanges();
 
@@ -393,25 +367,21 @@ namespace DreamCar
             }
             else
             {
-                textBoxPasswordSignin.PasswordChar = '?';
+                textBoxPasswordSignin.PasswordChar = '\u25CF';
             }
         }
 
         // SIGN IN
         private void ButtonSignin_Click(object sender, EventArgs e)
         {
-            connection.Open();
-            string userLogin = "SELECT * FROM table_users WHERE username='" + textBoxUsernameSignin.Text + "' AND password='" + textBoxPasswordSignin.Text + "'";
-            command = new OleDbCommand(userLogin, connection);
-            OleDbDataReader dr = command.ExecuteReader();
+            DreamCarContext contextUserExists = new DreamCarContext();
+            var userExists = contextUserExists.Users.Select(u => u.UserUsername == textBoxUsername.Text && u.UserPassword == textBoxPassword.Text).FirstOrDefault();
 
-            if (dr.Read() == true)
+            if (userExists)
             {
-                CurrentUser[0] = textBoxUsernameSignin.Text;
-                CurrentUser[1] = textBoxPasswordSignin.Text;
-                buttonPlay.Enabled = true;
-                buttonRanking.Enabled = true;
-                buttonSettings.Enabled = true;
+                buttonCollection.Enabled = true;
+                buttonProfile.Enabled = true;
+                buttonPublish.Enabled = true;
 
                 if (currentForm != null)
                 {
@@ -420,10 +390,9 @@ namespace DreamCar
                 }
                 textBoxUsernameSignin.Text = "";
                 textBoxPasswordSignin.Text = "";
-                OpenChildForm(new Forms.FormPlay(), buttonPlay);
+                OpenChildForm(new Forms.FormCollection(), buttonCollection);
                 Reset();
                 buttonTimes.Visible = true;
-                connection.Close();
             }
             else
             {
@@ -432,7 +401,6 @@ namespace DreamCar
                 textBoxUsernameSignin.Text = "";
                 textBoxPasswordSignin.Text = "";
                 textBoxUsernameSignin.Focus();
-                connection.Close();
             }
         }
 
