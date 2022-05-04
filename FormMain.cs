@@ -24,15 +24,15 @@ namespace DreamCar
 
             Color color = ColorTranslator.FromHtml("#74d484");
 
-            buttonCollection.BackColor = ThemeColor.ChangeColorBrightness(color, 0.5);
+            buttonCollection.BackColor = ThemeColor.ChangeColorBrightness(ColorTranslator.FromHtml("#33334c"), 0.5);
             buttonCollection.ForeColor = Color.Gainsboro;
             buttonCollection.FlatAppearance.BorderColor = ThemeColor.SecondaryColor;
 
-            buttonProfile.BackColor = ThemeColor.ChangeColorBrightness(color, 0.5);
+            buttonProfile.BackColor = ThemeColor.ChangeColorBrightness(ColorTranslator.FromHtml("#33334c"), 0.5);
             buttonProfile.ForeColor = Color.Gainsboro;
             buttonProfile.FlatAppearance.BorderColor = ThemeColor.SecondaryColor;
 
-            buttonPublish.BackColor = ThemeColor.ChangeColorBrightness(color, 0.5);
+            buttonPublish.BackColor = ThemeColor.ChangeColorBrightness(ColorTranslator.FromHtml("#33334c"), 0.5);
             buttonPublish.ForeColor = Color.Gainsboro;
             buttonPublish.FlatAppearance.BorderColor = ThemeColor.SecondaryColor;
 
@@ -56,7 +56,6 @@ namespace DreamCar
             currentButton.BackColor = currentColor;
             currentButton.ForeColor = Color.White;
             panelTitleBar.BackColor = currentColor;
-            panelLogo.BackColor = ThemeColor.ChangeColorBrightness(currentColor, -0.3);
             ThemeColor.PrimaryColor = currentColor;
             ThemeColor.SecondaryColor = ThemeColor.ChangeColorBrightness(currentColor, -0.3);
             ThemeColor.TertiaryColor = ThemeColor.ChangeColorBrightness(currentColor, 0.5);
@@ -69,8 +68,8 @@ namespace DreamCar
             {
                 if (previousButton.GetType() == typeof(Button))
                 {
-                    previousButton.BackColor = ColorTranslator.FromHtml("#74d484");
-                    previousButton.ForeColor = ColorTranslator.FromHtml("#414141");
+                    previousButton.BackColor = ColorTranslator.FromHtml("#33334c");
+                    previousButton.ForeColor = ColorTranslator.FromHtml("#33334c");
                 }
             }
         }
@@ -96,7 +95,7 @@ namespace DreamCar
         // COLLECTION
         private void ButtonCollection_Click(object sender, EventArgs e)
         {
-            labelTitle.Text = "Collection";
+            labelTitle.Text = "COLLECTION";
             buttonCollection.Enabled = false;
             buttonProfile.Enabled = true;
             buttonPublish.Enabled = true;
@@ -107,7 +106,8 @@ namespace DreamCar
         {
             Button currentButton = (Button)sender;
             buttonCollection.ForeColor = Color.Gainsboro;
-            buttonCollection.BackColor = currentButton.Enabled ? ThemeColor.PrimaryColor : ThemeColor.ChangeColorBrightness(ThemeColor.SecondaryColor, 0.5);
+            buttonCollection.BackColor = currentButton.Enabled ? ColorTranslator.FromHtml("#33334c") : ThemeColor.ChangeColorBrightness(ColorTranslator.FromHtml("#33334c"), 0.5);
+            buttonCollection.FlatAppearance.BorderColor = currentButton.Enabled ? ColorTranslator.FromHtml("#33334c") : ThemeColor.ChangeColorBrightness(ColorTranslator.FromHtml("#33334c"), 0.5);
         }
 
         private void ButtonCollection_Paint(object sender, PaintEventArgs e)
@@ -121,7 +121,7 @@ namespace DreamCar
                 LineAlignment = StringAlignment.Center
             };
             buttonCollection.Text = string.Empty;
-            e.Graphics.DrawString("Collection", currentButton.Font, drawBrush, e.ClipRectangle, sf);
+            e.Graphics.DrawString("    Collection", currentButton.Font, drawBrush, e.ClipRectangle, sf);
             drawBrush.Dispose();
             sf.Dispose();
         }
@@ -139,7 +139,7 @@ namespace DreamCar
             //    }
             //}
 
-            labelTitle.Text = "Publish";
+            labelTitle.Text = "PUBLISH";
             buttonPublish.Enabled = false;
             buttonProfile.Enabled = true;
             buttonCollection.Enabled = true;
@@ -151,7 +151,8 @@ namespace DreamCar
         {
             Button currentButton = (Button)sender;
             buttonPublish.ForeColor = Color.Gainsboro;
-            buttonPublish.BackColor = currentButton.Enabled ? ThemeColor.PrimaryColor : ThemeColor.ChangeColorBrightness(ThemeColor.SecondaryColor, 0.5);
+            buttonPublish.BackColor = currentButton.Enabled ? ColorTranslator.FromHtml("#33334c") : ThemeColor.ChangeColorBrightness(ColorTranslator.FromHtml("#33334c"), 0.5);
+            buttonPublish.FlatAppearance.BorderColor = currentButton.Enabled ? ColorTranslator.FromHtml("#33334c") : ThemeColor.ChangeColorBrightness(ColorTranslator.FromHtml("#33334c"), 0.5);
         }
 
         private void ButtonPublish_Paint(object sender, PaintEventArgs e)
@@ -182,7 +183,7 @@ namespace DreamCar
             //        return;
             //    }
             //}
-            labelTitle.Text = "Profile";
+            labelTitle.Text = "PROFILE";
             buttonProfile.Enabled = false;
             buttonPublish.Enabled = true;
             buttonCollection.Enabled = true;
@@ -195,7 +196,8 @@ namespace DreamCar
         {
             Button currentButton = (Button)sender;
             buttonProfile.ForeColor = Color.Gainsboro;
-            buttonProfile.BackColor = currentButton.Enabled ? ThemeColor.PrimaryColor : ThemeColor.ChangeColorBrightness(ThemeColor.SecondaryColor, 0.5);
+            buttonProfile.BackColor = currentButton.Enabled ? ColorTranslator.FromHtml("#33334c") : ThemeColor.ChangeColorBrightness(ColorTranslator.FromHtml("#33334c"), 0.5);
+            buttonProfile.FlatAppearance.BorderColor = currentButton.Enabled ? ColorTranslator.FromHtml("#33334c") : ThemeColor.ChangeColorBrightness(ColorTranslator.FromHtml("#33334c"), 0.5);
         }
 
         private void ButtonProfile_Paint(object sender, PaintEventArgs e)
@@ -226,6 +228,8 @@ namespace DreamCar
                 currentForm.Close();
             }
             Reset();
+            SignUp.Visible = true;
+            flowLayoutPanel1.Visible = true;
         }
 
         private void Reset()
@@ -234,6 +238,17 @@ namespace DreamCar
             labelTitle.Text = "HOME";
             currentButton = null;
             buttonTimes.Visible = false;
+            buttonCollection.BackColor = buttonCollection.Enabled ? ColorTranslator.FromHtml("#33334c") : ThemeColor.ChangeColorBrightness(ColorTranslator.FromHtml("#33334c"), 0.5);
+            buttonCollection.ForeColor = Color.Gainsboro;
+            buttonCollection.FlatAppearance.BorderColor = ThemeColor.SecondaryColor;
+
+            buttonProfile.BackColor = buttonProfile.Enabled ? ColorTranslator.FromHtml("#33334c") : ThemeColor.ChangeColorBrightness(ColorTranslator.FromHtml("#33334c"), 0.5);
+            buttonProfile.ForeColor = Color.Gainsboro;
+            buttonProfile.FlatAppearance.BorderColor = ThemeColor.SecondaryColor;
+
+            buttonPublish.BackColor = buttonPublish.Enabled ? ColorTranslator.FromHtml("#33334c") : ThemeColor.ChangeColorBrightness(ColorTranslator.FromHtml("#33334c"), 0.5);
+            buttonPublish.ForeColor = Color.Gainsboro;
+            buttonPublish.FlatAppearance.BorderColor = ThemeColor.SecondaryColor;
         }
 
         // SHOW PASSWORD FOR SIGNUP
@@ -251,7 +266,7 @@ namespace DreamCar
             }
         }
 
-        // iS PHONE NUMBER
+        // IS PHONE NUMBER
         public static bool IsPhoneNbr(string number, string motif)
         {
             if (number != null) return Regex.IsMatch(number, motif);
@@ -340,20 +355,29 @@ namespace DreamCar
 
         private void ButtonClear_Click(object sender, EventArgs e)
         {
+            textBoxUsernameSignin.Text = "";
+            textBoxPasswordSignin.Text = "";
+            textBoxFirstName.Text = "";
+            textBoxLastName.Text = "";
+            textBoxEmail.Text = "";
+            textBoxCountry.Text = "";
+            textBoxCity.Text = "";
+            textBoxAddress.Text = "";
+            textBoxPhone.Text = "";
             textBoxUsername.Text = "";
             textBoxPassword.Text = "";
             textBoxConfirmPassword.Text = "";
-            textBoxUsername.Focus();
+            textBoxFirstName.Focus();
         }
 
         private void LabelChangeToSignin_Click(object sender, EventArgs e)
         {
             checkBoxShowPassword.Checked = false;
-            textBoxUsername.Text = "";
-            textBoxPassword.Text = "";
-            textBoxConfirmPassword.Text = "";
+            textBoxUsernameSignin.Text = "";
+            textBoxPasswordSignin.Text = "";
             SignIn.Visible = true;
             SignUp.Visible = false;
+            textBoxUsernameSignin.Focus();
         }
 
         // SHOW PASSWORD FOR SIGNIN
@@ -373,14 +397,17 @@ namespace DreamCar
         private void ButtonSignin_Click(object sender, EventArgs e)
         {
             DreamCarContext contextUserExists = new DreamCarContext();
-            bool userExists = contextUserExists.Users.Select(u => u.UserUsername == textBoxUsernameSignin.Text && u.UserPassword == textBoxPasswordSignin.Text).FirstOrDefault();
+            var userExists = contextUserExists.Users.Select(u => u.UserUsername == textBoxUsernameSignin.Text && u.UserPassword == textBoxPasswordSignin.Text);
             Console.WriteLine(userExists);
 
-            if (userExists)
+            if (userExists != null)
             {
                 buttonCollection.Enabled = true;
                 buttonProfile.Enabled = true;
                 buttonPublish.Enabled = true;
+                SignIn.Visible = false;
+                SignUp.Visible = false;
+                flowLayoutPanel1.Visible = false;
 
                 if (currentForm != null)
                 {
@@ -414,10 +441,19 @@ namespace DreamCar
         private void LabelChangeToSignup_Click(object sender, EventArgs e)
         {
             checkBoxShowPasswordSignin.Checked = false;
-            textBoxUsernameSignin.Text = "";
-            textBoxPasswordSignin.Text = "";
+            textBoxUsername.Text = "";
+            textBoxPassword.Text = "";
+            textBoxConfirmPassword.Text = "";
+            textBoxFirstName.Text = "";
+            textBoxLastName.Text = "";
+            textBoxEmail.Text = "";
+            textBoxCountry.Text = "";
+            textBoxCity.Text = "";
+            textBoxAddress.Text = "";
+            textBoxPhone.Text = "";
             SignIn.Visible = false;
             SignUp.Visible = true;
+            textBoxFirstName.Focus();
         }
 
         private void panelMain_Paint(object sender, PaintEventArgs e)

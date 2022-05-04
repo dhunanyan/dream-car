@@ -28,10 +28,19 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
+            this.SuspendLayout();
+            // 
+            // FormPublish
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(68)))), ((int)(((byte)(93)))));
+            this.ClientSize = new System.Drawing.Size(1071, 684);
+            this.MaximumSize = new System.Drawing.Size(1087, 723);
+            this.Name = "FormPublish";
             this.Text = "FormPublish";
+            this.ResumeLayout(false);
+
         }
 
         #endregion
