@@ -3,7 +3,7 @@ using System.Drawing;
 
 namespace DreamCar.Helpers
 {
-    internal class ThemeColor
+    public class ThemeColor
     {
         public static Color PrimaryColor { get; set; }
         public static Color SecondaryColor { get; set; }

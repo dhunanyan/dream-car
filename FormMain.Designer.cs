@@ -279,7 +279,6 @@ namespace DreamCar
             this.panelMain.Name = "panelMain";
             this.panelMain.Size = new System.Drawing.Size(1087, 750);
             this.panelMain.TabIndex = 2;
-            this.panelMain.Paint += new System.Windows.Forms.PaintEventHandler(this.panelMain_Paint);
             // 
             // SignUp
             // 
@@ -835,24 +834,22 @@ namespace DreamCar
             // 
             // labelDontHaveAcc
             // 
-            this.labelDontHaveAcc.AutoSize = true;
             this.labelDontHaveAcc.Font = new System.Drawing.Font("Tw Cen MT Condensed", 12F, System.Drawing.FontStyle.Bold);
             this.labelDontHaveAcc.ForeColor = System.Drawing.Color.Gainsboro;
             this.labelDontHaveAcc.Location = new System.Drawing.Point(14, 278);
             this.labelDontHaveAcc.Margin = new System.Windows.Forms.Padding(0);
             this.labelDontHaveAcc.Name = "labelDontHaveAcc";
-            this.labelDontHaveAcc.Size = new System.Drawing.Size(142, 19);
+            this.labelDontHaveAcc.Size = new System.Drawing.Size(167, 19);
             this.labelDontHaveAcc.TabIndex = 13;
             this.labelDontHaveAcc.Text = "Don\'t have an account?";
-            this.labelDontHaveAcc.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.labelDontHaveAcc.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // labelChangeToSignup
             // 
-            this.labelChangeToSignup.AutoSize = true;
             this.labelChangeToSignup.Cursor = System.Windows.Forms.Cursors.Hand;
             this.labelChangeToSignup.Font = new System.Drawing.Font("Tw Cen MT Condensed", 14F, System.Drawing.FontStyle.Bold);
             this.labelChangeToSignup.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(116)))), ((int)(((byte)(212)))), ((int)(((byte)(132)))));
-            this.labelChangeToSignup.Location = new System.Drawing.Point(156, 278);
+            this.labelChangeToSignup.Location = new System.Drawing.Point(181, 278);
             this.labelChangeToSignup.Margin = new System.Windows.Forms.Padding(0);
             this.labelChangeToSignup.Name = "labelChangeToSignup";
             this.labelChangeToSignup.Size = new System.Drawing.Size(105, 22);

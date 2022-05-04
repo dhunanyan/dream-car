@@ -1,6 +1,6 @@
-﻿using System;
+﻿using DreamCar.Helpers;
+using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
@@ -10,7 +10,7 @@ using System.Windows.Forms;
 
 namespace DreamCar.Forms
 {
-    public partial class FormCollection : Form
+    public partial class FormCollection : Container
     {
         public FormCollection()
         {

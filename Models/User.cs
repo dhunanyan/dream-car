@@ -7,6 +7,11 @@ namespace DreamCar.Models
 {
     public class User
     {
+        public User()
+        {
+            Cars = new HashSet<Car>();
+        }
+
         [Key]
         public int UserId { get; set; }
 
@@ -37,10 +42,13 @@ namespace DreamCar.Models
         [Column(TypeName = "varchar(1000)")]
         public string UserEmail { get; set; } = null!;
 
-        //public ICollection<Car>? Cars { get; set; }
 
-        public ICollection<Reservation> Reservation { get; set; } = null!;
-        public ICollection<Favourite> Favourite { get; set; } = null!;
+
+
+
+        public ICollection<Car> Cars { get; set; } = null!;
+        public ICollection<Reservation> Reservations { get; set; } = null!;
+        public ICollection<Favourite> Favourites { get; set; } = null!;
 
     }
 }

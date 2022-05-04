@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace DreamCar.Models
@@ -55,5 +56,15 @@ namespace DreamCar.Models
 
         [Column(TypeName = "varchar(1000)")]
         public string CarAuthor { get; set; } = null!;
+
+
+
+
+
+        [ForeignKey("User")]
+        public int? UserId { get; set; }
+        public User User { get; set; } = null!;
+        public ICollection<Reservation> Reservations { get; set; } = null!;
+        public ICollection<Favourite> Favourites { get; set; } = null!;
     }
 }

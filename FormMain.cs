@@ -36,6 +36,8 @@ namespace DreamCar
             buttonPublish.ForeColor = Color.Gainsboro;
             buttonPublish.FlatAppearance.BorderColor = ThemeColor.SecondaryColor;
 
+            SignUp.Visible = false;
+            SignIn.Visible = true;
         }
 
         private Color SelectThemeColor(string buttonName)
@@ -228,7 +230,7 @@ namespace DreamCar
                 currentForm.Close();
             }
             Reset();
-            SignUp.Visible = true;
+            SignIn.Visible = true;
             flowLayoutPanel1.Visible = true;
         }
 
@@ -402,6 +404,7 @@ namespace DreamCar
 
             if (userExists != null)
             {
+                currentUser = textBoxUsernameSignin.Text.ToString();
                 buttonCollection.Enabled = true;
                 buttonProfile.Enabled = true;
                 buttonPublish.Enabled = true;
@@ -454,16 +457,6 @@ namespace DreamCar
             SignIn.Visible = false;
             SignUp.Visible = true;
             textBoxFirstName.Focus();
-        }
-
-        private void panelMain_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void labelChangeToSignin_Click_1(object sender, EventArgs e)
-        {
-
         }
     }
 

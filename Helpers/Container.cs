@@ -7,10 +7,11 @@ using System.Windows.Forms;
 
 namespace DreamCar.Helpers
 {
-
     public class Container : Form
     {
         public static Button currentButton;
         public static Form currentForm;
+
+        public static string currentUser;
     }
 }

@@ -10,11 +10,12 @@ namespace DreamCar.Data
     {
 
 
-        public virtual DbSet<User>? Users { get; set; }
-        public virtual DbSet<Car>? Cars { get; set; }
-        public virtual DbSet<Favourite>? Favourite { get; set; }
-        public virtual DbSet<Reservation>? Reservation { get; set; }
+        public virtual DbSet<User> Users { get; set; }
+        public virtual DbSet<Car> Cars { get; set; }
+        public virtual DbSet<Favourite> Favourite { get; set; }
+        public virtual DbSet<Reservation> Reservation { get; set; }
 
+        
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             // Keep your connection strings separate from your code!
@@ -22,5 +23,11 @@ namespace DreamCar.Data
             // 
             optionsBuilder.UseSqlServer(@"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=DreamCarDB;Integrated Security=True;");
         }
+
+        //protected override void OnModelCreating(ModelBuilder modelBuilder)
+        //{
+        //    modelBuilder.Entity<User>().HasRequired(c => c.Stage).WithMany().WillCascadeOnDelete(false);
+        //    modelBuilder.Entity<Car>().HasRequired(s => s.Stage).WithMany().WillCascadeOnDelete(false);
+        //}
     }
 }
