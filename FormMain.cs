@@ -40,8 +40,8 @@ namespace DreamCar
 
         private Color SelectThemeColor(string buttonName)
         {
-            string color = ThemeColor.colorList[buttonName];
-            return ColorTranslator.FromHtml(color);
+            //string color = ThemeColor.colorList[buttonName];
+            return ColorTranslator.FromHtml("#74d484");
         }
 
         private void ActivateButton(object buttonSender)
@@ -100,7 +100,6 @@ namespace DreamCar
             buttonCollection.Enabled = false;
             buttonProfile.Enabled = true;
             buttonPublish.Enabled = true;
-            buttonProfile.BackgroundImage = Resources.logout;
             OpenChildForm(new Forms.FormCollection(), sender);
         }
 
@@ -221,9 +220,9 @@ namespace DreamCar
             if (currentForm != null)
             {
                 labelTitle.Text = currentForm.Text;
-                buttonProfile.Enabled = true;
-                buttonPublish.Enabled = true;
-                buttonCollection.Enabled = true;
+                buttonProfile.Enabled = false;
+                buttonPublish.Enabled = false;
+                buttonCollection.Enabled = false;
                 currentForm.Close();
             }
             Reset();
@@ -306,17 +305,16 @@ namespace DreamCar
 
             if (textBoxPassword.Text == textBoxConfirmPassword.Text)
             {
-                contextSignUp.Add(new User()
-                {
-                    UserUsername = textBoxFirstName.Text,
-                    UserPassword = textBoxLastName.Text,
-                    UserFirstName = textBoxUsername.Text,
-                    UserEmail = textBoxPassword.Text,
-                    UserLastName = textBoxCountry.Text,
-                    UserCountry = textBoxCity.Text,
-                    UserCity = textBoxAddress.Text,
-                    UserAddress = textBoxPhone.Text,
-                    UserPhone = textBoxEmail.Text,
+                contextSignUp.Add(new User() { 
+                    UserUsername = textBoxUsername.Text,
+                    UserPassword = textBoxPassword.Text,
+                    UserFirstName = textBoxFirstName.Text,
+                    UserLastName = textBoxLastName.Text,
+                    UserEmail = textBoxEmail.Text,
+                    UserCountry = textBoxCountry.Text,
+                    UserCity = textBoxCity.Text,
+                    UserAddress = textBoxAddress.Text,
+                    UserPhone = textBoxPhone.Text,
                 });
                 contextSignUp.SaveChanges();
 
@@ -375,7 +373,8 @@ namespace DreamCar
         private void ButtonSignin_Click(object sender, EventArgs e)
         {
             DreamCarContext contextUserExists = new DreamCarContext();
-            var userExists = contextUserExists.Users.Select(u => u.UserUsername == textBoxUsername.Text && u.UserPassword == textBoxPassword.Text).FirstOrDefault();
+            bool userExists = contextUserExists.Users.Select(u => u.UserUsername == textBoxUsernameSignin.Text && u.UserPassword == textBoxPasswordSignin.Text).FirstOrDefault();
+            Console.WriteLine(userExists);
 
             if (userExists)
             {

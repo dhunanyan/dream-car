@@ -31,14 +31,11 @@ namespace DreamCar
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormMain));
             this.panelMenu = new System.Windows.Forms.Panel();
-            this.buttonProfile = new System.Windows.Forms.Button();
-            this.buttonPublish = new System.Windows.Forms.Button();
             this.buttonCollection = new System.Windows.Forms.Button();
             this.panelLogo = new System.Windows.Forms.Panel();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.labelDreamCar = new System.Windows.Forms.Label();
             this.panelTitleBar = new System.Windows.Forms.Panel();
-            this.buttonTimes = new System.Windows.Forms.Button();
             this.labelTitle = new System.Windows.Forms.Label();
             this.panelMain = new System.Windows.Forms.Panel();
             this.SignUp = new System.Windows.Forms.FlowLayoutPanel();
@@ -59,10 +56,10 @@ namespace DreamCar
             this.labelPhone = new System.Windows.Forms.Label();
             this.labelEmail = new System.Windows.Forms.Label();
             this.textBoxPhone = new System.Windows.Forms.TextBox();
-            this.textBoxPassword = new System.Windows.Forms.TextBox();
+            this.textBoxEmail = new System.Windows.Forms.TextBox();
             this.labelPassword = new System.Windows.Forms.Label();
             this.labelConfirmPassword = new System.Windows.Forms.Label();
-            this.textBoxEmail = new System.Windows.Forms.TextBox();
+            this.textBoxPassword = new System.Windows.Forms.TextBox();
             this.textBoxConfirmPassword = new System.Windows.Forms.TextBox();
             this.checkBoxShowPassword = new System.Windows.Forms.CheckBox();
             this.buttonSignup = new System.Windows.Forms.Button();
@@ -70,7 +67,6 @@ namespace DreamCar
             this.labelHaveAcc = new System.Windows.Forms.Label();
             this.labelChangeToSignin = new System.Windows.Forms.Label();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.label1 = new System.Windows.Forms.Label();
             this.SignIn = new System.Windows.Forms.FlowLayoutPanel();
             this.labelSignin = new System.Windows.Forms.Label();
@@ -84,6 +80,10 @@ namespace DreamCar
             this.buttonClearSignin = new System.Windows.Forms.Button();
             this.labelDontHaveAcc = new System.Windows.Forms.Label();
             this.labelChangeToSignup = new System.Windows.Forms.Label();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.buttonTimes = new System.Windows.Forms.Button();
+            this.buttonProfile = new System.Windows.Forms.Button();
+            this.buttonPublish = new System.Windows.Forms.Button();
             this.panelMenu.SuspendLayout();
             this.panelLogo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -92,9 +92,9 @@ namespace DreamCar
             this.SignUp.SuspendLayout();
             this.flowLayoutPanel2.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.SignIn.SuspendLayout();
             this.flowLayoutPanel5.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.SuspendLayout();
             // 
             // panelMenu
@@ -111,52 +111,6 @@ namespace DreamCar
             this.panelMenu.Size = new System.Drawing.Size(180, 781);
             this.panelMenu.TabIndex = 0;
             // 
-            // buttonProfile
-            // 
-            this.buttonProfile.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.buttonProfile.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.buttonProfile.Dock = System.Windows.Forms.DockStyle.Top;
-            this.buttonProfile.FlatAppearance.BorderSize = 0;
-            this.buttonProfile.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonProfile.Font = new System.Drawing.Font("Tw Cen MT Condensed", 18F, System.Drawing.FontStyle.Bold);
-            this.buttonProfile.ForeColor = System.Drawing.Color.Gainsboro;
-            this.buttonProfile.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.buttonProfile.Location = new System.Drawing.Point(0, 174);
-            this.buttonProfile.Margin = new System.Windows.Forms.Padding(2);
-            this.buttonProfile.Name = "buttonProfile";
-            this.buttonProfile.Padding = new System.Windows.Forms.Padding(7, 6, 7, 6);
-            this.buttonProfile.Size = new System.Drawing.Size(180, 58);
-            this.buttonProfile.TabIndex = 2;
-            this.buttonProfile.Text = "  Profile";
-            this.buttonProfile.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.buttonProfile.UseVisualStyleBackColor = true;
-            this.buttonProfile.EnabledChanged += new System.EventHandler(this.ButtonProfile_EnabledChanged);
-            this.buttonProfile.Click += new System.EventHandler(this.ButtonProfile_Click);
-            this.buttonProfile.Paint += new System.Windows.Forms.PaintEventHandler(this.ButtonProfile_Paint);
-            // 
-            // buttonPublish
-            // 
-            this.buttonPublish.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.buttonPublish.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.buttonPublish.Dock = System.Windows.Forms.DockStyle.Top;
-            this.buttonPublish.FlatAppearance.BorderSize = 0;
-            this.buttonPublish.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonPublish.Font = new System.Drawing.Font("Tw Cen MT Condensed", 18F, System.Drawing.FontStyle.Bold);
-            this.buttonPublish.ForeColor = System.Drawing.Color.Gainsboro;
-            this.buttonPublish.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.buttonPublish.Location = new System.Drawing.Point(0, 116);
-            this.buttonPublish.Margin = new System.Windows.Forms.Padding(2);
-            this.buttonPublish.Name = "buttonPublish";
-            this.buttonPublish.Padding = new System.Windows.Forms.Padding(7, 6, 7, 6);
-            this.buttonPublish.Size = new System.Drawing.Size(180, 58);
-            this.buttonPublish.TabIndex = 1;
-            this.buttonPublish.Text = "  Publish";
-            this.buttonPublish.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.buttonPublish.UseVisualStyleBackColor = true;
-            this.buttonPublish.EnabledChanged += new System.EventHandler(this.ButtonPublish_EnabledChanged);
-            this.buttonPublish.Click += new System.EventHandler(this.ButtonPublish_Click);
-            this.buttonPublish.Paint += new System.Windows.Forms.PaintEventHandler(this.ButtonPublish_Paint);
-            // 
             // buttonCollection
             // 
             this.buttonCollection.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
@@ -166,6 +120,7 @@ namespace DreamCar
             this.buttonCollection.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonCollection.Font = new System.Drawing.Font("Tw Cen MT Condensed", 18F, System.Drawing.FontStyle.Bold);
             this.buttonCollection.ForeColor = System.Drawing.Color.Gainsboro;
+            this.buttonCollection.Image = global::DreamCar.Properties.Resources.search;
             this.buttonCollection.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.buttonCollection.Location = new System.Drawing.Point(0, 58);
             this.buttonCollection.Margin = new System.Windows.Forms.Padding(2);
@@ -233,22 +188,6 @@ namespace DreamCar
             this.panelTitleBar.Name = "panelTitleBar";
             this.panelTitleBar.Size = new System.Drawing.Size(1087, 58);
             this.panelTitleBar.TabIndex = 1;
-            // 
-            // buttonTimes
-            // 
-            this.buttonTimes.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("buttonTimes.BackgroundImage")));
-            this.buttonTimes.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.buttonTimes.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.buttonTimes.Dock = System.Windows.Forms.DockStyle.Left;
-            this.buttonTimes.FlatAppearance.BorderSize = 0;
-            this.buttonTimes.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonTimes.Location = new System.Drawing.Point(0, 0);
-            this.buttonTimes.Margin = new System.Windows.Forms.Padding(2);
-            this.buttonTimes.Name = "buttonTimes";
-            this.buttonTimes.Size = new System.Drawing.Size(60, 58);
-            this.buttonTimes.TabIndex = 1;
-            this.buttonTimes.UseVisualStyleBackColor = true;
-            this.buttonTimes.Click += new System.EventHandler(this.ButtonTimes_Click);
             // 
             // labelTitle
             // 
@@ -319,8 +258,8 @@ namespace DreamCar
             this.flowLayoutPanel2.Controls.Add(this.textBoxAddress);
             this.flowLayoutPanel2.Controls.Add(this.labelPhone);
             this.flowLayoutPanel2.Controls.Add(this.labelEmail);
-            this.flowLayoutPanel2.Controls.Add(this.textBoxEmail);
             this.flowLayoutPanel2.Controls.Add(this.textBoxPhone);
+            this.flowLayoutPanel2.Controls.Add(this.textBoxEmail);
             this.flowLayoutPanel2.Controls.Add(this.labelPassword);
             this.flowLayoutPanel2.Controls.Add(this.labelConfirmPassword);
             this.flowLayoutPanel2.Controls.Add(this.textBoxPassword);
@@ -510,24 +449,23 @@ namespace DreamCar
             this.textBoxPhone.BackColor = System.Drawing.Color.Gainsboro;
             this.textBoxPhone.Font = new System.Drawing.Font("Tw Cen MT Condensed", 18F, System.Drawing.FontStyle.Bold);
             this.textBoxPhone.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(68)))), ((int)(((byte)(93)))));
-            this.textBoxPhone.Location = new System.Drawing.Point(505, 189);
-            this.textBoxPhone.Margin = new System.Windows.Forms.Padding(0, 0, 0, 13);
+            this.textBoxPhone.Location = new System.Drawing.Point(14, 189);
+            this.textBoxPhone.Margin = new System.Windows.Forms.Padding(0, 0, 13, 13);
             this.textBoxPhone.Name = "textBoxPhone";
             this.textBoxPhone.Size = new System.Drawing.Size(478, 33);
             this.textBoxPhone.TabIndex = 8;
             // 
-            // textBoxPassword
+            // textBoxEmail
             // 
-            this.textBoxPassword.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.textBoxPassword.BackColor = System.Drawing.Color.Gainsboro;
-            this.textBoxPassword.Font = new System.Drawing.Font("Tw Cen MT Condensed", 18F, System.Drawing.FontStyle.Bold);
-            this.textBoxPassword.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(68)))), ((int)(((byte)(93)))));
-            this.textBoxPassword.Location = new System.Drawing.Point(14, 263);
-            this.textBoxPassword.Margin = new System.Windows.Forms.Padding(0, 0, 13, 13);
-            this.textBoxPassword.Name = "textBoxPassword";
-            this.textBoxPassword.PasswordChar = '●';
-            this.textBoxPassword.Size = new System.Drawing.Size(478, 33);
-            this.textBoxPassword.TabIndex = 9;
+            this.textBoxEmail.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.textBoxEmail.BackColor = System.Drawing.Color.Gainsboro;
+            this.textBoxEmail.Font = new System.Drawing.Font("Tw Cen MT Condensed", 18F, System.Drawing.FontStyle.Bold);
+            this.textBoxEmail.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(68)))), ((int)(((byte)(93)))));
+            this.textBoxEmail.Location = new System.Drawing.Point(505, 189);
+            this.textBoxEmail.Margin = new System.Windows.Forms.Padding(0, 0, 0, 13);
+            this.textBoxEmail.Name = "textBoxEmail";
+            this.textBoxEmail.Size = new System.Drawing.Size(478, 33);
+            this.textBoxEmail.TabIndex = 7;
             // 
             // labelPassword
             // 
@@ -552,17 +490,18 @@ namespace DreamCar
             this.labelConfirmPassword.TabIndex = 8;
             this.labelConfirmPassword.Text = "Confirm Password";
             // 
-            // textBoxEmail
+            // textBoxPassword
             // 
-            this.textBoxEmail.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.textBoxEmail.BackColor = System.Drawing.Color.Gainsboro;
-            this.textBoxEmail.Font = new System.Drawing.Font("Tw Cen MT Condensed", 18F, System.Drawing.FontStyle.Bold);
-            this.textBoxEmail.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(68)))), ((int)(((byte)(93)))));
-            this.textBoxEmail.Location = new System.Drawing.Point(14, 189);
-            this.textBoxEmail.Margin = new System.Windows.Forms.Padding(0, 0, 13, 13);
-            this.textBoxEmail.Name = "textBoxEmail";
-            this.textBoxEmail.Size = new System.Drawing.Size(478, 33);
-            this.textBoxEmail.TabIndex = 7;
+            this.textBoxPassword.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.textBoxPassword.BackColor = System.Drawing.Color.Gainsboro;
+            this.textBoxPassword.Font = new System.Drawing.Font("Tw Cen MT Condensed", 18F, System.Drawing.FontStyle.Bold);
+            this.textBoxPassword.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(68)))), ((int)(((byte)(93)))));
+            this.textBoxPassword.Location = new System.Drawing.Point(14, 263);
+            this.textBoxPassword.Margin = new System.Windows.Forms.Padding(0, 0, 13, 13);
+            this.textBoxPassword.Name = "textBoxPassword";
+            this.textBoxPassword.PasswordChar = '●';
+            this.textBoxPassword.Size = new System.Drawing.Size(478, 33);
+            this.textBoxPassword.TabIndex = 9;
             // 
             // textBoxConfirmPassword
             // 
@@ -663,18 +602,6 @@ namespace DreamCar
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
             this.flowLayoutPanel1.Size = new System.Drawing.Size(669, 150);
             this.flowLayoutPanel1.TabIndex = 2;
-            // 
-            // pictureBox2
-            // 
-            this.pictureBox2.BackgroundImage = global::DreamCar.Properties.Resources.logoGreen;
-            this.pictureBox2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.pictureBox2.Dock = System.Windows.Forms.DockStyle.Left;
-            this.pictureBox2.Location = new System.Drawing.Point(0, 0);
-            this.pictureBox2.Margin = new System.Windows.Forms.Padding(0);
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(153, 150);
-            this.pictureBox2.TabIndex = 0;
-            this.pictureBox2.TabStop = false;
             // 
             // label1
             // 
@@ -858,6 +785,82 @@ namespace DreamCar
             this.labelChangeToSignup.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.labelChangeToSignup.Click += new System.EventHandler(this.LabelChangeToSignup_Click);
             // 
+            // pictureBox2
+            // 
+            this.pictureBox2.BackgroundImage = global::DreamCar.Properties.Resources.logoGreen;
+            this.pictureBox2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.pictureBox2.Dock = System.Windows.Forms.DockStyle.Left;
+            this.pictureBox2.Location = new System.Drawing.Point(0, 0);
+            this.pictureBox2.Margin = new System.Windows.Forms.Padding(0);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(153, 150);
+            this.pictureBox2.TabIndex = 0;
+            this.pictureBox2.TabStop = false;
+            // 
+            // buttonTimes
+            // 
+            this.buttonTimes.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("buttonTimes.BackgroundImage")));
+            this.buttonTimes.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.buttonTimes.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.buttonTimes.Dock = System.Windows.Forms.DockStyle.Left;
+            this.buttonTimes.FlatAppearance.BorderSize = 0;
+            this.buttonTimes.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonTimes.Location = new System.Drawing.Point(0, 0);
+            this.buttonTimes.Margin = new System.Windows.Forms.Padding(2);
+            this.buttonTimes.Name = "buttonTimes";
+            this.buttonTimes.Size = new System.Drawing.Size(60, 58);
+            this.buttonTimes.TabIndex = 1;
+            this.buttonTimes.UseVisualStyleBackColor = true;
+            this.buttonTimes.Click += new System.EventHandler(this.ButtonTimes_Click);
+            // 
+            // buttonProfile
+            // 
+            this.buttonProfile.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.buttonProfile.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.buttonProfile.Dock = System.Windows.Forms.DockStyle.Top;
+            this.buttonProfile.FlatAppearance.BorderSize = 0;
+            this.buttonProfile.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonProfile.Font = new System.Drawing.Font("Tw Cen MT Condensed", 18F, System.Drawing.FontStyle.Bold);
+            this.buttonProfile.ForeColor = System.Drawing.Color.Gainsboro;
+            this.buttonProfile.Image = global::DreamCar.Properties.Resources.user;
+            this.buttonProfile.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.buttonProfile.Location = new System.Drawing.Point(0, 174);
+            this.buttonProfile.Margin = new System.Windows.Forms.Padding(2);
+            this.buttonProfile.Name = "buttonProfile";
+            this.buttonProfile.Padding = new System.Windows.Forms.Padding(7, 6, 7, 6);
+            this.buttonProfile.Size = new System.Drawing.Size(180, 58);
+            this.buttonProfile.TabIndex = 2;
+            this.buttonProfile.Text = "  Profile";
+            this.buttonProfile.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.buttonProfile.UseVisualStyleBackColor = true;
+            this.buttonProfile.EnabledChanged += new System.EventHandler(this.ButtonProfile_EnabledChanged);
+            this.buttonProfile.Click += new System.EventHandler(this.ButtonProfile_Click);
+            this.buttonProfile.Paint += new System.Windows.Forms.PaintEventHandler(this.ButtonProfile_Paint);
+            // 
+            // buttonPublish
+            // 
+            this.buttonPublish.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.buttonPublish.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.buttonPublish.Dock = System.Windows.Forms.DockStyle.Top;
+            this.buttonPublish.FlatAppearance.BorderSize = 0;
+            this.buttonPublish.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonPublish.Font = new System.Drawing.Font("Tw Cen MT Condensed", 18F, System.Drawing.FontStyle.Bold);
+            this.buttonPublish.ForeColor = System.Drawing.Color.Gainsboro;
+            this.buttonPublish.Image = global::DreamCar.Properties.Resources.upload;
+            this.buttonPublish.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.buttonPublish.Location = new System.Drawing.Point(0, 116);
+            this.buttonPublish.Margin = new System.Windows.Forms.Padding(2);
+            this.buttonPublish.Name = "buttonPublish";
+            this.buttonPublish.Padding = new System.Windows.Forms.Padding(7, 6, 7, 6);
+            this.buttonPublish.Size = new System.Drawing.Size(180, 58);
+            this.buttonPublish.TabIndex = 1;
+            this.buttonPublish.Text = "  Publish";
+            this.buttonPublish.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.buttonPublish.UseVisualStyleBackColor = true;
+            this.buttonPublish.EnabledChanged += new System.EventHandler(this.ButtonPublish_EnabledChanged);
+            this.buttonPublish.Click += new System.EventHandler(this.ButtonPublish_Click);
+            this.buttonPublish.Paint += new System.Windows.Forms.PaintEventHandler(this.ButtonPublish_Paint);
+            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -881,10 +884,10 @@ namespace DreamCar
             this.flowLayoutPanel2.ResumeLayout(false);
             this.flowLayoutPanel2.PerformLayout();
             this.flowLayoutPanel1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.SignIn.ResumeLayout(false);
             this.flowLayoutPanel5.ResumeLayout(false);
             this.flowLayoutPanel5.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.ResumeLayout(false);
 
         }
