@@ -112,6 +112,30 @@ namespace DreamCar.Forms
             }
         }
 
+        private void labelCarGearbox_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void FormPublish_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        // CALENDAR
+        private void MonthCalendar_DateChanged(object sender, DateRangeEventArgs e)
+        {
+            // Show the start and end dates in the text box.
+            Console.WriteLine("Date Changed: Start =  " +
+                e.Start.ToShortDateString() + " : End = " + e.End.ToShortDateString());
+        }
+
+        private void MonthCalendar_DateSelected(object sender, System.Windows.Forms.DateRangeEventArgs e)
+        {
+            // Show the start and end dates in the text box.
+            Console.WriteLine("Date Selected: Start = " +
+                e.Start.ToShortDateString() + " : End = " + e.End.ToShortDateString());
+        }
 
 
         //CarName

@@ -108,7 +108,7 @@ namespace DreamCar
             this.panelMenu.Location = new System.Drawing.Point(0, 0);
             this.panelMenu.Margin = new System.Windows.Forms.Padding(2);
             this.panelMenu.Name = "panelMenu";
-            this.panelMenu.Size = new System.Drawing.Size(180, 808);
+            this.panelMenu.Size = new System.Drawing.Size(180, 741);
             this.panelMenu.TabIndex = 0;
             // 
             // buttonProfile
@@ -285,7 +285,7 @@ namespace DreamCar
             this.SignUp.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.SignUp.Controls.Add(this.labelSignup);
             this.SignUp.Controls.Add(this.flowLayoutPanel2);
-            this.SignUp.Location = new System.Drawing.Point(46, 214);
+            this.SignUp.Location = new System.Drawing.Point(48, 141);
             this.SignUp.Margin = new System.Windows.Forms.Padding(2);
             this.SignUp.Name = "SignUp";
             this.SignUp.Size = new System.Drawing.Size(997, 510);
@@ -660,10 +660,10 @@ namespace DreamCar
             this.flowLayoutPanel1.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.flowLayoutPanel1.Controls.Add(this.pictureBox2);
             this.flowLayoutPanel1.Controls.Add(this.label1);
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(201, 35);
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(324, 21);
             this.flowLayoutPanel1.Margin = new System.Windows.Forms.Padding(2);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(669, 150);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(471, 95);
             this.flowLayoutPanel1.TabIndex = 2;
             // 
             // pictureBox2
@@ -674,18 +674,18 @@ namespace DreamCar
             this.pictureBox2.Location = new System.Drawing.Point(0, 0);
             this.pictureBox2.Margin = new System.Windows.Forms.Padding(0);
             this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(153, 150);
+            this.pictureBox2.Size = new System.Drawing.Size(95, 95);
             this.pictureBox2.TabIndex = 0;
             this.pictureBox2.TabStop = false;
             // 
             // label1
             // 
-            this.label1.Font = new System.Drawing.Font("Tw Cen MT Condensed", 92F, System.Drawing.FontStyle.Bold);
+            this.label1.Font = new System.Drawing.Font("Tw Cen MT Condensed", 66F, System.Drawing.FontStyle.Bold);
             this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(116)))), ((int)(((byte)(212)))), ((int)(((byte)(132)))));
-            this.label1.Location = new System.Drawing.Point(153, 0);
+            this.label1.Location = new System.Drawing.Point(95, 0);
             this.label1.Margin = new System.Windows.Forms.Padding(0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(516, 150);
+            this.label1.Size = new System.Drawing.Size(376, 95);
             this.label1.TabIndex = 1;
             this.label1.Text = "DreamCar";
             this.label1.TextAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -695,7 +695,7 @@ namespace DreamCar
             this.SignIn.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.SignIn.Controls.Add(this.labelSignin);
             this.SignIn.Controls.Add(this.flowLayoutPanel5);
-            this.SignIn.Location = new System.Drawing.Point(372, 251);
+            this.SignIn.Location = new System.Drawing.Point(374, 178);
             this.SignIn.Margin = new System.Windows.Forms.Padding(2);
             this.SignIn.Name = "SignIn";
             this.SignIn.Size = new System.Drawing.Size(300, 355);
@@ -863,12 +863,12 @@ namespace DreamCar
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(68)))), ((int)(((byte)(93)))));
-            this.ClientSize = new System.Drawing.Size(1267, 808);
+            this.ClientSize = new System.Drawing.Size(1267, 741);
             this.Controls.Add(this.panelMain);
             this.Controls.Add(this.panelTitleBar);
             this.Controls.Add(this.panelMenu);
             this.Margin = new System.Windows.Forms.Padding(2);
-            this.MinimumSize = new System.Drawing.Size(1283, 847);
+            this.MinimumSize = new System.Drawing.Size(1283, 780);
             this.Name = "FormMain";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "DreamCar";
