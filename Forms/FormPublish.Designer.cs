@@ -34,9 +34,13 @@
             this.labelPublish = new System.Windows.Forms.Label();
             this.flowLayoutPanel2 = new System.Windows.Forms.FlowLayoutPanel();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.textBoxCarPrice = new System.Windows.Forms.TextBox();
+            this.labelCarPrice = new System.Windows.Forms.Label();
+            this.panelLoadingBar = new System.Windows.Forms.Panel();
+            this.labelLoadingProgress = new System.Windows.Forms.Label();
             this.monthCalendar = new System.Windows.Forms.MonthCalendar();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
-            this.buttonSignup = new System.Windows.Forms.Button();
+            this.buttonPost = new System.Windows.Forms.Button();
             this.buttonClear = new System.Windows.Forms.Button();
             this.textBoxCarTags = new System.Windows.Forms.TextBox();
             this.labelCarTags = new System.Windows.Forms.Label();
@@ -55,14 +59,15 @@
             this.labelCarModel = new System.Windows.Forms.Label();
             this.labelCarBrand = new System.Windows.Forms.Label();
             this.textBoxCarCapacity = new System.Windows.Forms.TextBox();
+            this.buttonAddImage = new System.Windows.Forms.Button();
             this.textBoxCardProdYear = new System.Windows.Forms.TextBox();
             this.textBoxCardBrand = new System.Windows.Forms.TextBox();
             this.labelCarProdYear = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.SignUp.SuspendLayout();
             this.flowLayoutPanel2.SuspendLayout();
             this.panel2.SuspendLayout();
+            this.panelLoadingBar.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -111,6 +116,9 @@
             // 
             // panel2
             // 
+            this.panel2.Controls.Add(this.textBoxCarPrice);
+            this.panel2.Controls.Add(this.labelCarPrice);
+            this.panel2.Controls.Add(this.panelLoadingBar);
             this.panel2.Controls.Add(this.monthCalendar);
             this.panel2.Controls.Add(this.flowLayoutPanel1);
             this.panel2.Controls.Add(this.textBoxCarTags);
@@ -130,7 +138,7 @@
             this.panel2.Controls.Add(this.labelCarModel);
             this.panel2.Controls.Add(this.labelCarBrand);
             this.panel2.Controls.Add(this.textBoxCarCapacity);
-            this.panel2.Controls.Add(this.button1);
+            this.panel2.Controls.Add(this.buttonAddImage);
             this.panel2.Controls.Add(this.textBoxCardProdYear);
             this.panel2.Controls.Add(this.textBoxCardBrand);
             this.panel2.Controls.Add(this.labelCarProdYear);
@@ -140,23 +148,70 @@
             this.panel2.Size = new System.Drawing.Size(997, 501);
             this.panel2.TabIndex = 19;
             // 
+            // textBoxCarPrice
+            // 
+            this.textBoxCarPrice.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.textBoxCarPrice.BackColor = System.Drawing.Color.Gainsboro;
+            this.textBoxCarPrice.Font = new System.Drawing.Font("Tw Cen MT Condensed", 18F, System.Drawing.FontStyle.Bold);
+            this.textBoxCarPrice.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(68)))), ((int)(((byte)(93)))));
+            this.textBoxCarPrice.Location = new System.Drawing.Point(765, 211);
+            this.textBoxCarPrice.Margin = new System.Windows.Forms.Padding(0, 0, 13, 13);
+            this.textBoxCarPrice.Name = "textBoxCarPrice";
+            this.textBoxCarPrice.Size = new System.Drawing.Size(157, 33);
+            this.textBoxCarPrice.TabIndex = 11;
+            // 
+            // labelCarPrice
+            // 
+            this.labelCarPrice.AutoSize = true;
+            this.labelCarPrice.Font = new System.Drawing.Font("Tw Cen MT Condensed", 18F, System.Drawing.FontStyle.Bold);
+            this.labelCarPrice.ForeColor = System.Drawing.Color.Gainsboro;
+            this.labelCarPrice.Location = new System.Drawing.Point(702, 214);
+            this.labelCarPrice.Margin = new System.Windows.Forms.Padding(0);
+            this.labelCarPrice.Name = "labelCarPrice";
+            this.labelCarPrice.Size = new System.Drawing.Size(54, 28);
+            this.labelCarPrice.TabIndex = 34;
+            this.labelCarPrice.Text = "Price";
+            // 
+            // panelLoadingBar
+            // 
+            this.panelLoadingBar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(112)))), ((int)(((byte)(112)))), ((int)(((byte)(140)))));
+            this.panelLoadingBar.Controls.Add(this.labelLoadingProgress);
+            this.panelLoadingBar.Location = new System.Drawing.Point(17, 180);
+            this.panelLoadingBar.Margin = new System.Windows.Forms.Padding(0);
+            this.panelLoadingBar.Name = "panelLoadingBar";
+            this.panelLoadingBar.Size = new System.Drawing.Size(205, 18);
+            this.panelLoadingBar.TabIndex = 33;
+            // 
+            // labelLoadingProgress
+            // 
+            this.labelLoadingProgress.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(116)))), ((int)(((byte)(212)))), ((int)(((byte)(132)))));
+            this.labelLoadingProgress.Dock = System.Windows.Forms.DockStyle.Left;
+            this.labelLoadingProgress.Font = new System.Drawing.Font("Tw Cen MT Condensed", 12F, System.Drawing.FontStyle.Bold);
+            this.labelLoadingProgress.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(112)))), ((int)(((byte)(112)))), ((int)(((byte)(140)))));
+            this.labelLoadingProgress.Location = new System.Drawing.Point(0, 0);
+            this.labelLoadingProgress.Margin = new System.Windows.Forms.Padding(0);
+            this.labelLoadingProgress.Name = "labelLoadingProgress";
+            this.labelLoadingProgress.Size = new System.Drawing.Size(0, 18);
+            this.labelLoadingProgress.TabIndex = 0;
+            this.labelLoadingProgress.Text = "0";
+            this.labelLoadingProgress.TextChanged += new System.EventHandler(this.labelLoadingProgress_TextChanged);
+            // 
             // monthCalendar
             // 
             this.monthCalendar.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.monthCalendar.Location = new System.Drawing.Point(17, 211);
             this.monthCalendar.Margin = new System.Windows.Forms.Padding(0, 0, 13, 0);
-            this.monthCalendar.Name = "monthCalendar";
-            this.monthCalendar.TabIndex = 31;
             this.monthCalendar.MaxSelectionCount = 62;
-            this.monthCalendar.ShowTodayCircle = false;
+            this.monthCalendar.Name = "monthCalendar";
             this.monthCalendar.ShowToday = false;
-            //this.monthCalendar.DateChanged += new System.Windows.Forms.DateRangeEventHandler(this.MonthCalendar_DateChanged);
+            this.monthCalendar.ShowTodayCircle = false;
+            this.monthCalendar.TabIndex = 13;
             this.monthCalendar.DateSelected += new System.Windows.Forms.DateRangeEventHandler(this.MonthCalendar_DateSelected);
             // 
             // flowLayoutPanel1
             // 
             this.flowLayoutPanel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(85)))), ((int)(((byte)(85)))), ((int)(((byte)(110)))));
-            this.flowLayoutPanel1.Controls.Add(this.buttonSignup);
+            this.flowLayoutPanel1.Controls.Add(this.buttonPost);
             this.flowLayoutPanel1.Controls.Add(this.buttonClear);
             this.flowLayoutPanel1.Location = new System.Drawing.Point(257, 257);
             this.flowLayoutPanel1.Margin = new System.Windows.Forms.Padding(0);
@@ -164,22 +219,22 @@
             this.flowLayoutPanel1.Size = new System.Drawing.Size(665, 116);
             this.flowLayoutPanel1.TabIndex = 32;
             // 
-            // buttonSignup
+            // buttonPost
             // 
-            this.buttonSignup.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(116)))), ((int)(((byte)(212)))), ((int)(((byte)(132)))));
-            this.buttonSignup.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.buttonSignup.FlatAppearance.BorderSize = 0;
-            this.buttonSignup.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonSignup.Font = new System.Drawing.Font("Tw Cen MT Condensed", 20F, System.Drawing.FontStyle.Bold);
-            this.buttonSignup.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(68)))), ((int)(((byte)(93)))));
-            this.buttonSignup.Location = new System.Drawing.Point(0, 0);
-            this.buttonSignup.Margin = new System.Windows.Forms.Padding(0, 0, 0, 10);
-            this.buttonSignup.Name = "buttonSignup";
-            this.buttonSignup.Size = new System.Drawing.Size(665, 60);
-            this.buttonSignup.TabIndex = 12;
-            this.buttonSignup.Text = "POST";
-            this.buttonSignup.UseVisualStyleBackColor = false;
-            this.buttonSignup.Click += new System.EventHandler(this.ButtonSignup_Click);
+            this.buttonPost.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(116)))), ((int)(((byte)(212)))), ((int)(((byte)(132)))));
+            this.buttonPost.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.buttonPost.FlatAppearance.BorderSize = 0;
+            this.buttonPost.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonPost.Font = new System.Drawing.Font("Tw Cen MT Condensed", 20F, System.Drawing.FontStyle.Bold);
+            this.buttonPost.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(68)))), ((int)(((byte)(93)))));
+            this.buttonPost.Location = new System.Drawing.Point(0, 0);
+            this.buttonPost.Margin = new System.Windows.Forms.Padding(0, 0, 0, 10);
+            this.buttonPost.Name = "buttonPost";
+            this.buttonPost.Size = new System.Drawing.Size(665, 53);
+            this.buttonPost.TabIndex = 14;
+            this.buttonPost.Text = "POST";
+            this.buttonPost.UseVisualStyleBackColor = false;
+            this.buttonPost.Click += new System.EventHandler(this.ButtonAddCar_Click);
             // 
             // buttonClear
             // 
@@ -189,11 +244,11 @@
             this.buttonClear.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonClear.Font = new System.Drawing.Font("Tw Cen MT Condensed", 20F, System.Drawing.FontStyle.Bold);
             this.buttonClear.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(116)))), ((int)(((byte)(212)))), ((int)(((byte)(132)))));
-            this.buttonClear.Location = new System.Drawing.Point(0, 70);
+            this.buttonClear.Location = new System.Drawing.Point(0, 63);
             this.buttonClear.Margin = new System.Windows.Forms.Padding(0);
             this.buttonClear.Name = "buttonClear";
-            this.buttonClear.Size = new System.Drawing.Size(665, 46);
-            this.buttonClear.TabIndex = 13;
+            this.buttonClear.Size = new System.Drawing.Size(665, 53);
+            this.buttonClear.TabIndex = 15;
             this.buttonClear.Text = "CLEAR";
             this.buttonClear.UseVisualStyleBackColor = false;
             this.buttonClear.Click += new System.EventHandler(this.ButtonClear_Click);
@@ -206,8 +261,7 @@
             this.textBoxCarTags.Location = new System.Drawing.Point(335, 211);
             this.textBoxCarTags.Margin = new System.Windows.Forms.Padding(0, 0, 0, 13);
             this.textBoxCarTags.Name = "textBoxCarTags";
-            this.textBoxCarTags.PasswordChar = '●';
-            this.textBoxCarTags.Size = new System.Drawing.Size(587, 33);
+            this.textBoxCarTags.Size = new System.Drawing.Size(354, 33);
             this.textBoxCarTags.TabIndex = 10;
             // 
             // labelCarTags
@@ -231,9 +285,9 @@
             this.textBoxCarColor.Location = new System.Drawing.Point(702, 45);
             this.textBoxCarColor.Margin = new System.Windows.Forms.Padding(0, 0, 0, 13);
             this.textBoxCarColor.Name = "textBoxCarColor";
-            this.textBoxCarColor.PasswordChar = '●';
             this.textBoxCarColor.Size = new System.Drawing.Size(220, 33);
-            this.textBoxCarColor.TabIndex = 9;
+            this.textBoxCarColor.TabIndex = 3;
+            this.textBoxCarColor.Tag = "";
             // 
             // labelCarColor
             // 
@@ -268,7 +322,7 @@
             this.textBoxCarCity.Margin = new System.Windows.Forms.Padding(0, 0, 13, 13);
             this.textBoxCarCity.Name = "textBoxCarCity";
             this.textBoxCarCity.Size = new System.Drawing.Size(220, 33);
-            this.textBoxCarCity.TabIndex = 8;
+            this.textBoxCarCity.TabIndex = 5;
             // 
             // labelCarCountry
             // 
@@ -292,7 +346,7 @@
             this.textBoxCardGearbox.Margin = new System.Windows.Forms.Padding(0, 0, 0, 13);
             this.textBoxCardGearbox.Name = "textBoxCardGearbox";
             this.textBoxCardGearbox.Size = new System.Drawing.Size(220, 33);
-            this.textBoxCardGearbox.TabIndex = 6;
+            this.textBoxCardGearbox.TabIndex = 7;
             // 
             // labelCarGearbox
             // 
@@ -305,7 +359,6 @@
             this.labelCarGearbox.Size = new System.Drawing.Size(220, 28);
             this.labelCarGearbox.TabIndex = 27;
             this.labelCarGearbox.Text = "Gearbox";
-            this.labelCarGearbox.Click += new System.EventHandler(this.labelCarGearbox_Click);
             // 
             // textBoxCarCountry
             // 
@@ -317,7 +370,7 @@
             this.textBoxCarCountry.Margin = new System.Windows.Forms.Padding(0, 0, 13, 13);
             this.textBoxCarCountry.Name = "textBoxCarCountry";
             this.textBoxCarCountry.Size = new System.Drawing.Size(220, 33);
-            this.textBoxCarCountry.TabIndex = 7;
+            this.textBoxCarCountry.TabIndex = 4;
             // 
             // labelCarFuel
             // 
@@ -341,7 +394,7 @@
             this.textBoxCarFuel.Margin = new System.Windows.Forms.Padding(0, 0, 13, 13);
             this.textBoxCarFuel.Name = "textBoxCarFuel";
             this.textBoxCarFuel.Size = new System.Drawing.Size(220, 33);
-            this.textBoxCarFuel.TabIndex = 5;
+            this.textBoxCarFuel.TabIndex = 9;
             // 
             // labelCarCapacity
             // 
@@ -366,6 +419,7 @@
             this.textBoxCarModel.Name = "textBoxCarModel";
             this.textBoxCarModel.Size = new System.Drawing.Size(220, 33);
             this.textBoxCarModel.TabIndex = 2;
+            this.textBoxCarModel.Tag = "";
             // 
             // labelCarModel
             // 
@@ -401,7 +455,27 @@
             this.textBoxCarCapacity.Margin = new System.Windows.Forms.Padding(0, 0, 13, 13);
             this.textBoxCarCapacity.Name = "textBoxCarCapacity";
             this.textBoxCarCapacity.Size = new System.Drawing.Size(220, 33);
-            this.textBoxCarCapacity.TabIndex = 4;
+            this.textBoxCarCapacity.TabIndex = 8;
+            // 
+            // buttonAddImage
+            // 
+            this.buttonAddImage.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(112)))), ((int)(((byte)(112)))), ((int)(((byte)(140)))));
+            this.buttonAddImage.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("buttonAddImage.BackgroundImage")));
+            this.buttonAddImage.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.buttonAddImage.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.buttonAddImage.FlatAppearance.BorderSize = 0;
+            this.buttonAddImage.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonAddImage.Font = new System.Drawing.Font("Tw Cen MT Condensed", 20F, System.Drawing.FontStyle.Bold);
+            this.buttonAddImage.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(85)))), ((int)(((byte)(85)))), ((int)(((byte)(110)))));
+            this.buttonAddImage.Location = new System.Drawing.Point(17, 15);
+            this.buttonAddImage.Margin = new System.Windows.Forms.Padding(0, 0, 0, 10);
+            this.buttonAddImage.Name = "buttonAddImage";
+            this.buttonAddImage.Size = new System.Drawing.Size(205, 165);
+            this.buttonAddImage.TabIndex = 12;
+            this.buttonAddImage.Text = "200 x 200";
+            this.buttonAddImage.TextAlign = System.Drawing.ContentAlignment.BottomRight;
+            this.buttonAddImage.UseVisualStyleBackColor = false;
+            this.buttonAddImage.Click += new System.EventHandler(this.ButtonImage_Click);
             // 
             // textBoxCardProdYear
             // 
@@ -412,7 +486,7 @@
             this.textBoxCardProdYear.Margin = new System.Windows.Forms.Padding(0, 0, 0, 13);
             this.textBoxCardProdYear.Name = "textBoxCardProdYear";
             this.textBoxCardProdYear.Size = new System.Drawing.Size(220, 33);
-            this.textBoxCardProdYear.TabIndex = 3;
+            this.textBoxCardProdYear.TabIndex = 6;
             // 
             // textBoxCardBrand
             // 
@@ -424,7 +498,8 @@
             this.textBoxCardBrand.Margin = new System.Windows.Forms.Padding(0, 0, 13, 13);
             this.textBoxCardBrand.Name = "textBoxCardBrand";
             this.textBoxCardBrand.Size = new System.Drawing.Size(220, 33);
-            this.textBoxCardBrand.TabIndex = 30;
+            this.textBoxCardBrand.TabIndex = 1;
+            this.textBoxCardBrand.Tag = "";
             // 
             // labelCarProdYear
             // 
@@ -438,24 +513,6 @@
             this.labelCarProdYear.TabIndex = 24;
             this.labelCarProdYear.Text = "Production Year";
             // 
-            // button1
-            // 
-            this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(112)))), ((int)(((byte)(112)))), ((int)(((byte)(140)))));
-            this.button1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("button1.BackgroundImage")));
-            this.button1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.button1.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.button1.FlatAppearance.BorderSize = 0;
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.Font = new System.Drawing.Font("Tw Cen MT Condensed", 20F, System.Drawing.FontStyle.Bold);
-            this.button1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(68)))), ((int)(((byte)(93)))));
-            this.button1.Location = new System.Drawing.Point(17, 15);
-            this.button1.Margin = new System.Windows.Forms.Padding(0, 0, 0, 10);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(205, 183);
-            this.button1.TabIndex = 14;
-            this.button1.UseVisualStyleBackColor = false;
-            this.button1.Click += new System.EventHandler(this.ButtonImage_Click);
-            // 
             // FormPublish
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -467,13 +524,13 @@
             this.Name = "FormPublish";
             this.Padding = new System.Windows.Forms.Padding(10);
             this.Text = "FormPublish";
-            this.Load += new System.EventHandler(this.FormPublish_Load);
             this.Leave += new System.EventHandler(this.FormPublish_Leave);
             this.panel1.ResumeLayout(false);
             this.SignUp.ResumeLayout(false);
             this.flowLayoutPanel2.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
+            this.panelLoadingBar.ResumeLayout(false);
             this.flowLayoutPanel1.ResumeLayout(false);
             this.ResumeLayout(false);
 
@@ -504,12 +561,16 @@
         private System.Windows.Forms.Label labelCarTags;
         private System.Windows.Forms.TextBox textBoxCarColor;
         private System.Windows.Forms.TextBox textBoxCarTags;
-        private System.Windows.Forms.Button buttonSignup;
+        private System.Windows.Forms.Button buttonPost;
         private System.Windows.Forms.Button buttonClear;
         private System.Windows.Forms.TextBox textBoxCardBrand;
         private System.Windows.Forms.MonthCalendar monthCalendar;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button buttonAddImage;
         private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.Panel panelLoadingBar;
+        private System.Windows.Forms.Label labelLoadingProgress;
+        private System.Windows.Forms.TextBox textBoxCarPrice;
+        private System.Windows.Forms.Label labelCarPrice;
     }
 }

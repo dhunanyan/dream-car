@@ -10,12 +10,12 @@ namespace DreamCar.Data
     {
 
 
-        public virtual DbSet<User> Users { get; set; }
-        public virtual DbSet<Car> Cars { get; set; }
-        public virtual DbSet<Favourite> Favourite { get; set; }
-        public virtual DbSet<Reservation> Reservation { get; set; }
+        public virtual DbSet<User> Users { get; set; } = null!;
+        public virtual DbSet<Car> Cars { get; set; } = null!;
+        public virtual DbSet<Favourite> Favourite { get; set; } = null!;
+        public virtual DbSet<Reservation> Reservation { get; set; } = null!;
 
-        
+
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             // Keep your connection strings separate from your code!

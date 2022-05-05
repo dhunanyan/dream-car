@@ -36,7 +36,7 @@
             this.panel1.Location = new System.Drawing.Point(10, 11);
             this.panel1.Margin = new System.Windows.Forms.Padding(0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1050, 663);
+            this.panel1.Size = new System.Drawing.Size(1050, 690);
             this.panel1.TabIndex = 2;
             // 
             // FormProfile
@@ -44,7 +44,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(68)))), ((int)(((byte)(93)))));
-            this.ClientSize = new System.Drawing.Size(1071, 684);
+            this.ClientSize = new System.Drawing.Size(1071, 711);
             this.Controls.Add(this.panel1);
             this.Name = "FormProfile";
             this.Padding = new System.Windows.Forms.Padding(10);

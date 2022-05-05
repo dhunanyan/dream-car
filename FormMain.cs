@@ -280,15 +280,32 @@ namespace DreamCar
         {
             DreamCarContext contextUserExists = new DreamCarContext();
             DreamCarContext contextSignUp = new DreamCarContext();
-            var userExists = contextUserExists.Users.Where(u => u.UserUsername == textBoxUsername.Text).FirstOrDefault();
+            var userExists = contextUserExists.Users.Where(u => u.UserUsername == textBoxUsername.Text);
 
-            if (textBoxUsername.Text == "" && textBoxPassword.Text == "" && textBoxConfirmPassword.Text == "")
+            if (textBoxUsername.Text == "" || 
+                textBoxPassword.Text == "" || 
+                textBoxConfirmPassword.Text == "" || 
+                textBoxFirstName.Text == "" ||
+                textBoxLastName.Text == "" ||
+                textBoxCountry.Text == "" ||
+                textBoxAddress.Text == "" ||
+                textBoxPhone.Text == "" ||
+                textBoxCity.Text == "" ||
+                textBoxEmail.Text == "")
             {
-                MessageBox.Show("Username and Password fields empty", "Registration failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                textBoxUsername.Text = "";
-                textBoxPassword.Text = "";
-                textBoxConfirmPassword.Text = "";
-                textBoxUsername.Focus();
+                string emptyTextBoxes = "";
+                
+                foreach (Control control in flowLayoutPanel2.Controls)
+                {
+                    if(control.Text == "" && control is TextBox)
+                    {
+                        emptyTextBoxes += control.Name.Split('x')[2] + ", ";
+                    }
+                }
+
+                MessageBox.Show(
+                    $"{emptyTextBoxes} fields empty ary empty, Please fill them."
+                    , "Registration failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
@@ -302,7 +319,7 @@ namespace DreamCar
                 return;
             }
 
-            if (userExists != null)
+            if (userExists.Count() > 0)
             {
                 MessageBox.Show("User with current username exists, choose another username.", "Registration failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 textBoxUsername.Text = "";
@@ -399,10 +416,28 @@ namespace DreamCar
         private void ButtonSignin_Click(object sender, EventArgs e)
         {
             DreamCarContext contextUserExists = new DreamCarContext();
-            var userExists = contextUserExists.Users.Select(u => u.UserUsername == textBoxUsernameSignin.Text && u.UserPassword == textBoxPasswordSignin.Text);
+            var userExists = from users in contextUserExists.Users where users.UserUsername  == textBoxUsernameSignin.Text && users.UserPassword == textBoxPasswordSignin.Text select users;
+            //var userExists = contextUserExists.Users.Where(u => u.UserUsername == textBoxUsernameSignin.Text && u.UserPassword == textBoxPasswordSignin.Text);
             Console.WriteLine(userExists);
+            
+            Console.WriteLine(userExists.Count() == 0);
 
-            if (userExists != null)
+            if (textBoxUsernameSignin.Text == "" && textBoxPasswordSignin.Text == "")
+            {
+                MessageBox.Show("Empty Username and Pasword fields. Please fill up the form and try again", "Login Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                textBoxUsernameSignin.Focus();
+            }
+            else if (textBoxUsernameSignin.Text == "")
+            {
+                MessageBox.Show("Empty Username field. Please fill up the form and try again", "Login Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                textBoxUsernameSignin.Focus();
+            }
+            else if (textBoxPasswordSignin.Text == "")
+            {
+                MessageBox.Show("Empty Password field. Please fill up the form and try again", "Login Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                textBoxPasswordSignin.Focus();
+            }
+            else if (userExists.Count() != 0)
             {
                 currentUser = textBoxUsernameSignin.Text.ToString();
                 buttonCollection.Enabled = true;
