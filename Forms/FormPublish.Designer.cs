@@ -147,7 +147,10 @@
             this.monthCalendar.Margin = new System.Windows.Forms.Padding(0, 0, 13, 0);
             this.monthCalendar.Name = "monthCalendar";
             this.monthCalendar.TabIndex = 31;
-            this.monthCalendar.DateChanged += new System.Windows.Forms.DateRangeEventHandler(this.MonthCalendar_DateChanged);
+            this.monthCalendar.MaxSelectionCount = 62;
+            this.monthCalendar.ShowTodayCircle = false;
+            this.monthCalendar.ShowToday = false;
+            //this.monthCalendar.DateChanged += new System.Windows.Forms.DateRangeEventHandler(this.MonthCalendar_DateChanged);
             this.monthCalendar.DateSelected += new System.Windows.Forms.DateRangeEventHandler(this.MonthCalendar_DateSelected);
             // 
             // flowLayoutPanel1
