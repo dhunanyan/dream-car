@@ -28,33 +28,46 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.panel1 = new System.Windows.Forms.Panel();
+            this.panelMain = new System.Windows.Forms.Panel();
+            this.flowLayoutPanelCarCollection = new System.Windows.Forms.FlowLayoutPanel();
+            this.panelMain.SuspendLayout();
             this.SuspendLayout();
             // 
-            // panel1
+            // panelMain
             // 
-            this.panel1.Location = new System.Drawing.Point(10, 11);
-            this.panel1.Margin = new System.Windows.Forms.Padding(0);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1050, 663);
-            this.panel1.TabIndex = 1;
+            this.panelMain.Controls.Add(this.flowLayoutPanelCarCollection);
+            this.panelMain.Location = new System.Drawing.Point(10, 11);
+            this.panelMain.Margin = new System.Windows.Forms.Padding(0);
+            this.panelMain.Name = "panelMain";
+            this.panelMain.Size = new System.Drawing.Size(1050, 690);
+            this.panelMain.TabIndex = 1;
             // 
             // FormCollection
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(68)))), ((int)(((byte)(93)))));
-            this.ClientSize = new System.Drawing.Size(1071, 684);
-            this.Controls.Add(this.panel1);
+            this.ClientSize = new System.Drawing.Size(1071, 711);
+            this.Controls.Add(this.panelMain);
             this.Name = "FormCollection";
             this.Padding = new System.Windows.Forms.Padding(10);
             this.Text = "FormCollection";
+            this.panelMain.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Panel panelMain;
+        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanelCarCollection;
+        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanelCurrentCar;
+        private System.Windows.Forms.Panel panelCurrentCarImage;
+        private System.Windows.Forms.Label labelCurrentCarBrand;
+        private System.Windows.Forms.Label labelCurrentCarModel;
+        private System.Windows.Forms.Label labelCurrentCarProdYear;
+        private System.Windows.Forms.Label labelCurrentCarFuel;
+        private System.Windows.Forms.Label labelCurrentCarGearbox;
+        private System.Windows.Forms.Button buttonCurrentCarMore;
     }
 }
