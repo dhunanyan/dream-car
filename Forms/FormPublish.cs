@@ -33,6 +33,13 @@ namespace DreamCar.Forms
         public FormPublish()
         {
             InitializeComponent();
+            DreamCarContext contextCurrentUser = new DreamCarContext();
+            var currentUserCarRecerd = from user in contextCurrentUser.Set<User>()
+                                       join car in contextCurrentUser.Set<Car>()
+                                       on user.UserUsername equals car.CarAuthor
+                                       where user.UserId == currentUserId
+                                       select car;
+            Console.WriteLine(currentUserCarRecerd.Count());
         }
 
         private void FormPublish_Leave(object sender, EventArgs e)
@@ -42,84 +49,78 @@ namespace DreamCar.Forms
 
         public void AddCar()
         {
-            DreamCarContext contextCurrentUser = new DreamCarContext();
-            var currentUserRecord = contextCurrentUser.Users.Where(u => u.UserId == currentUserId);
-
             int errorInt;
             double errorDouble;
-
-            if (currentUserRecord.Count() == 1)
+            if (
+                textBoxCardBrand.Text == "" ||
+                textBoxCarModel.Text == "" ||
+                textBoxCardProdYear.Text == "" ||
+                textBoxCarCapacity.Text == "" ||
+                textBoxCarFuel.Text == "" ||
+                textBoxCardGearbox.Text == "" ||
+                textBoxCarCountry.Text == "" ||
+                textBoxCarCity.Text == "" ||
+                textBoxCarColor.Text == "" ||
+                textBoxCarPrice.Text == "" ||
+                textBoxCarTags.Text == ""
+                )
             {
+                string emptyTextBoxes = "";
 
-                if (
-                    textBoxCardBrand.Text == "" ||
-                    textBoxCarModel.Text == "" ||
-                    textBoxCardProdYear.Text == "" ||
-                    textBoxCarCapacity.Text == "" ||
-                    textBoxCarFuel.Text == "" ||
-                    textBoxCardGearbox.Text == "" ||
-                    textBoxCarCountry.Text == "" ||
-                    textBoxCarCity.Text == "" ||
-                    textBoxCarColor.Text == "" ||
-                    textBoxCarPrice.Text == "" ||
-                    textBoxCarTags.Text == ""
-                    )
+                foreach (Control control in flowLayoutPanel2.Controls)
                 {
-                    string emptyTextBoxes = "";
-
-                    foreach (Control control in flowLayoutPanel2.Controls)
+                    if (control.Text == "" && control is TextBox)
                     {
-                        if (control.Text == "" && control is TextBox)
-                        {
-                            emptyTextBoxes += control.Name.Split('x')[2] + ", ";
-                        }
+                        emptyTextBoxes += control.Name.Split('x')[2] + ", ";
                     }
+                }
 
-                    MessageBox.Show(
-                        $"{emptyTextBoxes} fields empty ary empty, Please fill them."
-                        , "CarAdd Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
-                else if (!double.TryParse(textBoxCarPrice.Text, out errorDouble) || !int.TryParse(textBoxCarPrice.Text, out errorInt))
+                MessageBox.Show(
+                    $"{emptyTextBoxes} fields empty ary empty, Please fill them."
+                    , "CarAdd Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            else if (!double.TryParse(textBoxCarPrice.Text, out errorDouble) || !int.TryParse(textBoxCarPrice.Text, out errorInt))
+            {
+                MessageBox.Show(
+                    $"Wrong Price value. Please enter valid price."
+                    , "CarAdd Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            else if (!double.TryParse(textBoxCarCapacity.Text, out errorDouble) || !int.TryParse(textBoxCarCapacity.Text, out errorInt))
+            {
+                MessageBox.Show(
+                    $"Wrong Capacity value. Please enter capacity price."
+                    , "CarAdd Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            else if (!int.TryParse(textBoxCardProdYear.Text, out errorInt))
+            {
+                MessageBox.Show(
+                    $"Wrong Production Year value. Please enter valid production year."
+                    , "CarAdd Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            else if (imageUrl == "") {
+                MessageBox.Show(
+                    $"No picture attached. Please attach your car's picture."
+                    , "CarAdd Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            else if (reservationDateStart == "" || reservationDateEnd == "")
+            {
+                MessageBox.Show(
+                    $"No available Date selected. Please select a day or days range in the calendar."
+                    , "CarAdd Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            else
+            {
+                using (DreamCarContext context = new DreamCarContext())
                 {
-                    MessageBox.Show(
-                        $"Wrong Price value. Please enter valid price."
-                        , "CarAdd Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
-                else if (!double.TryParse(textBoxCarCapacity.Text, out errorDouble) || !int.TryParse(textBoxCarCapacity.Text, out errorInt))
-                {
-                    MessageBox.Show(
-                        $"Wrong Capacity value. Please enter capacity price."
-                        , "CarAdd Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
-                else if (!int.TryParse(textBoxCardProdYear.Text, out errorInt))
-                {
-                    MessageBox.Show(
-                        $"Wrong Production Year value. Please enter valid production year."
-                        , "CarAdd Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
-                else if (imageUrl == "") {
-                    MessageBox.Show(
-                       $"No picture attached. Please attach your car's picture."
-                       , "CarAdd Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
-                else if (reservationDateStart == "" || reservationDateEnd == "")
-                {
-                    MessageBox.Show(
-                       $"No available Date selected. Please select a day or days range in the calendar."
-                       , "CarAdd Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
-                else
-                {
-                    DreamCarContext contextCurrentUserCars = new DreamCarContext();
-                    var currentUserCars = from user in contextCurrentUser.Set<User>()
-                                          join car in contextCurrentUser.Set<Car>()
-                                              on user.UserId equals car.UserId
+                    var currentUserCars = from user in context.Set<User>()
+                                          join car in context.Set<Car>()
+                                            on user.UserUsername equals car.CarAuthor
                                           where user.UserId == currentUserId
                                           select car;
 
@@ -145,19 +146,15 @@ namespace DreamCar.Forms
                         CarModel = textBoxCarModel.Text,
                         CarTags = textBoxCarTags.Text
                     };
-                    currentUserRecord.First().Cars.Add(currentCar);
-                    contextCurrentUser.SaveChanges();
-
-                    
+                    context.Cars.Add(currentCar);
+                    context.SaveChanges();
                     MessageBox.Show(
-                      $"Congratulations, you have added to collection your {currentUserCars.ToList().Count()}"
-                      , "CarAdd Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-                    AddCarReset();
-                    return;
+                        $"Congratulations, you have added to collection your {currentUserCars.ToList().Count()}"
+                        , "CarAdd Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
+                AddCarReset();
+                return;
             }
-
         }
 
         private void AddCarReset()
@@ -220,7 +217,7 @@ namespace DreamCar.Forms
                     DreamCarContext contextCurrentUser = new DreamCarContext();
                     var currentUserCars = from user in contextCurrentUser.Set<User>()
                                           join car in contextCurrentUser.Set<Car>()
-                                              on user.UserId equals car.UserId
+                                              on user.UserUsername equals car.CarAuthor
                                           where user.UserId == currentUserId
                                           select car;
 

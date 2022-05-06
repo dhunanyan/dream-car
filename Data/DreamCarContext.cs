@@ -12,6 +12,7 @@ namespace DreamCar.Data
 
         public virtual DbSet<User> Users { get; set; } = null!;
         public virtual DbSet<Car> Cars { get; set; } = null!;
+        public virtual DbSet<UserCar> UserCars { get; set; } = null!;
         public virtual DbSet<Favourite> Favourite { get; set; } = null!;
         public virtual DbSet<Reservation> Reservation { get; set; } = null!;
 
@@ -26,14 +27,14 @@ namespace DreamCar.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<User>().HasMany(u => u.Cars).WithOne(c => c.User); 
-            modelBuilder.Entity<Car>().HasOne(c => c.User).WithMany(c => c.Cars);
-            modelBuilder.Entity<Favourite>().HasOne(c => c.Car).WithMany(f => f.Favourites);
-            modelBuilder.Entity<Car>().HasMany(c => c.Favourites).WithOne(r => r.Car);
-            modelBuilder.Entity<Reservation>().HasOne(c => c.Car).WithMany(f => f.Reservations);
-            modelBuilder.Entity<Car>().HasMany(c => c.Reservations).WithOne(r => r.Car);
-            modelBuilder.Entity<Publish>().HasOne(c => c.Car).WithMany(f => f.Publishes);
-            modelBuilder.Entity<Car>().HasMany(c => c.Publishes).WithOne(r => r.Car);
+            modelBuilder.Entity<UserCar>().HasKey(uc => new { uc.UserId, uc.CarId });
+
+            modelBuilder.Entity<UserCar>().HasOne<User>(u => u.User).WithMany(c => c.UserCars);
+            modelBuilder.Entity<UserCar>().HasOne<Car>(c => c.Car).WithMany(u => u.UserCars);
+
+            modelBuilder.Entity<Favourite>().HasOne<UserCar>(uc => uc.UserCar).WithMany(f => f.Favourites).HasForeignKey(uc => uc.UserCarId).OnDelete(DeleteBehavior.Cascade);
+            modelBuilder.Entity<Reservation>().HasOne<UserCar>(uc => uc.UserCar).WithMany(f => f.Reservations).HasForeignKey(uc => uc.UserCarId).OnDelete(DeleteBehavior.Cascade);
+            modelBuilder.Entity<Publish>().HasOne<UserCar>(uc => uc.UserCar).WithMany(f => f.Publishes).HasForeignKey(uc => uc.UserCarId).OnDelete(DeleteBehavior.Cascade);
 
             base.OnModelCreating(modelBuilder);
         }

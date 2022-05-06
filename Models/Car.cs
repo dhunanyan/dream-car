@@ -57,13 +57,6 @@ namespace DreamCar.Models
         [Column(TypeName = "varchar(1000)")]
         public string CarAuthor { get; set; } = null!;
 
-        public ICollection<Reservation> Reservations { get; set; } = null!;
-        public ICollection<Publish> Publishes { get; set; } = null!;
-        public ICollection<Favourite> Favourites { get; set; } = null!; 
-
-         [ForeignKey("User")]
-        public int? UserId  { get; set; }
-        public User User { get; set; } = null!;
-
+        public ICollection<UserCar> UserCars { get; set; } = null!;
     }
 }

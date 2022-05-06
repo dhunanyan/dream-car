@@ -10,8 +10,7 @@ namespace DreamCar.Models
         public int ReservationId { get; set; }
         public string ReservationAuthor { get; set; } = null!;
 
-        [ForeignKey("Car")]
-        public int? CarId { get; set; }
-        public Car Car { get; set; } = null!;
+        public int? UserCarId { get; set; }
+        public UserCar UserCar { get; set; } = null!;
     }
 }
