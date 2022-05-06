@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DreamCar.Migrations
 {
     [DbContext(typeof(DreamCarContext))]
-    [Migration("20220506035556_InitialCreate")]
+    [Migration("20220506044053_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -115,9 +115,6 @@ namespace DreamCar.Migrations
                     b.Property<int?>("CarId")
                         .HasColumnType("int");
 
-                    b.Property<int?>("CarId1")
-                        .HasColumnType("int");
-
                     b.Property<string>("FavouriteAuthor")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -125,8 +122,6 @@ namespace DreamCar.Migrations
                     b.HasKey("FavouriteId");
 
                     b.HasIndex("CarId");
-
-                    b.HasIndex("CarId1");
 
                     b.ToTable("Favourite");
                 });
@@ -141,9 +136,6 @@ namespace DreamCar.Migrations
                     b.Property<int?>("CarId")
                         .HasColumnType("int");
 
-                    b.Property<int?>("CarId1")
-                        .HasColumnType("int");
-
                     b.Property<string>("ReservationAuthor")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -151,8 +143,6 @@ namespace DreamCar.Migrations
                     b.HasKey("ReservationId");
 
                     b.HasIndex("CarId");
-
-                    b.HasIndex("CarId1");
 
                     b.ToTable("Reservation");
                 });
@@ -214,24 +204,16 @@ namespace DreamCar.Migrations
 
             modelBuilder.Entity("DreamCar.Models.Favourite", b =>
                 {
-                    b.HasOne("DreamCar.Models.User", "Car")
-                        .WithMany()
-                        .HasForeignKey("CarId");
-
-                    b.HasOne("DreamCar.Models.Car", null)
+                    b.HasOne("DreamCar.Models.Car", "Car")
                         .WithMany("Favourites")
-                        .HasForeignKey("CarId1");
+                        .HasForeignKey("CarId");
                 });
 
             modelBuilder.Entity("DreamCar.Models.Reservation", b =>
                 {
-                    b.HasOne("DreamCar.Models.User", "Car")
-                        .WithMany()
-                        .HasForeignKey("CarId");
-
-                    b.HasOne("DreamCar.Models.Car", null)
+                    b.HasOne("DreamCar.Models.Car", "Car")
                         .WithMany("Reservations")
-                        .HasForeignKey("CarId1");
+                        .HasForeignKey("CarId");
                 });
 #pragma warning restore 612, 618
         }

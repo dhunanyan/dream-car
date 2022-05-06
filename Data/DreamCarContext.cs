@@ -12,8 +12,8 @@ namespace DreamCar.Data
 
         public virtual DbSet<User> Users { get; set; } = null!;
         public virtual DbSet<Car> Cars { get; set; } = null!;
-        //public virtual DbSet<Favourite> Favourite { get; set; } = null!;
-        //public virtual DbSet<Reservation> Reservation { get; set; } = null!;
+        public virtual DbSet<Favourite> Favourite { get; set; } = null!;
+        public virtual DbSet<Reservation> Reservation { get; set; } = null!;
 
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -21,22 +21,19 @@ namespace DreamCar.Data
             // Keep your connection strings separate from your code!
             // Secure connection string guidance: https://aka.ms/ef-core-connection-strings
             // 
-            optionsBuilder.UseSqlServer(@"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=DreamCarDB;Integrated Security=True;");
+            optionsBuilder.UseSqlServer(@"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=DreamCar;Integrated Security=True;");
         }
 
-        //protected override void OnModelCreating(ModelBuilder modelBuilder)
-        //{
-        //    modelBuilder.Entity<Car>()
-        //        .HasOne(c => c.Owner)
-        //        .WithMany(u => u.Cars)
-        //        .OnDelete(DeleteBehavior.Restrict);
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<User>().HasMany(u => u.Cars).WithOne(c => c.User);
+            modelBuilder.Entity<Car>().HasOne(c => c.User).WithMany(c => c.Cars);
+            modelBuilder.Entity<Favourite>().HasOne(c => c.Car).WithMany(f => f.Favourites);
+            modelBuilder.Entity<Car>().HasMany(c => c.Favourites).WithOne(r => r.Car);
+            modelBuilder.Entity<Reservation>().HasOne(c => c.Car).WithMany(f => f.Reservations);
+            modelBuilder.Entity<Car>().HasMany(c => c.Reservations).WithOne(r => r.Car);
 
-        //    modelBuilder.Entity<User>()
-        //        .HasMany(u => u.FavouriteCars)
-        //        .WithMany(c => c.Likers);
-
-
-        //    base.OnModelCreating(modelBuilder);
-        //}
+            base.OnModelCreating(modelBuilder);
+        }
     }
 }

@@ -6,12 +6,6 @@ namespace DreamCar.Models
 {
     public class Car
     {
-        public Car()
-        {
-            Favourites = new HashSet<Favourite>();
-            Reservations = new HashSet<Reservation>();
-        }
-
         [Key]
         public int CarId { get; set; }
 

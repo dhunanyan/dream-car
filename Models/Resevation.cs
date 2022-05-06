@@ -12,6 +12,6 @@ namespace DreamCar.Models
 
         [ForeignKey("Car")]
         public int? CarId { get; set; }
-        public User Car { get; set; } = null!;
+        public Car Car { get; set; } = null!;
     }
 }

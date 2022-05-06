@@ -7,10 +7,6 @@ namespace DreamCar.Models
 {
     public class User
     {
-        public User()
-        {
-            Cars = new HashSet<Car>();
-        }
 
         [Key]
         public int UserId { get; set; }

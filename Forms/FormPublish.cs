@@ -43,7 +43,7 @@ namespace DreamCar.Forms
         public void AddCar()
         {
             DreamCarContext contextCurrentUser = new DreamCarContext();
-            var currentUserRecord = contextCurrentUser.Users.Where(u => u.UserUsername == currentUserUsername);
+            var currentUserRecord = contextCurrentUser.Users.Where(u => u.UserId == currentUserId);
 
             int errorInt;
             double errorDouble;
@@ -120,7 +120,7 @@ namespace DreamCar.Forms
                     var currentUserCars = from user in contextCurrentUser.Set<User>()
                                           join car in contextCurrentUser.Set<Car>()
                                               on user.UserId equals car.UserId
-                                          where user.UserUsername == currentUserUsername
+                                          where user.UserId == currentUserId
                                           select car;
 
                     Car currentCar;
@@ -221,7 +221,7 @@ namespace DreamCar.Forms
                     var currentUserCars = from user in contextCurrentUser.Set<User>()
                                           join car in contextCurrentUser.Set<Car>()
                                               on user.UserId equals car.UserId
-                                          where user.UserUsername == currentUserUsername
+                                          where user.UserId == currentUserId
                                           select car;
 
                     var stream = File.Open(dlg.FileName, FileMode.Open);

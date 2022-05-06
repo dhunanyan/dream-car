@@ -71,21 +71,14 @@ namespace DreamCar.Migrations
                     FavouriteId = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     FavouriteAuthor = table.Column<string>(nullable: false),
-                    CarId = table.Column<int>(nullable: true),
-                    CarId1 = table.Column<int>(nullable: true)
+                    CarId = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Favourite", x => x.FavouriteId);
                     table.ForeignKey(
-                        name: "FK_Favourite_Users_CarId",
+                        name: "FK_Favourite_Cars_CarId",
                         column: x => x.CarId,
-                        principalTable: "Users",
-                        principalColumn: "UserId",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_Favourite_Cars_CarId1",
-                        column: x => x.CarId1,
                         principalTable: "Cars",
                         principalColumn: "CarId",
                         onDelete: ReferentialAction.Restrict);
@@ -98,21 +91,14 @@ namespace DreamCar.Migrations
                     ReservationId = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     ReservationAuthor = table.Column<string>(nullable: false),
-                    CarId = table.Column<int>(nullable: true),
-                    CarId1 = table.Column<int>(nullable: true)
+                    CarId = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Reservation", x => x.ReservationId);
                     table.ForeignKey(
-                        name: "FK_Reservation_Users_CarId",
+                        name: "FK_Reservation_Cars_CarId",
                         column: x => x.CarId,
-                        principalTable: "Users",
-                        principalColumn: "UserId",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_Reservation_Cars_CarId1",
-                        column: x => x.CarId1,
                         principalTable: "Cars",
                         principalColumn: "CarId",
                         onDelete: ReferentialAction.Restrict);
@@ -129,19 +115,9 @@ namespace DreamCar.Migrations
                 column: "CarId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Favourite_CarId1",
-                table: "Favourite",
-                column: "CarId1");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_Reservation_CarId",
                 table: "Reservation",
                 column: "CarId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Reservation_CarId1",
-                table: "Reservation",
-                column: "CarId1");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
