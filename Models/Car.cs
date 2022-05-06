@@ -6,6 +6,12 @@ namespace DreamCar.Models
 {
     public class Car
     {
+        public Car()
+        {
+            Favourites = new HashSet<Favourite>();
+            Reservations = new HashSet<Reservation>();
+        }
+
         [Key]
         public int CarId { get; set; }
 
@@ -57,14 +63,12 @@ namespace DreamCar.Models
         [Column(TypeName = "varchar(1000)")]
         public string CarAuthor { get; set; } = null!;
 
-
-
-
-
-        [ForeignKey("User")]
-        public int? UserId { get; set; }
-        public User User { get; set; } = null!;
         public ICollection<Reservation> Reservations { get; set; } = null!;
         public ICollection<Favourite> Favourites { get; set; } = null!;
+
+        [ForeignKey("User")]
+        public int? UserId  { get; set; }
+        public User User { get; set; } = null!;
+
     }
 }

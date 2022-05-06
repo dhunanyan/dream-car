@@ -70,24 +70,25 @@ namespace DreamCar.Migrations
                 {
                     FavouriteId = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    UserId = table.Column<int>(nullable: false),
-                    CarId = table.Column<int>(nullable: false)
+                    FavouriteAuthor = table.Column<string>(nullable: false),
+                    CarId = table.Column<int>(nullable: true),
+                    CarId1 = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Favourite", x => x.FavouriteId);
                     table.ForeignKey(
-                        name: "FK_Favourite_Cars_CarId",
+                        name: "FK_Favourite_Users_CarId",
                         column: x => x.CarId,
-                        principalTable: "Cars",
-                        principalColumn: "CarId",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_Favourite_Users_UserId",
-                        column: x => x.UserId,
                         principalTable: "Users",
                         principalColumn: "UserId",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_Favourite_Cars_CarId1",
+                        column: x => x.CarId1,
+                        principalTable: "Cars",
+                        principalColumn: "CarId",
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -96,24 +97,25 @@ namespace DreamCar.Migrations
                 {
                     ReservationId = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    UserId = table.Column<int>(nullable: false),
-                    CarId = table.Column<int>(nullable: false)
+                    ReservationAuthor = table.Column<string>(nullable: false),
+                    CarId = table.Column<int>(nullable: true),
+                    CarId1 = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Reservation", x => x.ReservationId);
                     table.ForeignKey(
-                        name: "FK_Reservation_Cars_CarId",
+                        name: "FK_Reservation_Users_CarId",
                         column: x => x.CarId,
-                        principalTable: "Cars",
-                        principalColumn: "CarId",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_Reservation_Users_UserId",
-                        column: x => x.UserId,
                         principalTable: "Users",
                         principalColumn: "UserId",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_Reservation_Cars_CarId1",
+                        column: x => x.CarId1,
+                        principalTable: "Cars",
+                        principalColumn: "CarId",
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateIndex(
@@ -127,9 +129,9 @@ namespace DreamCar.Migrations
                 column: "CarId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Favourite_UserId",
+                name: "IX_Favourite_CarId1",
                 table: "Favourite",
-                column: "UserId");
+                column: "CarId1");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Reservation_CarId",
@@ -137,9 +139,9 @@ namespace DreamCar.Migrations
                 column: "CarId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Reservation_UserId",
+                name: "IX_Reservation_CarId1",
                 table: "Reservation",
-                column: "UserId");
+                column: "CarId1");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)

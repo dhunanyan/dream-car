@@ -67,7 +67,8 @@
         private System.Windows.Forms.Label labelCurrentCarModel;
         private System.Windows.Forms.Label labelCurrentCarProdYear;
         private System.Windows.Forms.Label labelCurrentCarFuel;
-        private System.Windows.Forms.Label labelCurrentCarGearbox;
+        private System.Windows.Forms.Label labelCurrentCarGearbox; 
+        private System.Windows.Forms.Button buttonCurrentCarFav;
         private System.Windows.Forms.Button buttonCurrentCarMore;
     }
 }

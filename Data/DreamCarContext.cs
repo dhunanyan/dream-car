@@ -12,8 +12,8 @@ namespace DreamCar.Data
 
         public virtual DbSet<User> Users { get; set; } = null!;
         public virtual DbSet<Car> Cars { get; set; } = null!;
-        public virtual DbSet<Favourite> Favourite { get; set; } = null!;
-        public virtual DbSet<Reservation> Reservation { get; set; } = null!;
+        //public virtual DbSet<Favourite> Favourite { get; set; } = null!;
+        //public virtual DbSet<Reservation> Reservation { get; set; } = null!;
 
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -26,8 +26,17 @@ namespace DreamCar.Data
 
         //protected override void OnModelCreating(ModelBuilder modelBuilder)
         //{
-        //    modelBuilder.Entity<User>().HasRequired(c => c.Stage).WithMany().WillCascadeOnDelete(false);
-        //    modelBuilder.Entity<Car>().HasRequired(s => s.Stage).WithMany().WillCascadeOnDelete(false);
+        //    modelBuilder.Entity<Car>()
+        //        .HasOne(c => c.Owner)
+        //        .WithMany(u => u.Cars)
+        //        .OnDelete(DeleteBehavior.Restrict);
+
+        //    modelBuilder.Entity<User>()
+        //        .HasMany(u => u.FavouriteCars)
+        //        .WithMany(c => c.Likers);
+
+
+        //    base.OnModelCreating(modelBuilder);
         //}
     }
 }

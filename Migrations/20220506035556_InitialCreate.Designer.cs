@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DreamCar.Migrations
 {
     [DbContext(typeof(DreamCarContext))]
-    [Migration("20220504171830_InitialCreate")]
+    [Migration("20220506035556_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -112,17 +112,21 @@ namespace DreamCar.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("CarId")
+                    b.Property<int?>("CarId")
                         .HasColumnType("int");
 
-                    b.Property<int>("UserId")
+                    b.Property<int?>("CarId1")
                         .HasColumnType("int");
+
+                    b.Property<string>("FavouriteAuthor")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("FavouriteId");
 
                     b.HasIndex("CarId");
 
-                    b.HasIndex("UserId");
+                    b.HasIndex("CarId1");
 
                     b.ToTable("Favourite");
                 });
@@ -134,17 +138,21 @@ namespace DreamCar.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("CarId")
+                    b.Property<int?>("CarId")
                         .HasColumnType("int");
 
-                    b.Property<int>("UserId")
+                    b.Property<int?>("CarId1")
                         .HasColumnType("int");
+
+                    b.Property<string>("ReservationAuthor")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("ReservationId");
 
                     b.HasIndex("CarId");
 
-                    b.HasIndex("UserId");
+                    b.HasIndex("CarId1");
 
                     b.ToTable("Reservation");
                 });
@@ -206,32 +214,24 @@ namespace DreamCar.Migrations
 
             modelBuilder.Entity("DreamCar.Models.Favourite", b =>
                 {
-                    b.HasOne("DreamCar.Models.Car", "Car")
-                        .WithMany("Favourites")
-                        .HasForeignKey("CarId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                    b.HasOne("DreamCar.Models.User", "Car")
+                        .WithMany()
+                        .HasForeignKey("CarId");
 
-                    b.HasOne("DreamCar.Models.User", "User")
+                    b.HasOne("DreamCar.Models.Car", null)
                         .WithMany("Favourites")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("CarId1");
                 });
 
             modelBuilder.Entity("DreamCar.Models.Reservation", b =>
                 {
-                    b.HasOne("DreamCar.Models.Car", "Car")
-                        .WithMany("Reservations")
-                        .HasForeignKey("CarId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                    b.HasOne("DreamCar.Models.User", "Car")
+                        .WithMany()
+                        .HasForeignKey("CarId");
 
-                    b.HasOne("DreamCar.Models.User", "User")
+                    b.HasOne("DreamCar.Models.Car", null)
                         .WithMany("Reservations")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("CarId1");
                 });
 #pragma warning restore 612, 618
         }

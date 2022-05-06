@@ -441,14 +441,14 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Helpers\ThemeColor.cs" />
-    <Compile Include="Migrations\20220504171830_InitialCreate.cs" />
-    <Compile Include="Migrations\20220504171830_InitialCreate.designer.cs">
-      <DependentUpon>20220504171830_InitialCreate.cs</DependentUpon>
+    <Compile Include="Migrations\20220506035556_InitialCreate.cs" />
+    <Compile Include="Migrations\20220506035556_InitialCreate.designer.cs">
+      <DependentUpon>20220506035556_InitialCreate.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\DreamCarContextModelSnapshot.cs" />
     <Compile Include="Models\Car.cs" />
-    <Compile Include="Models\Favourites.cs" />
-    <Compile Include="Models\Resevations.cs" />
+    <Compile Include="Models\Favourite.cs" />
+    <Compile Include="Models\Resevation.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -492,91 +492,7 @@
     <None Include="Resources\bars.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\cards.ico" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\cards.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\cards-16.ico" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\cards-64.ico" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\cards-512.ico" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\cardsBlue.ico" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\cardsBlueMain.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\circle.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\circleFilled.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\circleMax.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\game.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\instruction.png" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\logout.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\medalBronze.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\medalGold.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\medalSilver.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\oval.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\pauseSmall.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\play.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\playSmall.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\question.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\ranking.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\restartSmall.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\settings.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\showSmall.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\shuffleSmall.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\timerSmall.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\times.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\trophy.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\user.png" />
@@ -611,6 +527,13 @@
   <ItemGroup>
     <None Include="Resources\threeDots.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\starEmpty.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\starFilled.png" />
+  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

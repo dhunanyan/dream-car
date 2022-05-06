@@ -868,7 +868,7 @@ namespace DreamCar
             this.Controls.Add(this.panelTitleBar);
             this.Controls.Add(this.panelMenu);
             this.Margin = new System.Windows.Forms.Padding(2);
-            this.MinimumSize = new System.Drawing.Size(1283, 780);
+            this.MinimumSize = new System.Drawing.Size(1281, 774);
             this.Name = "FormMain";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "DreamCar";

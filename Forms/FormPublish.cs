@@ -43,7 +43,7 @@ namespace DreamCar.Forms
         public void AddCar()
         {
             DreamCarContext contextCurrentUser = new DreamCarContext();
-            var currentUserRecord = contextCurrentUser.Users.Where(u => u.UserUsername == currentUser);
+            var currentUserRecord = contextCurrentUser.Users.Where(u => u.UserUsername == currentUserUsername);
 
             int errorInt;
             double errorDouble;
@@ -120,20 +120,20 @@ namespace DreamCar.Forms
                     var currentUserCars = from user in contextCurrentUser.Set<User>()
                                           join car in contextCurrentUser.Set<Car>()
                                               on user.UserId equals car.UserId
-                                          where user.UserUsername == currentUser
+                                          where user.UserUsername == currentUserUsername
                                           select car;
 
                     Car currentCar;
                     currentCar = new Car()
                     {
-                        CarName = currentUser + "_" + currentUserCars.ToList().Count(),
+                        CarName = currentUserUsername + "_" + currentUserCars.ToList().Count(),
                         CarPrice = int.Parse(textBoxCarPrice.Text),
                         CarReservationDateStart = reservationDateStart,
                         CarReservationDateEnd = reservationDateEnd,
                         CarIsSold = false,
                         CarIsReserved = false,
                         CarImageUrl = imageUrl,
-                        CarAuthor = currentUser,
+                        CarAuthor = currentUserUsername,
                         CarColor = textBoxCarColor.Text,
                         CarCity = textBoxCarCity.Text,
                         CarCountry = textBoxCarCountry.Text,
@@ -221,13 +221,13 @@ namespace DreamCar.Forms
                     var currentUserCars = from user in contextCurrentUser.Set<User>()
                                           join car in contextCurrentUser.Set<Car>()
                                               on user.UserId equals car.UserId
-                                          where user.UserUsername == currentUser
+                                          where user.UserUsername == currentUserUsername
                                           select car;
 
                     var stream = File.Open(dlg.FileName, FileMode.Open);
                     var task = new FirebaseStorage("dreamcar-d63e5.appspot.com")
                         .Child("Images")
-                        .Child(currentUser + "_" + currentUserCars.ToList().Count())
+                        .Child(currentUserUsername + "_" + currentUserCars.ToList().Count())
                         .PutAsync(stream);
 
                     task.Progress.ProgressChanged += (s, e) => {

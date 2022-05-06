@@ -418,10 +418,6 @@ namespace DreamCar
             DreamCarContext contextUserExists = new DreamCarContext();
             var userExists = from users in contextUserExists.Users where users.UserUsername  == textBoxUsernameSignin.Text && users.UserPassword == textBoxPasswordSignin.Text select users;
             //var userExists = contextUserExists.Users.Where(u => u.UserUsername == textBoxUsernameSignin.Text && u.UserPassword == textBoxPasswordSignin.Text);
-            Console.WriteLine(userExists);
-            
-            Console.WriteLine(userExists.Count() == 0);
-
             if (textBoxUsernameSignin.Text == "" && textBoxPasswordSignin.Text == "")
             {
                 MessageBox.Show("Empty Username and Pasword fields. Please fill up the form and try again", "Login Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -439,7 +435,8 @@ namespace DreamCar
             }
             else if (userExists.Count() != 0)
             {
-                currentUser = textBoxUsernameSignin.Text.ToString();
+                currentUserId= userExists.ToList().First().UserId;
+                currentUserUsername = textBoxUsernameSignin.Text.ToString();
                 buttonCollection.Enabled = true;
                 buttonProfile.Enabled = true;
                 buttonPublish.Enabled = true;
@@ -621,20 +618,3 @@ namespace DreamCar
 //    Size = new Size(200, 50)
 //};
 //Controls.Add(lblCount);
-
-
-
-// CALENDAR
-//private void monthCalendar1_DateChanged(object sender, DateRangeEventArgs e)
-//{
-//    // Show the start and end dates in the text box.
-//    this.textBox1.Text = "Date Changed: Start =  " +
-//        e.Start.ToShortDateString() + " : End = " + e.End.ToShortDateString();
-//}
-
-//private void monthCalendar1_DateSelected(object sender, System.Windows.Forms.DateRangeEventArgs e)
-//{
-//    // Show the start and end dates in the text box.
-//    this.textBox1.Text = "Date Selected: Start = " +
-//        e.Start.ToShortDateString() + " : End = " + e.End.ToShortDateString();
-//}
