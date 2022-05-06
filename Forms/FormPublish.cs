@@ -12,6 +12,8 @@ using FireSharp.Config;
 using FireSharp.Interfaces;
 using Firebase.Storage;
 using DreamCar.Properties;
+using Microsoft.EntityFrameworkCore;
+using System.Collections.Generic;
 
 namespace DreamCar.Forms
 {
@@ -40,6 +42,7 @@ namespace DreamCar.Forms
                                        where user.UserId == currentUserId
                                        select car;
             Console.WriteLine(currentUserCarRecerd.Count());
+            Console.WriteLine(contextCurrentUser.Cars.Count());
         }
 
         private void FormPublish_Leave(object sender, EventArgs e)
@@ -144,10 +147,43 @@ namespace DreamCar.Forms
                         CarProdYear = int.Parse(textBoxCardProdYear.Text),
                         CarBrand = textBoxCardBrand.Text,
                         CarModel = textBoxCarModel.Text,
-                        CarTags = textBoxCarTags.Text
+                        CarTags = textBoxCarTags.Text,
+                        UserId = currentUserId,
+                        Publishes = new List<Publish>()
+                        {
+                            new Publish() { PublishAuthor = currentUserUsername}
+                        },
+                        Favourites = new List<Favourite>()
+                        {
+                            new Favourite() { FavouriteAuthor = currentUserUsername}
+                        },
+                        Reservations = new List<Reservation>()
+                        {
+                            new Reservation() { ReservationAuthor = currentUserUsername}
+                        },
                     };
                     context.Cars.Add(currentCar);
                     context.SaveChanges();
+
+                    using (DreamCarContext contextInner = new DreamCarContext())
+                    {
+                        DreamCarContext contextCar = new DreamCarContext();
+                        var currentCarRecord = contextCar.Cars.Where(c => c.UserId == currentUserId).FirstOrDefault();
+                        if (currentCarRecord != null)
+                        {
+                            var publishes = contextInner.Publish;
+                            foreach (var p in publishes)
+                            {
+                                if (p.CarId == null && p.PublishAuthor == currentUserUsername)
+                                {
+                                    p.CarId = currentCarRecord.CarId;
+                                }
+                            }
+                        }
+                        contextCar.SaveChanges();
+                        contextInner.SaveChanges();
+                    }
+
                     MessageBox.Show(
                         $"Congratulations, you have added to collection your {currentUserCars.ToList().Count()}"
                         , "CarAdd Success", MessageBoxButtons.OK, MessageBoxIcon.Information);

@@ -441,12 +441,16 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Helpers\ThemeColor.cs" />
+    <Compile Include="Migrations\20220506082402_InitialCreate.cs" />
+    <Compile Include="Migrations\20220506082402_InitialCreate.designer.cs">
+      <DependentUpon>20220506082402_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\DreamCarContextModelSnapshot.cs" />
     <Compile Include="Models\Car.cs" />
     <Compile Include="Models\Favourite.cs" />
     <Compile Include="Models\Publish.cs" />
     <Compile Include="Models\Resevation.cs" />
     <Compile Include="Models\User.cs" />
-    <Compile Include="Models\UserCar.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="FormMain.resx">

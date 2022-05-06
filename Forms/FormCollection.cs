@@ -33,13 +33,14 @@ namespace DreamCar.Forms
 
         private void GenerateCollection()
         {
-            DreamCarContext contextAllCars = new DreamCarContext();
-            var currentUserCars = from car in  contextAllCars.Set<Car>()  select car;
+            DreamCarContext contextAllFavs = new DreamCarContext();
+            DreamCarContext contextCar = new DreamCarContext();
+            var currentfavRecord = contextAllFavs.Favourite.Where(c => c.FavouriteAuthor == currentUserUsername);
             // 
             // flowLayoutPanelCarCollection
             // 
             flowLayoutPanelCarCollection.AutoScroll = true;
-            flowLayoutPanelCarCollection.AutoScrollMinSize = new Size(0, (65 * currentUserCars.ToList().Count()) + 45);
+            flowLayoutPanelCarCollection.AutoScrollMinSize = new Size(0, (65 * contextCar.Cars.ToList().Count()) + 45);
             flowLayoutPanelCarCollection.BackColor = Color.FromArgb(((int)(((byte)(85)))), ((int)(((byte)(85)))), ((int)(((byte)(110)))));
             flowLayoutPanelCarCollection.Location = new Point(16, 109);
             flowLayoutPanelCarCollection.Margin = new Padding(0);
@@ -48,12 +49,16 @@ namespace DreamCar.Forms
             flowLayoutPanelCarCollection.Size = new Size(1020, 541);
             flowLayoutPanelCarCollection.TabIndex = 0;
 
-            foreach(var car in currentUserCars.ToList())
+
+            foreach (var car in contextCar.Cars)
             {
-                //DreamCarContext contextAllFavs = new DreamCarContext();
-                //var currentUserFavs = from favourite in contextAllFavs.Set<Favourite>() where favourite.UserId == car.UserId && favourite.CarId == car.CarId select favourite;
-                //bool isFav = currentUserFavs.Count() > 0 ? true : false;
-                GenerateCar(car.CarImageUrl, car.CarBrand, car.CarModel, car.CarProdYear.ToString(), car.CarFuel, car.CarGearbox, car.CarId, true);
+                bool isFav = false;
+                if (currentfavRecord.Where(f => f.CarId == car.CarId).Count() > 0)
+                {
+                    isFav = true;
+                }
+
+                GenerateCar(car.CarImageUrl, car.CarBrand, car.CarModel, car.CarProdYear.ToString(), car.CarFuel, car.CarGearbox, car.CarId, isFav);
             }
         }
 
@@ -169,7 +174,7 @@ namespace DreamCar.Forms
             // buttonCurrentCarFav
             // 
             buttonCurrentCarFav.BackColor = Color.FromArgb(((int)(((byte)(119)))), ((int)(((byte)(119)))), ((int)(((byte)(143)))));
-            buttonCurrentCarFav.BackgroundImage = Resources.threeDots;
+            buttonCurrentCarFav.BackgroundImage = isFav? Resources.starFilled: Resources.starEmpty;
             buttonCurrentCarFav.BackgroundImageLayout = ImageLayout.Center;
             buttonCurrentCarFav.Cursor = Cursors.Hand;
             buttonCurrentCarFav.FlatAppearance.BorderSize = 0;
@@ -186,7 +191,7 @@ namespace DreamCar.Forms
             // buttonCurrentCarMore
             // 
             buttonCurrentCarMore.BackColor = Color.FromArgb(((int)(((byte)(119)))), ((int)(((byte)(119)))), ((int)(((byte)(143)))));
-            buttonCurrentCarMore.BackgroundImage = isFav ?  Resources.starFilled : Resources.starEmpty;
+            buttonCurrentCarMore.BackgroundImage = Resources.threeDots;
             buttonCurrentCarMore.BackgroundImageLayout = ImageLayout.Center;
             buttonCurrentCarMore.Cursor = Cursors.Hand;
             buttonCurrentCarMore.FlatAppearance.BorderSize = 0;
@@ -207,45 +212,33 @@ namespace DreamCar.Forms
 
         private void ButtonCurrentCarFav_Click(object sender, EventArgs e)
         {
+            Button currentFavButton = (Button)sender;
+            currentFavButton.BackgroundImage = Resources.starFilled;
 
+            using (DreamCarContext contextInner = new DreamCarContext())
+            {
+                DreamCarContext contextCar = new DreamCarContext();
+                var currentCarRecord = contextCar.Cars.Where(c => c.UserId == currentUserId).FirstOrDefault();
+                if (currentCarRecord != null)
+                {
+                    var favs = contextInner.Favourite;
+                    foreach (var f in favs)
+                    {
+                        if (f.FavouriteAuthor == currentUserUsername)
+                        {
+                            f.CarId = currentCarRecord.CarId;
+                        }
+                    }
+                }
+                contextCar.SaveChanges();
+                contextInner.SaveChanges();
+            }
         }
 
         private void ButtonCurrentCarMore_Click(object sender, EventArgs e)
         {
             
-            Button currentFavButton = (Button)sender;
-            currentFavButton.BackgroundImage = Resources.starFilled;
-
-            //DreamCarContext contextFavs = new DreamCarContext();
-            //var contextFavRecord = from favs in contextFavs.Set<Favourite>() select favs;
-
-            //DreamCarContext contextCurrentCarForFav = new DreamCarContext();
-            //var currentCarRecord = from cars in contextCurrentCarForFav.Set<Car>() where cars.CarId == int.Parse(currentFavButton.Name.Split('.')[1]) select cars;
-            //try
-            //{
-
-            //    if (contextFavRecord.Count() > 0)
-            //    {
-
-            //        contextFavRecord.Where(f => f.UserId == currentUserId).First().Cars.Add(currentCarRecord.First());
-            //        contextFavs.SaveChanges();
-            //    }
-            //    else
-            //    {
-            //        contextFavRecord.ToList().Add(new Favourite()
-            //        {
-            //            UserId = currentUserId,
-            //            Cars = currentCarRecord.ToList()
-            //        });
-            //        contextFavs.SaveChanges();
-
-            //    }
-            //}
-            //catch (Exception ex)
-            //{
-            //    Console.WriteLine(ex);
-            //    MessageBox.Show(ex.ToString(), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            //}
+           
         }
     }
 }

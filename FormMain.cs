@@ -435,7 +435,7 @@ namespace DreamCar
             }
             else if (userExists.Count() != 0)
             {
-                currentUserId= userExists.ToList().First().UserId;
+                currentUserId = userExists.ToList().First().UserId;
                 currentUserUsername = textBoxUsernameSignin.Text.ToString();
                 buttonCollection.Enabled = true;
                 buttonProfile.Enabled = true;

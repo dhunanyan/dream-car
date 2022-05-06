@@ -38,6 +38,6 @@ namespace DreamCar.Models
         [Column(TypeName = "varchar(1000)")]
         public string UserEmail { get; set; } = null!;
 
-        public ICollection<UserCar> UserCars { get; set; } = null!;
+        public ICollection<Car> Cars { get; set; } = null!;
     }
 }

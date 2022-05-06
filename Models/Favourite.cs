@@ -10,7 +10,7 @@ namespace DreamCar.Models
         public int FavouriteId { get; set; }
         public string FavouriteAuthor { get; set; } = null!;
 
-        public int? UserCarId { get; set; }
-        public UserCar UserCar { get; set; } = null!;
+        public int? CarId { get; set; }
+        public Car Car { get; set; } = null!;
     }
 }

@@ -9,7 +9,7 @@ namespace DreamCar.Models
         public int PublishId { get; set; }
         public string PublishAuthor { get; set; } = null!;
 
-        public int? UserCarId { get; set; }
-        public UserCar UserCar { get; set; } = null!;
+        public int? CarId { get; set; }
+        public Car Car { get; set; } = null!;
     }
 }
