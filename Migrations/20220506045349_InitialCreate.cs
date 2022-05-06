@@ -85,6 +85,26 @@ namespace DreamCar.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Publish",
+                columns: table => new
+                {
+                    PublishId = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    PublishAuthor = table.Column<string>(nullable: false),
+                    CarId = table.Column<int>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Publish", x => x.PublishId);
+                    table.ForeignKey(
+                        name: "FK_Publish_Cars_CarId",
+                        column: x => x.CarId,
+                        principalTable: "Cars",
+                        principalColumn: "CarId",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Reservation",
                 columns: table => new
                 {
@@ -115,6 +135,11 @@ namespace DreamCar.Migrations
                 column: "CarId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Publish_CarId",
+                table: "Publish",
+                column: "CarId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Reservation_CarId",
                 table: "Reservation",
                 column: "CarId");
@@ -124,6 +149,9 @@ namespace DreamCar.Migrations
         {
             migrationBuilder.DropTable(
                 name: "Favourite");
+
+            migrationBuilder.DropTable(
+                name: "Publish");
 
             migrationBuilder.DropTable(
                 name: "Reservation");

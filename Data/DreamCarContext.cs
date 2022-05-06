@@ -21,17 +21,19 @@ namespace DreamCar.Data
             // Keep your connection strings separate from your code!
             // Secure connection string guidance: https://aka.ms/ef-core-connection-strings
             // 
-            optionsBuilder.UseSqlServer(@"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=DreamCar;Integrated Security=True;");
+            optionsBuilder.UseSqlServer(@"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=DreamCarDB;Integrated Security=True;");
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<User>().HasMany(u => u.Cars).WithOne(c => c.User);
+            modelBuilder.Entity<User>().HasMany(u => u.Cars).WithOne(c => c.User); 
             modelBuilder.Entity<Car>().HasOne(c => c.User).WithMany(c => c.Cars);
             modelBuilder.Entity<Favourite>().HasOne(c => c.Car).WithMany(f => f.Favourites);
             modelBuilder.Entity<Car>().HasMany(c => c.Favourites).WithOne(r => r.Car);
             modelBuilder.Entity<Reservation>().HasOne(c => c.Car).WithMany(f => f.Reservations);
             modelBuilder.Entity<Car>().HasMany(c => c.Reservations).WithOne(r => r.Car);
+            modelBuilder.Entity<Publish>().HasOne(c => c.Car).WithMany(f => f.Publishes);
+            modelBuilder.Entity<Car>().HasMany(c => c.Publishes).WithOne(r => r.Car);
 
             base.OnModelCreating(modelBuilder);
         }

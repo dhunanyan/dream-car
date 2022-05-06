@@ -219,13 +219,14 @@ namespace DreamCar.Forms
             //DreamCarContext contextFavs = new DreamCarContext();
             //var contextFavRecord = from favs in contextFavs.Set<Favourite>() select favs;
 
-            DreamCarContext contextCurrentCarForFav = new DreamCarContext();
-            var currentCarRecord = from cars in contextCurrentCarForFav.Set<Car>() where cars.CarId == int.Parse(currentFavButton.Name.Split('.')[1]) select cars;
+            //DreamCarContext contextCurrentCarForFav = new DreamCarContext();
+            //var currentCarRecord = from cars in contextCurrentCarForFav.Set<Car>() where cars.CarId == int.Parse(currentFavButton.Name.Split('.')[1]) select cars;
             //try
             //{
 
             //    if (contextFavRecord.Count() > 0)
             //    {
+
             //        contextFavRecord.Where(f => f.UserId == currentUserId).First().Cars.Add(currentCarRecord.First());
             //        contextFavs.SaveChanges();
             //    }

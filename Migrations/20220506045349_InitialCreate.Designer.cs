@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DreamCar.Migrations
 {
     [DbContext(typeof(DreamCarContext))]
-    [Migration("20220506044053_InitialCreate")]
+    [Migration("20220506045349_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -126,6 +126,27 @@ namespace DreamCar.Migrations
                     b.ToTable("Favourite");
                 });
 
+            modelBuilder.Entity("DreamCar.Models.Publish", b =>
+                {
+                    b.Property<int>("PublishId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int?>("CarId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("PublishAuthor")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("PublishId");
+
+                    b.HasIndex("CarId");
+
+                    b.ToTable("Publish");
+                });
+
             modelBuilder.Entity("DreamCar.Models.Reservation", b =>
                 {
                     b.Property<int>("ReservationId")
@@ -206,6 +227,13 @@ namespace DreamCar.Migrations
                 {
                     b.HasOne("DreamCar.Models.Car", "Car")
                         .WithMany("Favourites")
+                        .HasForeignKey("CarId");
+                });
+
+            modelBuilder.Entity("DreamCar.Models.Publish", b =>
+                {
+                    b.HasOne("DreamCar.Models.Car", "Car")
+                        .WithMany("Publishes")
                         .HasForeignKey("CarId");
                 });
 

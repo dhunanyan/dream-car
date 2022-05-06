@@ -58,9 +58,10 @@ namespace DreamCar.Models
         public string CarAuthor { get; set; } = null!;
 
         public ICollection<Reservation> Reservations { get; set; } = null!;
-        public ICollection<Favourite> Favourites { get; set; } = null!;
+        public ICollection<Publish> Publishes { get; set; } = null!;
+        public ICollection<Favourite> Favourites { get; set; } = null!; 
 
-        [ForeignKey("User")]
+         [ForeignKey("User")]
         public int? UserId  { get; set; }
         public User User { get; set; } = null!;
 
