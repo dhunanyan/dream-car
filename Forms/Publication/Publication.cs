@@ -16,9 +16,9 @@ namespace DreamCar.Forms.Publication
     public partial class Publication : Container
     {
 
-        string imageUrl = "";
-        string reservationDateStart = "";
-        string reservationDateEnd = "";
+        public static string imageUrl = "";
+        public static string reservationDateStart = "";
+        public static string reservationDateEnd = "";
 
         public Publication(object context)
         {
@@ -107,9 +107,9 @@ namespace DreamCar.Forms.Publication
             {
                 using (DreamCarContext context = new DreamCarContext())
                 {
-                    
-                    
-                    Car currentCar = PublicationStyles.CreateNewCar(currentUserUsername, currentUserPublishCount, imageUrl, reservationDateStart, reservationDateEnd);
+
+                    List<Models.Publication> publicationsList = PublicationReq.GetPublications(context, currentUserUsername);
+                    Car currentCar = PublicationStyles.CreateNewCar(currentUserUsername, publicationsList.Count(), imageUrl, reservationDateStart, reservationDateEnd);
                     PublicationReq.AddNewCar(context, currentUserUsername, currentCar);
 
                     using (DreamCarContext contextInner = new DreamCarContext())
@@ -132,41 +132,21 @@ namespace DreamCar.Forms.Publication
                     }
 
                     MessageBox.Show(
-                        $"Congratulations, you have added to collection your {currentUserPublishCount}"
+                        $"Congratulations, you have added to collection your {publicationsList.Count()}"
                         , "CarAdd Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
-                AddCarReset();
+                PublicationStyles.AddCarReset();
                 return;
             }
         }
 
-        private void AddCarReset()
-        {
-            imageUrl = "";
-            ClearForm();
-            labelLoadingProgress.Text = "0%";
-            buttonAddImage.Text = "200 x 200";
-            buttonAddImage.BackgroundImage = Resources.addImageGreen;
-            buttonAddImage.BackgroundImageLayout = ImageLayout.Center;
-
-            monthCalendar = new MonthCalendar();
-            monthCalendar.Anchor = AnchorStyles.None;
-            monthCalendar.Location = new Point(17, 211);
-            monthCalendar.Margin = new Padding(0, 0, 13, 0);
-            monthCalendar.MaxSelectionCount = 62;
-            monthCalendar.Name = "monthCalendar";
-            monthCalendar.ShowToday = false;
-            monthCalendar.ShowTodayCircle = false;
-            monthCalendar.TabIndex = 13;
-            monthCalendar.DateSelected += new DateRangeEventHandler(MonthCalendar_DateSelected);
-        }
 
         private void ButtonAddCar_Click(object sender, EventArgs e)
         {
             AddCar();
         }
 
-        private void ClearForm()
+        public static void ClearForm()
         {
             textBoxCardBrand.Text = "";
             textBoxCarModel.Text = "";
@@ -226,27 +206,15 @@ namespace DreamCar.Forms.Publication
             }
         }
 
-        private string GetProjectPath()
-        {
-            string path = "";
-            for (int i = 0; i < Application.StartupPath.Split('\\').Length - 2; i++)
-            {
-                path += Application.StartupPath.Split('\\')[i] + '\\';
-            }
-
-            return path;
-        }
-
         private void MonthCalendar_DateSelected(object sender, System.Windows.Forms.DateRangeEventArgs e)
         {
-            // Show the start and end dates in the text box.
             Console.WriteLine("Date Selected: Start = " +
                 e.Start.ToShortDateString() + " : End = " + e.End.ToShortDateString());
             reservationDateStart = e.Start.ToShortDateString();
             reservationDateEnd = e.End.ToShortDateString();
         }
 
-        //LOADING ANIMATION
+        //PROGRESS BAR
         private void labelLoadingProgress_TextChanged(object sender, EventArgs e)
         {
             labelLoadingProgress.Size = new Size(int.Parse(labelLoadingProgress.Text.Split('%')[0]) * 205 / 100, 18);
