@@ -1,68 +1,40 @@
 ﻿using DreamCar.Data;
-using DreamCar.Helpers;
-using DreamCar.Models;
 using DreamCar.Properties;
 using System;
 using System.Collections.Generic;
-using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using DreamCar.Forms.Collection;
 
-namespace DreamCar.Forms
+namespace DreamCar.Forms.Collection
 {
-    public partial class FormCollection : Container
+    public partial class CollectionStyles
     {
-        public FormCollection()
+        public CollectionStyles()
         {
-            InitializeComponent();
-            GenerateCollection();
-
-            //DreamCarContext contextFavs = new DreamCarContext();
-            //var favsRecord = from fav in contextFavs.Set<Favourite>() where fav.UserId == currentUserId select fav;
-
-            //foreach (var fav in favsRecord.ToList())
-            //{
-            //    DreamCarContext contextCars = new DreamCarContext();
-            //    var carRecord = from car in contextFavs.Set<Favourite>() where car.CarId == fav.CarId select car;
-
-            //}
+            //Console.WriteLine(currentUser);
         }
 
-        private void GenerateCollection()
+        public static void GerenerateCollectionContainer(DreamCarContext context)
         {
-            DreamCarContext contextAllFavs = new DreamCarContext();
-            DreamCarContext contextCar = new DreamCarContext();
-            var currentfavRecord = contextAllFavs.Favourite.Where(c => c.FavouriteAuthor == currentUserUsername);
             // 
             // flowLayoutPanelCarCollection
             // 
-            flowLayoutPanelCarCollection.AutoScroll = true;
-            flowLayoutPanelCarCollection.AutoScrollMinSize = new Size(0, (65 * contextCar.Cars.ToList().Count()) + 45);
-            flowLayoutPanelCarCollection.BackColor = Color.FromArgb(((int)(((byte)(85)))), ((int)(((byte)(85)))), ((int)(((byte)(110)))));
-            flowLayoutPanelCarCollection.Location = new Point(16, 109);
-            flowLayoutPanelCarCollection.Margin = new Padding(0);
-            flowLayoutPanelCarCollection.Name = "flowLayoutPanelCarCollection";
-            flowLayoutPanelCarCollection.Padding = new Padding(5);
-            flowLayoutPanelCarCollection.Size = new Size(1020, 541);
-            flowLayoutPanelCarCollection.TabIndex = 0;
-
-
-            foreach (var car in contextCar.Cars)
-            {
-                bool isFav = false;
-                if (currentfavRecord.Where(f => f.CarId == car.CarId).Count() > 0)
-                {
-                    isFav = true;
-                }
-
-                GenerateCar(car.CarImageUrl, car.CarBrand, car.CarModel, car.CarProdYear.ToString(), car.CarFuel, car.CarGearbox, car.CarId, isFav);
-            }
+            Collection.flowLayoutPanelCarCollection.AutoScroll = true;
+            Collection.flowLayoutPanelCarCollection.AutoScrollMinSize = new Size(0, (65 * context.Cars.ToList().Count()) + 45);
+            Collection.flowLayoutPanelCarCollection.BackColor = Color.FromArgb(((int)(((byte)(85)))), ((int)(((byte)(85)))), ((int)(((byte)(110)))));
+            Collection.flowLayoutPanelCarCollection.Location = new Point(16, 109);
+            Collection.flowLayoutPanelCarCollection.Margin = new Padding(0);
+            Collection.flowLayoutPanelCarCollection.Name = "flowLayoutPanelCarCollection";
+            Collection.flowLayoutPanelCarCollection.Padding = new Padding(5);
+            Collection.flowLayoutPanelCarCollection.Size = new Size(1020, 541);
+            Collection.flowLayoutPanelCarCollection.TabIndex = 0;
         }
 
-        private void GenerateCar(string image, string brand, string model, string year, string fuel, string gearbox, int carId, bool isFav)
+        public static void GenerateCar(string image, string brand, string model, string year, string fuel, string gearbox, int carId, bool isFav)
         {
 
             flowLayoutPanelCurrentCar = new FlowLayoutPanel();
@@ -75,7 +47,6 @@ namespace DreamCar.Forms
             buttonCurrentCarMore = new Button();
             buttonCurrentCarFav = new Button();
             flowLayoutPanelCurrentCar.SuspendLayout();
-
             // 
             // flowLayoutPanelCurrentCar
             // 
@@ -85,7 +56,7 @@ namespace DreamCar.Forms
             flowLayoutPanelCurrentCar.Controls.Add(labelCurrentCarModel);
             flowLayoutPanelCurrentCar.Controls.Add(labelCurrentCarProdYear);
             flowLayoutPanelCurrentCar.Controls.Add(labelCurrentCarFuel);
-            flowLayoutPanelCurrentCar.Controls.Add(labelCurrentCarGearbox); 
+            flowLayoutPanelCurrentCar.Controls.Add(labelCurrentCarGearbox);
             flowLayoutPanelCurrentCar.Controls.Add(buttonCurrentCarFav);
             flowLayoutPanelCurrentCar.Controls.Add(buttonCurrentCarMore);
             flowLayoutPanelCurrentCar.Location = new Point(5, 5);
@@ -163,7 +134,7 @@ namespace DreamCar.Forms
             // panelCurrentCarImage
             // 
             panelCurrentCarImage.BackColor = Color.FromArgb(((int)(((byte)(85)))), ((int)(((byte)(85)))), ((int)(((byte)(110)))));
-            panelCurrentCarImage.BackgroundImage = setBackgroungImageUrl(image);
+            panelCurrentCarImage.BackgroundImage = Collection.setBackgroungImageUrl(image);
             panelCurrentCarImage.BackgroundImageLayout = ImageLayout.Zoom;
             panelCurrentCarImage.Location = new Point(5, 5);
             panelCurrentCarImage.Margin = new Padding(0, 0, 5, 0);
@@ -174,7 +145,7 @@ namespace DreamCar.Forms
             // buttonCurrentCarFav
             // 
             buttonCurrentCarFav.BackColor = Color.FromArgb(((int)(((byte)(119)))), ((int)(((byte)(119)))), ((int)(((byte)(143)))));
-            buttonCurrentCarFav.BackgroundImage = isFav? Resources.starFilled: Resources.starEmpty;
+            buttonCurrentCarFav.BackgroundImage = isFav ? Resources.starFilled : Resources.starEmpty;
             buttonCurrentCarFav.BackgroundImageLayout = ImageLayout.Center;
             buttonCurrentCarFav.Cursor = Cursors.Hand;
             buttonCurrentCarFav.FlatAppearance.BorderSize = 0;
@@ -185,8 +156,9 @@ namespace DreamCar.Forms
             buttonCurrentCarFav.Name = "buttonCarFav" + "." + carId.ToString();
             buttonCurrentCarFav.Size = new Size(58, 55);
             buttonCurrentCarFav.TabIndex = 1;
+            buttonCurrentCarFav.Tag = isFav ? "true" : "false";
             buttonCurrentCarFav.UseVisualStyleBackColor = false;
-            buttonCurrentCarFav.Click += new EventHandler(ButtonCurrentCarFav_Click);
+            buttonCurrentCarFav.Click += new EventHandler(Collection.ButtonCurrentCarFav_Click);
             // 
             // buttonCurrentCarMore
             // 
@@ -203,42 +175,21 @@ namespace DreamCar.Forms
             buttonCurrentCarMore.Size = new Size(58, 55);
             buttonCurrentCarMore.TabIndex = 1;
             buttonCurrentCarMore.UseVisualStyleBackColor = false;
-            buttonCurrentCarMore.Click += new EventHandler(ButtonCurrentCarMore_Click);
+            buttonCurrentCarMore.Click += new EventHandler(Collection.ButtonCurrentCarMore_Click);
 
 
-            flowLayoutPanelCarCollection.Controls.Add(flowLayoutPanelCurrentCar);
+            Collection.flowLayoutPanelCarCollection.Controls.Add(flowLayoutPanelCurrentCar);
             flowLayoutPanelCurrentCar.ResumeLayout(false);
         }
 
-        private void ButtonCurrentCarFav_Click(object sender, EventArgs e)
-        {
-            Button currentFavButton = (Button)sender;
-            currentFavButton.BackgroundImage = Resources.starFilled;
-
-            using (DreamCarContext contextInner = new DreamCarContext())
-            {
-                DreamCarContext contextCar = new DreamCarContext();
-                var currentCarRecord = contextCar.Cars.Where(c => c.UserId == currentUserId).FirstOrDefault();
-                if (currentCarRecord != null)
-                {
-                    var favs = contextInner.Favourite;
-                    foreach (var f in favs)
-                    {
-                        if (f.FavouriteAuthor == currentUserUsername)
-                        {
-                            f.CarId = currentCarRecord.CarId;
-                        }
-                    }
-                }
-                contextCar.SaveChanges();
-                contextInner.SaveChanges();
-            }
-        }
-
-        private void ButtonCurrentCarMore_Click(object sender, EventArgs e)
-        {
-            
-           
-        }
+        private static FlowLayoutPanel flowLayoutPanelCurrentCar;
+        private static Panel panelCurrentCarImage;
+        private static Label labelCurrentCarBrand;
+        private static Label labelCurrentCarModel;
+        private static Label labelCurrentCarProdYear;
+        private static Label labelCurrentCarFuel;
+        private static Label labelCurrentCarGearbox;
+        private static Button buttonCurrentCarFav;
+        private static Button buttonCurrentCarMore;
     }
 }

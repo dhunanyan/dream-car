@@ -62,7 +62,7 @@ namespace DreamCar.Models
         public User User { get; set; } = null!;
 
         public ICollection<Reservation> Reservations { get; set; } = null!;
-        public ICollection<Publish> Publishes { get; set; } = null!;
+        public ICollection<Publication> Publications { get; set; } = null!;
         public ICollection<Favourite> Favourites { get; set; } = null!;
     }
 }

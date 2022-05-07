@@ -1,6 +1,6 @@
-﻿namespace DreamCar.Forms
+﻿namespace DreamCar.Forms.Collection
 {
-    public partial class FormCollection
+    public partial class Collection
     {
         /// <summary>
         /// Required designer variable.
@@ -29,13 +29,13 @@
         private void InitializeComponent()
         {
             this.panelMain = new System.Windows.Forms.Panel();
-            this.flowLayoutPanelCarCollection = new System.Windows.Forms.FlowLayoutPanel();
+            flowLayoutPanelCarCollection = new System.Windows.Forms.FlowLayoutPanel();
             this.panelMain.SuspendLayout();
             this.SuspendLayout();
             // 
             // panelMain
             // 
-            this.panelMain.Controls.Add(this.flowLayoutPanelCarCollection);
+            this.panelMain.Controls.Add(flowLayoutPanelCarCollection);
             this.panelMain.Location = new System.Drawing.Point(10, 11);
             this.panelMain.Margin = new System.Windows.Forms.Padding(0);
             this.panelMain.Name = "panelMain";
@@ -60,15 +60,6 @@
         #endregion
 
         private System.Windows.Forms.Panel panelMain;
-        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanelCarCollection;
-        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanelCurrentCar;
-        private System.Windows.Forms.Panel panelCurrentCarImage;
-        private System.Windows.Forms.Label labelCurrentCarBrand;
-        private System.Windows.Forms.Label labelCurrentCarModel;
-        private System.Windows.Forms.Label labelCurrentCarProdYear;
-        private System.Windows.Forms.Label labelCurrentCarFuel;
-        private System.Windows.Forms.Label labelCurrentCarGearbox; 
-        private System.Windows.Forms.Button buttonCurrentCarFav;
-        private System.Windows.Forms.Button buttonCurrentCarMore;
+        public static System.Windows.Forms.FlowLayoutPanel flowLayoutPanelCarCollection;
     }
 }

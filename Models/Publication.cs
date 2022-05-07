@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 namespace DreamCar.Models
 {
-    public class Publish
+    public class Publication
     {
         [Key]
         public int PublishId { get; set; }

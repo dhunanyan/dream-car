@@ -7,42 +7,28 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
-using FireSharp;
-using FireSharp.Config;
-using FireSharp.Interfaces;
 using Firebase.Storage;
 using DreamCar.Properties;
-using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 
-namespace DreamCar.Forms
+namespace DreamCar.Forms.Publication
 {
-    public partial class FormPublish : Container
+    public partial class Publication : Container
     {
-        DreamCarContext _context =  new DreamCarContext();
 
         string imageUrl = "";
         string reservationDateStart = "";
         string reservationDateEnd = "";
 
-        public FormPublish(object context)
+        public Publication(object context)
         {
             buttonAddImage.Text = "200 x 200";
-            _context = (DreamCarContext)context;
             InitializeComponent();
         }
 
-        public FormPublish()
+        public Publication()
         {
             InitializeComponent();
-            DreamCarContext contextCurrentUser = new DreamCarContext();
-            var currentUserCarRecerd = from user in contextCurrentUser.Set<User>()
-                                       join car in contextCurrentUser.Set<Car>()
-                                       on user.UserUsername equals car.CarAuthor
-                                       where user.UserId == currentUserId
-                                       select car;
-            Console.WriteLine(currentUserCarRecerd.Count());
-            Console.WriteLine(contextCurrentUser.Cars.Count());
         }
 
         private void FormPublish_Leave(object sender, EventArgs e)
@@ -121,49 +107,10 @@ namespace DreamCar.Forms
             {
                 using (DreamCarContext context = new DreamCarContext())
                 {
-                    var currentUserCars = from user in context.Set<User>()
-                                          join car in context.Set<Car>()
-                                            on user.UserUsername equals car.CarAuthor
-                                          where user.UserId == currentUserId
-                                          select car;
-
-                    Car currentCar;
-                    currentCar = new Car()
-                    {
-                        CarName = currentUserUsername + "_" + currentUserCars.ToList().Count(),
-                        CarPrice = int.Parse(textBoxCarPrice.Text),
-                        CarReservationDateStart = reservationDateStart,
-                        CarReservationDateEnd = reservationDateEnd,
-                        CarIsSold = false,
-                        CarIsReserved = false,
-                        CarImageUrl = imageUrl,
-                        CarAuthor = currentUserUsername,
-                        CarColor = textBoxCarColor.Text,
-                        CarCity = textBoxCarCity.Text,
-                        CarCountry = textBoxCarCountry.Text,
-                        CarGearbox = textBoxCardGearbox.Text,
-                        CarFuel = textBoxCarFuel.Text,
-                        CarCapacity = int.Parse(textBoxCarCapacity.Text),
-                        CarProdYear = int.Parse(textBoxCardProdYear.Text),
-                        CarBrand = textBoxCardBrand.Text,
-                        CarModel = textBoxCarModel.Text,
-                        CarTags = textBoxCarTags.Text,
-                        UserId = currentUserId,
-                        Publishes = new List<Publish>()
-                        {
-                            new Publish() { PublishAuthor = currentUserUsername}
-                        },
-                        Favourites = new List<Favourite>()
-                        {
-                            new Favourite() { FavouriteAuthor = currentUserUsername}
-                        },
-                        Reservations = new List<Reservation>()
-                        {
-                            new Reservation() { ReservationAuthor = currentUserUsername}
-                        },
-                    };
-                    context.Cars.Add(currentCar);
-                    context.SaveChanges();
+                    
+                    
+                    Car currentCar = PublicationStyles.CreateNewCar(currentUserUsername, currentUserPublishCount, imageUrl, reservationDateStart, reservationDateEnd);
+                    PublicationReq.AddNewCar(context, currentUserUsername, currentCar);
 
                     using (DreamCarContext contextInner = new DreamCarContext())
                     {
@@ -171,7 +118,7 @@ namespace DreamCar.Forms
                         var currentCarRecord = contextCar.Cars.Where(c => c.UserId == currentUserId).FirstOrDefault();
                         if (currentCarRecord != null)
                         {
-                            var publishes = contextInner.Publish;
+                            var publishes = contextInner.Publications;
                             foreach (var p in publishes)
                             {
                                 if (p.CarId == null && p.PublishAuthor == currentUserUsername)
@@ -185,7 +132,7 @@ namespace DreamCar.Forms
                     }
 
                     MessageBox.Show(
-                        $"Congratulations, you have added to collection your {currentUserCars.ToList().Count()}"
+                        $"Congratulations, you have added to collection your {currentUserPublishCount}"
                         , "CarAdd Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 AddCarReset();
@@ -250,29 +197,27 @@ namespace DreamCar.Forms
                 try
                 {
                     labelLoadingProgress.Text = "0%";
-                    DreamCarContext contextCurrentUser = new DreamCarContext();
-                    var currentUserCars = from user in contextCurrentUser.Set<User>()
-                                          join car in contextCurrentUser.Set<Car>()
-                                              on user.UserUsername equals car.CarAuthor
-                                          where user.UserId == currentUserId
-                                          select car;
+                    using (DreamCarContext context = new DreamCarContext())
+                    {
+                        var currentUserPublishCount = context.Publications.Where(x => x.PublishAuthor == currentUserUsername).Count();
 
-                    var stream = File.Open(dlg.FileName, FileMode.Open);
-                    var task = new FirebaseStorage("dreamcar-d63e5.appspot.com")
-                        .Child("Images")
-                        .Child(currentUserUsername + "_" + currentUserCars.ToList().Count())
-                        .PutAsync(stream);
+                        var stream = File.Open(dlg.FileName, FileMode.Open);
+                        var task = new FirebaseStorage("dreamcar-d63e5.appspot.com")
+                            .Child("Images")
+                            .Child(currentUserUsername + "_" + currentUserPublishCount)
+                            .PutAsync(stream);
 
-                    task.Progress.ProgressChanged += (s, e) => {
-                        Console.WriteLine($"Progress: {e.Percentage} %");
-                        labelLoadingProgress.Text = e.Percentage.ToString() + "%";
-                    };
-                    imageUrl = await task;
+                        task.Progress.ProgressChanged += (s, e) => {
+                            Console.WriteLine($"Progress: {e.Percentage} %");
+                            labelLoadingProgress.Text = e.Percentage.ToString() + "%";
+                        };
+                        imageUrl = await task;
 
-                    buttonAddImage.BackgroundImage = setBackgroungImageUrl(imageUrl);
-                    buttonAddImage.BackgroundImageLayout = ImageLayout.Zoom;
-                    buttonAddImage.Text = "";
-                    Console.WriteLine(imageUrl);
+                        buttonAddImage.BackgroundImage = setBackgroungImageUrl(imageUrl);
+                        buttonAddImage.BackgroundImageLayout = ImageLayout.Zoom;
+                        buttonAddImage.Text = "";
+                        Console.WriteLine(imageUrl);
+                    }
                 }
                 catch (Exception)
                 {
@@ -307,6 +252,39 @@ namespace DreamCar.Forms
             labelLoadingProgress.Size = new Size(int.Parse(labelLoadingProgress.Text.Split('%')[0]) * 205 / 100, 18);
         }
 
-
+        public static Panel panel1;
+        public static FlowLayoutPanel SignUp;
+        public static Label labelPublish;
+        public static FlowLayoutPanel flowLayoutPanel2;
+        public static Label labelCarBrand;
+        public static Label labelCarModel;
+        public static Label labelCarProdYear;
+        public static TextBox textBoxCarModel;
+        public static TextBox textBoxCardProdYear;
+        public static Label labelCarCapacity;
+        public static Label labelCarFuel;
+        public static Label labelCarGearbox;
+        public static TextBox textBoxCarCapacity;
+        public static TextBox textBoxCarFuel;
+        public static TextBox textBoxCardGearbox;
+        public static Label labelCarCountry;
+        public static Label labelCarCity;
+        public static TextBox textBoxCarCountry;
+        public static TextBox textBoxCarCity;
+        public static Label labelCarColor;
+        public static Label labelCarTags;
+        public static TextBox textBoxCarColor;
+        public static TextBox textBoxCarTags;
+        public static Button buttonPost;
+        public static Button buttonClear;
+        public static TextBox textBoxCardBrand;
+        public static MonthCalendar monthCalendar;
+        public static FlowLayoutPanel flowLayoutPanel1;
+        public static Button buttonAddImage;
+        public static Panel panel2;
+        public static Panel panelLoadingBar;
+        public static Label labelLoadingProgress;
+        public static TextBox textBoxCarPrice;
+        public static Label labelCarPrice;
     }
 }

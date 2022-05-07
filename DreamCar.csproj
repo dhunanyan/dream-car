@@ -413,57 +413,58 @@
     <Compile Include="Data\DreamCarContext.cs" />
     <Compile Include="Firebase\FirebaseContainer.cs" />
     <Compile Include="Firebase\ImageModal.cs" />
-    <Compile Include="FormMain.cs">
+    <Compile Include="Forms\Main\Main.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormMain.Designer.cs">
-      <DependentUpon>FormMain.cs</DependentUpon>
+    <Compile Include="Forms\Main\Main.Designer.cs">
+      <DependentUpon>Main.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\FormCollection.cs">
+    <Compile Include="Forms\Collection\Collection.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\FormCollection.Designer.cs">
-      <DependentUpon>FormCollection.cs</DependentUpon>
+    <Compile Include="Forms\Collection\Collection.Designer.cs">
+      <DependentUpon>Collection.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\FormProfile.cs">
+    <Compile Include="Forms\Collection\CollectionReq.cs" />
+    <Compile Include="Forms\Collection\CollectionStyles.cs" />
+    <Compile Include="Forms\Main\MainReq.cs" />
+    <Compile Include="Forms\Main\MainStyles.cs" />
+    <Compile Include="Forms\Profile\Profile.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\FormProfile.Designer.cs">
-      <DependentUpon>FormProfile.cs</DependentUpon>
+    <Compile Include="Forms\Profile\Profile.Designer.cs">
+      <DependentUpon>Profile.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\FormPublish.cs">
+    <Compile Include="Forms\Publication\PublicationReq.cs" />
+    <Compile Include="Forms\Publication\PublicationStyles.cs" />
+    <Compile Include="Forms\Publication\Publication.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\FormPublish.Designer.cs">
-      <DependentUpon>FormPublish.cs</DependentUpon>
+    <Compile Include="Forms\Publication\Publication.Designer.cs">
+      <DependentUpon>Publication.cs</DependentUpon>
     </Compile>
     <Compile Include="Helpers\Container.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Helpers\ThemeColor.cs" />
-    <Compile Include="Migrations\20220506082402_InitialCreate.cs" />
-    <Compile Include="Migrations\20220506082402_InitialCreate.designer.cs">
-      <DependentUpon>20220506082402_InitialCreate.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\DreamCarContextModelSnapshot.cs" />
     <Compile Include="Models\Car.cs" />
     <Compile Include="Models\Favourite.cs" />
-    <Compile Include="Models\Publish.cs" />
+    <Compile Include="Models\Publication.cs" />
     <Compile Include="Models\Resevation.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="FormMain.resx">
-      <DependentUpon>FormMain.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\Main\Main.resx">
+      <DependentUpon>Main.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\FormCollection.resx">
-      <DependentUpon>FormCollection.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\Collection\Collection.resx">
+      <DependentUpon>Collection.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\FormProfile.resx">
-      <DependentUpon>FormProfile.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\Profile\Profile.resx">
+      <DependentUpon>Profile.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\FormPublish.resx">
-      <DependentUpon>FormPublish.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\Publication\Publication.resx">
+      <DependentUpon>Publication.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>

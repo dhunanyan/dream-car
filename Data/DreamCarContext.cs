@@ -12,9 +12,9 @@ namespace DreamCar.Data
 
         public virtual DbSet<User> Users { get; set; } = null!;
         public virtual DbSet<Car> Cars { get; set; } = null!;
-        public virtual DbSet<Favourite> Favourite { get; set; } = null!;
-        public virtual DbSet<Publish> Publish { get; set; } = null!;
-        public virtual DbSet<Reservation> Reservation { get; set; } = null!;
+        public virtual DbSet<Favourite> Favourites { get; set; } = null!;
+        public virtual DbSet<Publication> Publications { get; set; } = null!;
+        public virtual DbSet<Reservation> Reservations { get; set; } = null!;
 
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -31,7 +31,7 @@ namespace DreamCar.Data
 
             modelBuilder.Entity<Favourite>().HasOne<Car>(uc => uc.Car).WithMany(f => f.Favourites).HasForeignKey(uc => uc.CarId).OnDelete(DeleteBehavior.Cascade);
             modelBuilder.Entity<Reservation>().HasOne<Car>(uc => uc.Car).WithMany(f => f.Reservations).HasForeignKey(uc => uc.CarId).OnDelete(DeleteBehavior.Cascade);
-            modelBuilder.Entity<Publish>().HasOne<Car>(uc => uc.Car).WithMany(f => f.Publishes).HasForeignKey(uc => uc.CarId).OnDelete(DeleteBehavior.Cascade);
+            modelBuilder.Entity<Publication>().HasOne<Car>(uc => uc.Car).WithMany(f => f.Publications).HasForeignKey(uc => uc.CarId).OnDelete(DeleteBehavior.Cascade);
 
             base.OnModelCreating(modelBuilder);
         }

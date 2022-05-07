@@ -1,6 +1,6 @@
-﻿namespace DreamCar.Forms
+﻿namespace DreamCar.Forms.Profile
 {
-    partial class FormProfile
+    partial class Profile
     {
         /// <summary>
         /// Required designer variable.

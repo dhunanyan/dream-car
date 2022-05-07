@@ -8,6 +8,6 @@ namespace DreamCar.Firebase
 {
     internal class ImageModal
     {
-        public string Img { get; set; }
+        public string Img { get; set; } = null!;
     }
 }

@@ -186,10 +186,6 @@ C:\Users\dhunanyan\Desktop\AGH\sem4\programowanie-zaawansowane\DreamCar\bin\Debu
 C:\Users\dhunanyan\Desktop\AGH\sem4\programowanie-zaawansowane\DreamCar\bin\Debug\zh-Hant\Microsoft.Data.SqlClient.resources.dll
 C:\Users\dhunanyan\Desktop\AGH\sem4\programowanie-zaawansowane\DreamCar\obj\Debug\DreamCar.csproj.AssemblyReference.cache
 C:\Users\dhunanyan\Desktop\AGH\sem4\programowanie-zaawansowane\DreamCar\obj\Debug\DreamCar.csproj.SuggestedBindingRedirects.cache
-C:\Users\dhunanyan\Desktop\AGH\sem4\programowanie-zaawansowane\DreamCar\obj\Debug\DreamCar.FormMain.resources
-C:\Users\dhunanyan\Desktop\AGH\sem4\programowanie-zaawansowane\DreamCar\obj\Debug\DreamCar.Forms.FormCollection.resources
-C:\Users\dhunanyan\Desktop\AGH\sem4\programowanie-zaawansowane\DreamCar\obj\Debug\DreamCar.Forms.FormProfile.resources
-C:\Users\dhunanyan\Desktop\AGH\sem4\programowanie-zaawansowane\DreamCar\obj\Debug\DreamCar.Forms.FormPublish.resources
 C:\Users\dhunanyan\Desktop\AGH\sem4\programowanie-zaawansowane\DreamCar\obj\Debug\DreamCar.Properties.Resources.resources
 C:\Users\dhunanyan\Desktop\AGH\sem4\programowanie-zaawansowane\DreamCar\obj\Debug\DreamCar.csproj.GenerateResource.cache
 C:\Users\dhunanyan\Desktop\AGH\sem4\programowanie-zaawansowane\DreamCar\obj\Debug\DreamCar.csproj.CoreCompileInputs.cache
@@ -477,3 +473,7 @@ C:\Users\irina\OneDrive\Desktop\AGH\sem4\PZ2\projects\dream-car\bin\Debug\ko\Sys
 C:\Users\irina\OneDrive\Desktop\AGH\sem4\PZ2\projects\dream-car\bin\Debug\ru\System.Spatial.resources.dll
 C:\Users\irina\OneDrive\Desktop\AGH\sem4\PZ2\projects\dream-car\bin\Debug\zh-Hans\System.Spatial.resources.dll
 C:\Users\irina\OneDrive\Desktop\AGH\sem4\PZ2\projects\dream-car\bin\Debug\zh-Hant\System.Spatial.resources.dll
+C:\Users\dhunanyan\Desktop\AGH\sem4\programowanie-zaawansowane\DreamCar\obj\Debug\DreamCar.Forms.Collection.Collection.resources
+C:\Users\dhunanyan\Desktop\AGH\sem4\programowanie-zaawansowane\DreamCar\obj\Debug\DreamCar.Forms.Profile.Profile.resources
+C:\Users\dhunanyan\Desktop\AGH\sem4\programowanie-zaawansowane\DreamCar\obj\Debug\DreamCar.Forms.Publish.Publication.resources
+C:\Users\dhunanyan\Desktop\AGH\sem4\programowanie-zaawansowane\DreamCar\obj\Debug\DreamCar.Forms.Main.Main.resources

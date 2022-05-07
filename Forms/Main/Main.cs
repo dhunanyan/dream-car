@@ -9,11 +9,11 @@ using System.Linq;
 using DreamCar.Models;
 using System.Text.RegularExpressions;
 
-namespace DreamCar
+namespace DreamCar.Forms.Main
 {
-    public partial class FormMain : Container
+    public partial class Main : Container
     {
-        public FormMain()
+        public Main()
         {
             InitializeComponent();
 
@@ -22,19 +22,7 @@ namespace DreamCar
             buttonProfile.Enabled = false;
             buttonPublish.Enabled = false;
 
-            Color color = ColorTranslator.FromHtml("#74d484");
-
-            buttonCollection.BackColor = ThemeColor.ChangeColorBrightness(ColorTranslator.FromHtml("#33334c"), 0.5);
-            buttonCollection.ForeColor = Color.Gainsboro;
-            buttonCollection.FlatAppearance.BorderColor = ThemeColor.SecondaryColor;
-
-            buttonProfile.BackColor = ThemeColor.ChangeColorBrightness(ColorTranslator.FromHtml("#33334c"), 0.5);
-            buttonProfile.ForeColor = Color.Gainsboro;
-            buttonProfile.FlatAppearance.BorderColor = ThemeColor.SecondaryColor;
-
-            buttonPublish.BackColor = ThemeColor.ChangeColorBrightness(ColorTranslator.FromHtml("#33334c"), 0.5);
-            buttonPublish.ForeColor = Color.Gainsboro;
-            buttonPublish.FlatAppearance.BorderColor = ThemeColor.SecondaryColor;
+            MainStyles.SetButtonColors();
 
             SignUp.Visible = false;
             SignIn.Visible = true;
@@ -101,7 +89,7 @@ namespace DreamCar
             buttonCollection.Enabled = false;
             buttonProfile.Enabled = true;
             buttonPublish.Enabled = true;
-            OpenChildForm(new Forms.FormCollection(), sender);
+            OpenChildForm(new Forms.Collection.Collection(), sender);
         }
 
         private void ButtonCollection_EnabledChanged(object sender, EventArgs e)
@@ -145,7 +133,7 @@ namespace DreamCar
             buttonPublish.Enabled = false;
             buttonProfile.Enabled = true;
             buttonCollection.Enabled = true;
-            OpenChildForm(new Forms.FormPublish(), sender);
+            OpenChildForm(new Forms.Publish.Publication(), sender);
         }
 
 
@@ -176,21 +164,11 @@ namespace DreamCar
         // PROFILE
         private void ButtonProfile_Click(object sender, EventArgs e)
         {
-            //if (isLaunched)
-            //{
-            //    DialogResult dialog = MessageBox.Show("Youur current searching results will be lost, do you really want to leave?",
-            //        "Session Exit", MessageBoxButtons.YesNo);
-            //    if (dialog == DialogResult.No)
-            //    {
-            //        return;
-            //    }
-            //}
             labelTitle.Text = "PROFILE";
             buttonProfile.Enabled = false;
             buttonPublish.Enabled = true;
             buttonCollection.Enabled = true;
-            OpenChildForm(new Forms.FormProfile(), sender);
-            //timer.Stop();
+            OpenChildForm(new Forms.Profile.Profile(), sender);
         }
 
 
@@ -240,17 +218,7 @@ namespace DreamCar
             labelTitle.Text = "HOME";
             currentButton = null;
             buttonTimes.Visible = false;
-            buttonCollection.BackColor = buttonCollection.Enabled ? ColorTranslator.FromHtml("#33334c") : ThemeColor.ChangeColorBrightness(ColorTranslator.FromHtml("#33334c"), 0.5);
-            buttonCollection.ForeColor = Color.Gainsboro;
-            buttonCollection.FlatAppearance.BorderColor = ThemeColor.SecondaryColor;
-
-            buttonProfile.BackColor = buttonProfile.Enabled ? ColorTranslator.FromHtml("#33334c") : ThemeColor.ChangeColorBrightness(ColorTranslator.FromHtml("#33334c"), 0.5);
-            buttonProfile.ForeColor = Color.Gainsboro;
-            buttonProfile.FlatAppearance.BorderColor = ThemeColor.SecondaryColor;
-
-            buttonPublish.BackColor = buttonPublish.Enabled ? ColorTranslator.FromHtml("#33334c") : ThemeColor.ChangeColorBrightness(ColorTranslator.FromHtml("#33334c"), 0.5);
-            buttonPublish.ForeColor = Color.Gainsboro;
-            buttonPublish.FlatAppearance.BorderColor = ThemeColor.SecondaryColor;
+            MainStyles.SetButtonColors();
         }
 
         // SHOW PASSWORD FOR SIGNUP
@@ -278,10 +246,9 @@ namespace DreamCar
         // SIGN UP
         private void ButtonSignup_Click(object sender, EventArgs e)
         {
-            DreamCarContext contextUserExists = new DreamCarContext();
+            DreamCarContext context = new DreamCarContext();
             DreamCarContext contextSignUp = new DreamCarContext();
-            var userExists = contextUserExists.Users.Where(u => u.UserUsername == textBoxUsername.Text);
-
+            User user = MainReq.GetCurrentUser(context, textBoxUsernameSignin.Text, "password", false);
             if (textBoxUsername.Text == "" || 
                 textBoxPassword.Text == "" || 
                 textBoxConfirmPassword.Text == "" || 
@@ -311,7 +278,7 @@ namespace DreamCar
 
             if (textBoxUsername.Text.Length > 16)
             {
-                MessageBox.Show("Username can contain max 7 characters.", "Registration failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Username can contain max 16 characters.", "Registration failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 textBoxUsername.Text = "";
                 textBoxPassword.Text = "";
                 textBoxConfirmPassword.Text = "";
@@ -319,7 +286,7 @@ namespace DreamCar
                 return;
             }
 
-            if (userExists.Count() > 0)
+            if (user.UserId.ToString().Length > 0)
             {
                 MessageBox.Show("User with current username exists, choose another username.", "Registration failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 textBoxUsername.Text = "";
@@ -372,7 +339,7 @@ namespace DreamCar
             }
         }
 
-        private void ButtonClear_Click(object sender, EventArgs e)
+        private void Clear()
         {
             textBoxUsernameSignin.Text = "";
             textBoxPasswordSignin.Text = "";
@@ -386,14 +353,27 @@ namespace DreamCar
             textBoxUsername.Text = "";
             textBoxPassword.Text = "";
             textBoxConfirmPassword.Text = "";
-            textBoxFirstName.Focus();
+            textBoxUsernameSignin.Text = "";
+            textBoxPasswordSignin.Text = "";
+            if (SignIn.Visible)
+            {
+                textBoxUsernameSignin.Focus();
+            }
+            else
+            {
+                textBoxFirstName.Focus();
+            }
+        }
+
+        private void ButtonClear_Click(object sender, EventArgs e)
+        {
+            Clear();
         }
 
         private void LabelChangeToSignin_Click(object sender, EventArgs e)
         {
             checkBoxShowPassword.Checked = false;
-            textBoxUsernameSignin.Text = "";
-            textBoxPasswordSignin.Text = "";
+            Clear();
             SignIn.Visible = true;
             SignUp.Visible = false;
             textBoxUsernameSignin.Focus();
@@ -415,9 +395,8 @@ namespace DreamCar
         // SIGN IN
         private void ButtonSignin_Click(object sender, EventArgs e)
         {
-            DreamCarContext contextUserExists = new DreamCarContext();
-            var userExists = from users in contextUserExists.Users where users.UserUsername  == textBoxUsernameSignin.Text && users.UserPassword == textBoxPasswordSignin.Text select users;
-            //var userExists = contextUserExists.Users.Where(u => u.UserUsername == textBoxUsernameSignin.Text && u.UserPassword == textBoxPasswordSignin.Text);
+            DreamCarContext context = new DreamCarContext();
+            User user = MainReq.GetCurrentUser(context, textBoxUsernameSignin.Text, textBoxPasswordSignin.Text, true);
             if (textBoxUsernameSignin.Text == "" && textBoxPasswordSignin.Text == "")
             {
                 MessageBox.Show("Empty Username and Pasword fields. Please fill up the form and try again", "Login Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -433,9 +412,9 @@ namespace DreamCar
                 MessageBox.Show("Empty Password field. Please fill up the form and try again", "Login Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 textBoxPasswordSignin.Focus();
             }
-            else if (userExists.Count() != 0)
+            else if (user.UserId.ToString().Length > 0)
             {
-                currentUserId = userExists.ToList().First().UserId;
+                currentUserId = user.UserId;
                 currentUserUsername = textBoxUsernameSignin.Text.ToString();
                 buttonCollection.Enabled = true;
                 buttonProfile.Enabled = true;
@@ -451,7 +430,7 @@ namespace DreamCar
                 }
                 textBoxUsernameSignin.Text = "";
                 textBoxPasswordSignin.Text = "";
-                OpenChildForm(new Forms.FormCollection(), buttonCollection);
+                OpenChildForm(new Forms.Collection.Collection(), buttonCollection);
                 Reset();
                 buttonTimes.Visible = true;
             }
@@ -459,162 +438,78 @@ namespace DreamCar
             {
                 MessageBox.Show("Invalid Username or Password, Please try again", "Login Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
-                textBoxUsernameSignin.Text = "";
-                textBoxPasswordSignin.Text = "";
-                textBoxUsernameSignin.Focus();
+                Clear();
             }
         }
 
         private void ButtonClearSignin(object sender, EventArgs e)
         {
-            textBoxUsernameSignin.Text = "";
-            textBoxPasswordSignin.Text = "";
-            textBoxUsernameSignin.Focus();
+            Clear();
         }
 
 
         private void LabelChangeToSignup_Click(object sender, EventArgs e)
         {
             checkBoxShowPasswordSignin.Checked = false;
-            textBoxUsername.Text = "";
-            textBoxPassword.Text = "";
-            textBoxConfirmPassword.Text = "";
-            textBoxFirstName.Text = "";
-            textBoxLastName.Text = "";
-            textBoxEmail.Text = "";
-            textBoxCountry.Text = "";
-            textBoxCity.Text = "";
-            textBoxAddress.Text = "";
-            textBoxPhone.Text = "";
+            Clear();
             SignIn.Visible = false;
             SignUp.Visible = true;
             textBoxFirstName.Focus();
         }
+
+        public static Panel panelMenu;
+        public static Button buttonCollection;
+        public static Button buttonProfile;
+        public static Button buttonPublish;
+        public static Panel panelTitleBar;
+        public static Label labelTitle;
+        public static Label labelDreamCar;
+        public static PictureBox pictureBox1;
+        public static Panel panelMain;
+        public static Button buttonTimes;
+        public static Label label1;
+        public static PictureBox pictureBox2;
+        public static FlowLayoutPanel flowLayoutPanel1;
+        public static TextBox textBoxPassword;
+        public static TextBox textBoxUsername;
+        public static Label labelPassword;
+        public static Label labelSignup;
+        public static TextBox textBoxConfirmPassword;
+        public static Label labelConfirmPassword;
+        public static Button buttonSignup;
+        public static Label labelChangeToSignin;
+        public static Label labelHaveAcc;
+        public static Button buttonClear;
+        public static FlowLayoutPanel flowLayoutPanel2;
+        public static FlowLayoutPanel SignUp;
+        public static FlowLayoutPanel SignIn;
+        public static Label labelSignin;
+        public static FlowLayoutPanel flowLayoutPanel5;
+        public static Label labelUsernameSignin;
+        public static TextBox textBoxUsernameSignin;
+        public static Label labelPasswordSignin;
+        public static TextBox textBoxPasswordSignin;
+        public static CheckBox checkBoxShowPasswordSignin;
+        public static Button buttonSignin;
+        public static Button buttonClearSignin;
+        public static Label labelDontHaveAcc;
+        public static Label labelChangeToSignup;
+        public static TextBox textBoxEmail;
+        public static TextBox textBoxPhone;
+        public static TextBox textBoxFirstName;
+        public static TextBox textBoxLastName;
+        public static TextBox textBoxCountry;
+        public static TextBox textBoxCity;
+        public static Label labelFirstName;
+        public static Label labelLastName;
+        public static Label labelUsername;
+        public static Label labelCountry;
+        public static Label labelCity;
+        public static Label labelAddress;
+        public static TextBox textBoxAddress;
+        public static Label labelPhone;
+        public static Label labelEmail;
+        public static CheckBox checkBoxShowPassword;
+        public static FlowLayoutPanel panelLogo;
     }
-
 }
-
-
-//DreamCarContext context = new DreamCarContext();
-//User user1 = new User();
-//User user2 = new User();
-//Car car1 = new Car();
-//Car car2 = new Car();
-
-//car1 = new Car()
-//{
-//    CarName = $"BMW_m5_2012",
-//    CarBrand = $"BMW",
-//    CarModel = $"M5",
-//    CarEngine = $"V6",
-//    CarColor = $"#303030",
-//    CarImageUrl = $"/sdsd/2rf/sd.png",
-//    CarPrice = 99.9M,
-//    CarTags = $"#sport #cool",
-//    CarReservationDateStart = $"12/16/2022",
-//    CarReservationDateEnd = $"12/22/2022",
-//};
-
-//car2 = new Car()
-//{
-//    CarName = $"Audi_A4_2016",
-//    CarBrand = $"Audi",
-//    CarModel = $"A4",
-//    CarEngine = $"V4",
-//    CarColor = $"#dddddd",
-//    CarImageUrl = $"/sdsd/adfrf/sd.png",
-//    CarPrice = 120.9M,
-//    CarTags = $"#sport #bussiness",
-//    CarReservationDateStart = $"12/22/2022",
-//    CarReservationDateEnd = $"1/11/2023",
-//};
-
-//user1 = new User()
-//{
-//    UserUsername = $"dhunan",
-//    UserPassword = $"dhunan",
-//    UserFirstName = "Dav",
-//    UserLastName = "Hun",
-//    UserAddress = "Wese",
-//    UserPhone = "+39829344",
-//    UserEmail = "dsadas@ds.com",
-//};
-
-//user2 = new User()
-//{
-//    UserUsername = $"dhunan111",
-//    UserPassword = $"dhunan111",
-//    UserFirstName = "Davit",
-//    UserLastName = "Hunanyan",
-//    UserAddress = "Wesele 32",
-//    UserPhone = "+374 77 12 21 21",
-//    UserEmail = "davo@lol.com",
-//};
-
-
-// FAVOURTIES
-//DreamCarContext context_1 = new DreamCarContext();
-//DreamCarContext context_2 = new DreamCarContext();
-//var cars = context_1.Cars;
-//var currentUser = context_2.Users.Where(p => p.UserUsername == "dhunan111").FirstOrDefault();
-
-//foreach(Car currentCar in cars)
-//{
-//    context.Add(new Favourite()
-//    {
-//        UserId = currentUser.UserId,
-//        CarId = currentCar.CarId,
-//    });
-//    context.SaveChanges();
-//}
-
-
-// COLLECTION ?
-//int i = 0;
-//var cars = context.Cars.Where(p => p.CarPrice > 10.00M).OrderBy(p => p.CarName);
-//Console.WriteLine(cars);
-////var products2 = from product in context.Cars where product.CarPrice > 10.00M orderby product.CarName select product;
-//if(cars != null)
-//{
-//    foreach (Car p in cars)
-//    {
-//        Label lbl = new Label()
-//        {
-//            Text = $"{p.CarName} \n {p.CarPrice}",
-//            Name = p.CarName,
-//            Location = new Point(150 * i, 800),
-//            Size = new Size(150, 50)
-//        };
-//        Controls.Add(lbl);
-//        i++;
-//    }
-//}
-
-//i = 0;
-//var favourites = context.Favourite.Where(p => p.User.UserUsername == user2.UserUsername).OrderBy(p => p.Car.CarName);
-////var products2 = from product in context.Cars where product.CarPrice > 10.00M orderby product.CarName select product;
-//foreach (Favourite f in favourites)
-//{
-//    DreamCarContext context_1 = new DreamCarContext();
-//    DreamCarContext context_2 = new DreamCarContext();
-//    var currentCar = context_1.Cars.Where(p => p.CarId == f.CarId).FirstOrDefault();
-//    var currentUser = context_2.Users.Where(p => p.UserId == f.UserId).FirstOrDefault();
-//    Label lbl = new Label()
-//    {
-//        Text = $"{currentUser.UserUsername}: {currentCar.CarName}",
-//        Name = $"Res_{currentUser.UserUsername}_{currentCar.CarName}",
-//        Location = new Point(200 * i, 800),
-//        Size = new Size(200, 50)
-//    };
-//    Controls.Add(lbl);
-//    i++;
-//}
-
-//Label lblCount = new Label()
-//{
-//    Text = $"{favourites.Count()}",
-//    Name = $"Res_lblCount",
-//    Location = new Point(1200 * i, 800),
-//    Size = new Size(200, 50)
-//};
-//Controls.Add(lblCount);

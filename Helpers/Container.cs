@@ -11,13 +11,13 @@ namespace DreamCar.Helpers
 {
     public class Container : Form
     {
-        public static Button currentButton;
-        public static Form currentForm;
+        public static Button currentButton = null!;
+        public static Form currentForm = null!;
 
         public static string currentUserUsername;
         public static int currentUserId;
 
-        public Image setBackgroungImageUrl(string imageUrl)
+        public static Image setBackgroungImageUrl(string imageUrl)
         {
             var request = WebRequest.Create(imageUrl);
             using (var webSresponse = request.GetResponse())
