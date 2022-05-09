@@ -16,6 +16,8 @@ namespace DreamCar.Forms.Collection
         public Collection()
         {
             InitializeComponent();
+            CollectionStyles.GerenerateCollectionContainer(initialCarGenAmount);
+            CollectionStyles.ChangeCollectionContainerScrollMinSize(initialCarGenAmount);
             GenerateCollection(initialCarGenAmount, initialCarGenAmount - 4);
         }
 
@@ -32,8 +34,8 @@ namespace DreamCar.Forms.Collection
                 using (DreamCarContext contexInner = new DreamCarContext())
                 {
                     List<Favourite> currentFavRecord = CollectionReq.GetFavsByUsername(contexInner, currentUserUsername);
-                    CollectionStyles.GerenerateCollectionContainer(context, take);
                     List<Car> carCollection = CollectionReq.GetCarWithSkipNTake(context, take, skip);
+                    CollectionStyles.ChangeCollectionContainerScrollMinSize(take);
                     foreach (var car in carCollection)
                     {
                         bool isFav = false;
