@@ -23,16 +23,19 @@ namespace DreamCar.Forms.Collection
             // 
             // flowLayoutPanelCarCollection
             // 
-            flowLayoutPanelCarCollection = new FlowLayoutPanel();
-            flowLayoutPanelCarCollection.AutoScroll = true;
-            flowLayoutPanelCarCollection.AutoScrollMinSize = new Size(0, (65 * context.Cars.ToList().Count()) + 45);
-            flowLayoutPanelCarCollection.BackColor = Color.FromArgb(((int)(((byte)(85)))), ((int)(((byte)(85)))), ((int)(((byte)(110)))));
-            flowLayoutPanelCarCollection.Location = new Point(16, 109);
-            flowLayoutPanelCarCollection.Margin = new Padding(0);
-            flowLayoutPanelCarCollection.Name = "flowLayoutPanelCarCollection_" + take.ToString();
-            flowLayoutPanelCarCollection.Padding = new Padding(5);
-            flowLayoutPanelCarCollection.Size = new Size(1020, 541);
-            flowLayoutPanelCarCollection.TabIndex = 0;
+            flowLayoutPanelCarCollection = new FlowLayoutPanel
+            {
+                AutoScroll = true,
+                AutoScrollMinSize = new Size(0, (65 * context.Cars.ToList().Count()) + 45),
+                BackColor = Color.FromArgb(((int)(((byte)(85)))), ((int)(((byte)(85)))), ((int)(((byte)(110))))),
+                Location = new Point(16, 109),
+                Margin = new Padding(0),
+                Name = "flowLayoutPanelCarCollection_" + take.ToString(),
+                Padding = new Padding(5),
+                Size = new Size(1020, 541),
+                TabIndex = 0
+            };
+            Collection.panelMain.Controls.Add(flowLayoutPanelCarCollection);
         }
 
         public static void GenerateCar(string image, string brand, string model, string year, string fuel, string gearbox, int carId, bool isFav, int take)

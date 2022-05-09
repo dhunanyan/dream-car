@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            panelMain = new System.Windows.Forms.Panel();
+            panelMain = new System.Windows.Forms.FlowLayoutPanel();
             this.button1 = new System.Windows.Forms.Button();
             panelMain.SuspendLayout();
             this.SuspendLayout();
@@ -69,7 +69,7 @@
 
         #endregion
 
-        public static System.Windows.Forms.Panel panelMain;
+        public static System.Windows.Forms.FlowLayoutPanel panelMain;
         private System.Windows.Forms.Button button1;
     }
 }
