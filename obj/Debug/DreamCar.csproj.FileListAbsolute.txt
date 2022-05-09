@@ -475,5 +475,5 @@ C:\Users\irina\OneDrive\Desktop\AGH\sem4\PZ2\projects\dream-car\bin\Debug\zh-Han
 C:\Users\irina\OneDrive\Desktop\AGH\sem4\PZ2\projects\dream-car\bin\Debug\zh-Hant\System.Spatial.resources.dll
 C:\Users\dhunanyan\Desktop\AGH\sem4\programowanie-zaawansowane\DreamCar\obj\Debug\DreamCar.Forms.Collection.Collection.resources
 C:\Users\dhunanyan\Desktop\AGH\sem4\programowanie-zaawansowane\DreamCar\obj\Debug\DreamCar.Forms.Profile.Profile.resources
-C:\Users\dhunanyan\Desktop\AGH\sem4\programowanie-zaawansowane\DreamCar\obj\Debug\DreamCar.Forms.Publish.Publication.resources
 C:\Users\dhunanyan\Desktop\AGH\sem4\programowanie-zaawansowane\DreamCar\obj\Debug\DreamCar.Forms.Main.Main.resources
+C:\Users\dhunanyan\Desktop\AGH\sem4\programowanie-zaawansowane\DreamCar\obj\Debug\DreamCar.Forms.Publication.Publication.resources

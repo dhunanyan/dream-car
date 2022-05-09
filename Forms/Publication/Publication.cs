@@ -206,7 +206,7 @@ namespace DreamCar.Forms.Publication
             }
         }
 
-        private void MonthCalendar_DateSelected(object sender, System.Windows.Forms.DateRangeEventArgs e)
+        public static void MonthCalendar_DateSelected(object sender, System.Windows.Forms.DateRangeEventArgs e)
         {
             Console.WriteLine("Date Selected: Start = " +
                 e.Start.ToShortDateString() + " : End = " + e.End.ToShortDateString());

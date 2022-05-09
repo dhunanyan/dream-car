@@ -89,7 +89,7 @@ namespace DreamCar.Forms.Main
             buttonCollection.Enabled = false;
             buttonProfile.Enabled = true;
             buttonPublish.Enabled = true;
-            OpenChildForm(new Forms.Collection.Collection(), sender);
+            OpenChildForm(new Collection.Collection(), sender);
         }
 
         private void ButtonCollection_EnabledChanged(object sender, EventArgs e)
@@ -100,40 +100,14 @@ namespace DreamCar.Forms.Main
             buttonCollection.FlatAppearance.BorderColor = currentButton.Enabled ? ColorTranslator.FromHtml("#33334c") : ThemeColor.ChangeColorBrightness(ColorTranslator.FromHtml("#33334c"), 0.5);
         }
 
-        private void ButtonCollection_Paint(object sender, PaintEventArgs e)
-        {
-            Button currentButton = (Button)sender;
-            buttonCollection.ForeColor = Color.Gainsboro;
-            SolidBrush drawBrush = new SolidBrush(currentButton.ForeColor);
-            StringFormat sf = new StringFormat
-            {
-                Alignment = StringAlignment.Center,
-                LineAlignment = StringAlignment.Center
-            };
-            buttonCollection.Text = string.Empty;
-            e.Graphics.DrawString("    Collection", currentButton.Font, drawBrush, e.ClipRectangle, sf);
-            drawBrush.Dispose();
-            sf.Dispose();
-        }
-
         // PUBLISH
         private void ButtonPublish_Click(object sender, EventArgs e)
         {
-            //if (isLaunched)
-            //{
-            //    DialogResult dialog = MessageBox.Show("Youur current searching results will be lost, do you really want to leave?",
-            //        "Session Exit", MessageBoxButtons.YesNo);
-            //    if (dialog == DialogResult.No)
-            //    {
-            //        return;
-            //    }
-            //}
-
             labelTitle.Text = "PUBLISH";
             buttonPublish.Enabled = false;
             buttonProfile.Enabled = true;
             buttonCollection.Enabled = true;
-            OpenChildForm(new Forms.Publish.Publication(), sender);
+            OpenChildForm(new Publication.Publication(), sender);
         }
 
 
@@ -145,22 +119,6 @@ namespace DreamCar.Forms.Main
             buttonPublish.FlatAppearance.BorderColor = currentButton.Enabled ? ColorTranslator.FromHtml("#33334c") : ThemeColor.ChangeColorBrightness(ColorTranslator.FromHtml("#33334c"), 0.5);
         }
 
-        private void ButtonPublish_Paint(object sender, PaintEventArgs e)
-        {
-            Button currentButton = (Button)sender;
-            buttonPublish.ForeColor = Color.Gainsboro;
-            SolidBrush drawBrush = new SolidBrush(currentButton.ForeColor);
-            StringFormat sf = new StringFormat
-            {
-                Alignment = StringAlignment.Center,
-                LineAlignment = StringAlignment.Center
-            };
-            buttonPublish.Text = string.Empty;
-            e.Graphics.DrawString("Publish", currentButton.Font, drawBrush, e.ClipRectangle, sf);
-            drawBrush.Dispose();
-            sf.Dispose();
-        }
-
         // PROFILE
         private void ButtonProfile_Click(object sender, EventArgs e)
         {
@@ -168,7 +126,7 @@ namespace DreamCar.Forms.Main
             buttonProfile.Enabled = false;
             buttonPublish.Enabled = true;
             buttonCollection.Enabled = true;
-            OpenChildForm(new Forms.Profile.Profile(), sender);
+            OpenChildForm(new Profile.Profile(), sender);
         }
 
 
@@ -178,22 +136,6 @@ namespace DreamCar.Forms.Main
             buttonProfile.ForeColor = Color.Gainsboro;
             buttonProfile.BackColor = currentButton.Enabled ? ColorTranslator.FromHtml("#33334c") : ThemeColor.ChangeColorBrightness(ColorTranslator.FromHtml("#33334c"), 0.5);
             buttonProfile.FlatAppearance.BorderColor = currentButton.Enabled ? ColorTranslator.FromHtml("#33334c") : ThemeColor.ChangeColorBrightness(ColorTranslator.FromHtml("#33334c"), 0.5);
-        }
-
-        private void ButtonProfile_Paint(object sender, PaintEventArgs e)
-        {
-            Button currentButton = (Button)sender;
-            buttonProfile.ForeColor = Color.Gainsboro;
-            SolidBrush drawBrush = new SolidBrush(currentButton.ForeColor);
-            StringFormat sf = new StringFormat
-            {
-                Alignment = StringAlignment.Center,
-                LineAlignment = StringAlignment.Center
-            };
-            buttonProfile.Text = string.Empty;
-            e.Graphics.DrawString("Profile", currentButton.Font, drawBrush, e.ClipRectangle, sf);
-            drawBrush.Dispose();
-            sf.Dispose();
         }
 
         // LOGOUT

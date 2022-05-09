@@ -130,7 +130,7 @@
             Main.buttonProfile.UseVisualStyleBackColor = true;
             Main.buttonProfile.EnabledChanged += new System.EventHandler(ButtonProfile_EnabledChanged);
             Main.buttonProfile.Click += new System.EventHandler(ButtonProfile_Click);
-            Main.buttonProfile.Paint += new System.Windows.Forms.PaintEventHandler(ButtonProfile_Paint);
+            Main.buttonProfile.Paint += new System.Windows.Forms.PaintEventHandler(DreamCar.Forms.Main.MainStyles.ButtonProfile_Paint);
             // 
             // buttonPublish
             // 
@@ -154,7 +154,7 @@
             Main.buttonPublish.UseVisualStyleBackColor = true;
             Main.buttonPublish.EnabledChanged += new System.EventHandler(ButtonPublish_EnabledChanged);
             Main.buttonPublish.Click += new System.EventHandler(ButtonPublish_Click);
-            Main.buttonPublish.Paint += new System.Windows.Forms.PaintEventHandler(ButtonPublish_Paint);
+            Main.buttonPublish.Paint += new System.Windows.Forms.PaintEventHandler(DreamCar.Forms.Main.MainStyles.ButtonPublish_Paint); ;
             // 
             // buttonCollection
             // 
@@ -178,7 +178,7 @@
             Main.buttonCollection.UseVisualStyleBackColor = true;
             Main.buttonCollection.EnabledChanged += new System.EventHandler(ButtonCollection_EnabledChanged);
             Main.buttonCollection.Click += new System.EventHandler(ButtonCollection_Click);
-            Main.buttonCollection.Paint += new System.Windows.Forms.PaintEventHandler(ButtonCollection_Paint);
+            Main.buttonCollection.Paint += new System.Windows.Forms.PaintEventHandler(DreamCar.Forms.Main.MainStyles.ButtonCollection_Paint);
             // 
             // panelLogo
             // 
