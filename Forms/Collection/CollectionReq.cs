@@ -20,5 +20,10 @@ namespace DreamCar.Forms.Collection
         {
             return context.Cars.Where(c => c.CarId == carIdToCompare).FirstOrDefault();
         }
+
+        public static List<Car> GetCarWithSkipNTake(DreamCarContext context, int take, int skip)
+        {
+            return context.Cars.Take(take).Skip(skip).ToList();
+        }
     }
 }

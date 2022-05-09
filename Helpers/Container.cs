@@ -14,7 +14,7 @@ namespace DreamCar.Helpers
         public static Button currentButton = null!;
         public static Form currentForm = null!;
 
-        public static string currentUserUsername;
+        public static string currentUserUsername = null!;
         public static int currentUserId;
 
         public static Image setBackgroungImageUrl(string imageUrl)

@@ -354,7 +354,7 @@ namespace DreamCar.Forms.Main
                 MessageBox.Show("Empty Password field. Please fill up the form and try again", "Login Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 textBoxPasswordSignin.Focus();
             }
-            else if (user.UserId.ToString().Length > 0)
+            else if (user != null)
             {
                 currentUserId = user.UserId;
                 currentUserUsername = textBoxUsernameSignin.Text.ToString();

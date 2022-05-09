@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace DreamCar.Forms.Main
 {
@@ -18,13 +19,20 @@ namespace DreamCar.Forms.Main
 
         public static User GetCurrentUser(DreamCarContext context, string username, string password, bool isSignIn)
         {
-            if(isSignIn)
+            try
             {
-                return context.Users.Where(u => u.UserUsername == username && u.UserPassword == password).First();
+                if (isSignIn)
+                {
+                    return context.Users.Where(u => u.UserUsername == username && u.UserPassword == password).First();
+                }
+                else
+                {
+                    return context.Users.Where(u => u.UserUsername == username).First();
+                }
             }
-            else
+            catch
             {
-                return context.Users.Where(u => u.UserUsername == username).First();
+                return null;
             }
         }
     }

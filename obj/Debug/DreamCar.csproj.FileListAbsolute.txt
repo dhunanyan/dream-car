@@ -281,10 +281,6 @@ C:\Users\irina\OneDrive\Desktop\AGH\sem4\PZ2\projects\dream-car\bin\Debug\zh-Han
 C:\Users\irina\OneDrive\Desktop\AGH\sem4\PZ2\projects\dream-car\bin\Debug\zh-Hant\Microsoft.Data.SqlClient.resources.dll
 C:\Users\irina\OneDrive\Desktop\AGH\sem4\PZ2\projects\dream-car\obj\Debug\DreamCar.csproj.AssemblyReference.cache
 C:\Users\irina\OneDrive\Desktop\AGH\sem4\PZ2\projects\dream-car\obj\Debug\DreamCar.csproj.SuggestedBindingRedirects.cache
-C:\Users\irina\OneDrive\Desktop\AGH\sem4\PZ2\projects\dream-car\obj\Debug\DreamCar.FormMain.resources
-C:\Users\irina\OneDrive\Desktop\AGH\sem4\PZ2\projects\dream-car\obj\Debug\DreamCar.Forms.FormCollection.resources
-C:\Users\irina\OneDrive\Desktop\AGH\sem4\PZ2\projects\dream-car\obj\Debug\DreamCar.Forms.FormProfile.resources
-C:\Users\irina\OneDrive\Desktop\AGH\sem4\PZ2\projects\dream-car\obj\Debug\DreamCar.Forms.FormPublish.resources
 C:\Users\irina\OneDrive\Desktop\AGH\sem4\PZ2\projects\dream-car\obj\Debug\DreamCar.Properties.Resources.resources
 C:\Users\irina\OneDrive\Desktop\AGH\sem4\PZ2\projects\dream-car\obj\Debug\DreamCar.csproj.GenerateResource.cache
 C:\Users\irina\OneDrive\Desktop\AGH\sem4\PZ2\projects\dream-car\obj\Debug\DreamCar.csproj.CoreCompileInputs.cache
@@ -477,3 +473,7 @@ C:\Users\dhunanyan\Desktop\AGH\sem4\programowanie-zaawansowane\DreamCar\obj\Debu
 C:\Users\dhunanyan\Desktop\AGH\sem4\programowanie-zaawansowane\DreamCar\obj\Debug\DreamCar.Forms.Profile.Profile.resources
 C:\Users\dhunanyan\Desktop\AGH\sem4\programowanie-zaawansowane\DreamCar\obj\Debug\DreamCar.Forms.Main.Main.resources
 C:\Users\dhunanyan\Desktop\AGH\sem4\programowanie-zaawansowane\DreamCar\obj\Debug\DreamCar.Forms.Publication.Publication.resources
+C:\Users\irina\OneDrive\Desktop\AGH\sem4\PZ2\projects\dream-car\obj\Debug\DreamCar.Forms.Main.Main.resources
+C:\Users\irina\OneDrive\Desktop\AGH\sem4\PZ2\projects\dream-car\obj\Debug\DreamCar.Forms.Collection.Collection.resources
+C:\Users\irina\OneDrive\Desktop\AGH\sem4\PZ2\projects\dream-car\obj\Debug\DreamCar.Forms.Profile.Profile.resources
+C:\Users\irina\OneDrive\Desktop\AGH\sem4\PZ2\projects\dream-car\obj\Debug\DreamCar.Forms.Publication.Publication.resources

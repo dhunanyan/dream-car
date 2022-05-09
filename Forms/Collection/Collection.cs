@@ -12,21 +12,29 @@ namespace DreamCar.Forms.Collection
 {
     public partial class Collection : Container
     {
+        int initialCarGenAmount = 4;
         public Collection()
         {
             InitializeComponent();
-            GenerateCollection();
+            GenerateCollection(initialCarGenAmount, initialCarGenAmount - 4);
         }
 
-        private static void GenerateCollection()
+        private void button1_Click(object sender, EventArgs e)
+        {
+            initialCarGenAmount += 4;
+            GenerateCollection(initialCarGenAmount, initialCarGenAmount - 4);
+        }
+
+        private static void GenerateCollection(int take, int skip)
         {
             using (DreamCarContext context = new DreamCarContext())
             {
                 using (DreamCarContext contexInner = new DreamCarContext())
                 {
                     List<Favourite> currentFavRecord = CollectionReq.GetFavsByUsername(contexInner, currentUserUsername);
-                    CollectionStyles.GerenerateCollectionContainer(context);
-                    foreach (var car in context.Cars)
+                    CollectionStyles.GerenerateCollectionContainer(context, take);
+                    List<Car> carCollection = CollectionReq.GetCarWithSkipNTake(context, take, skip);
+                    foreach (var car in carCollection)
                     {
                         bool isFav = false;
                         if (currentFavRecord.Where(f => f.CarId == car.CarId).Count() > 0)
@@ -34,7 +42,7 @@ namespace DreamCar.Forms.Collection
                             isFav = true;
                         }
 
-                        CollectionStyles.GenerateCar(car.CarImageUrl, car.CarBrand, car.CarModel, car.CarProdYear.ToString(), car.CarFuel, car.CarGearbox, car.CarId, isFav);
+                        CollectionStyles.GenerateCar(car.CarImageUrl, car.CarBrand, car.CarModel, car.CarProdYear.ToString(), car.CarFuel, car.CarGearbox, car.CarId, isFav, take);
                     }
                 }
             }

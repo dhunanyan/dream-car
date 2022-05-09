@@ -18,23 +18,24 @@ namespace DreamCar.Forms.Collection
             //Console.WriteLine(currentUser);
         }
 
-        public static void GerenerateCollectionContainer(DreamCarContext context)
+        public static void GerenerateCollectionContainer(DreamCarContext context, int take)
         {
             // 
             // flowLayoutPanelCarCollection
             // 
-            Collection.flowLayoutPanelCarCollection.AutoScroll = true;
-            Collection.flowLayoutPanelCarCollection.AutoScrollMinSize = new Size(0, (65 * context.Cars.ToList().Count()) + 45);
-            Collection.flowLayoutPanelCarCollection.BackColor = Color.FromArgb(((int)(((byte)(85)))), ((int)(((byte)(85)))), ((int)(((byte)(110)))));
-            Collection.flowLayoutPanelCarCollection.Location = new Point(16, 109);
-            Collection.flowLayoutPanelCarCollection.Margin = new Padding(0);
-            Collection.flowLayoutPanelCarCollection.Name = "flowLayoutPanelCarCollection";
-            Collection.flowLayoutPanelCarCollection.Padding = new Padding(5);
-            Collection.flowLayoutPanelCarCollection.Size = new Size(1020, 541);
-            Collection.flowLayoutPanelCarCollection.TabIndex = 0;
+            flowLayoutPanelCarCollection = new FlowLayoutPanel();
+            flowLayoutPanelCarCollection.AutoScroll = true;
+            flowLayoutPanelCarCollection.AutoScrollMinSize = new Size(0, (65 * context.Cars.ToList().Count()) + 45);
+            flowLayoutPanelCarCollection.BackColor = Color.FromArgb(((int)(((byte)(85)))), ((int)(((byte)(85)))), ((int)(((byte)(110)))));
+            flowLayoutPanelCarCollection.Location = new Point(16, 109);
+            flowLayoutPanelCarCollection.Margin = new Padding(0);
+            flowLayoutPanelCarCollection.Name = "flowLayoutPanelCarCollection_" + take.ToString();
+            flowLayoutPanelCarCollection.Padding = new Padding(5);
+            flowLayoutPanelCarCollection.Size = new Size(1020, 541);
+            flowLayoutPanelCarCollection.TabIndex = 0;
         }
 
-        public static void GenerateCar(string image, string brand, string model, string year, string fuel, string gearbox, int carId, bool isFav)
+        public static void GenerateCar(string image, string brand, string model, string year, string fuel, string gearbox, int carId, bool isFav, int take)
         {
 
             flowLayoutPanelCurrentCar = new FlowLayoutPanel();
@@ -177,8 +178,8 @@ namespace DreamCar.Forms.Collection
             buttonCurrentCarMore.UseVisualStyleBackColor = false;
             buttonCurrentCarMore.Click += new EventHandler(Collection.ButtonCurrentCarMore_Click);
 
-
-            Collection.flowLayoutPanelCarCollection.Controls.Add(flowLayoutPanelCurrentCar);
+            FlowLayoutPanel currentPanelContainer = (FlowLayoutPanel)Collection.panelMain.Controls.Find("flowLayoutPanelCarCollection_" + take.ToString(), true)[0];
+            currentPanelContainer.Controls.Add(flowLayoutPanelCurrentCar);
             flowLayoutPanelCurrentCar.ResumeLayout(false);
         }
 
@@ -191,5 +192,7 @@ namespace DreamCar.Forms.Collection
         private static Label labelCurrentCarGearbox;
         private static Button buttonCurrentCarFav;
         private static Button buttonCurrentCarMore;
+        private static FlowLayoutPanel flowLayoutPanelCarCollection;
+
     }
 }
