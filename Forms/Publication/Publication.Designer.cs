@@ -29,514 +29,516 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Publication));
-            panel1 = new System.Windows.Forms.Panel();
-            SignUp = new System.Windows.Forms.FlowLayoutPanel();
-            labelPublish = new System.Windows.Forms.Label();
-            flowLayoutPanel2 = new System.Windows.Forms.FlowLayoutPanel();
-            panel2 = new System.Windows.Forms.Panel();
-            textBoxCarPrice = new System.Windows.Forms.TextBox();
-            labelCarPrice = new System.Windows.Forms.Label();
-            panelLoadingBar = new System.Windows.Forms.Panel();
-            labelLoadingProgress = new System.Windows.Forms.Label();
-            monthCalendar = new System.Windows.Forms.MonthCalendar();
-            flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
-            buttonPost = new System.Windows.Forms.Button();
-            buttonClear = new System.Windows.Forms.Button();
-            textBoxCarTags = new System.Windows.Forms.TextBox();
-            labelCarTags = new System.Windows.Forms.Label();
-            textBoxCarColor = new System.Windows.Forms.TextBox();
-            labelCarColor = new System.Windows.Forms.Label();
-            labelCarCity = new System.Windows.Forms.Label();
-            textBoxCarCity = new System.Windows.Forms.TextBox();
-            labelCarCountry = new System.Windows.Forms.Label();
-            textBoxCardGearbox = new System.Windows.Forms.TextBox();
-            labelCarGearbox = new System.Windows.Forms.Label();
-            textBoxCarCountry = new System.Windows.Forms.TextBox();
-            labelCarFuel = new System.Windows.Forms.Label();
-            textBoxCarFuel = new System.Windows.Forms.TextBox();
-            labelCarCapacity = new System.Windows.Forms.Label();
-            textBoxCarModel = new System.Windows.Forms.TextBox();
-            labelCarModel = new System.Windows.Forms.Label();
-            labelCarBrand = new System.Windows.Forms.Label();
-            textBoxCarCapacity = new System.Windows.Forms.TextBox();
-            buttonAddImage = new System.Windows.Forms.Button();
-            textBoxCardProdYear = new System.Windows.Forms.TextBox();
-            textBoxCardBrand = new System.Windows.Forms.TextBox();
-            labelCarProdYear = new System.Windows.Forms.Label();
-            panel1.SuspendLayout();
-            SignUp.SuspendLayout();
-            flowLayoutPanel2.SuspendLayout();
-            panel2.SuspendLayout();
-            panelLoadingBar.SuspendLayout();
-            flowLayoutPanel1.SuspendLayout();
-            SuspendLayout();
+            PublicationStyles.panel1 = new System.Windows.Forms.Panel();
+            PublicationStyles.SignUp = new System.Windows.Forms.FlowLayoutPanel();
+            PublicationStyles.labelPublish = new System.Windows.Forms.Label();
+            PublicationStyles.flowLayoutPanel2 = new System.Windows.Forms.FlowLayoutPanel();
+            PublicationStyles.panel2 = new System.Windows.Forms.Panel();
+            PublicationStyles.textBoxCarPrice = new System.Windows.Forms.TextBox();
+            PublicationStyles.labelCarPrice = new System.Windows.Forms.Label();
+            PublicationStyles.panelLoadingBar = new System.Windows.Forms.Panel();
+            PublicationStyles.labelLoadingProgress = new System.Windows.Forms.Label();
+            PublicationStyles.monthCalendar = new System.Windows.Forms.MonthCalendar();
+            PublicationStyles.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
+            PublicationStyles.buttonPost = new System.Windows.Forms.Button();
+            PublicationStyles.buttonClear = new System.Windows.Forms.Button();
+            PublicationStyles.textBoxCarTags = new System.Windows.Forms.TextBox();
+            PublicationStyles.labelCarTags = new System.Windows.Forms.Label();
+            PublicationStyles.textBoxCarColor = new System.Windows.Forms.TextBox();
+            PublicationStyles.labelCarColor = new System.Windows.Forms.Label();
+            PublicationStyles.labelCarCity = new System.Windows.Forms.Label();
+            PublicationStyles.textBoxCarCity = new System.Windows.Forms.TextBox();
+            PublicationStyles.labelCarCountry = new System.Windows.Forms.Label();
+            PublicationStyles.textBoxCardGearbox = new System.Windows.Forms.TextBox();
+            PublicationStyles.labelCarGearbox = new System.Windows.Forms.Label();
+            PublicationStyles.textBoxCarCountry = new System.Windows.Forms.TextBox();
+            PublicationStyles.labelCarFuel = new System.Windows.Forms.Label();
+            PublicationStyles.textBoxCarFuel = new System.Windows.Forms.TextBox();
+            PublicationStyles.labelCarCapacity = new System.Windows.Forms.Label();
+            PublicationStyles.textBoxCarModel = new System.Windows.Forms.TextBox();
+            PublicationStyles.labelCarModel = new System.Windows.Forms.Label();
+            PublicationStyles.labelCarBrand = new System.Windows.Forms.Label();
+            PublicationStyles.textBoxCarCapacity = new System.Windows.Forms.TextBox();
+            PublicationStyles.textBoxCardProdYear = new System.Windows.Forms.TextBox();
+            PublicationStyles.textBoxCardBrand = new System.Windows.Forms.TextBox();
+            PublicationStyles.labelCarProdYear = new System.Windows.Forms.Label();
+            PublicationStyles.buttonAddImage = new System.Windows.Forms.Button();
+            PublicationStyles.panel1.SuspendLayout();
+            PublicationStyles.SignUp.SuspendLayout();
+            PublicationStyles.flowLayoutPanel2.SuspendLayout();
+            PublicationStyles.panel2.SuspendLayout();
+            PublicationStyles.panelLoadingBar.SuspendLayout();
+            PublicationStyles.flowLayoutPanel1.SuspendLayout();
+            this.SuspendLayout();
             // 
             // panel1
             // 
-            panel1.Controls.Add(SignUp);
-            panel1.Location = new System.Drawing.Point(10, 10);
-            panel1.Margin = new System.Windows.Forms.Padding(0);
-            panel1.Name = "panel1";
-            panel1.Size = new System.Drawing.Size(1050, 663);
-            panel1.TabIndex = 0;
+            PublicationStyles.panel1.Controls.Add(PublicationStyles.SignUp);
+            PublicationStyles.panel1.Location = new System.Drawing.Point(15, 15);
+            PublicationStyles.panel1.Margin = new System.Windows.Forms.Padding(0);
+            PublicationStyles.panel1.Name = "panel1";
+            PublicationStyles.panel1.Size = new System.Drawing.Size(1575, 1020);
+            PublicationStyles.panel1.TabIndex = 0;
             // 
             // SignUp
             // 
-            SignUp.Anchor = System.Windows.Forms.AnchorStyles.None;
-            SignUp.Controls.Add(labelPublish);
-            SignUp.Controls.Add(flowLayoutPanel2);
-            SignUp.Location = new System.Drawing.Point(59, 113);
-            SignUp.Margin = new System.Windows.Forms.Padding(2);
-            SignUp.Name = "SignUp";
-            SignUp.Size = new System.Drawing.Size(939, 436);
-            SignUp.TabIndex = 18;
+            PublicationStyles.SignUp.Anchor = System.Windows.Forms.AnchorStyles.None;
+            PublicationStyles.SignUp.Controls.Add(PublicationStyles.labelPublish);
+            PublicationStyles.SignUp.Controls.Add(PublicationStyles.flowLayoutPanel2);
+            PublicationStyles.SignUp.Location = new System.Drawing.Point(88, 174);
+            PublicationStyles.SignUp.Name = "SignUp";
+            PublicationStyles.SignUp.Size = new System.Drawing.Size(1408, 671);
+            PublicationStyles.SignUp.TabIndex = 18;
             // 
             // labelPublish
             // 
-            labelPublish.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(106)))), ((int)(((byte)(184)))), ((int)(((byte)(119)))));
-            labelPublish.Font = new System.Drawing.Font("Tw Cen MT Condensed", 24F, System.Drawing.FontStyle.Bold);
-            labelPublish.ForeColor = System.Drawing.Color.Gainsboro;
-            labelPublish.Location = new System.Drawing.Point(0, 0);
-            labelPublish.Margin = new System.Windows.Forms.Padding(0);
-            labelPublish.Name = "labelPublish";
-            labelPublish.Size = new System.Drawing.Size(939, 46);
-            labelPublish.TabIndex = 3;
-            labelPublish.Text = "ADD CAR TO COLLECTION";
-            labelPublish.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            PublicationStyles.labelPublish.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(106)))), ((int)(((byte)(184)))), ((int)(((byte)(119)))));
+            PublicationStyles.labelPublish.Font = new System.Drawing.Font("Tw Cen MT Condensed", 24F, System.Drawing.FontStyle.Bold);
+            PublicationStyles.labelPublish.ForeColor = System.Drawing.Color.Gainsboro;
+            PublicationStyles.labelPublish.Location = new System.Drawing.Point(0, 0);
+            PublicationStyles.labelPublish.Margin = new System.Windows.Forms.Padding(0);
+            PublicationStyles.labelPublish.Name = "labelPublish";
+            PublicationStyles.labelPublish.Size = new System.Drawing.Size(1408, 71);
+            PublicationStyles.labelPublish.TabIndex = 3;
+            PublicationStyles.labelPublish.Text = "ADD CAR TO COLLECTION";
+            PublicationStyles.labelPublish.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // flowLayoutPanel2
             // 
-            flowLayoutPanel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(85)))), ((int)(((byte)(85)))), ((int)(((byte)(110)))));
-            flowLayoutPanel2.Controls.Add(panel2);
-            flowLayoutPanel2.Location = new System.Drawing.Point(0, 46);
-            flowLayoutPanel2.Margin = new System.Windows.Forms.Padding(0);
-            flowLayoutPanel2.Name = "flowLayoutPanel2";
-            flowLayoutPanel2.Size = new System.Drawing.Size(997, 501);
-            flowLayoutPanel2.TabIndex = 15;
+            PublicationStyles.flowLayoutPanel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(85)))), ((int)(((byte)(85)))), ((int)(((byte)(110)))));
+            PublicationStyles.flowLayoutPanel2.Controls.Add(PublicationStyles.panel2);
+            PublicationStyles.flowLayoutPanel2.Location = new System.Drawing.Point(0, 71);
+            PublicationStyles.flowLayoutPanel2.Margin = new System.Windows.Forms.Padding(0);
+            PublicationStyles.flowLayoutPanel2.Name = "flowLayoutPanel2";
+            PublicationStyles.flowLayoutPanel2.Size = new System.Drawing.Size(1496, 771);
+            PublicationStyles.flowLayoutPanel2.TabIndex = 15;
             // 
             // panel2
             // 
-            panel2.Controls.Add(textBoxCarPrice);
-            panel2.Controls.Add(labelCarPrice);
-            panel2.Controls.Add(panelLoadingBar);
-            panel2.Controls.Add(monthCalendar);
-            panel2.Controls.Add(flowLayoutPanel1);
-            panel2.Controls.Add(textBoxCarTags);
-            panel2.Controls.Add(labelCarTags);
-            panel2.Controls.Add(textBoxCarColor);
-            panel2.Controls.Add(labelCarColor);
-            panel2.Controls.Add(labelCarCity);
-            panel2.Controls.Add(textBoxCarCity);
-            panel2.Controls.Add(labelCarCountry);
-            panel2.Controls.Add(textBoxCardGearbox);
-            panel2.Controls.Add(labelCarGearbox);
-            panel2.Controls.Add(textBoxCarCountry);
-            panel2.Controls.Add(labelCarFuel);
-            panel2.Controls.Add(textBoxCarFuel);
-            panel2.Controls.Add(labelCarCapacity);
-            panel2.Controls.Add(textBoxCarModel);
-            panel2.Controls.Add(labelCarModel);
-            panel2.Controls.Add(labelCarBrand);
-            panel2.Controls.Add(textBoxCarCapacity);
-            panel2.Controls.Add(buttonAddImage);
-            panel2.Controls.Add(textBoxCardProdYear);
-            panel2.Controls.Add(textBoxCardBrand);
-            panel2.Controls.Add(labelCarProdYear);
-            panel2.Location = new System.Drawing.Point(0, 0);
-            panel2.Margin = new System.Windows.Forms.Padding(0);
-            panel2.Name = "panel2";
-            panel2.Size = new System.Drawing.Size(997, 501);
-            panel2.TabIndex = 19;
+            PublicationStyles.panel2.Controls.Add(PublicationStyles.textBoxCarPrice);
+            PublicationStyles.panel2.Controls.Add(PublicationStyles.labelCarPrice);
+            PublicationStyles.panel2.Controls.Add(PublicationStyles.panelLoadingBar);
+            PublicationStyles.panel2.Controls.Add(PublicationStyles.monthCalendar);
+            PublicationStyles.panel2.Controls.Add(PublicationStyles.flowLayoutPanel1);
+            PublicationStyles.panel2.Controls.Add(PublicationStyles.textBoxCarTags);
+            PublicationStyles.panel2.Controls.Add(PublicationStyles.labelCarTags);
+            PublicationStyles.panel2.Controls.Add(PublicationStyles.textBoxCarColor);
+            PublicationStyles.panel2.Controls.Add(PublicationStyles.labelCarColor);
+            PublicationStyles.panel2.Controls.Add(PublicationStyles.labelCarCity);
+            PublicationStyles.panel2.Controls.Add(PublicationStyles.textBoxCarCity);
+            PublicationStyles.panel2.Controls.Add(PublicationStyles.labelCarCountry);
+            PublicationStyles.panel2.Controls.Add(PublicationStyles.textBoxCardGearbox);
+            PublicationStyles.panel2.Controls.Add(PublicationStyles.labelCarGearbox);
+            PublicationStyles.panel2.Controls.Add(PublicationStyles.textBoxCarCountry);
+            PublicationStyles.panel2.Controls.Add(PublicationStyles.labelCarFuel);
+            PublicationStyles.panel2.Controls.Add(PublicationStyles.textBoxCarFuel);
+            PublicationStyles.panel2.Controls.Add(PublicationStyles.labelCarCapacity);
+            PublicationStyles.panel2.Controls.Add(PublicationStyles.textBoxCarModel);
+            PublicationStyles.panel2.Controls.Add(PublicationStyles.labelCarModel);
+            PublicationStyles.panel2.Controls.Add(PublicationStyles.labelCarBrand);
+            PublicationStyles.panel2.Controls.Add(PublicationStyles.textBoxCarCapacity);
+            PublicationStyles.panel2.Controls.Add(PublicationStyles.buttonAddImage);
+            PublicationStyles.panel2.Controls.Add(PublicationStyles.textBoxCardProdYear);
+            PublicationStyles.panel2.Controls.Add(PublicationStyles.textBoxCardBrand);
+            PublicationStyles.panel2.Controls.Add(PublicationStyles.labelCarProdYear);
+            PublicationStyles.panel2.Location = new System.Drawing.Point(0, 0);
+            PublicationStyles.panel2.Margin = new System.Windows.Forms.Padding(0);
+            PublicationStyles.panel2.Name = "panel2";
+            PublicationStyles.panel2.Size = new System.Drawing.Size(1496, 771);
+            PublicationStyles.panel2.TabIndex = 19;
             // 
             // textBoxCarPrice
             // 
-            textBoxCarPrice.Anchor = System.Windows.Forms.AnchorStyles.None;
-            textBoxCarPrice.BackColor = System.Drawing.Color.Gainsboro;
-            textBoxCarPrice.Font = new System.Drawing.Font("Tw Cen MT Condensed", 18F, System.Drawing.FontStyle.Bold);
-            textBoxCarPrice.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(68)))), ((int)(((byte)(93)))));
-            textBoxCarPrice.Location = new System.Drawing.Point(765, 211);
-            textBoxCarPrice.Margin = new System.Windows.Forms.Padding(0, 0, 13, 13);
-            textBoxCarPrice.Name = "textBoxCarPrice";
-            textBoxCarPrice.Size = new System.Drawing.Size(157, 33);
-            textBoxCarPrice.TabIndex = 11;
+            PublicationStyles.textBoxCarPrice.Anchor = System.Windows.Forms.AnchorStyles.None;
+            PublicationStyles.textBoxCarPrice.BackColor = System.Drawing.Color.Gainsboro;
+            PublicationStyles.textBoxCarPrice.Font = new System.Drawing.Font("Tw Cen MT Condensed", 18F, System.Drawing.FontStyle.Bold);
+            PublicationStyles.textBoxCarPrice.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(68)))), ((int)(((byte)(93)))));
+            PublicationStyles.textBoxCarPrice.Location = new System.Drawing.Point(1148, 325);
+            PublicationStyles.textBoxCarPrice.Margin = new System.Windows.Forms.Padding(0, 0, 20, 20);
+            PublicationStyles.textBoxCarPrice.Name = "textBoxCarPrice";
+            PublicationStyles.textBoxCarPrice.Size = new System.Drawing.Size(234, 46);
+            PublicationStyles.textBoxCarPrice.TabIndex = 11;
             // 
             // labelCarPrice
             // 
-            labelCarPrice.AutoSize = true;
-            labelCarPrice.Font = new System.Drawing.Font("Tw Cen MT Condensed", 18F, System.Drawing.FontStyle.Bold);
-            labelCarPrice.ForeColor = System.Drawing.Color.Gainsboro;
-            labelCarPrice.Location = new System.Drawing.Point(702, 214);
-            labelCarPrice.Margin = new System.Windows.Forms.Padding(0);
-            labelCarPrice.Name = "labelCarPrice";
-            labelCarPrice.Size = new System.Drawing.Size(54, 28);
-            labelCarPrice.TabIndex = 34;
-            labelCarPrice.Text = "Price";
+            PublicationStyles.labelCarPrice.AutoSize = true;
+            PublicationStyles.labelCarPrice.Font = new System.Drawing.Font("Tw Cen MT Condensed", 18F, System.Drawing.FontStyle.Bold);
+            PublicationStyles.labelCarPrice.ForeColor = System.Drawing.Color.Gainsboro;
+            PublicationStyles.labelCarPrice.Location = new System.Drawing.Point(1053, 329);
+            PublicationStyles.labelCarPrice.Margin = new System.Windows.Forms.Padding(0);
+            PublicationStyles.labelCarPrice.Name = "labelCarPrice";
+            PublicationStyles.labelCarPrice.Size = new System.Drawing.Size(79, 42);
+            PublicationStyles.labelCarPrice.TabIndex = 34;
+            PublicationStyles.labelCarPrice.Text = "Price";
             // 
             // panelLoadingBar
             // 
-            panelLoadingBar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(112)))), ((int)(((byte)(112)))), ((int)(((byte)(140)))));
-            panelLoadingBar.Controls.Add(labelLoadingProgress);
-            panelLoadingBar.Location = new System.Drawing.Point(17, 180);
-            panelLoadingBar.Margin = new System.Windows.Forms.Padding(0);
-            panelLoadingBar.Name = "panelLoadingBar";
-            panelLoadingBar.Size = new System.Drawing.Size(205, 18);
-            panelLoadingBar.TabIndex = 33;
+            PublicationStyles.panelLoadingBar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(112)))), ((int)(((byte)(112)))), ((int)(((byte)(140)))));
+            PublicationStyles.panelLoadingBar.Controls.Add(PublicationStyles.labelLoadingProgress);
+            PublicationStyles.panelLoadingBar.Location = new System.Drawing.Point(26, 277);
+            PublicationStyles.panelLoadingBar.Margin = new System.Windows.Forms.Padding(0);
+            PublicationStyles.panelLoadingBar.Name = "panelLoadingBar";
+            PublicationStyles.panelLoadingBar.Size = new System.Drawing.Size(308, 28);
+            PublicationStyles.panelLoadingBar.TabIndex = 33;
             // 
             // labelLoadingProgress
             // 
-            labelLoadingProgress.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(116)))), ((int)(((byte)(212)))), ((int)(((byte)(132)))));
-            labelLoadingProgress.Dock = System.Windows.Forms.DockStyle.Left;
-            labelLoadingProgress.Font = new System.Drawing.Font("Tw Cen MT Condensed", 12F, System.Drawing.FontStyle.Bold);
-            labelLoadingProgress.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(112)))), ((int)(((byte)(112)))), ((int)(((byte)(140)))));
-            labelLoadingProgress.Location = new System.Drawing.Point(0, 0);
-            labelLoadingProgress.Margin = new System.Windows.Forms.Padding(0);
-            labelLoadingProgress.Name = "labelLoadingProgress";
-            labelLoadingProgress.Size = new System.Drawing.Size(0, 18);
-            labelLoadingProgress.TabIndex = 0;
-            labelLoadingProgress.Text = "0";
-            labelLoadingProgress.TextChanged += new System.EventHandler(labelLoadingProgress_TextChanged);
+            PublicationStyles.labelLoadingProgress.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(116)))), ((int)(((byte)(212)))), ((int)(((byte)(132)))));
+            PublicationStyles.labelLoadingProgress.Dock = System.Windows.Forms.DockStyle.Left;
+            PublicationStyles.labelLoadingProgress.Font = new System.Drawing.Font("Tw Cen MT Condensed", 12F, System.Drawing.FontStyle.Bold);
+            PublicationStyles.labelLoadingProgress.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(112)))), ((int)(((byte)(112)))), ((int)(((byte)(140)))));
+            PublicationStyles.labelLoadingProgress.Location = new System.Drawing.Point(0, 0);
+            PublicationStyles.labelLoadingProgress.Margin = new System.Windows.Forms.Padding(0);
+            PublicationStyles.labelLoadingProgress.Name = "labelLoadingProgress";
+            PublicationStyles.labelLoadingProgress.Size = new System.Drawing.Size(0, 28);
+            PublicationStyles.labelLoadingProgress.TabIndex = 0;
+            PublicationStyles.labelLoadingProgress.Text = "0";
+            PublicationStyles.labelLoadingProgress.TextChanged += new System.EventHandler(this.labelLoadingProgress_TextChanged);
             // 
             // monthCalendar
             // 
-            monthCalendar.Anchor = System.Windows.Forms.AnchorStyles.None;
-            monthCalendar.Location = new System.Drawing.Point(17, 211);
-            monthCalendar.Margin = new System.Windows.Forms.Padding(0, 0, 13, 0);
-            monthCalendar.MaxSelectionCount = 62;
-            monthCalendar.Name = "monthCalendar";
-            monthCalendar.ShowToday = false;
-            monthCalendar.ShowTodayCircle = false;
-            monthCalendar.TabIndex = 13;
-            monthCalendar.DateSelected += new System.Windows.Forms.DateRangeEventHandler(MonthCalendar_DateSelected);
+            PublicationStyles.monthCalendar.Anchor = System.Windows.Forms.AnchorStyles.None;
+            PublicationStyles.monthCalendar.Location = new System.Drawing.Point(26, 325);
+            PublicationStyles.monthCalendar.Margin = new System.Windows.Forms.Padding(0, 0, 20, 0);
+            PublicationStyles.monthCalendar.MaxSelectionCount = 62;
+            PublicationStyles.monthCalendar.Name = "monthCalendar";
+            PublicationStyles.monthCalendar.ShowToday = false;
+            PublicationStyles.monthCalendar.ShowTodayCircle = false;
+            PublicationStyles.monthCalendar.TabIndex = 13;
+            PublicationStyles.monthCalendar.DateSelected += new System.Windows.Forms.DateRangeEventHandler(MonthCalendar_DateSelected);
             // 
             // flowLayoutPanel1
             // 
-            flowLayoutPanel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(85)))), ((int)(((byte)(85)))), ((int)(((byte)(110)))));
-            flowLayoutPanel1.Controls.Add(buttonPost);
-            flowLayoutPanel1.Controls.Add(buttonClear);
-            flowLayoutPanel1.Location = new System.Drawing.Point(257, 257);
-            flowLayoutPanel1.Margin = new System.Windows.Forms.Padding(0);
-            flowLayoutPanel1.Name = "flowLayoutPanel1";
-            flowLayoutPanel1.Size = new System.Drawing.Size(665, 116);
-            flowLayoutPanel1.TabIndex = 32;
+            PublicationStyles.flowLayoutPanel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(85)))), ((int)(((byte)(85)))), ((int)(((byte)(110)))));
+            PublicationStyles.flowLayoutPanel1.Controls.Add(PublicationStyles.buttonPost);
+            PublicationStyles.flowLayoutPanel1.Controls.Add(PublicationStyles.buttonClear);
+            PublicationStyles.flowLayoutPanel1.Location = new System.Drawing.Point(386, 395);
+            PublicationStyles.flowLayoutPanel1.Margin = new System.Windows.Forms.Padding(0);
+            PublicationStyles.flowLayoutPanel1.Name = "flowLayoutPanel1";
+            PublicationStyles.flowLayoutPanel1.Size = new System.Drawing.Size(998, 178);
+            PublicationStyles.flowLayoutPanel1.TabIndex = 32;
             // 
             // buttonPost
             // 
-            buttonPost.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(116)))), ((int)(((byte)(212)))), ((int)(((byte)(132)))));
-            buttonPost.Cursor = System.Windows.Forms.Cursors.Hand;
-            buttonPost.FlatAppearance.BorderSize = 0;
-            buttonPost.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            buttonPost.Font = new System.Drawing.Font("Tw Cen MT Condensed", 20F, System.Drawing.FontStyle.Bold);
-            buttonPost.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(68)))), ((int)(((byte)(93)))));
-            buttonPost.Location = new System.Drawing.Point(0, 0);
-            buttonPost.Margin = new System.Windows.Forms.Padding(0, 0, 0, 10);
-            buttonPost.Name = "buttonPost";
-            buttonPost.Size = new System.Drawing.Size(665, 53);
-            buttonPost.TabIndex = 14;
-            buttonPost.Text = "POST";
-            buttonPost.UseVisualStyleBackColor = false;
-            buttonPost.Click += new System.EventHandler(ButtonAddCar_Click);
+            PublicationStyles.buttonPost.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(116)))), ((int)(((byte)(212)))), ((int)(((byte)(132)))));
+            PublicationStyles.buttonPost.Cursor = System.Windows.Forms.Cursors.Hand;
+            PublicationStyles.buttonPost.FlatAppearance.BorderSize = 0;
+            PublicationStyles.buttonPost.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            PublicationStyles.buttonPost.Font = new System.Drawing.Font("Tw Cen MT Condensed", 20F, System.Drawing.FontStyle.Bold);
+            PublicationStyles.buttonPost.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(68)))), ((int)(((byte)(93)))));
+            PublicationStyles.buttonPost.Location = new System.Drawing.Point(0, 0);
+            PublicationStyles.buttonPost.Margin = new System.Windows.Forms.Padding(0, 0, 0, 15);
+            PublicationStyles.buttonPost.Name = "buttonPost";
+            PublicationStyles.buttonPost.Size = new System.Drawing.Size(998, 82);
+            PublicationStyles.buttonPost.TabIndex = 14;
+            PublicationStyles.buttonPost.Text = "POST";
+            PublicationStyles.buttonPost.UseVisualStyleBackColor = false;
+            PublicationStyles.buttonPost.Click += new System.EventHandler(this.ButtonAddCar_Click);
             // 
             // buttonClear
             // 
-            buttonClear.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(85)))), ((int)(((byte)(85)))), ((int)(((byte)(110)))));
-            buttonClear.Cursor = System.Windows.Forms.Cursors.Hand;
-            buttonClear.FlatAppearance.BorderSize = 3;
-            buttonClear.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            buttonClear.Font = new System.Drawing.Font("Tw Cen MT Condensed", 20F, System.Drawing.FontStyle.Bold);
-            buttonClear.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(116)))), ((int)(((byte)(212)))), ((int)(((byte)(132)))));
-            buttonClear.Location = new System.Drawing.Point(0, 63);
-            buttonClear.Margin = new System.Windows.Forms.Padding(0);
-            buttonClear.Name = "buttonClear";
-            buttonClear.Size = new System.Drawing.Size(665, 53);
-            buttonClear.TabIndex = 15;
-            buttonClear.Text = "CLEAR";
-            buttonClear.UseVisualStyleBackColor = false;
-            buttonClear.Click += new System.EventHandler(ButtonClear_Click);
+            PublicationStyles.buttonClear.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(85)))), ((int)(((byte)(85)))), ((int)(((byte)(110)))));
+            PublicationStyles.buttonClear.Cursor = System.Windows.Forms.Cursors.Hand;
+            PublicationStyles.buttonClear.FlatAppearance.BorderSize = 3;
+            PublicationStyles.buttonClear.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            PublicationStyles.buttonClear.Font = new System.Drawing.Font("Tw Cen MT Condensed", 20F, System.Drawing.FontStyle.Bold);
+            PublicationStyles.buttonClear.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(116)))), ((int)(((byte)(212)))), ((int)(((byte)(132)))));
+            PublicationStyles.buttonClear.Location = new System.Drawing.Point(0, 97);
+            PublicationStyles.buttonClear.Margin = new System.Windows.Forms.Padding(0);
+            PublicationStyles.buttonClear.Name = "buttonClear";
+            PublicationStyles.buttonClear.Size = new System.Drawing.Size(998, 82);
+            PublicationStyles.buttonClear.TabIndex = 15;
+            PublicationStyles.buttonClear.Text = "CLEAR";
+            PublicationStyles.buttonClear.UseVisualStyleBackColor = false;
+            PublicationStyles.buttonClear.Click += new System.EventHandler(this.ButtonClear_Click);
             // 
             // textBoxCarTags
             // 
-            textBoxCarTags.BackColor = System.Drawing.Color.Gainsboro;
-            textBoxCarTags.Font = new System.Drawing.Font("Tw Cen MT Condensed", 18F, System.Drawing.FontStyle.Bold);
-            textBoxCarTags.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(68)))), ((int)(((byte)(93)))));
-            textBoxCarTags.Location = new System.Drawing.Point(335, 211);
-            textBoxCarTags.Margin = new System.Windows.Forms.Padding(0, 0, 0, 13);
-            textBoxCarTags.Name = "textBoxCarTags";
-            textBoxCarTags.Size = new System.Drawing.Size(354, 33);
-            textBoxCarTags.TabIndex = 10;
+            PublicationStyles.textBoxCarTags.BackColor = System.Drawing.Color.Gainsboro;
+            PublicationStyles.textBoxCarTags.Font = new System.Drawing.Font("Tw Cen MT Condensed", 18F, System.Drawing.FontStyle.Bold);
+            PublicationStyles.textBoxCarTags.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(68)))), ((int)(((byte)(93)))));
+            PublicationStyles.textBoxCarTags.Location = new System.Drawing.Point(502, 325);
+            PublicationStyles.textBoxCarTags.Margin = new System.Windows.Forms.Padding(0, 0, 0, 20);
+            PublicationStyles.textBoxCarTags.Name = "textBoxCarTags";
+            PublicationStyles.textBoxCarTags.Size = new System.Drawing.Size(529, 46);
+            PublicationStyles.textBoxCarTags.TabIndex = 10;
             // 
             // labelCarTags
             // 
-            labelCarTags.AutoSize = true;
-            labelCarTags.Font = new System.Drawing.Font("Tw Cen MT Condensed", 18F, System.Drawing.FontStyle.Bold);
-            labelCarTags.ForeColor = System.Drawing.Color.Gainsboro;
-            labelCarTags.Location = new System.Drawing.Point(257, 211);
-            labelCarTags.Margin = new System.Windows.Forms.Padding(0);
-            labelCarTags.Name = "labelCarTags";
-            labelCarTags.Size = new System.Drawing.Size(66, 28);
-            labelCarTags.TabIndex = 8;
-            labelCarTags.Text = "#Tags";
+            PublicationStyles.labelCarTags.AutoSize = true;
+            PublicationStyles.labelCarTags.Font = new System.Drawing.Font("Tw Cen MT Condensed", 18F, System.Drawing.FontStyle.Bold);
+            PublicationStyles.labelCarTags.ForeColor = System.Drawing.Color.Gainsboro;
+            PublicationStyles.labelCarTags.Location = new System.Drawing.Point(386, 325);
+            PublicationStyles.labelCarTags.Margin = new System.Windows.Forms.Padding(0);
+            PublicationStyles.labelCarTags.Name = "labelCarTags";
+            PublicationStyles.labelCarTags.Size = new System.Drawing.Size(99, 42);
+            PublicationStyles.labelCarTags.TabIndex = 8;
+            PublicationStyles.labelCarTags.Text = "#Tags";
             // 
             // textBoxCarColor
             // 
-            textBoxCarColor.Anchor = System.Windows.Forms.AnchorStyles.None;
-            textBoxCarColor.BackColor = System.Drawing.Color.Gainsboro;
-            textBoxCarColor.Font = new System.Drawing.Font("Tw Cen MT Condensed", 18F, System.Drawing.FontStyle.Bold);
-            textBoxCarColor.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(68)))), ((int)(((byte)(93)))));
-            textBoxCarColor.Location = new System.Drawing.Point(702, 45);
-            textBoxCarColor.Margin = new System.Windows.Forms.Padding(0, 0, 0, 13);
-            textBoxCarColor.Name = "textBoxCarColor";
-            textBoxCarColor.Size = new System.Drawing.Size(220, 33);
-            textBoxCarColor.TabIndex = 3;
-            textBoxCarColor.Tag = "";
+            PublicationStyles.textBoxCarColor.Anchor = System.Windows.Forms.AnchorStyles.None;
+            PublicationStyles.textBoxCarColor.BackColor = System.Drawing.Color.Gainsboro;
+            PublicationStyles.textBoxCarColor.Font = new System.Drawing.Font("Tw Cen MT Condensed", 18F, System.Drawing.FontStyle.Bold);
+            PublicationStyles.textBoxCarColor.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(68)))), ((int)(((byte)(93)))));
+            PublicationStyles.textBoxCarColor.Location = new System.Drawing.Point(1053, 69);
+            PublicationStyles.textBoxCarColor.Margin = new System.Windows.Forms.Padding(0, 0, 0, 20);
+            PublicationStyles.textBoxCarColor.Name = "textBoxCarColor";
+            PublicationStyles.textBoxCarColor.Size = new System.Drawing.Size(328, 46);
+            PublicationStyles.textBoxCarColor.TabIndex = 3;
+            PublicationStyles.textBoxCarColor.Tag = "";
             // 
             // labelCarColor
             // 
-            labelCarColor.Font = new System.Drawing.Font("Tw Cen MT Condensed", 18F, System.Drawing.FontStyle.Bold);
-            labelCarColor.ForeColor = System.Drawing.Color.Gainsboro;
-            labelCarColor.Location = new System.Drawing.Point(702, 17);
-            labelCarColor.Margin = new System.Windows.Forms.Padding(0);
-            labelCarColor.Name = "labelCarColor";
-            labelCarColor.Size = new System.Drawing.Size(220, 28);
-            labelCarColor.TabIndex = 5;
-            labelCarColor.Text = "Color";
+            PublicationStyles.labelCarColor.Font = new System.Drawing.Font("Tw Cen MT Condensed", 18F, System.Drawing.FontStyle.Bold);
+            PublicationStyles.labelCarColor.ForeColor = System.Drawing.Color.Gainsboro;
+            PublicationStyles.labelCarColor.Location = new System.Drawing.Point(1053, 26);
+            PublicationStyles.labelCarColor.Margin = new System.Windows.Forms.Padding(0);
+            PublicationStyles.labelCarColor.Name = "labelCarColor";
+            PublicationStyles.labelCarColor.Size = new System.Drawing.Size(330, 43);
+            PublicationStyles.labelCarColor.TabIndex = 5;
+            PublicationStyles.labelCarColor.Text = "Color";
             // 
             // labelCarCity
             // 
-            labelCarCity.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            labelCarCity.Font = new System.Drawing.Font("Tw Cen MT Condensed", 18F, System.Drawing.FontStyle.Bold);
-            labelCarCity.ForeColor = System.Drawing.Color.Gainsboro;
-            labelCarCity.Location = new System.Drawing.Point(469, 76);
-            labelCarCity.Margin = new System.Windows.Forms.Padding(0, 0, 13, 0);
-            labelCarCity.Name = "labelCarCity";
-            labelCarCity.Size = new System.Drawing.Size(220, 28);
-            labelCarCity.TabIndex = 29;
-            labelCarCity.Text = "City";
+            PublicationStyles.labelCarCity.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            PublicationStyles.labelCarCity.Font = new System.Drawing.Font("Tw Cen MT Condensed", 18F, System.Drawing.FontStyle.Bold);
+            PublicationStyles.labelCarCity.ForeColor = System.Drawing.Color.Gainsboro;
+            PublicationStyles.labelCarCity.Location = new System.Drawing.Point(704, 117);
+            PublicationStyles.labelCarCity.Margin = new System.Windows.Forms.Padding(0, 0, 20, 0);
+            PublicationStyles.labelCarCity.Name = "labelCarCity";
+            PublicationStyles.labelCarCity.Size = new System.Drawing.Size(330, 43);
+            PublicationStyles.labelCarCity.TabIndex = 29;
+            PublicationStyles.labelCarCity.Text = "City";
             // 
             // textBoxCarCity
             // 
-            textBoxCarCity.Anchor = System.Windows.Forms.AnchorStyles.None;
-            textBoxCarCity.BackColor = System.Drawing.Color.Gainsboro;
-            textBoxCarCity.Font = new System.Drawing.Font("Tw Cen MT Condensed", 18F, System.Drawing.FontStyle.Bold);
-            textBoxCarCity.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(68)))), ((int)(((byte)(93)))));
-            textBoxCarCity.Location = new System.Drawing.Point(469, 104);
-            textBoxCarCity.Margin = new System.Windows.Forms.Padding(0, 0, 13, 13);
-            textBoxCarCity.Name = "textBoxCarCity";
-            textBoxCarCity.Size = new System.Drawing.Size(220, 33);
-            textBoxCarCity.TabIndex = 5;
+            PublicationStyles.textBoxCarCity.Anchor = System.Windows.Forms.AnchorStyles.None;
+            PublicationStyles.textBoxCarCity.BackColor = System.Drawing.Color.Gainsboro;
+            PublicationStyles.textBoxCarCity.Font = new System.Drawing.Font("Tw Cen MT Condensed", 18F, System.Drawing.FontStyle.Bold);
+            PublicationStyles.textBoxCarCity.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(68)))), ((int)(((byte)(93)))));
+            PublicationStyles.textBoxCarCity.Location = new System.Drawing.Point(704, 160);
+            PublicationStyles.textBoxCarCity.Margin = new System.Windows.Forms.Padding(0, 0, 20, 20);
+            PublicationStyles.textBoxCarCity.Name = "textBoxCarCity";
+            PublicationStyles.textBoxCarCity.Size = new System.Drawing.Size(328, 46);
+            PublicationStyles.textBoxCarCity.TabIndex = 5;
             // 
             // labelCarCountry
             // 
-            labelCarCountry.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            labelCarCountry.Font = new System.Drawing.Font("Tw Cen MT Condensed", 18F, System.Drawing.FontStyle.Bold);
-            labelCarCountry.ForeColor = System.Drawing.Color.Gainsboro;
-            labelCarCountry.Location = new System.Drawing.Point(236, 76);
-            labelCarCountry.Margin = new System.Windows.Forms.Padding(0, 0, 13, 0);
-            labelCarCountry.Name = "labelCarCountry";
-            labelCarCountry.Size = new System.Drawing.Size(220, 28);
-            labelCarCountry.TabIndex = 28;
-            labelCarCountry.Text = "Country";
+            PublicationStyles.labelCarCountry.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            PublicationStyles.labelCarCountry.Font = new System.Drawing.Font("Tw Cen MT Condensed", 18F, System.Drawing.FontStyle.Bold);
+            PublicationStyles.labelCarCountry.ForeColor = System.Drawing.Color.Gainsboro;
+            PublicationStyles.labelCarCountry.Location = new System.Drawing.Point(354, 117);
+            PublicationStyles.labelCarCountry.Margin = new System.Windows.Forms.Padding(0, 0, 20, 0);
+            PublicationStyles.labelCarCountry.Name = "labelCarCountry";
+            PublicationStyles.labelCarCountry.Size = new System.Drawing.Size(330, 43);
+            PublicationStyles.labelCarCountry.TabIndex = 28;
+            PublicationStyles.labelCarCountry.Text = "Country";
             // 
             // textBoxCardGearbox
             // 
-            textBoxCardGearbox.Anchor = System.Windows.Forms.AnchorStyles.None;
-            textBoxCardGearbox.BackColor = System.Drawing.Color.Gainsboro;
-            textBoxCardGearbox.Font = new System.Drawing.Font("Tw Cen MT Condensed", 18F, System.Drawing.FontStyle.Bold);
-            textBoxCardGearbox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(68)))), ((int)(((byte)(93)))));
-            textBoxCardGearbox.Location = new System.Drawing.Point(236, 165);
-            textBoxCardGearbox.Margin = new System.Windows.Forms.Padding(0, 0, 0, 13);
-            textBoxCardGearbox.Name = "textBoxCardGearbox";
-            textBoxCardGearbox.Size = new System.Drawing.Size(220, 33);
-            textBoxCardGearbox.TabIndex = 7;
+            PublicationStyles.textBoxCardGearbox.Anchor = System.Windows.Forms.AnchorStyles.None;
+            PublicationStyles.textBoxCardGearbox.BackColor = System.Drawing.Color.Gainsboro;
+            PublicationStyles.textBoxCardGearbox.Font = new System.Drawing.Font("Tw Cen MT Condensed", 18F, System.Drawing.FontStyle.Bold);
+            PublicationStyles.textBoxCardGearbox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(68)))), ((int)(((byte)(93)))));
+            PublicationStyles.textBoxCardGearbox.Location = new System.Drawing.Point(354, 254);
+            PublicationStyles.textBoxCardGearbox.Margin = new System.Windows.Forms.Padding(0, 0, 0, 20);
+            PublicationStyles.textBoxCardGearbox.Name = "textBoxCardGearbox";
+            PublicationStyles.textBoxCardGearbox.Size = new System.Drawing.Size(328, 46);
+            PublicationStyles.textBoxCardGearbox.TabIndex = 7;
             // 
             // labelCarGearbox
             // 
-            labelCarGearbox.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            labelCarGearbox.Font = new System.Drawing.Font("Tw Cen MT Condensed", 18F, System.Drawing.FontStyle.Bold);
-            labelCarGearbox.ForeColor = System.Drawing.Color.Gainsboro;
-            labelCarGearbox.Location = new System.Drawing.Point(236, 137);
-            labelCarGearbox.Margin = new System.Windows.Forms.Padding(0);
-            labelCarGearbox.Name = "labelCarGearbox";
-            labelCarGearbox.Size = new System.Drawing.Size(220, 28);
-            labelCarGearbox.TabIndex = 27;
-            labelCarGearbox.Text = "Gearbox";
+            PublicationStyles.labelCarGearbox.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            PublicationStyles.labelCarGearbox.Font = new System.Drawing.Font("Tw Cen MT Condensed", 18F, System.Drawing.FontStyle.Bold);
+            PublicationStyles.labelCarGearbox.ForeColor = System.Drawing.Color.Gainsboro;
+            PublicationStyles.labelCarGearbox.Location = new System.Drawing.Point(354, 211);
+            PublicationStyles.labelCarGearbox.Margin = new System.Windows.Forms.Padding(0);
+            PublicationStyles.labelCarGearbox.Name = "labelCarGearbox";
+            PublicationStyles.labelCarGearbox.Size = new System.Drawing.Size(330, 43);
+            PublicationStyles.labelCarGearbox.TabIndex = 27;
+            PublicationStyles.labelCarGearbox.Text = "Gearbox";
             // 
             // textBoxCarCountry
             // 
-            textBoxCarCountry.Anchor = System.Windows.Forms.AnchorStyles.None;
-            textBoxCarCountry.BackColor = System.Drawing.Color.Gainsboro;
-            textBoxCarCountry.Font = new System.Drawing.Font("Tw Cen MT Condensed", 18F, System.Drawing.FontStyle.Bold);
-            textBoxCarCountry.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(68)))), ((int)(((byte)(93)))));
-            textBoxCarCountry.Location = new System.Drawing.Point(236, 104);
-            textBoxCarCountry.Margin = new System.Windows.Forms.Padding(0, 0, 13, 13);
-            textBoxCarCountry.Name = "textBoxCarCountry";
-            textBoxCarCountry.Size = new System.Drawing.Size(220, 33);
-            textBoxCarCountry.TabIndex = 4;
-            textBoxCarCountry.Tag = "";
+            PublicationStyles.textBoxCarCountry.Anchor = System.Windows.Forms.AnchorStyles.None;
+            PublicationStyles.textBoxCarCountry.BackColor = System.Drawing.Color.Gainsboro;
+            PublicationStyles.textBoxCarCountry.Font = new System.Drawing.Font("Tw Cen MT Condensed", 18F, System.Drawing.FontStyle.Bold);
+            PublicationStyles.textBoxCarCountry.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(68)))), ((int)(((byte)(93)))));
+            PublicationStyles.textBoxCarCountry.Location = new System.Drawing.Point(354, 160);
+            PublicationStyles.textBoxCarCountry.Margin = new System.Windows.Forms.Padding(0, 0, 20, 20);
+            PublicationStyles.textBoxCarCountry.Name = "textBoxCarCountry";
+            PublicationStyles.textBoxCarCountry.Size = new System.Drawing.Size(328, 46);
+            PublicationStyles.textBoxCarCountry.TabIndex = 4;
+            PublicationStyles.textBoxCarCountry.Tag = "";
             // 
             // labelCarFuel
             // 
-            labelCarFuel.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            labelCarFuel.Font = new System.Drawing.Font("Tw Cen MT Condensed", 18F, System.Drawing.FontStyle.Bold);
-            labelCarFuel.ForeColor = System.Drawing.Color.Gainsboro;
-            labelCarFuel.Location = new System.Drawing.Point(702, 137);
-            labelCarFuel.Margin = new System.Windows.Forms.Padding(0, 0, 13, 0);
-            labelCarFuel.Name = "labelCarFuel";
-            labelCarFuel.Size = new System.Drawing.Size(220, 28);
-            labelCarFuel.TabIndex = 26;
-            labelCarFuel.Text = "Fuel";
+            PublicationStyles.labelCarFuel.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            PublicationStyles.labelCarFuel.Font = new System.Drawing.Font("Tw Cen MT Condensed", 18F, System.Drawing.FontStyle.Bold);
+            PublicationStyles.labelCarFuel.ForeColor = System.Drawing.Color.Gainsboro;
+            PublicationStyles.labelCarFuel.Location = new System.Drawing.Point(1053, 211);
+            PublicationStyles.labelCarFuel.Margin = new System.Windows.Forms.Padding(0, 0, 20, 0);
+            PublicationStyles.labelCarFuel.Name = "labelCarFuel";
+            PublicationStyles.labelCarFuel.Size = new System.Drawing.Size(330, 43);
+            PublicationStyles.labelCarFuel.TabIndex = 26;
+            PublicationStyles.labelCarFuel.Text = "Fuel";
             // 
             // textBoxCarFuel
             // 
-            textBoxCarFuel.Anchor = System.Windows.Forms.AnchorStyles.None;
-            textBoxCarFuel.BackColor = System.Drawing.Color.Gainsboro;
-            textBoxCarFuel.Font = new System.Drawing.Font("Tw Cen MT Condensed", 18F, System.Drawing.FontStyle.Bold);
-            textBoxCarFuel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(68)))), ((int)(((byte)(93)))));
-            textBoxCarFuel.Location = new System.Drawing.Point(702, 165);
-            textBoxCarFuel.Margin = new System.Windows.Forms.Padding(0, 0, 13, 13);
-            textBoxCarFuel.Name = "textBoxCarFuel";
-            textBoxCarFuel.Size = new System.Drawing.Size(220, 33);
-            textBoxCarFuel.TabIndex = 9;
+            PublicationStyles.textBoxCarFuel.Anchor = System.Windows.Forms.AnchorStyles.None;
+            PublicationStyles.textBoxCarFuel.BackColor = System.Drawing.Color.Gainsboro;
+            PublicationStyles.textBoxCarFuel.Font = new System.Drawing.Font("Tw Cen MT Condensed", 18F, System.Drawing.FontStyle.Bold);
+            PublicationStyles.textBoxCarFuel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(68)))), ((int)(((byte)(93)))));
+            PublicationStyles.textBoxCarFuel.Location = new System.Drawing.Point(1053, 254);
+            PublicationStyles.textBoxCarFuel.Margin = new System.Windows.Forms.Padding(0, 0, 20, 20);
+            PublicationStyles.textBoxCarFuel.Name = "textBoxCarFuel";
+            PublicationStyles.textBoxCarFuel.Size = new System.Drawing.Size(328, 46);
+            PublicationStyles.textBoxCarFuel.TabIndex = 9;
             // 
             // labelCarCapacity
             // 
-            labelCarCapacity.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            labelCarCapacity.Font = new System.Drawing.Font("Tw Cen MT Condensed", 18F, System.Drawing.FontStyle.Bold);
-            labelCarCapacity.ForeColor = System.Drawing.Color.Gainsboro;
-            labelCarCapacity.Location = new System.Drawing.Point(469, 137);
-            labelCarCapacity.Margin = new System.Windows.Forms.Padding(0, 0, 13, 0);
-            labelCarCapacity.Name = "labelCarCapacity";
-            labelCarCapacity.Size = new System.Drawing.Size(220, 28);
-            labelCarCapacity.TabIndex = 25;
-            labelCarCapacity.Text = "Capacity";
+            PublicationStyles.labelCarCapacity.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            PublicationStyles.labelCarCapacity.Font = new System.Drawing.Font("Tw Cen MT Condensed", 18F, System.Drawing.FontStyle.Bold);
+            PublicationStyles.labelCarCapacity.ForeColor = System.Drawing.Color.Gainsboro;
+            PublicationStyles.labelCarCapacity.Location = new System.Drawing.Point(704, 211);
+            PublicationStyles.labelCarCapacity.Margin = new System.Windows.Forms.Padding(0, 0, 20, 0);
+            PublicationStyles.labelCarCapacity.Name = "labelCarCapacity";
+            PublicationStyles.labelCarCapacity.Size = new System.Drawing.Size(330, 43);
+            PublicationStyles.labelCarCapacity.TabIndex = 25;
+            PublicationStyles.labelCarCapacity.Text = "Capacity";
             // 
             // textBoxCarModel
             // 
-            textBoxCarModel.Anchor = System.Windows.Forms.AnchorStyles.None;
-            textBoxCarModel.BackColor = System.Drawing.Color.Gainsboro;
-            textBoxCarModel.Font = new System.Drawing.Font("Tw Cen MT Condensed", 18F, System.Drawing.FontStyle.Bold);
-            textBoxCarModel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(68)))), ((int)(((byte)(93)))));
-            textBoxCarModel.Location = new System.Drawing.Point(469, 45);
-            textBoxCarModel.Margin = new System.Windows.Forms.Padding(0, 0, 13, 13);
-            textBoxCarModel.Name = "textBoxCarModel";
-            textBoxCarModel.Size = new System.Drawing.Size(220, 33);
-            textBoxCarModel.TabIndex = 2;
-            textBoxCarModel.Tag = "";
+            PublicationStyles.textBoxCarModel.Anchor = System.Windows.Forms.AnchorStyles.None;
+            PublicationStyles.textBoxCarModel.BackColor = System.Drawing.Color.Gainsboro;
+            PublicationStyles.textBoxCarModel.Font = new System.Drawing.Font("Tw Cen MT Condensed", 18F, System.Drawing.FontStyle.Bold);
+            PublicationStyles.textBoxCarModel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(68)))), ((int)(((byte)(93)))));
+            PublicationStyles.textBoxCarModel.Location = new System.Drawing.Point(704, 69);
+            PublicationStyles.textBoxCarModel.Margin = new System.Windows.Forms.Padding(0, 0, 20, 20);
+            PublicationStyles.textBoxCarModel.Name = "textBoxCarModel";
+            PublicationStyles.textBoxCarModel.Size = new System.Drawing.Size(328, 46);
+            PublicationStyles.textBoxCarModel.TabIndex = 2;
+            PublicationStyles.textBoxCarModel.Tag = "";
             // 
             // labelCarModel
             // 
-            labelCarModel.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            labelCarModel.Font = new System.Drawing.Font("Tw Cen MT Condensed", 18F, System.Drawing.FontStyle.Bold);
-            labelCarModel.ForeColor = System.Drawing.Color.Gainsboro;
-            labelCarModel.Location = new System.Drawing.Point(469, 15);
-            labelCarModel.Margin = new System.Windows.Forms.Padding(0, 0, 13, 0);
-            labelCarModel.Name = "labelCarModel";
-            labelCarModel.Size = new System.Drawing.Size(220, 28);
-            labelCarModel.TabIndex = 23;
-            labelCarModel.Text = "Model";
+            PublicationStyles.labelCarModel.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            PublicationStyles.labelCarModel.Font = new System.Drawing.Font("Tw Cen MT Condensed", 18F, System.Drawing.FontStyle.Bold);
+            PublicationStyles.labelCarModel.ForeColor = System.Drawing.Color.Gainsboro;
+            PublicationStyles.labelCarModel.Location = new System.Drawing.Point(704, 23);
+            PublicationStyles.labelCarModel.Margin = new System.Windows.Forms.Padding(0, 0, 20, 0);
+            PublicationStyles.labelCarModel.Name = "labelCarModel";
+            PublicationStyles.labelCarModel.Size = new System.Drawing.Size(330, 43);
+            PublicationStyles.labelCarModel.TabIndex = 23;
+            PublicationStyles.labelCarModel.Text = "Model";
             // 
             // labelCarBrand
             // 
-            labelCarBrand.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            labelCarBrand.Font = new System.Drawing.Font("Tw Cen MT Condensed", 18F, System.Drawing.FontStyle.Bold);
-            labelCarBrand.ForeColor = System.Drawing.Color.Gainsboro;
-            labelCarBrand.Location = new System.Drawing.Point(236, 17);
-            labelCarBrand.Margin = new System.Windows.Forms.Padding(0, 0, 13, 0);
-            labelCarBrand.Name = "labelCarBrand";
-            labelCarBrand.Size = new System.Drawing.Size(220, 28);
-            labelCarBrand.TabIndex = 22;
-            labelCarBrand.Text = "Brand";
+            PublicationStyles.labelCarBrand.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            PublicationStyles.labelCarBrand.Font = new System.Drawing.Font("Tw Cen MT Condensed", 18F, System.Drawing.FontStyle.Bold);
+            PublicationStyles.labelCarBrand.ForeColor = System.Drawing.Color.Gainsboro;
+            PublicationStyles.labelCarBrand.Location = new System.Drawing.Point(354, 26);
+            PublicationStyles.labelCarBrand.Margin = new System.Windows.Forms.Padding(0, 0, 20, 0);
+            PublicationStyles.labelCarBrand.Name = "labelCarBrand";
+            PublicationStyles.labelCarBrand.Size = new System.Drawing.Size(330, 43);
+            PublicationStyles.labelCarBrand.TabIndex = 22;
+            PublicationStyles.labelCarBrand.Text = "Brand";
             // 
             // textBoxCarCapacity
             // 
-            textBoxCarCapacity.Anchor = System.Windows.Forms.AnchorStyles.None;
-            textBoxCarCapacity.BackColor = System.Drawing.Color.Gainsboro;
-            textBoxCarCapacity.Font = new System.Drawing.Font("Tw Cen MT Condensed", 18F, System.Drawing.FontStyle.Bold);
-            textBoxCarCapacity.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(68)))), ((int)(((byte)(93)))));
-            textBoxCarCapacity.Location = new System.Drawing.Point(469, 165);
-            textBoxCarCapacity.Margin = new System.Windows.Forms.Padding(0, 0, 13, 13);
-            textBoxCarCapacity.Name = "textBoxCarCapacity";
-            textBoxCarCapacity.Size = new System.Drawing.Size(220, 33);
-            textBoxCarCapacity.TabIndex = 8;
-            // 
-            // buttonAddImage
-            // 
-            buttonAddImage.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(112)))), ((int)(((byte)(112)))), ((int)(((byte)(140)))));
-            buttonAddImage.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("buttonAddImage.BackgroundImage")));
-            buttonAddImage.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            buttonAddImage.Cursor = System.Windows.Forms.Cursors.Hand;
-            buttonAddImage.FlatAppearance.BorderSize = 0;
-            buttonAddImage.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            buttonAddImage.Font = new System.Drawing.Font("Tw Cen MT Condensed", 20F, System.Drawing.FontStyle.Bold);
-            buttonAddImage.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(85)))), ((int)(((byte)(85)))), ((int)(((byte)(110)))));
-            buttonAddImage.Location = new System.Drawing.Point(17, 15);
-            buttonAddImage.Margin = new System.Windows.Forms.Padding(0, 0, 0, 10);
-            buttonAddImage.Name = "buttonAddImage";
-            buttonAddImage.Size = new System.Drawing.Size(205, 165);
-            buttonAddImage.TabIndex = 12;
-            buttonAddImage.Text = "200 x 200";
-            buttonAddImage.TextAlign = System.Drawing.ContentAlignment.BottomRight;
-            buttonAddImage.UseVisualStyleBackColor = false;
-            buttonAddImage.Click += new System.EventHandler(ButtonImage_Click);
+            PublicationStyles.textBoxCarCapacity.Anchor = System.Windows.Forms.AnchorStyles.None;
+            PublicationStyles.textBoxCarCapacity.BackColor = System.Drawing.Color.Gainsboro;
+            PublicationStyles.textBoxCarCapacity.Font = new System.Drawing.Font("Tw Cen MT Condensed", 18F, System.Drawing.FontStyle.Bold);
+            PublicationStyles.textBoxCarCapacity.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(68)))), ((int)(((byte)(93)))));
+            PublicationStyles.textBoxCarCapacity.Location = new System.Drawing.Point(704, 254);
+            PublicationStyles.textBoxCarCapacity.Margin = new System.Windows.Forms.Padding(0, 0, 20, 20);
+            PublicationStyles.textBoxCarCapacity.Name = "textBoxCarCapacity";
+            PublicationStyles.textBoxCarCapacity.Size = new System.Drawing.Size(328, 46);
+            PublicationStyles.textBoxCarCapacity.TabIndex = 8;
             // 
             // textBoxCardProdYear
             // 
-            textBoxCardProdYear.BackColor = System.Drawing.Color.Gainsboro;
-            textBoxCardProdYear.Font = new System.Drawing.Font("Tw Cen MT Condensed", 18F, System.Drawing.FontStyle.Bold);
-            textBoxCardProdYear.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(68)))), ((int)(((byte)(93)))));
-            textBoxCardProdYear.Location = new System.Drawing.Point(702, 104);
-            textBoxCardProdYear.Margin = new System.Windows.Forms.Padding(0, 0, 0, 13);
-            textBoxCardProdYear.Name = "textBoxCardProdYear";
-            textBoxCardProdYear.Size = new System.Drawing.Size(220, 33);
-            textBoxCardProdYear.TabIndex = 6;
+            PublicationStyles.textBoxCardProdYear.BackColor = System.Drawing.Color.Gainsboro;
+            PublicationStyles.textBoxCardProdYear.Font = new System.Drawing.Font("Tw Cen MT Condensed", 18F, System.Drawing.FontStyle.Bold);
+            PublicationStyles.textBoxCardProdYear.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(68)))), ((int)(((byte)(93)))));
+            PublicationStyles.textBoxCardProdYear.Location = new System.Drawing.Point(1053, 160);
+            PublicationStyles.textBoxCardProdYear.Margin = new System.Windows.Forms.Padding(0, 0, 0, 20);
+            PublicationStyles.textBoxCardProdYear.Name = "textBoxCardProdYear";
+            PublicationStyles.textBoxCardProdYear.Size = new System.Drawing.Size(328, 46);
+            PublicationStyles.textBoxCardProdYear.TabIndex = 6;
             // 
             // textBoxCardBrand
             // 
-            textBoxCardBrand.Anchor = System.Windows.Forms.AnchorStyles.None;
-            textBoxCardBrand.BackColor = System.Drawing.Color.Gainsboro;
-            textBoxCardBrand.Font = new System.Drawing.Font("Tw Cen MT Condensed", 18F, System.Drawing.FontStyle.Bold);
-            textBoxCardBrand.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(68)))), ((int)(((byte)(93)))));
-            textBoxCardBrand.Location = new System.Drawing.Point(236, 45);
-            textBoxCardBrand.Margin = new System.Windows.Forms.Padding(0, 0, 13, 13);
-            textBoxCardBrand.Name = "textBoxCardBrand";
-            textBoxCardBrand.Size = new System.Drawing.Size(220, 33);
-            textBoxCardBrand.TabIndex = 1;
-            textBoxCardBrand.Tag = "";
+            PublicationStyles.textBoxCardBrand.Anchor = System.Windows.Forms.AnchorStyles.None;
+            PublicationStyles.textBoxCardBrand.BackColor = System.Drawing.Color.Gainsboro;
+            PublicationStyles.textBoxCardBrand.Font = new System.Drawing.Font("Tw Cen MT Condensed", 18F, System.Drawing.FontStyle.Bold);
+            PublicationStyles.textBoxCardBrand.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(68)))), ((int)(((byte)(93)))));
+            PublicationStyles.textBoxCardBrand.Location = new System.Drawing.Point(354, 69);
+            PublicationStyles.textBoxCardBrand.Margin = new System.Windows.Forms.Padding(0, 0, 20, 20);
+            PublicationStyles.textBoxCardBrand.Name = "textBoxCardBrand";
+            PublicationStyles.textBoxCardBrand.Size = new System.Drawing.Size(328, 46);
+            PublicationStyles.textBoxCardBrand.TabIndex = 1;
+            PublicationStyles.textBoxCardBrand.Tag = "";
             // 
             // labelCarProdYear
             // 
-            labelCarProdYear.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            labelCarProdYear.Font = new System.Drawing.Font("Tw Cen MT Condensed", 18F, System.Drawing.FontStyle.Bold);
-            labelCarProdYear.ForeColor = System.Drawing.Color.Gainsboro;
-            labelCarProdYear.Location = new System.Drawing.Point(702, 76);
-            labelCarProdYear.Margin = new System.Windows.Forms.Padding(0);
-            labelCarProdYear.Name = "labelCarProdYear";
-            labelCarProdYear.Size = new System.Drawing.Size(220, 28);
-            labelCarProdYear.TabIndex = 24;
-            labelCarProdYear.Text = "Production Year";
+            PublicationStyles.labelCarProdYear.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            PublicationStyles.labelCarProdYear.Font = new System.Drawing.Font("Tw Cen MT Condensed", 18F, System.Drawing.FontStyle.Bold);
+            PublicationStyles.labelCarProdYear.ForeColor = System.Drawing.Color.Gainsboro;
+            PublicationStyles.labelCarProdYear.Location = new System.Drawing.Point(1053, 117);
+            PublicationStyles.labelCarProdYear.Margin = new System.Windows.Forms.Padding(0);
+            PublicationStyles.labelCarProdYear.Name = "labelCarProdYear";
+            PublicationStyles.labelCarProdYear.Size = new System.Drawing.Size(330, 43);
+            PublicationStyles.labelCarProdYear.TabIndex = 24;
+            PublicationStyles.labelCarProdYear.Text = "Production Year";
             // 
-            // FormPublish
+            // buttonAddImage
             // 
-            AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(68)))), ((int)(((byte)(93)))));
-            ClientSize = new System.Drawing.Size(1071, 711);
-            Controls.Add(panel1);
-            MaximumSize = new System.Drawing.Size(1087, 750);
-            Name = "FormPublish";
-            Padding = new System.Windows.Forms.Padding(10);
-            Text = "FormPublish";
-            Leave += new System.EventHandler(FormPublish_Leave);
-            panel1.ResumeLayout(false);
-            SignUp.ResumeLayout(false);
-            flowLayoutPanel2.ResumeLayout(false);
-            panel2.ResumeLayout(false);
-            panel2.PerformLayout();
-            panelLoadingBar.ResumeLayout(false);
-            flowLayoutPanel1.ResumeLayout(false);
-            ResumeLayout(false);
+            PublicationStyles.buttonAddImage.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(112)))), ((int)(((byte)(112)))), ((int)(((byte)(140)))));
+            PublicationStyles.buttonAddImage.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("buttonAddImage.BackgroundImage")));
+            PublicationStyles.buttonAddImage.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            PublicationStyles.buttonAddImage.Cursor = System.Windows.Forms.Cursors.Hand;
+            PublicationStyles.buttonAddImage.FlatAppearance.BorderSize = 0;
+            PublicationStyles.buttonAddImage.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            PublicationStyles.buttonAddImage.Font = new System.Drawing.Font("Tw Cen MT Condensed", 20F, System.Drawing.FontStyle.Bold);
+            PublicationStyles.buttonAddImage.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(85)))), ((int)(((byte)(85)))), ((int)(((byte)(110)))));
+            PublicationStyles.buttonAddImage.Location = new System.Drawing.Point(26, 23);
+            PublicationStyles.buttonAddImage.Margin = new System.Windows.Forms.Padding(0, 0, 0, 15);
+            PublicationStyles.buttonAddImage.Name = "buttonAddImage";
+            PublicationStyles.buttonAddImage.Size = new System.Drawing.Size(308, 254);
+            PublicationStyles.buttonAddImage.TabIndex = 12;
+            PublicationStyles.buttonAddImage.Text = "200 x 200";
+            PublicationStyles.buttonAddImage.TextAlign = System.Drawing.ContentAlignment.BottomRight;
+            PublicationStyles.buttonAddImage.UseVisualStyleBackColor = false;
+            PublicationStyles.buttonAddImage.Click += new System.EventHandler(this.ButtonImage_Click);
+            // 
+            // Publication
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(68)))), ((int)(((byte)(93)))));
+            this.ClientSize = new System.Drawing.Size(1598, 1068);
+            this.Controls.Add(PublicationStyles.panel1);
+            this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.MaximumSize = new System.Drawing.Size(1620, 1124);
+            this.Name = "Publication";
+            this.Padding = new System.Windows.Forms.Padding(15, 15, 15, 15);
+            this.Text = "FormPublish";
+            this.Leave += new System.EventHandler(this.FormPublish_Leave);
+            PublicationStyles.panel1.ResumeLayout(false);
+            PublicationStyles.SignUp.ResumeLayout(false);
+            PublicationStyles.flowLayoutPanel2.ResumeLayout(false);
+            PublicationStyles.panel2.ResumeLayout(false);
+            PublicationStyles.panel2.PerformLayout();
+            PublicationStyles.panelLoadingBar.ResumeLayout(false);
+            PublicationStyles.flowLayoutPanel1.ResumeLayout(false);
+            this.ResumeLayout(false);
 
         }
 
         #endregion
+
+
     }
 }

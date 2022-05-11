@@ -28,48 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
-            panelMain = new System.Windows.Forms.FlowLayoutPanel();
-            this.button1 = new System.Windows.Forms.Button();
-            panelMain.SuspendLayout();
-            this.SuspendLayout();
-            // 
-            // panelMain
-            // 
-            panelMain.Controls.Add(this.button1);
-            panelMain.Location = new System.Drawing.Point(10, 11);
-            panelMain.Margin = new System.Windows.Forms.Padding(0);
-            panelMain.Name = "panelMain";
-            panelMain.Size = new System.Drawing.Size(1050, 690);
-            panelMain.TabIndex = 1;
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(796, 27);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 1;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
-            // Collection
-            // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(68)))), ((int)(((byte)(93)))));
-            this.ClientSize = new System.Drawing.Size(1071, 711);
-            this.Controls.Add(panelMain);
-            this.Name = "Collection";
-            this.Padding = new System.Windows.Forms.Padding(10);
-            this.Text = "FormCollection";
-            panelMain.ResumeLayout(false);
-            this.ResumeLayout(false);
+
+
 
         }
 
         #endregion
 
-        public static System.Windows.Forms.FlowLayoutPanel panelMain;
-        private System.Windows.Forms.Button button1;
     }
 }

@@ -25,23 +25,23 @@ namespace DreamCar.Forms.Publication
             return new Car()
             {
                 CarName = currentUserUsername + "_" + currentUserPublishCount,
-                CarPrice = int.Parse(Publication.textBoxCarPrice.Text),
+                CarPrice = int.Parse(textBoxCarPrice.Text),
                 CarReservationDateStart = reservationDateStart,
                 CarReservationDateEnd = reservationDateEnd,
                 CarIsSold = false,
                 CarIsReserved = false,
                 CarImageUrl = imageUrl,
                 CarAuthor = currentUserUsername,
-                CarColor = Publication.textBoxCarColor.Text,
-                CarCity = Publication.textBoxCarCity.Text,
-                CarCountry = Publication.textBoxCarCountry.Text,
-                CarGearbox = Publication.textBoxCardGearbox.Text,
-                CarFuel = Publication.textBoxCarFuel.Text,
-                CarCapacity = int.Parse(Publication.textBoxCarCapacity.Text),
-                CarProdYear = int.Parse(Publication.textBoxCardProdYear.Text),
-                CarBrand = Publication.textBoxCardBrand.Text,
-                CarModel = Publication.textBoxCarModel.Text,
-                CarTags = Publication.textBoxCarTags.Text,
+                CarColor = textBoxCarColor.Text,
+                CarCity = textBoxCarCity.Text,
+                CarCountry = textBoxCarCountry.Text,
+                CarGearbox = textBoxCardGearbox.Text,
+                CarFuel = textBoxCarFuel.Text,
+                CarCapacity = int.Parse(textBoxCarCapacity.Text),
+                CarProdYear = int.Parse(textBoxCardProdYear.Text),
+                CarBrand = textBoxCardBrand.Text,
+                CarModel = textBoxCarModel.Text,
+                CarTags = textBoxCarTags.Text,
                 UserId = Publication.currentUserId,
                 Publications = new List<Models.Publication>() {
                             new Models.Publication() { PublishAuthor = currentUserUsername }
@@ -53,21 +53,56 @@ namespace DreamCar.Forms.Publication
         {
             Publication.imageUrl = "";
             Publication.ClearForm();
-            Publication.labelLoadingProgress.Text = "0%";
-            Publication.buttonAddImage.Text = "200 x 200";
-            Publication.buttonAddImage.BackgroundImage = Resources.addImageGreen;
-            Publication.buttonAddImage.BackgroundImageLayout = ImageLayout.Center;
+            labelLoadingProgress.Text = "0%";
+            buttonAddImage.Text = "200 x 200";
+            buttonAddImage.BackgroundImage = Resources.addImageGreen;
+            buttonAddImage.BackgroundImageLayout = ImageLayout.Center;
 
-            Publication.monthCalendar = new MonthCalendar();
-            Publication.monthCalendar.Anchor = AnchorStyles.None;
-            Publication.monthCalendar.Location = new Point(17, 211);
-            Publication.monthCalendar.Margin = new Padding(0, 0, 13, 0);
-            Publication.monthCalendar.MaxSelectionCount = 62;
-            Publication.monthCalendar.Name = "monthCalendar";
-            Publication.monthCalendar.ShowToday = false;
-            Publication.monthCalendar.ShowTodayCircle = false;
-            Publication.monthCalendar.TabIndex = 13;
-            Publication.monthCalendar.DateSelected += new DateRangeEventHandler(Publication.MonthCalendar_DateSelected);
+            monthCalendar = new MonthCalendar();
+            monthCalendar.Anchor = AnchorStyles.None;
+            monthCalendar.Location = new Point(17, 211);
+            monthCalendar.Margin = new Padding(0, 0, 13, 0);
+            monthCalendar.MaxSelectionCount = 62;
+            monthCalendar.Name = "monthCalendar";
+            monthCalendar.ShowToday = false;
+            monthCalendar.ShowTodayCircle = false;
+            monthCalendar.TabIndex = 13;
+            monthCalendar.DateSelected += new DateRangeEventHandler(Publication.MonthCalendar_DateSelected);
         }
+
+        public static Panel panel1;
+        public static FlowLayoutPanel SignUp;
+        public static Label labelPublish;
+        public static FlowLayoutPanel flowLayoutPanel2;
+        public static Label labelCarBrand;
+        public static Label labelCarModel;
+        public static Label labelCarProdYear;
+        public static TextBox textBoxCarModel;
+        public static TextBox textBoxCardProdYear;
+        public static Label labelCarCapacity;
+        public static Label labelCarFuel;
+        public static Label labelCarGearbox;
+        public static TextBox textBoxCarCapacity;
+        public static TextBox textBoxCarFuel;
+        public static TextBox textBoxCardGearbox;
+        public static Label labelCarCountry;
+        public static Label labelCarCity;
+        public static TextBox textBoxCarCountry;
+        public static TextBox textBoxCarCity;
+        public static Label labelCarColor;
+        public static Label labelCarTags;
+        public static TextBox textBoxCarColor;
+        public static TextBox textBoxCarTags;
+        public static Button buttonPost;
+        public static Button buttonClear;
+        public static TextBox textBoxCardBrand;
+        public static MonthCalendar monthCalendar;
+        public static FlowLayoutPanel flowLayoutPanel1;
+        public static Button buttonAddImage;
+        public static Panel panel2;
+        public static Panel panelLoadingBar;
+        public static Label labelLoadingProgress;
+        public static TextBox textBoxCarPrice;
+        public static Label labelCarPrice;
     }
 }

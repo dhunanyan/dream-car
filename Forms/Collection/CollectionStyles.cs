@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using DreamCar.Forms.Collection;
+using DreamCar.Models;
 
 namespace DreamCar.Forms.Collection
 {
@@ -18,11 +19,26 @@ namespace DreamCar.Forms.Collection
             //Console.WriteLine(currentUser);
         }
 
-        public static void GerenerateCollectionContainer(int take)
+        public static void InitializeComponent(Form form)
         {
+
+        }
+
+        public static void GerenerateCollectionContainer(Form form, int take)
+        {
+            form.ResumeLayout(true);
             // 
             // flowLayoutPanelCarCollection
             // 
+            panelMain = new Panel
+            {
+                Name = "panelMain",
+                TabIndex = 0,
+                Dock = DockStyle.Fill,
+                Location = new Point(15, 15),
+                Padding = new Padding(30, 30, 30, 30),
+                Size = new Size(1576, 1064)
+            };
             flowLayoutPanelCarCollection = new FlowLayoutPanel();
             flowLayoutPanelCarCollection.SuspendLayout();
             flowLayoutPanelCarCollection.AutoScroll = true;
@@ -31,15 +47,31 @@ namespace DreamCar.Forms.Collection
             flowLayoutPanelCarCollection.Margin = new Padding(0);
             flowLayoutPanelCarCollection.Name = "flowLayoutPanelCarCollection_" + take.ToString();
             flowLayoutPanelCarCollection.Padding = new Padding(5);
-            flowLayoutPanelCarCollection.Size = new Size(take <= 4 ? 1000 : 1020, take == 4 ? 65 * 4 + 25 : 65 * 4 + 30);
+            flowLayoutPanelCarCollection.Location = new Point(take == 6 ? 35 : 25, 200);
+            flowLayoutPanelCarCollection.Size = new Size(take == 6 ? 1000 : 1020, take == 6 ? 65 * 6 + 25 : 65 * 6 + 30);
+            flowLayoutPanelCarCollection.MinimumSize = new Size(take == 6 ? 1000 : 1020, take == 6 ? 65 * 6 + 25 : 65 * 6 + 30);
             flowLayoutPanelCarCollection.TabIndex = 0;
-            Collection.panelMain.Controls.Add(flowLayoutPanelCarCollection);
+            panelMain.Controls.Add(flowLayoutPanelCarCollection);
             flowLayoutPanelCarCollection.ResumeLayout(false);
+            // 
+            // Collection
+            // 
+            form.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
+            form.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            form.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(68)))), ((int)(((byte)(93)))));
+            form.ClientSize = new System.Drawing.Size(1606, 1094);
+            form.Controls.Add(panelMain);
+            form.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            form.Name = "Collection";
+            form.Padding = new System.Windows.Forms.Padding(15);
+            form.Text = "FormCollection";
+            form.ResumeLayout(false);
         }
 
         public static void ChangeCollectionContainerScrollMinSize(int take)
         {
-            flowLayoutPanelCarCollection.Size = new Size(take <= 4 ? 1000 : 1020, take == 4 ? 65 * 4 + 25 : 65 * 4 + 30);
+            flowLayoutPanelCarCollection.Location = new Point(take == 6 ? 35 : 25, 200);
+            flowLayoutPanelCarCollection.Size = new Size(take == 6 ? 1000 : 1020, 65 * 6 + 30);
             flowLayoutPanelCarCollection.AutoScrollMinSize = new Size(0, (65 * take) + 25);
         }
 
@@ -68,6 +100,7 @@ namespace DreamCar.Forms.Collection
             // 
             // flowLayoutPanelCurrentCar
             // 
+            flowLayoutPanelCurrentCar.Anchor = System.Windows.Forms.AnchorStyles.None;
             flowLayoutPanelCurrentCar.BackColor = Color.FromArgb(((int)(((byte)(102)))), ((int)(((byte)(102)))), ((int)(((byte)(127)))));
             flowLayoutPanelCurrentCar.Controls.Add(panelCurrentCarImage);
             flowLayoutPanelCurrentCar.Controls.Add(labelCurrentCarBrand);
@@ -177,7 +210,7 @@ namespace DreamCar.Forms.Collection
             buttonCurrentCarFav.TabIndex = 1;
             buttonCurrentCarFav.Tag = isFav ? "true" : "false";
             buttonCurrentCarFav.UseVisualStyleBackColor = false;
-            buttonCurrentCarFav.Click += new EventHandler(Collection.ButtonCurrentCarFav_Click);
+            buttonCurrentCarFav.Click += new EventHandler(ButtonCarFav_Click);
             // 
             // buttonCurrentCarMore
             // 
@@ -200,9 +233,646 @@ namespace DreamCar.Forms.Collection
             //currentPanelContainer.Controls.Add(flowLayoutPanelCurrentCar); 
             flowLayoutPanelCarCollection.Controls.Add(flowLayoutPanelCurrentCar);
             flowLayoutPanelCurrentCar.ResumeLayout(false);
-            flowLayoutPanelCarCollection.ResumeLayout(false);
         }
 
+        public static void GenerateDetails(
+            int carId,
+            string username, 
+            string brand, 
+            string model, 
+            string country, 
+            string city, 
+            string fuel, 
+            string gearbox, 
+            int year, 
+            int capacity, 
+            string tags, 
+            string startDate, 
+            string endDate, 
+            string imgUrl,
+            bool isFav)
+            {
+            flowLayoutPanelPopup = new FlowLayoutPanel();
+            panelPopupTop = new Panel();
+            buttonPopupClose = new Button();
+            flowLayoutPanelPopupContainer = new FlowLayoutPanel();
+            panelPopupImg = new Panel();
+            flowLayoutPanelPopupContent = new FlowLayoutPanel();
+            labelPopupBrand = new Label();
+            labelPopupModel = new Label();
+            labelPopupCountry = new Label();
+            labelPopupCity = new Label();
+            labelPopupFuel = new Label();
+            labelPopupGearbox = new Label();
+            labelPopupProdYear = new Label();
+            labelPopupCapacity = new Label();
+            labelPopupUsername = new Label();
+            flowLayoutPanelPopupTags = new FlowLayoutPanel();
+            labelPopupTag = new Label();
+            labelPopupTags = new Label();
+            flowLayoutPanelPopupDatesContainer = new FlowLayoutPanel();
+            flowLayoutPanelPopupDates = new FlowLayoutPanel();
+            labelPopupStartDate = new Label();
+            labelPopupBetweenDates = new Label();
+            labelPopupEndDate = new Label();
+            buttonPopupReserve = new Button();
+            buttonPopupFav = new Button();
+            dateTimePickerPopupDate = new DateTimePicker();
+            flowLayoutPanelPopup.SuspendLayout();
+            panelPopupTop.SuspendLayout();
+            flowLayoutPanelPopupContainer.SuspendLayout();
+            flowLayoutPanelPopupContent.SuspendLayout();
+            flowLayoutPanelPopupTags.SuspendLayout();
+            flowLayoutPanelPopupDatesContainer.SuspendLayout();
+            flowLayoutPanelPopupDates.SuspendLayout();
+            // 
+            // flowLayoutPanelPopup
+            // 
+            flowLayoutPanelPopup.Controls.Add(panelPopupTop);
+            flowLayoutPanelPopup.Controls.Add(flowLayoutPanelPopupContainer);
+            flowLayoutPanelPopup.Location = new System.Drawing.Point(120, 50);
+            flowLayoutPanelPopup.Margin = new Padding(0);
+            flowLayoutPanelPopup.Name = "flowLayoutPanelPopup" + "." + carId;
+            flowLayoutPanelPopup.Size = new System.Drawing.Size(797, 545);
+            flowLayoutPanelPopup.TabIndex = 0;
+            flowLayoutPanelPopup.Anchor = System.Windows.Forms.AnchorStyles.None;
+            // 
+            // panelPopupTop
+            // 
+            panelPopupTop.BackColor = System.Drawing.Color.FromArgb(51, 51, 76);
+            panelPopupTop.Controls.Add(buttonPopupClose);
+            panelPopupTop.Location = new System.Drawing.Point(0, 0);
+            panelPopupTop.Margin = new Padding(0);
+            panelPopupTop.Name = "panelPopupTop" + "." + carId;
+            panelPopupTop.Size = new System.Drawing.Size(800, 30);
+            panelPopupTop.TabIndex = 0;
+            // 
+            // buttonPopupClose
+            // 
+            buttonPopupClose.BackgroundImage = global::DreamCar.Properties.Resources.times;
+            buttonPopupClose.BackgroundImageLayout = ImageLayout.Center;
+            buttonPopupClose.Cursor = Cursors.Hand;
+            buttonPopupClose.FlatAppearance.BorderSize = 0;
+            buttonPopupClose.FlatStyle = FlatStyle.Flat;
+            buttonPopupClose.Location = new System.Drawing.Point(773, 3);
+            buttonPopupClose.Name = "buttonPopupClose" + "." + carId;
+            buttonPopupClose.Size = new System.Drawing.Size(24, 24);
+            buttonPopupClose.TabIndex = 1;
+            buttonPopupClose.UseVisualStyleBackColor = true;
+            buttonPopupClose.Click += new EventHandler(DeleteMoreDetails);
+            // 
+            // flowLayoutPanelPopupContainer
+            // 
+            flowLayoutPanelPopupContainer.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
+            flowLayoutPanelPopupContainer.Controls.Add(panelPopupImg);
+            flowLayoutPanelPopupContainer.Controls.Add(flowLayoutPanelPopupContent);
+            flowLayoutPanelPopupContainer.Controls.Add(flowLayoutPanelPopupTags);
+            flowLayoutPanelPopupContainer.Controls.Add(flowLayoutPanelPopupDatesContainer);
+            flowLayoutPanelPopupContainer.Controls.Add(buttonPopupReserve);
+            flowLayoutPanelPopupContainer.Controls.Add(buttonPopupFav);
+            flowLayoutPanelPopupContainer.Location = new System.Drawing.Point(0, 30);
+            flowLayoutPanelPopupContainer.Margin = new Padding(0);
+            flowLayoutPanelPopupContainer.Name = "flowLayoutPanelPopupContainer" + "." + carId;
+            flowLayoutPanelPopupContainer.Padding = new Padding(30);
+            flowLayoutPanelPopupContainer.Size = new System.Drawing.Size(797, 515);
+            flowLayoutPanelPopupContainer.TabIndex = 1;
+            // 
+            // panelPopupImg
+            // 
+            panelPopupImg.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(225)))), ((int)(((byte)(225)))));
+            panelPopupImg.BackgroundImage = DreamCar.Helpers.Container.setBackgroungImageUrl(imgUrl);
+            panelPopupImg.BackgroundImageLayout = ImageLayout.Zoom;
+            panelPopupImg.Location = new System.Drawing.Point(30, 30);
+            panelPopupImg.Margin = new Padding(0, 0, 15, 0);
+            panelPopupImg.Name = "panelPopupImg" + "." + carId;
+            panelPopupImg.Size = new System.Drawing.Size(270, 271);
+            panelPopupImg.TabIndex = 0;
+            // 
+            // flowLayoutPanelPopupContent
+            // 
+            flowLayoutPanelPopupContent.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(225)))), ((int)(((byte)(225)))));
+            flowLayoutPanelPopupContent.Controls.Add(labelPopupBrand);
+            flowLayoutPanelPopupContent.Controls.Add(labelPopupModel);
+            flowLayoutPanelPopupContent.Controls.Add(labelPopupCountry);
+            flowLayoutPanelPopupContent.Controls.Add(labelPopupCity);
+            flowLayoutPanelPopupContent.Controls.Add(labelPopupFuel);
+            flowLayoutPanelPopupContent.Controls.Add(labelPopupGearbox);
+            flowLayoutPanelPopupContent.Controls.Add(labelPopupProdYear);
+            flowLayoutPanelPopupContent.Controls.Add(labelPopupCapacity);
+            flowLayoutPanelPopupContent.Controls.Add(labelPopupUsername);
+            flowLayoutPanelPopupContent.Location = new System.Drawing.Point(315, 30);
+            flowLayoutPanelPopupContent.Margin = new Padding(0);
+            flowLayoutPanelPopupContent.Name = "flowLayoutPanelPopupContent" + "." + carId;
+            flowLayoutPanelPopupContent.Size = new System.Drawing.Size(452, 271);
+            flowLayoutPanelPopupContent.TabIndex = 1;
+            // 
+            // labelPopupBrand
+            // 
+            labelPopupBrand.Font = new System.Drawing.Font("Tw Cen MT Condensed", 18F, System.Drawing.FontStyle.Bold);
+            labelPopupBrand.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(65)))), ((int)(((byte)(65)))), ((int)(((byte)(65)))));
+            labelPopupBrand.Location = new System.Drawing.Point(5, 5);
+            labelPopupBrand.Margin = new Padding(5, 5, 0, 5);
+            labelPopupBrand.Name = "labelPopupBrand" + "." + carId;
+            labelPopupBrand.Size = new System.Drawing.Size(215, 45);
+            labelPopupBrand.TabIndex = 0;
+            labelPopupBrand.Text = brand;
+            // 
+            // labelPopupModel
+            // 
+            labelPopupModel.Font = new System.Drawing.Font("Tw Cen MT Condensed", 18F, System.Drawing.FontStyle.Bold);
+            labelPopupModel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(65)))), ((int)(((byte)(65)))), ((int)(((byte)(65)))));
+            labelPopupModel.Location = new System.Drawing.Point(225, 5);
+            labelPopupModel.Margin = new Padding(5, 5, 0, 5);
+            labelPopupModel.Name = "labelPopupModel" + "." + carId;
+            labelPopupModel.Size = new System.Drawing.Size(215, 45);
+            labelPopupModel.TabIndex = 1;
+            labelPopupModel.Text = model;
+            // 
+            // labelPopupCountry
+            // 
+            labelPopupCountry.Font = new System.Drawing.Font("Tw Cen MT Condensed", 18F, System.Drawing.FontStyle.Bold);
+            labelPopupCountry.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(65)))), ((int)(((byte)(65)))), ((int)(((byte)(65)))));
+            labelPopupCountry.Location = new System.Drawing.Point(5, 60);
+            labelPopupCountry.Margin = new Padding(5, 5, 0, 5);
+            labelPopupCountry.Name = "labelPopupCountry" + "." + carId;
+            labelPopupCountry.Size = new System.Drawing.Size(215, 45);
+            labelPopupCountry.TabIndex = 6;
+            labelPopupCountry.Text = country;
+            // 
+            // labelPopupCity
+            // 
+            labelPopupCity.Font = new System.Drawing.Font("Tw Cen MT Condensed", 18F, System.Drawing.FontStyle.Bold);
+            labelPopupCity.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(65)))), ((int)(((byte)(65)))), ((int)(((byte)(65)))));
+            labelPopupCity.Location = new System.Drawing.Point(225, 60);
+            labelPopupCity.Margin = new Padding(5, 5, 0, 5);
+            labelPopupCity.Name = "labelPopupCity" + "." + carId;
+            labelPopupCity.Size = new System.Drawing.Size(215, 45);
+            labelPopupCity.TabIndex = 7;
+            labelPopupCity.Text = city;
+            // 
+            // labelPopupFuel
+            // 
+            labelPopupFuel.Font = new System.Drawing.Font("Tw Cen MT Condensed", 18F, System.Drawing.FontStyle.Bold);
+            labelPopupFuel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(65)))), ((int)(((byte)(65)))), ((int)(((byte)(65)))));
+            labelPopupFuel.Location = new System.Drawing.Point(5, 115);
+            labelPopupFuel.Margin = new Padding(5, 5, 0, 5);
+            labelPopupFuel.Name = "labelPopupFuel" + "." + carId;
+            labelPopupFuel.Size = new System.Drawing.Size(215, 45);
+            labelPopupFuel.TabIndex = 2;
+            labelPopupFuel.Text = fuel;
+            // 
+            // labelPopupGearbox
+            // 
+            labelPopupGearbox.Font = new System.Drawing.Font("Tw Cen MT Condensed", 18F, System.Drawing.FontStyle.Bold);
+            labelPopupGearbox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(65)))), ((int)(((byte)(65)))), ((int)(((byte)(65)))));
+            labelPopupGearbox.Location = new System.Drawing.Point(225, 115);
+            labelPopupGearbox.Margin = new Padding(5, 5, 0, 5);
+            labelPopupGearbox.Name = "labelPopupGearbox" + "." + carId;
+            labelPopupGearbox.Size = new System.Drawing.Size(215, 45);
+            labelPopupGearbox.TabIndex = 3;
+            labelPopupGearbox.Text = gearbox;
+            // 
+            // labelPopupProdYear
+            // 
+            labelPopupProdYear.Font = new System.Drawing.Font("Tw Cen MT Condensed", 18F, System.Drawing.FontStyle.Bold);
+            labelPopupProdYear.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(65)))), ((int)(((byte)(65)))), ((int)(((byte)(65)))));
+            labelPopupProdYear.Location = new System.Drawing.Point(5, 170);
+            labelPopupProdYear.Margin = new Padding(5, 5, 0, 5);
+            labelPopupProdYear.Name = "labelPopupProdYear" + "." + carId;
+            labelPopupProdYear.Size = new System.Drawing.Size(215, 45);
+            labelPopupProdYear.TabIndex = 4;
+            labelPopupProdYear.Text = year.ToString();
+            // 
+            // labelPopupCapacity
+            // 
+            labelPopupCapacity.Font = new System.Drawing.Font("Tw Cen MT Condensed", 18F, System.Drawing.FontStyle.Bold);
+            labelPopupCapacity.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(65)))), ((int)(((byte)(65)))), ((int)(((byte)(65)))));
+            labelPopupCapacity.Location = new System.Drawing.Point(225, 170);
+            labelPopupCapacity.Margin = new Padding(5, 5, 0, 5);
+            labelPopupCapacity.Name = "labelPopupCapacity" + "." + carId;
+            labelPopupCapacity.Size = new System.Drawing.Size(215, 45);
+            labelPopupCapacity.TabIndex = 5;
+            labelPopupCapacity.Text = capacity + "cm3";
+            // 
+            // labelPopupUsername
+            // 
+            labelPopupUsername.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(106)))), ((int)(((byte)(184)))), ((int)(((byte)(119)))));
+            labelPopupUsername.Font = new System.Drawing.Font("Tw Cen MT Condensed", 18F, System.Drawing.FontStyle.Bold);
+            labelPopupUsername.ForeColor = System.Drawing.Color.Gainsboro;
+            labelPopupUsername.Location = new System.Drawing.Point(0, 220);
+            labelPopupUsername.Margin = new Padding(0);
+            labelPopupUsername.Name = "labelPopupUsername" + "." + carId;
+            labelPopupUsername.Size = new System.Drawing.Size(452, 51);
+            labelPopupUsername.TabIndex = 8;
+            labelPopupUsername.Text = username;
+            labelPopupUsername.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // flowLayoutPanelPopupTags
+            // 
+            flowLayoutPanelPopupTags.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(225)))), ((int)(((byte)(225)))));
+            flowLayoutPanelPopupTags.Controls.Add(labelPopupTag);
+            flowLayoutPanelPopupTags.Controls.Add(labelPopupTags);
+            flowLayoutPanelPopupTags.Location = new System.Drawing.Point(30, 316);
+            flowLayoutPanelPopupTags.Margin = new Padding(0, 15, 0, 0);
+            flowLayoutPanelPopupTags.Name = "flowLayoutPanelPopupTags" + "." + carId;
+            flowLayoutPanelPopupTags.Size = new System.Drawing.Size(737, 51);
+            flowLayoutPanelPopupTags.TabIndex = 2;
+            // 
+            // labelPopupTag
+            // 
+            labelPopupTag.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(106)))), ((int)(((byte)(184)))), ((int)(((byte)(119)))));
+            labelPopupTag.Font = new System.Drawing.Font("Tw Cen MT Condensed", 18F, System.Drawing.FontStyle.Bold);
+            labelPopupTag.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(225)))), ((int)(((byte)(225)))));
+            labelPopupTag.Location = new System.Drawing.Point(0, 0);
+            labelPopupTag.Margin = new Padding(0);
+            labelPopupTag.Name = "labelPopupTag" + "." + carId;
+            labelPopupTag.Size = new System.Drawing.Size(106, 51);
+            labelPopupTag.TabIndex = 9;
+            labelPopupTag.Text = "Tags:";
+            labelPopupTag.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // labelPopupTags
+            // 
+            labelPopupTags.Font = new System.Drawing.Font("Tw Cen MT Condensed", 18F, System.Drawing.FontStyle.Bold);
+            labelPopupTags.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(65)))), ((int)(((byte)(65)))), ((int)(((byte)(65)))));
+            labelPopupTags.Location = new System.Drawing.Point(106, 0);
+            labelPopupTags.Margin = new Padding(0);
+            labelPopupTags.Name = "labelPopupTags" + "." + carId;
+            labelPopupTags.Size = new System.Drawing.Size(631, 51);
+            labelPopupTags.TabIndex = 10;
+            labelPopupTags.Text = tags;
+            labelPopupTags.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // flowLayoutPanelPopupDatesContainer
+            // 
+            flowLayoutPanelPopupDatesContainer.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
+            flowLayoutPanelPopupDatesContainer.Controls.Add(flowLayoutPanelPopupDates);
+            flowLayoutPanelPopupDatesContainer.Controls.Add(dateTimePickerPopupDate);
+            flowLayoutPanelPopupDatesContainer.Location = new System.Drawing.Point(30, 442);
+            flowLayoutPanelPopupDatesContainer.Margin = new Padding(0, 15, 0, 0);
+            flowLayoutPanelPopupDatesContainer.Name = "flowLayoutPanelPopupDatesContainer" + "." + carId;
+            flowLayoutPanelPopupDatesContainer.Size = new System.Drawing.Size(372, 104);
+            flowLayoutPanelPopupDatesContainer.TabIndex = 1;
+            // 
+            // flowLayoutPanelPopupDates
+            // 
+            flowLayoutPanelPopupDates.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(225)))), ((int)(((byte)(225)))));
+            flowLayoutPanelPopupDates.Controls.Add(labelPopupStartDate);
+            flowLayoutPanelPopupDates.Controls.Add(labelPopupBetweenDates);
+            flowLayoutPanelPopupDates.Controls.Add(labelPopupEndDate);
+            flowLayoutPanelPopupDates.Location = new System.Drawing.Point(0, 0);
+            flowLayoutPanelPopupDates.Margin = new Padding(0);
+            flowLayoutPanelPopupDates.Name = "flowLayoutPanelPopupDates" + "." + carId;
+            flowLayoutPanelPopupDates.Size = new System.Drawing.Size(372, 50);
+            flowLayoutPanelPopupDates.TabIndex = 1;
+            // 
+            // labelPopupStartDate
+            // 
+            labelPopupStartDate.Font = new System.Drawing.Font("Tw Cen MT Condensed", 18F, System.Drawing.FontStyle.Bold);
+            labelPopupStartDate.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(65)))), ((int)(((byte)(65)))), ((int)(((byte)(65)))));
+            labelPopupStartDate.Location = new System.Drawing.Point(0, 0);
+            labelPopupStartDate.Margin = new Padding(0);
+            labelPopupStartDate.Name = "labelPopupStartDate" + "." + carId;
+            labelPopupStartDate.Size = new System.Drawing.Size(175, 50);
+            labelPopupStartDate.TabIndex = 9;
+            labelPopupStartDate.Text = startDate;
+            labelPopupStartDate.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // labelPopupBetweenDates
+            // 
+            labelPopupBetweenDates.Font = new System.Drawing.Font("Tw Cen MT Condensed", 18F, System.Drawing.FontStyle.Bold);
+            labelPopupBetweenDates.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(65)))), ((int)(((byte)(65)))), ((int)(((byte)(65)))));
+            labelPopupBetweenDates.Location = new System.Drawing.Point(175, 0);
+            labelPopupBetweenDates.Margin = new Padding(0);
+            labelPopupBetweenDates.Name = "labelPopupBetweenDates" + "." + carId;
+            labelPopupBetweenDates.Size = new System.Drawing.Size(22, 50);
+            labelPopupBetweenDates.TabIndex = 11;
+            labelPopupBetweenDates.Text = "-";
+            labelPopupBetweenDates.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // labelPopupEndDate
+            // 
+            labelPopupEndDate.Font = new System.Drawing.Font("Tw Cen MT Condensed", 18F, System.Drawing.FontStyle.Bold);
+            labelPopupEndDate.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(65)))), ((int)(((byte)(65)))), ((int)(((byte)(65)))));
+            labelPopupEndDate.Location = new System.Drawing.Point(197, 0);
+            labelPopupEndDate.Margin = new Padding(0);
+            labelPopupEndDate.Name = "labelPopupEndDate" + "." + carId;
+            labelPopupEndDate.Size = new System.Drawing.Size(175, 50);
+            labelPopupEndDate.TabIndex = 10;
+            labelPopupEndDate.Text = endDate;
+            labelPopupEndDate.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // dateTimePickerPopupDate
+            // 
+            string[] maxDate = endDate.Split('/');
+            string[] minDate = startDate.Split('/');
+            dateTimePickerPopupDate.CalendarForeColor = Color.FromArgb(((int)(((byte)(65)))), ((int)(((byte)(65)))), ((int)(((byte)(65)))));
+            dateTimePickerPopupDate.CalendarMonthBackground = Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(225)))), ((int)(((byte)(225)))));
+            dateTimePickerPopupDate.CalendarTitleBackColor = Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(225)))), ((int)(((byte)(225)))));
+            dateTimePickerPopupDate.CalendarTitleForeColor = Color.FromArgb(((int)(((byte)(65)))), ((int)(((byte)(65)))), ((int)(((byte)(65)))));
+            dateTimePickerPopupDate.CalendarTrailingForeColor = Color.FromArgb(((int)(((byte)(65)))), ((int)(((byte)(65)))), ((int)(((byte)(65)))));
+            dateTimePickerPopupDate.Checked = false;
+            dateTimePickerPopupDate.Font = new Font("Tw Cen MT Condensed", 18F);
+            dateTimePickerPopupDate.Location = new Point(505, 256);
+            dateTimePickerPopupDate.MaxDate = new DateTime(int.Parse(maxDate[2]), int.Parse(maxDate[0]), int.Parse(maxDate[1]), 0, 0, 0, 0);
+            dateTimePickerPopupDate.MaximumSize = new Size(372, 50);
+            dateTimePickerPopupDate.MinDate = new DateTime(int.Parse(minDate[2]), int.Parse(minDate[0]), int.Parse(minDate[1]), 0, 0, 0, 0);
+            dateTimePickerPopupDate.MinimumSize = new Size(372, 50);
+            dateTimePickerPopupDate.Name = "dateTimePicker1";
+            dateTimePickerPopupDate.Size = new Size(372, 50);
+            dateTimePickerPopupDate.TabIndex = 0;
+            dateTimePickerPopupDate.Value = new DateTime(int.Parse(minDate[2]), int.Parse(minDate[0]), int.Parse(minDate[1]), 0, 0, 0, 0);
+            dateTimePickerPopupDate.Cursor = Cursors.Hand;
+            // 
+            // buttonPopupReserve
+            // 
+            buttonPopupReserve.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(106)))), ((int)(((byte)(184)))), ((int)(((byte)(119)))));
+            buttonPopupReserve.FlatStyle = FlatStyle.Flat;
+            buttonPopupReserve.Font = new System.Drawing.Font("Tw Cen MT Condensed", 38F, System.Drawing.FontStyle.Bold);
+            buttonPopupReserve.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(225)))), ((int)(((byte)(225)))));
+            buttonPopupReserve.Location = new System.Drawing.Point(417, 442);
+            buttonPopupReserve.Margin = new Padding(15, 15, 0, 0);
+            buttonPopupReserve.Name = "buttonPopupReserve" + "." + carId;
+            buttonPopupReserve.Size = new System.Drawing.Size(231, 104);
+            buttonPopupReserve.TabIndex = 3;
+            buttonPopupReserve.Text = "Reserve";
+            buttonPopupReserve.UseVisualStyleBackColor = false;
+            buttonPopupReserve.Cursor = Cursors.Hand;
+            // 
+            // buttonPopupFav
+            // 
+            buttonPopupFav.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(106)))), ((int)(((byte)(184)))), ((int)(((byte)(119)))));
+            buttonPopupFav.BackgroundImage = isFav ? Resources.starFilled : Resources.starEmpty;
+            buttonPopupFav.BackgroundImageLayout = ImageLayout.Center;
+            buttonPopupFav.FlatStyle = FlatStyle.Flat;
+            buttonPopupFav.Font = new System.Drawing.Font("Tw Cen MT Condensed", 18F, System.Drawing.FontStyle.Bold);
+            buttonPopupFav.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(225)))), ((int)(((byte)(225)))));
+            buttonPopupFav.Location = new System.Drawing.Point(663, 442);
+            buttonPopupFav.Margin = new Padding(15, 15, 0, 0);
+            buttonPopupFav.Name = "buttonPopupFav" + "." + carId;
+            buttonPopupFav.Size = new System.Drawing.Size(104, 104);
+            buttonPopupFav.TabIndex = 4;
+            buttonPopupFav.Tag = isFav ? "true" : "false";
+            buttonPopupFav.UseVisualStyleBackColor = false;
+            buttonPopupFav.Cursor = Cursors.Hand;
+            buttonPopupFav.Click += new EventHandler(ButtonCarFav_Click);
+
+
+            flowLayoutPanelPopup.ResumeLayout(false);
+            panelPopupTop.ResumeLayout(false);
+            panelMain.Controls.Add(flowLayoutPanelPopup);
+            flowLayoutPanelPopupContainer.ResumeLayout(false);
+            flowLayoutPanelPopupContent.ResumeLayout(false);
+            flowLayoutPanelPopupTags.ResumeLayout(false);
+            flowLayoutPanelPopupDatesContainer.ResumeLayout(false);
+            flowLayoutPanelPopupDatesContainer.PerformLayout();
+            flowLayoutPanelPopupDates.ResumeLayout(false);
+            flowLayoutPanelPopup.BringToFront();
+        }
+
+        public static void GenerateSearch(Form form)
+        {
+            flowLayoutPanelSearchContainer = new System.Windows.Forms.FlowLayoutPanel();
+            comboBoxSearchBrand = new System.Windows.Forms.ComboBox();
+            comboBoxSearchModel = new System.Windows.Forms.ComboBox();
+            comboBoxSearchYear = new System.Windows.Forms.ComboBox();
+            comboBoxSearch = new System.Windows.Forms.ComboBox();
+            comboBoxSearchCountry = new System.Windows.Forms.ComboBox();
+            comboBoxSearchCity = new System.Windows.Forms.ComboBox();
+            textBoxSearchbox = new System.Windows.Forms.TextBox(); 
+            buttonLoadMore = new System.Windows.Forms.Button();
+            buttonSearch = new System.Windows.Forms.Button();
+            flowLayoutPanelSearchContainer.SuspendLayout();
+            form.SuspendLayout();
+            // 
+            // flowLayoutPanelSearchContainer
+            // 
+            flowLayoutPanelSearchContainer.Controls.Add(comboBoxSearchBrand);
+            flowLayoutPanelSearchContainer.Controls.Add(comboBoxSearchModel);
+            flowLayoutPanelSearchContainer.Controls.Add(comboBoxSearchYear);
+            flowLayoutPanelSearchContainer.Controls.Add(comboBoxSearch);
+            flowLayoutPanelSearchContainer.Controls.Add(buttonLoadMore);
+            flowLayoutPanelSearchContainer.Controls.Add(comboBoxSearchCountry);
+            flowLayoutPanelSearchContainer.Controls.Add(comboBoxSearchCity);
+            flowLayoutPanelSearchContainer.Controls.Add(textBoxSearchbox);
+            flowLayoutPanelSearchContainer.Controls.Add(buttonSearch);
+            flowLayoutPanelSearchContainer.Location = new System.Drawing.Point(30, 30);
+            flowLayoutPanelSearchContainer.Name = "flowLayoutPanelSearchContainer";
+            flowLayoutPanelSearchContainer.Size = new System.Drawing.Size(1015, 87);
+            flowLayoutPanelSearchContainer.TabIndex = 0;
+            // 
+            // comboBoxSearchBrand
+            // 
+            comboBoxSearchBrand.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(225)))), ((int)(((byte)(225)))));
+            comboBoxSearchBrand.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            comboBoxSearchBrand.Font = new System.Drawing.Font("Tw Cen MT Condensed", 18F);
+            comboBoxSearchBrand.FormattingEnabled = true;
+            comboBoxSearchBrand.Location = new System.Drawing.Point(0, 0);
+            comboBoxSearchBrand.Margin = new System.Windows.Forms.Padding(0, 0, 15, 0);
+            comboBoxSearchBrand.MinimumSize = new System.Drawing.Size(191, 0);
+            comboBoxSearchBrand.Name = "comboBoxSearchBrand";
+            comboBoxSearchBrand.Size = new System.Drawing.Size(191, 36);
+            comboBoxSearchBrand.TabIndex = 0;
+            // 
+            // comboBoxSearchModel
+            // 
+            comboBoxSearchModel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(225)))), ((int)(((byte)(225)))));
+            comboBoxSearchModel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            comboBoxSearchModel.Font = new System.Drawing.Font("Tw Cen MT Condensed", 18F);
+            comboBoxSearchModel.FormattingEnabled = true;
+            comboBoxSearchModel.Location = new System.Drawing.Point(206, 0);
+            comboBoxSearchModel.Margin = new System.Windows.Forms.Padding(0, 0, 15, 0);
+            comboBoxSearchModel.MinimumSize = new System.Drawing.Size(191, 0);
+            comboBoxSearchModel.Name = "comboBoxSearchModel";
+            comboBoxSearchModel.Size = new System.Drawing.Size(191, 36);
+            comboBoxSearchModel.TabIndex = 1;
+            // 
+            // comboBoxSearchYear
+            // 
+            comboBoxSearchYear.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(225)))), ((int)(((byte)(225)))));
+            comboBoxSearchYear.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            comboBoxSearchYear.Font = new System.Drawing.Font("Tw Cen MT Condensed", 18F);
+            comboBoxSearchYear.FormattingEnabled = true;
+            comboBoxSearchYear.Location = new System.Drawing.Point(412, 0);
+            comboBoxSearchYear.Margin = new System.Windows.Forms.Padding(0, 0, 15, 0);
+            comboBoxSearchYear.MinimumSize = new System.Drawing.Size(191, 0);
+            comboBoxSearchYear.Name = "comboBoxSearchYear";
+            comboBoxSearchYear.Size = new System.Drawing.Size(191, 36);
+            comboBoxSearchYear.TabIndex = 2;
+            // 
+            // comboBoxSearch
+            // 
+            comboBoxSearch.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(225)))), ((int)(((byte)(225)))));
+            comboBoxSearch.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            comboBoxSearch.Font = new System.Drawing.Font("Tw Cen MT Condensed", 18F);
+            comboBoxSearch.FormattingEnabled = true;
+            comboBoxSearch.Location = new System.Drawing.Point(618, 0);
+            comboBoxSearch.Margin = new System.Windows.Forms.Padding(0, 0, 15, 0);
+            comboBoxSearch.MinimumSize = new System.Drawing.Size(191, 0);
+            comboBoxSearch.Name = "comboBoxSearch";
+            comboBoxSearch.Size = new System.Drawing.Size(191, 36);
+            comboBoxSearch.TabIndex = 3;
+            // 
+            // buttonLoadMore
+            // 
+            buttonLoadMore.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(106)))), ((int)(((byte)(184)))), ((int)(((byte)(119)))));
+            buttonLoadMore.FlatAppearance.BorderSize = 0;
+            buttonLoadMore.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            buttonLoadMore.Font = new System.Drawing.Font("Tw Cen MT Condensed", 18F);
+            buttonLoadMore.ForeColor = System.Drawing.Color.Gainsboro;
+            buttonLoadMore.Location = new System.Drawing.Point(824, 0);
+            buttonLoadMore.Margin = new System.Windows.Forms.Padding(0);
+            buttonLoadMore.Name = "buttonLoadMore";
+            buttonLoadMore.Size = new System.Drawing.Size(191, 36);
+            buttonLoadMore.TabIndex = 4;
+            buttonLoadMore.Text = "Load More";
+            buttonLoadMore.UseVisualStyleBackColor = true;
+            buttonLoadMore.Cursor = Cursors.Hand;
+            buttonLoadMore.Click += new EventHandler(Collection.ButtonLoadMore_Click);
+            // 
+            // buttonSearch
+            // 
+            buttonSearch.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(106)))), ((int)(((byte)(184)))), ((int)(((byte)(119)))));
+            buttonSearch.FlatAppearance.BorderSize = 0;
+            buttonSearch.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            buttonSearch.Font = new System.Drawing.Font("Tw Cen MT Condensed", 18F);
+            buttonSearch.ForeColor = System.Drawing.Color.Gainsboro;
+            buttonSearch.Location = new System.Drawing.Point(824, 0);
+            buttonSearch.Margin = new System.Windows.Forms.Padding(0, 15, 0, 0);
+            buttonSearch.Name = "buttonSearch";
+            buttonSearch.Size = new System.Drawing.Size(191, 36);
+            buttonSearch.TabIndex = 4;
+            buttonSearch.Text = "Search";
+            buttonSearch.UseVisualStyleBackColor = true;
+            buttonSearch.Cursor = Cursors.Hand;
+            buttonSearch.Click += new EventHandler(Collection.ButtonSearch_Click);
+            // 
+            // comboBoxSearchCountry
+            // 
+            comboBoxSearchCountry.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(225)))), ((int)(((byte)(225)))));
+            comboBoxSearchCountry.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            comboBoxSearchCountry.Font = new System.Drawing.Font("Tw Cen MT Condensed", 18F);
+            comboBoxSearchCountry.FormattingEnabled = true;
+            comboBoxSearchCountry.Location = new System.Drawing.Point(0, 53);
+            comboBoxSearchCountry.Margin = new System.Windows.Forms.Padding(0, 15, 15, 0);
+            comboBoxSearchCountry.MinimumSize = new System.Drawing.Size(191, 0);
+            comboBoxSearchCountry.Name = "comboBoxSearchCountry";
+            comboBoxSearchCountry.Size = new System.Drawing.Size(191, 36);
+            comboBoxSearchCountry.TabIndex = 5;
+            // 
+            // comboBoxSearchCity
+            // 
+            comboBoxSearchCity.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(225)))), ((int)(((byte)(225)))));
+            comboBoxSearchCity.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            comboBoxSearchCity.Font = new System.Drawing.Font("Tw Cen MT Condensed", 18F);
+            comboBoxSearchCity.FormattingEnabled = true;
+            comboBoxSearchCity.Location = new System.Drawing.Point(206, 53);
+            comboBoxSearchCity.Margin = new System.Windows.Forms.Padding(0, 15, 15, 0);
+            comboBoxSearchCity.MinimumSize = new System.Drawing.Size(191, 0);
+            comboBoxSearchCity.Name = "comboBoxSearchCity";
+            comboBoxSearchCity.Size = new System.Drawing.Size(191, 36);
+            comboBoxSearchCity.TabIndex = 6;
+            // 
+            // textBoxSearchbox
+            // 
+            textBoxSearchbox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(225)))), ((int)(((byte)(225)))));
+            textBoxSearchbox.Font = new System.Drawing.Font("Tw Cen MT Condensed", 18F);
+            textBoxSearchbox.Location = new System.Drawing.Point(412, 53);
+            textBoxSearchbox.Margin = new System.Windows.Forms.Padding(0, 15, 15, 0);
+            textBoxSearchbox.Multiline = true;
+            textBoxSearchbox.Name = "textBoxSearchbox";
+            textBoxSearchbox.Size = new System.Drawing.Size(396, 36);
+            textBoxSearchbox.TabIndex = 7;
+
+
+            panelMain.Controls.Add(flowLayoutPanelSearchContainer);
+            flowLayoutPanelSearchContainer.ResumeLayout(false);
+            flowLayoutPanelSearchContainer.PerformLayout();
+        }
+
+        public static void DeleteMoreDetails(object sender, EventArgs e)
+        {
+            panelMain.Controls.Remove(flowLayoutPanelPopup);
+        }
+
+        public static void ButtonCarFav_Click(object sender, EventArgs e)
+        {
+            using (DreamCarContext context = new DreamCarContext())
+            {
+                Button currentPopupFavButton = (Button)sender;
+                string carId = currentPopupFavButton.Name.Split('.')[1];
+                string favButtonName = "buttonCarFav." + carId;
+                string favPopupButtonName = "buttonPopupFav." + carId;
+                bool isFav = bool.Parse(currentPopupFavButton.Tag.ToString());
+                Car currentCarRecord = CollectionReq.GetCarById(context, int.Parse(carId));
+
+                Button favButton = (Button)panelMain.Controls.Find(favButtonName, true)[0];
+
+
+                try
+                {
+                    Button favPopupButton = (Button)panelMain.Controls.Find(favPopupButtonName, true)[0];
+
+                    if (!isFav)
+                    {
+                        favButton.BackgroundImage = Resources.starFilled;
+                        favButton.Tag = "true";
+
+                        favPopupButton.BackgroundImage = Resources.starFilled;
+                        favPopupButton.Tag = "true";
+
+                        currentCarRecord.Favourites = new List<Favourite>() {
+                            new Favourite() {
+                                FavouriteAuthor = Collection.currentUserUsername,
+                                CarId = currentCarRecord.CarId,
+                            }
+                        };
+                    }
+                    else
+                    {
+                        favButton.BackgroundImage = Resources.starEmpty;
+                        favButton.Tag = "false";
+
+                        favPopupButton.BackgroundImage = Resources.starEmpty;
+                        favPopupButton.Tag = "false";
+
+                        context.Favourites.Remove(context.Favourites.Where(f => f.CarId == currentCarRecord.CarId).FirstOrDefault());
+                    }
+                    context.SaveChanges();
+                }
+                catch
+                {
+                    if (!isFav)
+                    {
+                        favButton.BackgroundImage = Resources.starFilled;
+                        favButton.Tag = "true";
+
+                        currentCarRecord.Favourites = new List<Favourite>() {
+                            new Favourite() {
+                                FavouriteAuthor = Collection.currentUserUsername,
+                                CarId = currentCarRecord.CarId,
+                            }
+                        };
+                    }
+                    else
+                    {
+                        favButton.BackgroundImage = Resources.starEmpty;
+                        favButton.Tag = "false";
+
+                        context.Favourites.Remove(context.Favourites.Where(f => f.CarId == currentCarRecord.CarId).FirstOrDefault());
+                    }
+                    context.SaveChanges();
+                }
+               
+            }
+        }
+
+        public static void ShowDatePick(object sender, EventArgs e)
+        {
+
+        }
+
+        // COLLECTION
         private static FlowLayoutPanel flowLayoutPanelCurrentCar;
         private static Panel panelCurrentCarImage;
         private static Label labelCurrentCarBrand;
@@ -213,5 +883,46 @@ namespace DreamCar.Forms.Collection
         private static Button buttonCurrentCarFav;
         private static Button buttonCurrentCarMore;
         private static FlowLayoutPanel flowLayoutPanelCarCollection;
+        public static Panel panelMain;
+
+        // DETAILS
+        public static FlowLayoutPanel flowLayoutPanelPopup;
+        private static Panel panelPopupTop;
+        private static FlowLayoutPanel flowLayoutPanelPopupContainer;
+        private static Panel panelPopupImg;
+        private static FlowLayoutPanel flowLayoutPanelPopupContent;
+        private static Label labelPopupBrand;
+        private static Label labelPopupModel;
+        private static Label labelPopupFuel;
+        private static Label labelPopupCountry;
+        private static Label labelPopupCity;
+        private static Label labelPopupGearbox;
+        private static Label labelPopupProdYear;
+        private static Label labelPopupCapacity;
+        private static Label labelPopupUsername;
+        private static Button buttonPopupClose;
+        private static Label labelPopupTag;
+        private static FlowLayoutPanel flowLayoutPanelPopupTags;
+        private static Label labelPopupTags;
+        private static FlowLayoutPanel flowLayoutPanelPopupDatesContainer;
+        private static Label labelPopupStartDate;
+        private static Label labelPopupEndDate;
+        private static Label labelPopupBetweenDates;
+        private static Button buttonPopupReserve;
+        public static Button buttonPopupFav;
+        private static FlowLayoutPanel flowLayoutPanelPopupDates;
+        public static DateTimePicker dateTimePickerPopupDate;
+
+        // SEARCH
+        public static FlowLayoutPanel flowLayoutPanelSearchContainer;
+        public static ComboBox comboBoxSearchBrand;
+        public static ComboBox comboBoxSearchModel;
+        public static ComboBox comboBoxSearchYear;
+        public static ComboBox comboBoxSearch;
+        public static ComboBox comboBoxSearchCountry;
+        public static ComboBox comboBoxSearchCity;
+        public static TextBox textBoxSearchbox;
+        public static Button buttonSearch;
+        private static Button buttonLoadMore;
     }
 }

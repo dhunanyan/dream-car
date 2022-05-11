@@ -6,25 +6,27 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace DreamCar.Forms.Collection
 {
     public partial class Collection : Container
     {
-        int initialCarGenAmount = 4;
+        public static int initialCarGenAmount = 6;
         public Collection()
         {
-            InitializeComponent();
-            CollectionStyles.GerenerateCollectionContainer(initialCarGenAmount);
+            CollectionStyles.GerenerateCollectionContainer(this, initialCarGenAmount);
             CollectionStyles.ChangeCollectionContainerScrollMinSize(initialCarGenAmount);
-            GenerateCollection(initialCarGenAmount, initialCarGenAmount - 4);
+            CollectionStyles.GenerateSearch(this);
+            GenerateCollection(initialCarGenAmount, initialCarGenAmount - 6);
+            CollectionStyles.InitializeComponent(this);
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        public static void ButtonLoadMore_Click(object sender, EventArgs e)
         {
-            initialCarGenAmount += 4;
-            GenerateCollection(initialCarGenAmount, initialCarGenAmount - 4);
+            initialCarGenAmount += 6;
+            GenerateCollection(initialCarGenAmount, initialCarGenAmount - 6);
         }
 
         private static void GenerateCollection(int take, int skip)
@@ -50,40 +52,59 @@ namespace DreamCar.Forms.Collection
             }
         }
 
-        public static void ButtonCurrentCarFav_Click(object sender, EventArgs e)
-        {
-            using (DreamCarContext context = new DreamCarContext())
-            {
-                Button currentFavButton = (Button)sender;
-                bool isFav = bool.Parse(currentFavButton.Tag.ToString());
-                Car currentCarRecord = CollectionReq.GetCarById(context, int.Parse(currentFavButton.Name.Split('.')[1]));
 
-                if (!isFav)
-                {
-                    currentFavButton.BackgroundImage = Resources.starFilled;
-                    currentFavButton.Tag = "true";
-                    currentCarRecord.Favourites = new List<Favourite>() {
-                            new Favourite() {
-                                FavouriteAuthor = currentUserUsername,
-                                CarId = currentCarRecord.CarId,
-                            }
-                    };
-                }
-                else
-                {
-                    currentFavButton.BackgroundImage = Resources.starEmpty;
-                    currentFavButton.Tag = "false";
-                    context.Favourites.Remove(context.Favourites.Where(f => f.CarId == currentCarRecord.CarId).FirstOrDefault());
-                }
-                context.SaveChanges();
-                
-            }
+        public static void ButtonSearch_Click(object sender, EventArgs e)
+        {
+
         }
 
-        public static void ButtonCurrentCarMore_Click(object sender, EventArgs e)
+        public static async void ButtonCurrentCarMore_Click(object sender, EventArgs e)
         {
-            
-           
+            CollectionStyles.panelMain.Controls.Remove(CollectionStyles.flowLayoutPanelPopup);
+            await Task.Delay(1);
+            Button currentShowMore = (Button)sender;
+            int currentId = int.Parse(currentShowMore.Name.ToString().Split('.')[1]);
+            using(DreamCarContext context = new DreamCarContext())
+            {
+                bool isFav = false;
+                Car currentCar = CollectionReq.GetCarById(context, currentId);
+
+                List<Favourite> favs = CollectionReq.GetFavsByUsername(context, currentUserUsername);
+
+                foreach(Favourite fav in favs)
+                {
+                    if (fav.CarId == currentCar.CarId)
+                    {
+                        isFav = true;
+
+                    }
+                    else
+                    {
+                        isFav = false;
+                    }
+                }
+
+                Console.WriteLine(isFav);
+                Console.WriteLine(context.Favourites.Where(fav => fav.CarId == currentCar.CarId && fav.FavouriteAuthor == currentCar.CarAuthor));
+
+                CollectionStyles.GenerateDetails(
+                currentCar.CarId,
+                currentCar.CarAuthor,
+                currentCar.CarBrand,
+                currentCar.CarModel,
+                currentCar.CarCountry,
+                currentCar.CarCity,
+                currentCar.CarFuel,
+                currentCar.CarGearbox,
+                currentCar.CarProdYear,
+                currentCar.CarCapacity,
+                currentCar.CarTags,
+                currentCar.CarReservationDateStart,
+                currentCar.CarReservationDateEnd,
+                currentCar.CarImageUrl,
+                isFav
+                );
+            };
         }
     }
 }

@@ -22,7 +22,7 @@ namespace DreamCar.Forms.Publication
 
         public Publication(object context)
         {
-            buttonAddImage.Text = "200 x 200";
+            PublicationStyles.buttonAddImage.Text = "200 x 200";
             InitializeComponent();
         }
 
@@ -41,22 +41,22 @@ namespace DreamCar.Forms.Publication
             int errorInt;
             double errorDouble;
             if (
-                textBoxCardBrand.Text == "" ||
-                textBoxCarModel.Text == "" ||
-                textBoxCardProdYear.Text == "" ||
-                textBoxCarCapacity.Text == "" ||
-                textBoxCarFuel.Text == "" ||
-                textBoxCardGearbox.Text == "" ||
-                textBoxCarCountry.Text == "" ||
-                textBoxCarCity.Text == "" ||
-                textBoxCarColor.Text == "" ||
-                textBoxCarPrice.Text == "" ||
-                textBoxCarTags.Text == ""
+                PublicationStyles.textBoxCardBrand.Text == "" ||
+                PublicationStyles.textBoxCarModel.Text == "" ||
+                PublicationStyles.textBoxCardProdYear.Text == "" ||
+                PublicationStyles.textBoxCarCapacity.Text == "" ||
+                PublicationStyles.textBoxCarFuel.Text == "" ||
+                PublicationStyles.textBoxCardGearbox.Text == "" ||
+                PublicationStyles.textBoxCarCountry.Text == "" ||
+                PublicationStyles.textBoxCarCity.Text == "" ||
+                PublicationStyles.textBoxCarColor.Text == "" ||
+                PublicationStyles.textBoxCarPrice.Text == "" ||
+                PublicationStyles.textBoxCarTags.Text == ""
                 )
             {
                 string emptyTextBoxes = "";
 
-                foreach (Control control in flowLayoutPanel2.Controls)
+                foreach (Control control in PublicationStyles.flowLayoutPanel2.Controls)
                 {
                     if (control.Text == "" && control is TextBox)
                     {
@@ -69,21 +69,21 @@ namespace DreamCar.Forms.Publication
                     , "CarAdd Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-            else if (!double.TryParse(textBoxCarPrice.Text, out errorDouble) || !int.TryParse(textBoxCarPrice.Text, out errorInt))
+            else if (!double.TryParse(PublicationStyles.textBoxCarPrice.Text, out errorDouble) || !int.TryParse(PublicationStyles.textBoxCarPrice.Text, out errorInt))
             {
                 MessageBox.Show(
                     $"Wrong Price value. Please enter valid price."
                     , "CarAdd Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-            else if (!double.TryParse(textBoxCarCapacity.Text, out errorDouble) || !int.TryParse(textBoxCarCapacity.Text, out errorInt))
+            else if (!double.TryParse(PublicationStyles.textBoxCarCapacity.Text, out errorDouble) || !int.TryParse(PublicationStyles.textBoxCarCapacity.Text, out errorInt))
             {
                 MessageBox.Show(
                     $"Wrong Capacity value. Please enter capacity price."
                     , "CarAdd Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-            else if (!int.TryParse(textBoxCardProdYear.Text, out errorInt))
+            else if (!int.TryParse(PublicationStyles.textBoxCardProdYear.Text, out errorInt))
             {
                 MessageBox.Show(
                     $"Wrong Production Year value. Please enter valid production year."
@@ -148,18 +148,18 @@ namespace DreamCar.Forms.Publication
 
         public static void ClearForm()
         {
-            textBoxCardBrand.Text = "";
-            textBoxCarModel.Text = "";
-            textBoxCardProdYear.Text = "";
-            textBoxCarCapacity.Text = "";
-            textBoxCarFuel.Text = "";
-            textBoxCardGearbox.Text = "";
-            textBoxCarCountry.Text = "";
-            textBoxCarCity.Text = "";
-            textBoxCarColor.Text = "";
-            textBoxCarTags.Text = "";
-            textBoxCarPrice.Text = "";
-            textBoxCardBrand.Focus();
+            PublicationStyles.textBoxCardBrand.Text = "";
+            PublicationStyles.textBoxCarModel.Text = "";
+            PublicationStyles.textBoxCardProdYear.Text = "";
+            PublicationStyles.textBoxCarCapacity.Text = "";
+            PublicationStyles.textBoxCarFuel.Text = "";
+            PublicationStyles.textBoxCardGearbox.Text = "";
+            PublicationStyles.textBoxCarCountry.Text = "";
+            PublicationStyles.textBoxCarCity.Text = "";
+            PublicationStyles.textBoxCarColor.Text = "";
+            PublicationStyles.textBoxCarTags.Text = "";
+            PublicationStyles.textBoxCarPrice.Text = "";
+            PublicationStyles.textBoxCardBrand.Focus();
         }
 
         private void ButtonClear_Click(object sender, EventArgs e)
@@ -176,7 +176,7 @@ namespace DreamCar.Forms.Publication
             {
                 try
                 {
-                    labelLoadingProgress.Text = "0%";
+                    PublicationStyles.labelLoadingProgress.Text = "0%";
                     using (DreamCarContext context = new DreamCarContext())
                     {
                         var currentUserPublishCount = context.Publications.Where(x => x.PublishAuthor == currentUserUsername).Count();
@@ -189,13 +189,13 @@ namespace DreamCar.Forms.Publication
 
                         task.Progress.ProgressChanged += (s, e) => {
                             Console.WriteLine($"Progress: {e.Percentage} %");
-                            labelLoadingProgress.Text = e.Percentage.ToString() + "%";
+                            PublicationStyles.labelLoadingProgress.Text = e.Percentage.ToString() + "%";
                         };
                         imageUrl = await task;
 
-                        buttonAddImage.BackgroundImage = setBackgroungImageUrl(imageUrl);
-                        buttonAddImage.BackgroundImageLayout = ImageLayout.Zoom;
-                        buttonAddImage.Text = "";
+                        PublicationStyles.buttonAddImage.BackgroundImage = setBackgroungImageUrl(imageUrl);
+                        PublicationStyles.buttonAddImage.BackgroundImageLayout = ImageLayout.Zoom;
+                        PublicationStyles.buttonAddImage.Text = "";
                         Console.WriteLine(imageUrl);
                     }
                 }
@@ -217,42 +217,7 @@ namespace DreamCar.Forms.Publication
         //PROGRESS BAR
         private void labelLoadingProgress_TextChanged(object sender, EventArgs e)
         {
-            labelLoadingProgress.Size = new Size(int.Parse(labelLoadingProgress.Text.Split('%')[0]) * 205 / 100, 18);
+            PublicationStyles.labelLoadingProgress.Size = new Size(int.Parse(PublicationStyles.labelLoadingProgress.Text.Split('%')[0]) * 205 / 100, 18);
         }
-
-        public static Panel panel1;
-        public static FlowLayoutPanel SignUp;
-        public static Label labelPublish;
-        public static FlowLayoutPanel flowLayoutPanel2;
-        public static Label labelCarBrand;
-        public static Label labelCarModel;
-        public static Label labelCarProdYear;
-        public static TextBox textBoxCarModel;
-        public static TextBox textBoxCardProdYear;
-        public static Label labelCarCapacity;
-        public static Label labelCarFuel;
-        public static Label labelCarGearbox;
-        public static TextBox textBoxCarCapacity;
-        public static TextBox textBoxCarFuel;
-        public static TextBox textBoxCardGearbox;
-        public static Label labelCarCountry;
-        public static Label labelCarCity;
-        public static TextBox textBoxCarCountry;
-        public static TextBox textBoxCarCity;
-        public static Label labelCarColor;
-        public static Label labelCarTags;
-        public static TextBox textBoxCarColor;
-        public static TextBox textBoxCarTags;
-        public static Button buttonPost;
-        public static Button buttonClear;
-        public static TextBox textBoxCardBrand;
-        public static MonthCalendar monthCalendar;
-        public static FlowLayoutPanel flowLayoutPanel1;
-        public static Button buttonAddImage;
-        public static Panel panel2;
-        public static Panel panelLoadingBar;
-        public static Label labelLoadingProgress;
-        public static TextBox textBoxCarPrice;
-        public static Label labelCarPrice;
     }
 }

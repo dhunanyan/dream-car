@@ -15,26 +15,26 @@ namespace DreamCar.Forms.Main
     {
         public Main()
         {
-            InitializeComponent();
+            MainStyles.InitializeComponent(this);
 
-            buttonTimes.Visible = false;
-            buttonCollection.Enabled = false;
-            buttonProfile.Enabled = false;
-            buttonPublish.Enabled = false;
+            MainStyles.buttonTimes.Visible = false;
+            MainStyles.buttonCollection.Enabled = false;
+            MainStyles.buttonProfile.Enabled = false;
+            MainStyles.buttonPublish.Enabled = false;
 
             MainStyles.SetButtonColors();
 
-            SignUp.Visible = false;
-            SignIn.Visible = true;
+            MainStyles.SignUp.Visible = false;
+            MainStyles.SignIn.Visible = true;
         }
 
-        private Color SelectThemeColor(string buttonName)
+        private static Color SelectThemeColor(string buttonName)
         {
             //string color = ThemeColor.colorList[buttonName];
             return ColorTranslator.FromHtml("#74d484");
         }
 
-        private void ActivateButton(object buttonSender)
+        private static void ActivateButton(object buttonSender)
         {
             if (buttonSender == null || currentButton == (Button)buttonSender)
             {
@@ -45,16 +45,16 @@ namespace DreamCar.Forms.Main
             Color currentColor = SelectThemeColor(currentButton.Name);
             currentButton.BackColor = currentColor;
             currentButton.ForeColor = Color.White;
-            panelTitleBar.BackColor = currentColor;
+            MainStyles.panelTitleBar.BackColor = currentColor;
             ThemeColor.PrimaryColor = currentColor;
             ThemeColor.SecondaryColor = ThemeColor.ChangeColorBrightness(currentColor, -0.3);
             ThemeColor.TertiaryColor = ThemeColor.ChangeColorBrightness(currentColor, 0.5);
-            buttonTimes.Visible = true;
+            MainStyles.buttonTimes.Visible = true;
         }
 
-        private void DisableButton()
+        private static void DisableButton()
         {
-            foreach (Control previousButton in panelMenu.Controls)
+            foreach (Control previousButton in MainStyles.panelMenu.Controls)
             {
                 if (previousButton.GetType() == typeof(Button))
                 {
@@ -64,7 +64,7 @@ namespace DreamCar.Forms.Main
             }
         }
 
-        private void OpenChildForm(Form childForm, object buttonSender)
+        public static void OpenChildForm(Form childForm, object buttonSender)
         {
             if (currentForm != null)
             {
@@ -75,106 +75,106 @@ namespace DreamCar.Forms.Main
             childForm.TopLevel = false;
             childForm.FormBorderStyle = FormBorderStyle.None;
             childForm.Dock = DockStyle.Fill;
-            panelMain.Controls.Add(childForm);
-            panelMain.Tag = childForm;
+            MainStyles.panelMain.Controls.Add(childForm);
+            MainStyles.panelMain.Tag = childForm;
             childForm.BringToFront();
             childForm.Show();
 
         }
 
         // COLLECTION
-        private void ButtonCollection_Click(object sender, EventArgs e)
+        public static void ButtonCollection_Click(object sender, EventArgs e)
         {
-            labelTitle.Text = "COLLECTION";
-            buttonCollection.Enabled = false;
-            buttonProfile.Enabled = true;
-            buttonPublish.Enabled = true;
+            MainStyles.labelTitle.Text = "COLLECTION";
+            MainStyles.buttonCollection.Enabled = false;
+            MainStyles.buttonProfile.Enabled = true;
+            MainStyles.buttonPublish.Enabled = true;
             OpenChildForm(new Collection.Collection(), sender);
         }
 
-        private void ButtonCollection_EnabledChanged(object sender, EventArgs e)
+        public static void ButtonCollection_EnabledChanged(object sender, EventArgs e)
         {
             Button currentButton = (Button)sender;
-            buttonCollection.ForeColor = Color.Gainsboro;
-            buttonCollection.BackColor = currentButton.Enabled ? ColorTranslator.FromHtml("#33334c") : ThemeColor.ChangeColorBrightness(ColorTranslator.FromHtml("#33334c"), 0.5);
-            buttonCollection.FlatAppearance.BorderColor = currentButton.Enabled ? ColorTranslator.FromHtml("#33334c") : ThemeColor.ChangeColorBrightness(ColorTranslator.FromHtml("#33334c"), 0.5);
+            MainStyles.buttonCollection.ForeColor = Color.Gainsboro;
+            MainStyles.buttonCollection.BackColor = currentButton.Enabled ? ColorTranslator.FromHtml("#33334c") : ThemeColor.ChangeColorBrightness(ColorTranslator.FromHtml("#33334c"), 0.5);
+            MainStyles.buttonCollection.FlatAppearance.BorderColor = currentButton.Enabled ? ColorTranslator.FromHtml("#33334c") : ThemeColor.ChangeColorBrightness(ColorTranslator.FromHtml("#33334c"), 0.5);
         }
 
         // PUBLISH
-        private void ButtonPublish_Click(object sender, EventArgs e)
+        public static void ButtonPublish_Click(object sender, EventArgs e)
         {
-            labelTitle.Text = "PUBLISH";
-            buttonPublish.Enabled = false;
-            buttonProfile.Enabled = true;
-            buttonCollection.Enabled = true;
+            MainStyles.labelTitle.Text = "PUBLISH";
+            MainStyles.buttonPublish.Enabled = false;
+            MainStyles.buttonProfile.Enabled = true;
+            MainStyles.buttonCollection.Enabled = true;
             OpenChildForm(new Publication.Publication(), sender);
         }
 
 
-        private void ButtonPublish_EnabledChanged(object sender, EventArgs e)
+        public static void ButtonPublish_EnabledChanged(object sender, EventArgs e)
         {
             Button currentButton = (Button)sender;
-            buttonPublish.ForeColor = Color.Gainsboro;
-            buttonPublish.BackColor = currentButton.Enabled ? ColorTranslator.FromHtml("#33334c") : ThemeColor.ChangeColorBrightness(ColorTranslator.FromHtml("#33334c"), 0.5);
-            buttonPublish.FlatAppearance.BorderColor = currentButton.Enabled ? ColorTranslator.FromHtml("#33334c") : ThemeColor.ChangeColorBrightness(ColorTranslator.FromHtml("#33334c"), 0.5);
+            MainStyles.buttonPublish.ForeColor = Color.Gainsboro;
+            MainStyles.buttonPublish.BackColor = currentButton.Enabled ? ColorTranslator.FromHtml("#33334c") : ThemeColor.ChangeColorBrightness(ColorTranslator.FromHtml("#33334c"), 0.5);
+            MainStyles.buttonPublish.FlatAppearance.BorderColor = currentButton.Enabled ? ColorTranslator.FromHtml("#33334c") : ThemeColor.ChangeColorBrightness(ColorTranslator.FromHtml("#33334c"), 0.5);
         }
 
         // PROFILE
-        private void ButtonProfile_Click(object sender, EventArgs e)
+        public static void ButtonProfile_Click(object sender, EventArgs e)
         {
-            labelTitle.Text = "PROFILE";
-            buttonProfile.Enabled = false;
-            buttonPublish.Enabled = true;
-            buttonCollection.Enabled = true;
+            MainStyles.labelTitle.Text = "PROFILE";
+            MainStyles.buttonProfile.Enabled = false;
+            MainStyles.buttonPublish.Enabled = true;
+            MainStyles.buttonCollection.Enabled = true;
             OpenChildForm(new Profile.Profile(), sender);
         }
 
 
-        private void ButtonProfile_EnabledChanged(object sender, EventArgs e)
+        public static void ButtonProfile_EnabledChanged(object sender, EventArgs e)
         {
             Button currentButton = (Button)sender;
-            buttonProfile.ForeColor = Color.Gainsboro;
-            buttonProfile.BackColor = currentButton.Enabled ? ColorTranslator.FromHtml("#33334c") : ThemeColor.ChangeColorBrightness(ColorTranslator.FromHtml("#33334c"), 0.5);
-            buttonProfile.FlatAppearance.BorderColor = currentButton.Enabled ? ColorTranslator.FromHtml("#33334c") : ThemeColor.ChangeColorBrightness(ColorTranslator.FromHtml("#33334c"), 0.5);
+            MainStyles.buttonProfile.ForeColor = Color.Gainsboro;
+            MainStyles.buttonProfile.BackColor = currentButton.Enabled ? ColorTranslator.FromHtml("#33334c") : ThemeColor.ChangeColorBrightness(ColorTranslator.FromHtml("#33334c"), 0.5);
+            MainStyles.buttonProfile.FlatAppearance.BorderColor = currentButton.Enabled ? ColorTranslator.FromHtml("#33334c") : ThemeColor.ChangeColorBrightness(ColorTranslator.FromHtml("#33334c"), 0.5);
         }
 
         // LOGOUT
-        private void ButtonTimes_Click(object sender, EventArgs e)
+        public static void ButtonTimes_Click(object sender, EventArgs e)
         {
             if (currentForm != null)
             {
-                labelTitle.Text = currentForm.Text;
-                buttonProfile.Enabled = false;
-                buttonPublish.Enabled = false;
-                buttonCollection.Enabled = false;
+                MainStyles.labelTitle.Text = currentForm.Text;
+                MainStyles.buttonProfile.Enabled = false;
+                MainStyles.buttonPublish.Enabled = false;
+                MainStyles.buttonCollection.Enabled = false;
                 currentForm.Close();
             }
             Reset();
-            SignIn.Visible = true;
-            flowLayoutPanel1.Visible = true;
+            MainStyles.SignIn.Visible = true;
+            MainStyles.flowLayoutPanel1.Visible = true;
         }
 
-        private void Reset()
+        public static void Reset()
         {
             DisableButton();
-            labelTitle.Text = "HOME";
+            MainStyles.labelTitle.Text = "HOME";
             currentButton = null;
-            buttonTimes.Visible = false;
+            MainStyles.buttonTimes.Visible = false;
             MainStyles.SetButtonColors();
         }
 
         // SHOW PASSWORD FOR SIGNUP
-        private void CheckBoxShowPassword_CheckedChanged(object sender, EventArgs e)
+        public static void CheckBoxShowPassword_CheckedChanged(object sender, EventArgs e)
         {
-            if (checkBoxShowPassword.Checked)
+            if (MainStyles.checkBoxShowPassword.Checked)
             {
-                textBoxPassword.PasswordChar = '\0';
-                textBoxConfirmPassword.PasswordChar = '\0';
+                MainStyles.textBoxPassword.PasswordChar = '\0';
+                MainStyles.textBoxConfirmPassword.PasswordChar = '\0';
             }
             else
             {
-                textBoxPassword.PasswordChar = '\u25CF';
-                textBoxConfirmPassword.PasswordChar = '\u25CF';
+                MainStyles.textBoxPassword.PasswordChar = '\u25CF';
+                MainStyles.textBoxConfirmPassword.PasswordChar = '\u25CF';
             }
         }
 
@@ -186,25 +186,25 @@ namespace DreamCar.Forms.Main
         }
 
         // SIGN UP
-        private void ButtonSignup_Click(object sender, EventArgs e)
+        public static void ButtonSignup_Click(object sender, EventArgs e)
         {
             DreamCarContext context = new DreamCarContext();
             DreamCarContext contextSignUp = new DreamCarContext();
-            User user = MainReq.GetCurrentUser(context, textBoxUsernameSignin.Text, "password", false);
-            if (textBoxUsername.Text == "" || 
-                textBoxPassword.Text == "" || 
-                textBoxConfirmPassword.Text == "" || 
-                textBoxFirstName.Text == "" ||
-                textBoxLastName.Text == "" ||
-                textBoxCountry.Text == "" ||
-                textBoxAddress.Text == "" ||
-                textBoxPhone.Text == "" ||
-                textBoxCity.Text == "" ||
-                textBoxEmail.Text == "")
+            User user = MainReq.GetCurrentUser(context, MainStyles.textBoxUsernameSignin.Text, "password", false);
+            if (MainStyles.textBoxUsername.Text == "" ||
+                MainStyles.textBoxPassword.Text == "" ||
+                MainStyles.textBoxConfirmPassword.Text == "" ||
+                MainStyles.textBoxFirstName.Text == "" ||
+                MainStyles.textBoxLastName.Text == "" ||
+                MainStyles.textBoxCountry.Text == "" ||
+                MainStyles.textBoxAddress.Text == "" ||
+                MainStyles.textBoxPhone.Text == "" ||
+                MainStyles.textBoxCity.Text == "" ||
+                MainStyles.textBoxEmail.Text == "")
             {
                 string emptyTextBoxes = "";
                 
-                foreach (Control control in flowLayoutPanel2.Controls)
+                foreach (Control control in MainStyles.flowLayoutPanel2.Controls)
                 {
                     if(control.Text == "" && control is TextBox)
                     {
@@ -218,23 +218,23 @@ namespace DreamCar.Forms.Main
                 return;
             }
 
-            if (textBoxUsername.Text.Length > 16)
+            if (MainStyles.textBoxUsername.Text.Length > 16)
             {
                 MessageBox.Show("Username can contain max 16 characters.", "Registration failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                textBoxUsername.Text = "";
-                textBoxPassword.Text = "";
-                textBoxConfirmPassword.Text = "";
-                textBoxUsername.Focus();
+                MainStyles.textBoxUsername.Text = "";
+                MainStyles.textBoxPassword.Text = "";
+                MainStyles.textBoxConfirmPassword.Text = "";
+                MainStyles.textBoxUsername.Focus();
                 return;
             }
 
             if (user.UserId.ToString().Length > 0)
             {
                 MessageBox.Show("User with current username exists, choose another username.", "Registration failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                textBoxUsername.Text = "";
-                textBoxPassword.Text = "";
-                textBoxConfirmPassword.Text = "";
-                textBoxUsername.Focus();
+                MainStyles.textBoxUsername.Text = "";
+                MainStyles.textBoxPassword.Text = "";
+                MainStyles.textBoxConfirmPassword.Text = "";
+                MainStyles.textBoxUsername.Focus();
                 return;
             }
 
@@ -246,135 +246,135 @@ namespace DreamCar.Forms.Main
             //    return;
             //}
 
-            if (textBoxPassword.Text == textBoxConfirmPassword.Text)
+            if (MainStyles.textBoxPassword.Text == MainStyles.textBoxConfirmPassword.Text)
             {
                 contextSignUp.Add(new User() { 
-                    UserUsername = textBoxUsername.Text,
-                    UserPassword = textBoxPassword.Text,
-                    UserFirstName = textBoxFirstName.Text,
-                    UserLastName = textBoxLastName.Text,
-                    UserEmail = textBoxEmail.Text,
-                    UserCountry = textBoxCountry.Text,
-                    UserCity = textBoxCity.Text,
-                    UserAddress = textBoxAddress.Text,
-                    UserPhone = textBoxPhone.Text,
+                    UserUsername = MainStyles.textBoxUsername.Text,
+                    UserPassword = MainStyles.textBoxPassword.Text,
+                    UserFirstName = MainStyles.textBoxFirstName.Text,
+                    UserLastName = MainStyles.textBoxLastName.Text,
+                    UserEmail = MainStyles.textBoxEmail.Text,
+                    UserCountry = MainStyles.textBoxCountry.Text,
+                    UserCity = MainStyles.textBoxCity.Text,
+                    UserAddress = MainStyles.textBoxAddress.Text,
+                    UserPhone = MainStyles.textBoxPhone.Text,
                 });
                 contextSignUp.SaveChanges();
 
-                textBoxUsername.Text = "";
-                textBoxPassword.Text = "";
-                textBoxConfirmPassword.Text = "";
+                MainStyles.textBoxUsername.Text = "";
+                MainStyles.textBoxPassword.Text = "";
+                MainStyles.textBoxConfirmPassword.Text = "";
 
                 MessageBox.Show("Your account has been successfully created!", "Registration Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                SignIn.Visible = true;
-                SignUp.Visible = false;
+                MainStyles.SignIn.Visible = true;
+                MainStyles.SignUp.Visible = false;
                 return;
             }
             else
             {
                 MessageBox.Show("Passwords don't match, Please enter valid credentials.", "Registration Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                textBoxPassword.Text = "";
-                textBoxConfirmPassword.Text = "";
-                textBoxPassword.Focus();
+                MainStyles.textBoxPassword.Text = "";
+                MainStyles.textBoxConfirmPassword.Text = "";
+                MainStyles.textBoxPassword.Focus();
                 return;
             }
         }
 
-        private void Clear()
+        private static void Clear()
         {
-            textBoxUsernameSignin.Text = "";
-            textBoxPasswordSignin.Text = "";
-            textBoxFirstName.Text = "";
-            textBoxLastName.Text = "";
-            textBoxEmail.Text = "";
-            textBoxCountry.Text = "";
-            textBoxCity.Text = "";
-            textBoxAddress.Text = "";
-            textBoxPhone.Text = "";
-            textBoxUsername.Text = "";
-            textBoxPassword.Text = "";
-            textBoxConfirmPassword.Text = "";
-            textBoxUsernameSignin.Text = "";
-            textBoxPasswordSignin.Text = "";
-            if (SignIn.Visible)
+            MainStyles.textBoxUsernameSignin.Text = "";
+            MainStyles.textBoxPasswordSignin.Text = "";
+            MainStyles.textBoxFirstName.Text = "";
+            MainStyles.textBoxLastName.Text = "";
+            MainStyles.textBoxEmail.Text = "";
+            MainStyles.textBoxCountry.Text = "";
+            MainStyles.textBoxCity.Text = "";
+            MainStyles.textBoxAddress.Text = "";
+            MainStyles.textBoxPhone.Text = "";
+            MainStyles.textBoxUsername.Text = "";
+            MainStyles.textBoxPassword.Text = "";
+            MainStyles.textBoxConfirmPassword.Text = "";
+            MainStyles.textBoxUsernameSignin.Text = "";
+            MainStyles.textBoxPasswordSignin.Text = "";
+            if (MainStyles.SignIn.Visible)
             {
-                textBoxUsernameSignin.Focus();
+                MainStyles.textBoxUsernameSignin.Focus();
             }
             else
             {
-                textBoxFirstName.Focus();
+                MainStyles.textBoxFirstName.Focus();
             }
         }
 
-        private void ButtonClear_Click(object sender, EventArgs e)
+        public static void ButtonClear_Click(object sender, EventArgs e)
         {
             Clear();
         }
 
-        private void LabelChangeToSignin_Click(object sender, EventArgs e)
+        public static void LabelChangeToSignin_Click(object sender, EventArgs e)
         {
-            checkBoxShowPassword.Checked = false;
+            MainStyles.checkBoxShowPassword.Checked = false;
             Clear();
-            SignIn.Visible = true;
-            SignUp.Visible = false;
-            textBoxUsernameSignin.Focus();
+            MainStyles.SignIn.Visible = true;
+            MainStyles.SignUp.Visible = false;
+            MainStyles.textBoxUsernameSignin.Focus();
         }
 
         // SHOW PASSWORD FOR SIGNIN
-        private void CheckBoxShowPasswordSignin_CheckedChange(object sender, EventArgs e)
+        public static void CheckBoxShowPasswordSignin_CheckedChange(object sender, EventArgs e)
         {
-            if (checkBoxShowPasswordSignin.Checked)
+            if (MainStyles.checkBoxShowPasswordSignin.Checked)
             {
-                textBoxPasswordSignin.PasswordChar = '\0';
+                MainStyles.textBoxPasswordSignin.PasswordChar = '\0';
             }
             else
             {
-                textBoxPasswordSignin.PasswordChar = '\u25CF';
+                MainStyles.textBoxPasswordSignin.PasswordChar = '\u25CF';
             }
         }
 
         // SIGN IN
-        private void ButtonSignin_Click(object sender, EventArgs e)
+        public static void ButtonSignin_Click(object sender, EventArgs e)
         {
             DreamCarContext context = new DreamCarContext();
-            User user = MainReq.GetCurrentUser(context, textBoxUsernameSignin.Text, textBoxPasswordSignin.Text, true);
-            if (textBoxUsernameSignin.Text == "" && textBoxPasswordSignin.Text == "")
+            User user = MainReq.GetCurrentUser(context, MainStyles.textBoxUsernameSignin.Text, MainStyles.textBoxPasswordSignin.Text, true);
+            if (MainStyles.textBoxUsernameSignin.Text == "" && MainStyles.textBoxPasswordSignin.Text == "")
             {
                 MessageBox.Show("Empty Username and Pasword fields. Please fill up the form and try again", "Login Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                textBoxUsernameSignin.Focus();
+                MainStyles.textBoxUsernameSignin.Focus();
             }
-            else if (textBoxUsernameSignin.Text == "")
+            else if (MainStyles.textBoxUsernameSignin.Text == "")
             {
                 MessageBox.Show("Empty Username field. Please fill up the form and try again", "Login Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                textBoxUsernameSignin.Focus();
+                MainStyles.textBoxUsernameSignin.Focus();
             }
-            else if (textBoxPasswordSignin.Text == "")
+            else if (MainStyles.textBoxPasswordSignin.Text == "")
             {
                 MessageBox.Show("Empty Password field. Please fill up the form and try again", "Login Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                textBoxPasswordSignin.Focus();
+                MainStyles.textBoxPasswordSignin.Focus();
             }
             else if (user != null)
             {
                 currentUserId = user.UserId;
-                currentUserUsername = textBoxUsernameSignin.Text.ToString();
-                buttonCollection.Enabled = true;
-                buttonProfile.Enabled = true;
-                buttonPublish.Enabled = true;
-                SignIn.Visible = false;
-                SignUp.Visible = false;
-                flowLayoutPanel1.Visible = false;
+                currentUserUsername = MainStyles.textBoxUsernameSignin.Text.ToString();
+                MainStyles.buttonCollection.Enabled = true;
+                MainStyles.buttonProfile.Enabled = true;
+                MainStyles.buttonPublish.Enabled = true;
+                MainStyles.SignIn.Visible = false;
+                MainStyles.SignUp.Visible = false;
+                MainStyles.flowLayoutPanel1.Visible = false;
 
                 if (currentForm != null)
                 {
-                    labelTitle.Text = currentForm.Text;
+                    MainStyles.labelTitle.Text = currentForm.Text;
                     currentForm.Close();
                 }
-                textBoxUsernameSignin.Text = "";
-                textBoxPasswordSignin.Text = "";
-                OpenChildForm(new Forms.Collection.Collection(), buttonCollection);
-                Reset();
-                buttonTimes.Visible = true;
+                MainStyles.textBoxUsernameSignin.Text = "";
+                MainStyles.textBoxPasswordSignin.Text = "";
+                MainStyles.labelTitle.Text = "COLLECTION";
+                OpenChildForm(new Collection.Collection(), MainStyles.buttonCollection);
+                MainStyles.buttonTimes.Visible = true;
             }
             else
             {
@@ -384,74 +384,31 @@ namespace DreamCar.Forms.Main
             }
         }
 
-        private void ButtonClearSignin(object sender, EventArgs e)
+        public static void ButtonClearSignin(object sender, EventArgs e)
         {
             Clear();
         }
 
 
-        private void LabelChangeToSignup_Click(object sender, EventArgs e)
+        public static void LabelChangeToSignup_Click(object sender, EventArgs e)
         {
-            checkBoxShowPasswordSignin.Checked = false;
+            MainStyles.checkBoxShowPasswordSignin.Checked = false;
             Clear();
-            SignIn.Visible = false;
-            SignUp.Visible = true;
-            textBoxFirstName.Focus();
+            MainStyles.SignIn.Visible = false;
+            MainStyles.SignUp.Visible = true;
+            MainStyles.textBoxFirstName.Focus();
         }
 
-        public static Panel panelMenu;
-        public static Button buttonCollection;
-        public static Button buttonProfile;
-        public static Button buttonPublish;
-        public static Panel panelTitleBar;
-        public static Label labelTitle;
-        public static Label labelDreamCar;
-        public static PictureBox pictureBox1;
-        public static Panel panelMain;
-        public static Button buttonTimes;
-        public static Label label1;
-        public static PictureBox pictureBox2;
-        public static FlowLayoutPanel flowLayoutPanel1;
-        public static TextBox textBoxPassword;
-        public static TextBox textBoxUsername;
-        public static Label labelPassword;
-        public static Label labelSignup;
-        public static TextBox textBoxConfirmPassword;
-        public static Label labelConfirmPassword;
-        public static Button buttonSignup;
-        public static Label labelChangeToSignin;
-        public static Label labelHaveAcc;
-        public static Button buttonClear;
-        public static FlowLayoutPanel flowLayoutPanel2;
-        public static FlowLayoutPanel SignUp;
-        public static FlowLayoutPanel SignIn;
-        public static Label labelSignin;
-        public static FlowLayoutPanel flowLayoutPanel5;
-        public static Label labelUsernameSignin;
-        public static TextBox textBoxUsernameSignin;
-        public static Label labelPasswordSignin;
-        public static TextBox textBoxPasswordSignin;
-        public static CheckBox checkBoxShowPasswordSignin;
-        public static Button buttonSignin;
-        public static Button buttonClearSignin;
-        public static Label labelDontHaveAcc;
-        public static Label labelChangeToSignup;
-        public static TextBox textBoxEmail;
-        public static TextBox textBoxPhone;
-        public static TextBox textBoxFirstName;
-        public static TextBox textBoxLastName;
-        public static TextBox textBoxCountry;
-        public static TextBox textBoxCity;
-        public static Label labelFirstName;
-        public static Label labelLastName;
-        public static Label labelUsername;
-        public static Label labelCountry;
-        public static Label labelCity;
-        public static Label labelAddress;
-        public static TextBox textBoxAddress;
-        public static Label labelPhone;
-        public static Label labelEmail;
-        public static CheckBox checkBoxShowPassword;
-        public static FlowLayoutPanel panelLogo;
+        private void InitializeComponent()
+        {
+            this.SuspendLayout();
+            // 
+            // Main
+            // 
+            this.ClientSize = new System.Drawing.Size(284, 261);
+            this.Name = "Main";
+            this.ResumeLayout(false);
+
+        }
     }
 }

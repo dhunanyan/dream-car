@@ -14,7 +14,7 @@ namespace DreamCar.Forms.Profile
     {
         public Profile()
         {
-            //    InitializeComponent();
+            InitializeComponent();
 
             //    buttonTimes.Visible = false;
             //    buttonCollection.Enabled = false;
