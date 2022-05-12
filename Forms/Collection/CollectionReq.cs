@@ -25,5 +25,34 @@ namespace DreamCar.Forms.Collection
         {
             return context.Cars.Take(take).Skip(skip).ToList();
         }
+
+        public static List<Car> GetCarsListByBrand(List<Car> cars, string carColumnToCompare)
+        {
+            return cars.Where(c => c.CarBrand == carColumnToCompare).ToList();
+        }
+
+        public static List<Car> GetCarsListByModel(List<Car> cars, string carColumnToCompare)
+        {
+            return cars.Where(c => c.CarModel == carColumnToCompare).ToList();
+        }
+
+        public static List<Car> GetCarsListByYear(List<Car> cars, int carColumnToCompare)
+        {
+            return cars.Where(c => c.CarProdYear == carColumnToCompare).ToList();
+        }
+
+        public static List<Car> GetCarsListByGearbox(List<Car> cars, string carColumnToCompare)
+        {
+            return cars.Where(c => c.CarGearbox == carColumnToCompare).ToList();
+        }
+        public static List<Car> GetCarsListByCountry(List<Car> cars, string carColumnToCompare)
+        {
+            return cars.Where(c => c.CarCountry == carColumnToCompare).ToList();
+        }
+
+        public static List<Car> GetCarsListByCity(List<Car> cars, string carColumnToCompare)
+        {
+            return cars.Where(c => c.CarCity == carColumnToCompare).ToList();
+        }
     }
 }

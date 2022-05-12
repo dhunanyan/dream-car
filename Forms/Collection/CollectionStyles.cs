@@ -636,7 +636,7 @@ namespace DreamCar.Forms.Collection
             comboBoxSearchBrand = new System.Windows.Forms.ComboBox();
             comboBoxSearchModel = new System.Windows.Forms.ComboBox();
             comboBoxSearchYear = new System.Windows.Forms.ComboBox();
-            comboBoxSearch = new System.Windows.Forms.ComboBox();
+            comboBoxSearchGearbox = new System.Windows.Forms.ComboBox();
             comboBoxSearchCountry = new System.Windows.Forms.ComboBox();
             comboBoxSearchCity = new System.Windows.Forms.ComboBox();
             textBoxSearchbox = new System.Windows.Forms.TextBox(); 
@@ -650,7 +650,7 @@ namespace DreamCar.Forms.Collection
             flowLayoutPanelSearchContainer.Controls.Add(comboBoxSearchBrand);
             flowLayoutPanelSearchContainer.Controls.Add(comboBoxSearchModel);
             flowLayoutPanelSearchContainer.Controls.Add(comboBoxSearchYear);
-            flowLayoutPanelSearchContainer.Controls.Add(comboBoxSearch);
+            flowLayoutPanelSearchContainer.Controls.Add(comboBoxSearchGearbox);
             flowLayoutPanelSearchContainer.Controls.Add(buttonLoadMore);
             flowLayoutPanelSearchContainer.Controls.Add(comboBoxSearchCountry);
             flowLayoutPanelSearchContainer.Controls.Add(comboBoxSearchCity);
@@ -673,6 +673,10 @@ namespace DreamCar.Forms.Collection
             comboBoxSearchBrand.Name = "comboBoxSearchBrand";
             comboBoxSearchBrand.Size = new System.Drawing.Size(191, 36);
             comboBoxSearchBrand.TabIndex = 0;
+            comboBoxSearchBrand.Items.AddRange(new object[] {
+            "All Brands"});
+            comboBoxSearchBrand.SelectedItem = "All Brands";
+            comboBoxSearchBrand.SelectedIndexChanged += new EventHandler(Collection.ComboBoxSearchBrand_SelectedIndexChanged);
             // 
             // comboBoxSearchModel
             // 
@@ -686,6 +690,10 @@ namespace DreamCar.Forms.Collection
             comboBoxSearchModel.Name = "comboBoxSearchModel";
             comboBoxSearchModel.Size = new System.Drawing.Size(191, 36);
             comboBoxSearchModel.TabIndex = 1;
+            comboBoxSearchModel.Items.AddRange(new object[] {
+            "All Models"});
+            comboBoxSearchModel.SelectedItem = "All Models";
+            comboBoxSearchModel.SelectedIndexChanged += new EventHandler(Collection.ComboBoxSearchModel_SelectedIndexChanged);
             // 
             // comboBoxSearchYear
             // 
@@ -699,19 +707,27 @@ namespace DreamCar.Forms.Collection
             comboBoxSearchYear.Name = "comboBoxSearchYear";
             comboBoxSearchYear.Size = new System.Drawing.Size(191, 36);
             comboBoxSearchYear.TabIndex = 2;
+            comboBoxSearchYear.Items.AddRange(new object[] {
+            "All Years"});
+            comboBoxSearchYear.SelectedItem = "All Years";
+            comboBoxSearchYear.SelectedIndexChanged += new EventHandler(Collection.ComboBoxSearchYear_SelectedIndexChanged);
             // 
-            // comboBoxSearch
+            // comboBoxSearchGearbox
             // 
-            comboBoxSearch.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(225)))), ((int)(((byte)(225)))));
-            comboBoxSearch.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            comboBoxSearch.Font = new System.Drawing.Font("Tw Cen MT Condensed", 18F);
-            comboBoxSearch.FormattingEnabled = true;
-            comboBoxSearch.Location = new System.Drawing.Point(618, 0);
-            comboBoxSearch.Margin = new System.Windows.Forms.Padding(0, 0, 15, 0);
-            comboBoxSearch.MinimumSize = new System.Drawing.Size(191, 0);
-            comboBoxSearch.Name = "comboBoxSearch";
-            comboBoxSearch.Size = new System.Drawing.Size(191, 36);
-            comboBoxSearch.TabIndex = 3;
+            comboBoxSearchGearbox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(225)))), ((int)(((byte)(225)))));
+            comboBoxSearchGearbox.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            comboBoxSearchGearbox.Font = new System.Drawing.Font("Tw Cen MT Condensed", 18F);
+            comboBoxSearchGearbox.FormattingEnabled = true;
+            comboBoxSearchGearbox.Location = new System.Drawing.Point(618, 0);
+            comboBoxSearchGearbox.Margin = new System.Windows.Forms.Padding(0, 0, 15, 0);
+            comboBoxSearchGearbox.MinimumSize = new System.Drawing.Size(191, 0);
+            comboBoxSearchGearbox.Name = "comboBoxSearchGearbox";
+            comboBoxSearchGearbox.Size = new System.Drawing.Size(191, 36);
+            comboBoxSearchGearbox.TabIndex = 3;
+            comboBoxSearchGearbox.Items.AddRange(new object[] {
+            "All Gearboxes"});
+            comboBoxSearchGearbox.SelectedItem = "All Gearboxes";
+            comboBoxSearchGearbox.SelectedIndexChanged += new EventHandler(Collection.ComboBoxSearchGearbox_SelectedIndexChanged);
             // 
             // buttonLoadMore
             // 
@@ -759,6 +775,10 @@ namespace DreamCar.Forms.Collection
             comboBoxSearchCountry.Name = "comboBoxSearchCountry";
             comboBoxSearchCountry.Size = new System.Drawing.Size(191, 36);
             comboBoxSearchCountry.TabIndex = 5;
+            comboBoxSearchCountry.Items.AddRange(new object[] {
+            "All Countries"});
+            comboBoxSearchCountry.SelectedItem = "All Countries";
+            comboBoxSearchCountry.SelectedIndexChanged += new EventHandler(Collection.ComboBoxSearchCountry_SelectedIndexChanged);
             // 
             // comboBoxSearchCity
             // 
@@ -772,6 +792,10 @@ namespace DreamCar.Forms.Collection
             comboBoxSearchCity.Name = "comboBoxSearchCity";
             comboBoxSearchCity.Size = new System.Drawing.Size(191, 36);
             comboBoxSearchCity.TabIndex = 6;
+            comboBoxSearchCity.Items.AddRange(new object[] {
+            "All Cities"});
+            comboBoxSearchCity.SelectedItem = "All Cities";
+            comboBoxSearchCity.SelectedIndexChanged += new EventHandler(Collection.ComboBoxSearchCity_SelectedIndexChanged);
             // 
             // textBoxSearchbox
             // 
@@ -918,7 +942,7 @@ namespace DreamCar.Forms.Collection
         public static ComboBox comboBoxSearchBrand;
         public static ComboBox comboBoxSearchModel;
         public static ComboBox comboBoxSearchYear;
-        public static ComboBox comboBoxSearch;
+        public static ComboBox comboBoxSearchGearbox;
         public static ComboBox comboBoxSearchCountry;
         public static ComboBox comboBoxSearchCity;
         public static TextBox textBoxSearchbox;
