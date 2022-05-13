@@ -1,5 +1,7 @@
 ﻿using DreamCar.Data;
 using DreamCar.Models;
+using LinqKit;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -26,33 +28,83 @@ namespace DreamCar.Forms.Collection
             return context.Cars.Take(take).Skip(skip).ToList();
         }
 
-        public static List<Car> GetCarsListByBrand(List<Car> cars, string carColumnToCompare)
+        public static List<Car> GetSearchedCarWithSkipNTake(List<Car> cars, int take, int skip)
         {
-            return cars.Where(c => c.CarBrand == carColumnToCompare).ToList();
+            return cars.Take(take).Skip(skip).ToList();
         }
 
-        public static List<Car> GetCarsListByModel(List<Car> cars, string carColumnToCompare)
+        public static List<Car> GetCarsListByBrandModelYearGearboxCountryCity(string brand, string model, string year, string gearbox, string country, string city)
         {
-            return cars.Where(c => c.CarModel == carColumnToCompare).ToList();
+            using (DreamCarContext context = new DreamCarContext())
+            {
+                ExpressionStarter<Car> pr = PredicateBuilder.New<Car>();
+                if (brand != "")
+                {
+                    pr = pr.And(x => x.CarBrand == brand);
+                }
+
+                if (model != "")
+                {
+                    pr = pr.And(x => x.CarModel == model);
+                }
+
+                if (year != "")
+                {
+                    pr = pr.And(x => x.CarProdYear == int.Parse(year));
+                }
+
+                if (gearbox != "")
+                {
+                    pr = pr.And(x => x.CarGearbox == gearbox);
+                }
+
+                if (country != "")
+                {
+                    pr = pr.And(x => x.CarCountry == country);
+                }
+
+                if (city != "")
+                {
+                    pr = pr.And(x => x.CarCity == city);
+                }
+
+                if(brand == "" && model == "" && year == "" && gearbox == "" && country == "" && city == "")
+                {
+                    return context.Cars.ToList();
+                }
+
+                return context.Cars.Where(pr).ToList();
+            }
         }
 
-        public static List<Car> GetCarsListByYear(List<Car> cars, int carColumnToCompare)
+        public static string[] GetCarBrands(string brand, string model, string year, string gearbox, string country, string city)
         {
-            return cars.Where(c => c.CarProdYear == carColumnToCompare).ToList();
+            return GetCarsListByBrandModelYearGearboxCountryCity(brand, model, year, gearbox, country, city).OrderBy(x => x.CarBrand).Select(c => c.CarBrand).Distinct().ToArray();
         }
 
-        public static List<Car> GetCarsListByGearbox(List<Car> cars, string carColumnToCompare)
+        public static string[] GetCarModels(string brand, string model, string year, string gearbox, string country, string city)
         {
-            return cars.Where(c => c.CarGearbox == carColumnToCompare).ToList();
-        }
-        public static List<Car> GetCarsListByCountry(List<Car> cars, string carColumnToCompare)
-        {
-            return cars.Where(c => c.CarCountry == carColumnToCompare).ToList();
+            return GetCarsListByBrandModelYearGearboxCountryCity(brand, model, year, gearbox, country, city).OrderBy(x => x.CarModel).Select(c => c.CarModel).Distinct().ToArray();
         }
 
-        public static List<Car> GetCarsListByCity(List<Car> cars, string carColumnToCompare)
+        public static string[] GetCarYears(string brand, string model, string year, string gearbox, string country, string city)
         {
-            return cars.Where(c => c.CarCity == carColumnToCompare).ToList();
+            return GetCarsListByBrandModelYearGearboxCountryCity(brand, model, year, gearbox, country, city).OrderBy(x => x.CarProdYear).Select(c => c.CarProdYear.ToString()).Distinct().ToArray();
+        }
+
+        public static string[] GetCarGearboxes(string brand, string model, string year, string gearbox, string country, string city)
+        {
+            return GetCarsListByBrandModelYearGearboxCountryCity(brand, model, year, gearbox, country, city).OrderBy(x => x.CarGearbox).Select(c => c.CarGearbox).Distinct().ToArray();
+        }
+
+        public static string[] GetCarCountries(string brand, string model, string year, string gearbox, string country, string city)
+        {
+            return GetCarsListByBrandModelYearGearboxCountryCity(brand, model, year, gearbox, country, city).OrderBy(x => x.CarCountry).Select(c => c.CarCountry).Distinct().ToArray();
+        }
+
+        public static string[] GetCarCities(string brand, string model, string year, string gearbox, string country, string city)
+        {
+            return GetCarsListByBrandModelYearGearboxCountryCity(brand, model, year, gearbox, country, city).OrderBy(x => x.CarCity).Select(c => c.CarCity).Distinct().ToArray();
         }
     }
 }

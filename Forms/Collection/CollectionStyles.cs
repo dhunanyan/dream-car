@@ -674,9 +674,12 @@ namespace DreamCar.Forms.Collection
             comboBoxSearchBrand.Size = new System.Drawing.Size(191, 36);
             comboBoxSearchBrand.TabIndex = 0;
             comboBoxSearchBrand.Items.AddRange(new object[] {
-            "All Brands"});
-            comboBoxSearchBrand.SelectedItem = "All Brands";
-            comboBoxSearchBrand.SelectedIndexChanged += new EventHandler(Collection.ComboBoxSearchBrand_SelectedIndexChanged);
+            "--All Brands--"});
+            comboBoxSearchBrand.ItemHeight = 13;
+            comboBoxSearchBrand.DropDownHeight = 260;
+            comboBoxSearchBrand.DropDownStyle = ComboBoxStyle.DropDownList;
+            comboBoxSearchBrand.SelectedItem = "--All Brands--";
+            comboBoxSearchBrand.SelectionChangeCommitted += new EventHandler(Collection.ComboBoxSearchBrand_SelectionChangeCommitted);
             // 
             // comboBoxSearchModel
             // 
@@ -691,9 +694,12 @@ namespace DreamCar.Forms.Collection
             comboBoxSearchModel.Size = new System.Drawing.Size(191, 36);
             comboBoxSearchModel.TabIndex = 1;
             comboBoxSearchModel.Items.AddRange(new object[] {
-            "All Models"});
-            comboBoxSearchModel.SelectedItem = "All Models";
-            comboBoxSearchModel.SelectedIndexChanged += new EventHandler(Collection.ComboBoxSearchModel_SelectedIndexChanged);
+            "--All Models--"});
+            comboBoxSearchModel.ItemHeight = 13;
+            comboBoxSearchModel.DropDownHeight = 260;
+            comboBoxSearchModel.DropDownStyle = ComboBoxStyle.DropDownList;
+            comboBoxSearchModel.SelectedItem = "--All Models--";
+            comboBoxSearchModel.SelectionChangeCommitted += new EventHandler(Collection.ComboBoxSearchModel_SelectionChangeCommitted);
             // 
             // comboBoxSearchYear
             // 
@@ -708,9 +714,12 @@ namespace DreamCar.Forms.Collection
             comboBoxSearchYear.Size = new System.Drawing.Size(191, 36);
             comboBoxSearchYear.TabIndex = 2;
             comboBoxSearchYear.Items.AddRange(new object[] {
-            "All Years"});
-            comboBoxSearchYear.SelectedItem = "All Years";
-            comboBoxSearchYear.SelectedIndexChanged += new EventHandler(Collection.ComboBoxSearchYear_SelectedIndexChanged);
+            "--All Years--"});
+            comboBoxSearchYear.ItemHeight = 13;
+            comboBoxSearchYear.DropDownHeight = 260;
+            comboBoxSearchYear.DropDownStyle = ComboBoxStyle.DropDownList;
+            comboBoxSearchYear.SelectedItem = "--All Years--";
+            comboBoxSearchYear.SelectionChangeCommitted += new EventHandler(Collection.ComboBoxSearchYear_SelectionChangeCommitted);
             // 
             // comboBoxSearchGearbox
             // 
@@ -725,9 +734,12 @@ namespace DreamCar.Forms.Collection
             comboBoxSearchGearbox.Size = new System.Drawing.Size(191, 36);
             comboBoxSearchGearbox.TabIndex = 3;
             comboBoxSearchGearbox.Items.AddRange(new object[] {
-            "All Gearboxes"});
-            comboBoxSearchGearbox.SelectedItem = "All Gearboxes";
-            comboBoxSearchGearbox.SelectedIndexChanged += new EventHandler(Collection.ComboBoxSearchGearbox_SelectedIndexChanged);
+            "--All Gearboxes--"});
+            comboBoxSearchGearbox.ItemHeight = 13;
+            comboBoxSearchGearbox.DropDownHeight = 260;
+            comboBoxSearchGearbox.DropDownStyle = ComboBoxStyle.DropDownList;
+            comboBoxSearchGearbox.SelectedItem = "--All Gearboxes--";
+            comboBoxSearchGearbox.SelectionChangeCommitted += new EventHandler(Collection.ComboBoxSearchGearbox_SelectionChangeCommitted);
             // 
             // buttonLoadMore
             // 
@@ -775,10 +787,13 @@ namespace DreamCar.Forms.Collection
             comboBoxSearchCountry.Name = "comboBoxSearchCountry";
             comboBoxSearchCountry.Size = new System.Drawing.Size(191, 36);
             comboBoxSearchCountry.TabIndex = 5;
+            comboBoxSearchCountry.ItemHeight = 13;
+            comboBoxSearchCountry.DropDownHeight = 260;
+            comboBoxSearchCountry.DropDownStyle = ComboBoxStyle.DropDownList;
             comboBoxSearchCountry.Items.AddRange(new object[] {
-            "All Countries"});
-            comboBoxSearchCountry.SelectedItem = "All Countries";
-            comboBoxSearchCountry.SelectedIndexChanged += new EventHandler(Collection.ComboBoxSearchCountry_SelectedIndexChanged);
+            "--All Countries--"});
+            comboBoxSearchCountry.SelectedItem = "--All Countries--";
+            comboBoxSearchCountry.SelectionChangeCommitted += new EventHandler(Collection.ComboBoxSearchCountry_SelectionChangeCommitted);
             // 
             // comboBoxSearchCity
             // 
@@ -792,10 +807,13 @@ namespace DreamCar.Forms.Collection
             comboBoxSearchCity.Name = "comboBoxSearchCity";
             comboBoxSearchCity.Size = new System.Drawing.Size(191, 36);
             comboBoxSearchCity.TabIndex = 6;
+            comboBoxSearchCity.ItemHeight = 13;
+            comboBoxSearchCity.DropDownHeight = 260;
+            comboBoxSearchCity.DropDownStyle = ComboBoxStyle.DropDownList;
             comboBoxSearchCity.Items.AddRange(new object[] {
-            "All Cities"});
-            comboBoxSearchCity.SelectedItem = "All Cities";
-            comboBoxSearchCity.SelectedIndexChanged += new EventHandler(Collection.ComboBoxSearchCity_SelectedIndexChanged);
+            "--All Cities--"});
+            comboBoxSearchCity.SelectedItem = "--All Cities--";
+            comboBoxSearchCity.SelectionChangeCommitted += new EventHandler(Collection.ComboBoxSearchCity_SelectionChangeCommitted);
             // 
             // textBoxSearchbox
             // 
@@ -906,7 +924,7 @@ namespace DreamCar.Forms.Collection
         private static Label labelCurrentCarGearbox;
         private static Button buttonCurrentCarFav;
         private static Button buttonCurrentCarMore;
-        private static FlowLayoutPanel flowLayoutPanelCarCollection;
+        public static FlowLayoutPanel flowLayoutPanelCarCollection;
         public static Panel panelMain;
 
         // DETAILS
@@ -947,6 +965,6 @@ namespace DreamCar.Forms.Collection
         public static ComboBox comboBoxSearchCity;
         public static TextBox textBoxSearchbox;
         public static Button buttonSearch;
-        private static Button buttonLoadMore;
+        public static Button buttonLoadMore;
     }
 }

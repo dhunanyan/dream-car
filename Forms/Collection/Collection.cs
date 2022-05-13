@@ -2,6 +2,7 @@
 using DreamCar.Helpers;
 using DreamCar.Models;
 using DreamCar.Properties;
+using LinqKit;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -14,6 +15,77 @@ namespace DreamCar.Forms.Collection
     public partial class Collection : Container
     {
         public static int initialCarGenAmount = 6;
+
+        public static Dictionary<string, string> brandDic = new Dictionary<string, string>()
+        {
+            {"CarBrand", "" },
+            {"CarModel", "" },
+            {"CarProdYear", "" },
+            {"CarGearbox", "" },
+            {"CarCountry", "" },
+            {"CarCity", "" },
+        };
+
+        public static Dictionary<string, string> modelDic = new Dictionary<string, string>()
+        {
+            {"CarBrand", "" },
+            {"CarModel", "" },
+            {"CarProdYear", "" },
+            {"CarGearbox", "" },
+            {"CarCountry", "" },
+            {"CarCity", "" },
+        };
+
+        public static Dictionary<string, string> yearDic = new Dictionary<string, string>()
+        {
+            {"CarBrand", "" },
+            {"CarModel", "" },
+            {"CarProdYear", "" },
+            {"CarGearbox", "" },
+            {"CarCountry", "" },
+            {"CarCity", "" },
+        };
+
+        public static Dictionary<string, string> gearboxDic = new Dictionary<string, string>()
+        {
+            {"CarBrand", "" },
+            {"CarModel", "" },
+            {"CarProdYear", "" },
+            {"CarGearbox", "" },
+            {"CarCountry", "" },
+            {"CarCity", "" },
+        };
+
+        public static Dictionary<string, string> countryDic = new Dictionary<string, string>()
+        {
+            {"CarBrand", "" },
+            {"CarModel", "" },
+            {"CarProdYear", "" },
+            {"CarGearbox", "" },
+            {"CarCountry", "" },
+            {"CarCity", "" },
+        };
+
+        public static Dictionary<string, string> cityDic = new Dictionary<string, string>()
+        {
+            {"CarBrand", "" },
+            {"CarModel", "" },
+            {"CarProdYear", "" },
+            {"CarGearbox", "" },
+            {"CarCountry", "" },
+            {"CarCity", "" },
+        };
+
+        public static Dictionary<string, string> searchDic = new Dictionary<string, string>()
+        {
+            {"CarBrand", "" },
+            {"CarModel", "" },
+            {"CarProdYear", "" },
+            {"CarGearbox", "" },
+            {"CarCountry", "" },
+            {"CarCity", "" },
+        };
+
         public Collection()
         {
             CollectionStyles.GerenerateCollectionContainer(this, initialCarGenAmount);
@@ -21,11 +93,21 @@ namespace DreamCar.Forms.Collection
             CollectionStyles.GenerateSearch(this);
             GenerateCollection(initialCarGenAmount, initialCarGenAmount - 6);
             CollectionStyles.InitializeComponent(this);
+
             GenerateComboBoxValues();
         }
 
         public static void ButtonLoadMore_Click(object sender, EventArgs e)
         {
+            if((CollectionStyles.flowLayoutPanelCarCollection.AutoScrollMinSize.Height + 46) / 65 > initialCarGenAmount)
+            {
+                CollectionStyles.buttonLoadMore.Enabled = false;
+            }
+            else
+            {
+                CollectionStyles.buttonLoadMore.Enabled = true;
+
+            }
             initialCarGenAmount += 6;
             GenerateCollection(initialCarGenAmount, initialCarGenAmount - 6);
         }
@@ -37,7 +119,16 @@ namespace DreamCar.Forms.Collection
                 using (DreamCarContext contexInner = new DreamCarContext())
                 {
                     List<Favourite> currentFavRecord = CollectionReq.GetFavsByUsername(contexInner, currentUserUsername);
-                    List<Car> carCollection = CollectionReq.GetCarWithSkipNTake(context, take, skip);
+                    List<Car> carCollection = CollectionReq.GetSearchedCarWithSkipNTake(
+                            CollectionReq.GetCarsListByBrandModelYearGearboxCountryCity(
+                                searchDic["CarBrand"],
+                                searchDic["CarModel"],
+                                searchDic["CarProdYear"],
+                                searchDic["CarGearbox"],
+                                searchDic["CarCountry"],
+                                searchDic["CarCity"]),
+                            take,
+                            skip);
                     CollectionStyles.ChangeCollectionContainerScrollMinSize(take);
                     foreach (var car in carCollection)
                     {
@@ -53,170 +144,246 @@ namespace DreamCar.Forms.Collection
             }
         }
 
+        private static void UpdateComboBoxValues()
+        {
+            CollectionStyles.comboBoxSearchBrand.Items.Clear();
+            CollectionStyles.comboBoxSearchBrand.Items.Add("--All Brands--");
+            CollectionStyles.comboBoxSearchBrand.Items.AddRange(CollectionReq.GetCarBrands(brandDic["CarBrand"], brandDic["CarModel"], brandDic["CarProdYear"], brandDic["CarGearbox"], brandDic["CarCountry"], brandDic["CarCity"]));
+            if (searchDic["CarBrand"] == "")
+            {
+                CollectionStyles.comboBoxSearchBrand.SelectedItem = "--All Brands--";
+
+            }
+            else
+            {
+                CollectionStyles.comboBoxSearchBrand.SelectedItem = searchDic["CarBrand"];
+            }
+
+            CollectionStyles.comboBoxSearchModel.Items.Clear();
+            CollectionStyles.comboBoxSearchModel.Items.Add("--All Models--");
+            CollectionStyles.comboBoxSearchModel.Items.AddRange(CollectionReq.GetCarModels(modelDic["CarBrand"], modelDic["CarModel"], modelDic["CarProdYear"], modelDic["CarGearbox"], modelDic["CarCountry"], modelDic["CarCity"]));
+            if (searchDic["CarModel"] == "")
+            {
+                CollectionStyles.comboBoxSearchModel.SelectedItem = "--All Models--";
+            }
+            else
+            {
+                CollectionStyles.comboBoxSearchModel.SelectedItem = searchDic["CarModel"];
+            }
+
+            CollectionStyles.comboBoxSearchYear.Items.Clear();
+            CollectionStyles.comboBoxSearchYear.Items.Add("--All Years--");
+            CollectionStyles.comboBoxSearchYear.Items.AddRange(CollectionReq.GetCarYears(yearDic["CarBrand"], yearDic["CarModel"], yearDic["CarProdYear"], yearDic["CarGearbox"], yearDic["CarCountry"], yearDic["CarCity"]));
+            if (searchDic["CarProdYear"] == "")
+            {
+                CollectionStyles.comboBoxSearchYear.SelectedItem = "--All Years--";
+            }
+            else
+            {
+                CollectionStyles.comboBoxSearchYear.SelectedItem = searchDic["CarProdYear"];
+            }
+
+            CollectionStyles.comboBoxSearchGearbox.Items.Clear();
+            CollectionStyles.comboBoxSearchGearbox.Items.Add("--All Gearboxes--");
+            CollectionStyles.comboBoxSearchGearbox.Items.AddRange(CollectionReq.GetCarGearboxes(gearboxDic["CarBrand"], gearboxDic["CarModel"], gearboxDic["CarProdYear"], gearboxDic["CarGearbox"], gearboxDic["CarCountry"], gearboxDic["CarCity"]));
+            if (searchDic["CarGearbox"] == "")
+            {
+                CollectionStyles.comboBoxSearchGearbox.SelectedItem = "--All Gearboxes--";
+            }
+            else
+            {
+                CollectionStyles.comboBoxSearchGearbox.SelectedItem = searchDic["CarGearbox"];
+            }
+
+            CollectionStyles.comboBoxSearchCountry.Items.Clear();
+            CollectionStyles.comboBoxSearchCountry.Items.Add("--All Countries--");
+            CollectionStyles.comboBoxSearchCountry.Items.AddRange(CollectionReq.GetCarCountries(countryDic["CarBrand"], countryDic["CarModel"], countryDic["CarProdYear"], countryDic["CarGearbox"], countryDic["CarCountry"], countryDic["CarCity"]));
+            if (searchDic["CarCountry"] == "")
+            {
+                CollectionStyles.comboBoxSearchCountry.SelectedItem = "--All Countries--";
+            }
+            else
+            {
+                CollectionStyles.comboBoxSearchCountry.SelectedItem = searchDic["CarCountry"];
+            }
+
+            CollectionStyles.comboBoxSearchCity.Items.Clear();
+            CollectionStyles.comboBoxSearchCity.Items.Add("--All Cities--");
+            CollectionStyles.comboBoxSearchCity.Items.AddRange(CollectionReq.GetCarCities(cityDic["CarBrand"], cityDic["CarModel"], cityDic["CarProdYear"], cityDic["CarGearbox"], cityDic["CarCountry"], cityDic["CarCity"]));
+            if (searchDic["CarCity"] == "")
+            {
+                CollectionStyles.comboBoxSearchCity.SelectedItem = "--All Cities--";
+            }
+            else
+            {
+                CollectionStyles.comboBoxSearchCity.SelectedItem = searchDic["CarCity"];
+            }
+        }
+
         public static void GenerateComboBoxValues()
         {
-            using(DreamCarContext context = new DreamCarContext())
+            UpdateComboBoxValues();
+        }
+
+        public static void ComboBoxSearchBrand_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+            if(CollectionStyles.comboBoxSearchBrand.SelectedItem.ToString() == "--All Brands--")
             {
-                context.Cars.ToList().ForEach(car => {
-                    if (!CollectionStyles.comboBoxSearchBrand.Items.Contains(car.CarBrand))
-                    {
-                        CollectionStyles.comboBoxSearchBrand.Items.Add(car.CarBrand);
-                    }
-
-                    if (!CollectionStyles.comboBoxSearchModel.Items.Contains(car.CarModel))
-                    {
-                        CollectionStyles.comboBoxSearchModel.Items.Add(car.CarModel);
-                    }
-
-                    if (!CollectionStyles.comboBoxSearchYear.Items.Contains(car.CarProdYear))
-                    {
-                        CollectionStyles.comboBoxSearchYear.Items.Add(car.CarProdYear);
-                    }
-
-                    if (!CollectionStyles.comboBoxSearchGearbox.Items.Contains(car.CarGearbox))
-                    {
-                        CollectionStyles.comboBoxSearchGearbox.Items.Add(car.CarGearbox);
-                    }
-
-                    if (!CollectionStyles.comboBoxSearchCountry.Items.Contains(car.CarCountry))
-                    {
-                        CollectionStyles.comboBoxSearchCountry.Items.Add(car.CarCountry);
-                    }
-
-                    if (!CollectionStyles.comboBoxSearchCity.Items.Contains(car.CarCity))
-                    {
-                        CollectionStyles.comboBoxSearchCity.Items.Add(car.CarCity);
-                    }
-                });
+                modelDic["CarBrand"] = "";
+                yearDic["CarBrand"] = "";
+                gearboxDic["CarBrand"] = "";
+                countryDic["CarBrand"] = "";
+                cityDic["CarBrand"] = "";
+                searchDic["CarBrand"] = "";
             }
-        }
-
-        public static void ComboBoxSearchBrand_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if(!(CollectionStyles.comboBoxSearchBrand.SelectedItem.ToString() == "All Brands"))
+            else
             {
-                if (CollectionStyles.comboBoxSearchModel.SelectedItem.ToString() == "All Models")
-                {
-                    CollectionStyles.comboBoxSearchModel.Items.Clear();
-                }
-
-                if (CollectionStyles.comboBoxSearchYear.SelectedItem.ToString() == "All Years")
-                {
-                    CollectionStyles.comboBoxSearchYear.Items.Clear();
-                }
-
-                if (CollectionStyles.comboBoxSearchGearbox.SelectedItem.ToString() == "All Gearboxes")
-                {
-                    CollectionStyles.comboBoxSearchGearbox.Items.Clear();
-                }
-
-                if (CollectionStyles.comboBoxSearchCountry.SelectedItem.ToString() == "All Countries")
-                {
-                    CollectionStyles.comboBoxSearchCountry.Items.Clear();
-                }
-
-                if (CollectionStyles.comboBoxSearchCity.SelectedItem.ToString() == "All Cities")
-                {
-                    CollectionStyles.comboBoxSearchCity.Items.Clear();
-                }
-                using (DreamCarContext context = new DreamCarContext())
-                {
-                    List<Car> allCars = context.Cars.ToList();
-                    List<Car> selectedCars = CollectionReq.GetCarsListByBrand(allCars, CollectionStyles.comboBoxSearchBrand.SelectedItem.ToString());
-                    selectedCars.ForEach(car => {
-                        if (!CollectionStyles.comboBoxSearchModel.Items.Contains(car.CarModel))
-                        {
-                            if(CollectionStyles.comboBoxSearchModel.SelectedItem.ToString() == "All Models")
-                            {
-                                CollectionStyles.comboBoxSearchModel.Items.Add(car.CarModel);
-                            }
-                            else
-                            {
-                                CollectionStyles.comboBoxSearchModel.Items.Add(CollectionStyles.comboBoxSearchModel.SelectedItem);
-                            }
-                        }
-
-                        if (!CollectionStyles.comboBoxSearchYear.Items.Contains(car.CarProdYear))
-                        {
-                            if (CollectionStyles.comboBoxSearchYear.SelectedItem.ToString() == "All Years")
-                            {
-                                CollectionStyles.comboBoxSearchYear.Items.Add(car.CarProdYear);
-                            }
-                            else
-                            {
-                                CollectionStyles.comboBoxSearchYear.Items.Add(CollectionStyles.comboBoxSearchYear.SelectedItem);
-                            }
-                        }
-
-                        if (!CollectionStyles.comboBoxSearchGearbox.Items.Contains(car.CarGearbox))
-                        {
-                            if (CollectionStyles.comboBoxSearchGearbox.SelectedItem.ToString() == "All Gearboxes")
-                            {
-                                CollectionStyles.comboBoxSearchGearbox.Items.Add(car.CarGearbox);
-                            }
-                            else
-                            {
-                                CollectionStyles.comboBoxSearchGearbox.Items.Add(CollectionStyles.comboBoxSearchGearbox.SelectedItem);
-                            }
-                        }
-
-                        if (!CollectionStyles.comboBoxSearchCountry.Items.Contains(car.CarCountry))
-                        {
-                            if (CollectionStyles.comboBoxSearchCountry.SelectedItem.ToString() == "All Countries")
-                            {
-                                CollectionStyles.comboBoxSearchCountry.Items.Add(car.CarCountry);
-
-                            }
-                            else
-                            {
-                                CollectionStyles.comboBoxSearchCountry.Items.Add(CollectionStyles.comboBoxSearchCountry.SelectedItem);
-                            }
-                        }
-
-                        if (!CollectionStyles.comboBoxSearchCity.Items.Contains(car.CarCity))
-                        {
-                            if (CollectionStyles.comboBoxSearchCity.SelectedItem.ToString() == "All Cities")
-                            {
-                                CollectionStyles.comboBoxSearchCity.Items.Add(car.CarCity);
-                            }
-                            else
-                            {
-                                CollectionStyles.comboBoxSearchCity.Items.Add(CollectionStyles.comboBoxSearchCity.SelectedItem);
-                            }
-                        }
-                    });
-                }
+                modelDic["CarBrand"] = CollectionStyles.comboBoxSearchBrand.SelectedItem.ToString();
+                yearDic["CarBrand"] = CollectionStyles.comboBoxSearchBrand.SelectedItem.ToString();
+                gearboxDic["CarBrand"] = CollectionStyles.comboBoxSearchBrand.SelectedItem.ToString();
+                countryDic["CarBrand"] = CollectionStyles.comboBoxSearchBrand.SelectedItem.ToString();
+                cityDic["CarBrand"] = CollectionStyles.comboBoxSearchBrand.SelectedItem.ToString();
+                searchDic["CarBrand"] = CollectionStyles.comboBoxSearchBrand.SelectedItem.ToString();
             }
+
+            UpdateComboBoxValues();
         }
 
-        public static void ComboBoxSearchModel_SelectedIndexChanged(object sender, EventArgs e)
+        public static void ComboBoxSearchModel_SelectionChangeCommitted(object sender, EventArgs e)
         {
+            if (CollectionStyles.comboBoxSearchModel.SelectedItem.ToString() == "--All Models--")
+            {
+                brandDic["CarModel"] = "";
+                yearDic["CarModel"] = "";
+                gearboxDic["CarModel"] = "";
+                countryDic["CarModel"] = "";
+                cityDic["CarModel"] = "";
+                searchDic["CarModel"] = "";
+            }
+            else
+            {
+                brandDic["CarModel"] = CollectionStyles.comboBoxSearchModel.SelectedItem.ToString();
+                yearDic["CarModel"] = CollectionStyles.comboBoxSearchModel.SelectedItem.ToString();
+                gearboxDic["CarModel"] = CollectionStyles.comboBoxSearchModel.SelectedItem.ToString();
+                countryDic["CarModel"] = CollectionStyles.comboBoxSearchModel.SelectedItem.ToString();
+                cityDic["CarModel"] = CollectionStyles.comboBoxSearchModel.SelectedItem.ToString();
+                searchDic["CarModel"] = CollectionStyles.comboBoxSearchModel.SelectedItem.ToString();
+            }
 
+            UpdateComboBoxValues();
         }
 
-        public static void ComboBoxSearchYear_SelectedIndexChanged(object sender, EventArgs e)
+        public static void ComboBoxSearchYear_SelectionChangeCommitted(object sender, EventArgs e)
         {
+            if (CollectionStyles.comboBoxSearchYear.SelectedItem.ToString() == "--All Years--")
+            {
+                modelDic["CarProdYear"] = "";
+                brandDic["CarProdYear"] = "";
+                gearboxDic["CarProdYear"] = "";
+                countryDic["CarProdYear"] = "";
+                cityDic["CarProdYear"] = "";
+                searchDic["CarProdYear"] = "";
+            }
+            else
+            {
+                modelDic["CarProdYear"] = CollectionStyles.comboBoxSearchYear.SelectedItem.ToString();
+                brandDic["CarProdYear"] = CollectionStyles.comboBoxSearchYear.SelectedItem.ToString();
+                gearboxDic["CarProdYear"] = CollectionStyles.comboBoxSearchYear.SelectedItem.ToString();
+                countryDic["CarProdYear"] = CollectionStyles.comboBoxSearchYear.SelectedItem.ToString();
+                cityDic["CarProdYear"] = CollectionStyles.comboBoxSearchYear.SelectedItem.ToString();
+                searchDic["CarProdYear"] = CollectionStyles.comboBoxSearchYear.SelectedItem.ToString();
+            }
 
+            UpdateComboBoxValues();
         }
 
-        public static void ComboBoxSearchGearbox_SelectedIndexChanged(object sender, EventArgs e)
+        public static void ComboBoxSearchGearbox_SelectionChangeCommitted(object sender, EventArgs e)
         {
+            if (CollectionStyles.comboBoxSearchGearbox.SelectedItem.ToString() == "--All Gearboxes--")
+            {
+                modelDic["CarGearbox"] = "";
+                yearDic["CarGearbox"] = "";
+                brandDic["CarGearbox"] = "";
+                countryDic["CarGearbox"] = "";
+                cityDic["CarGearbox"] = "";
+                searchDic["CarGearbox"] = "";
+            }
+            else
+            {
+                modelDic["CarGearbox"] = CollectionStyles.comboBoxSearchGearbox.SelectedItem.ToString();
+                yearDic["CarGearbox"] = CollectionStyles.comboBoxSearchGearbox.SelectedItem.ToString();
+                brandDic["CarGearbox"] = CollectionStyles.comboBoxSearchGearbox.SelectedItem.ToString();
+                countryDic["CarGearbox"] = CollectionStyles.comboBoxSearchGearbox.SelectedItem.ToString();
+                cityDic["CarGearbox"] = CollectionStyles.comboBoxSearchGearbox.SelectedItem.ToString();
+                searchDic["CarGearbox"] = CollectionStyles.comboBoxSearchGearbox.SelectedItem.ToString();
+            }
 
+            UpdateComboBoxValues();
         }
 
-        public static void ComboBoxSearchCountry_SelectedIndexChanged(object sender, EventArgs e)
+        public static void ComboBoxSearchCountry_SelectionChangeCommitted(object sender, EventArgs e)
         {
+            if (CollectionStyles.comboBoxSearchCountry.SelectedItem.ToString() == "--All Countries--")
+            {
+                modelDic["CarCountry"] = "";
+                yearDic["CarCountry"] = "";
+                gearboxDic["CarCountry"] = "";
+                brandDic["CarCountry"] = "";
+                cityDic["CarCountry"] = "";
+                searchDic["CarCountry"] = "";
+            }
+            else
+            {
+                modelDic["CarCountry"] = CollectionStyles.comboBoxSearchCountry.SelectedItem.ToString();
+                yearDic["CarCountry"] = CollectionStyles.comboBoxSearchCountry.SelectedItem.ToString();
+                gearboxDic["CarCountry"] = CollectionStyles.comboBoxSearchCountry.SelectedItem.ToString();
+                brandDic["CarCountry"] = CollectionStyles.comboBoxSearchCountry.SelectedItem.ToString();
+                cityDic["CarCountry"] = CollectionStyles.comboBoxSearchCountry.SelectedItem.ToString();
+                searchDic["CarCountry"] = CollectionStyles.comboBoxSearchCountry.SelectedItem.ToString();
+            }
 
+            UpdateComboBoxValues();
         }
 
-        public static void ComboBoxSearchCity_SelectedIndexChanged(object sender, EventArgs e)
+        public static void ComboBoxSearchCity_SelectionChangeCommitted(object sender, EventArgs e)
         {
+            if (CollectionStyles.comboBoxSearchCity.SelectedItem.ToString() == "--All Cities--")
+            {
+                modelDic["CarCity"] = "";
+                yearDic["CarCity"] = "";
+                gearboxDic["CarCity"] = "";
+                countryDic["CarCity"] = "";
+                brandDic["CarCity"] = "";
+                searchDic["CarCity"] = "";
+            }
+            else
+            {
+                modelDic["CarCity"] = CollectionStyles.comboBoxSearchCity.SelectedItem.ToString();
+                yearDic["CarCity"] = CollectionStyles.comboBoxSearchCity.SelectedItem.ToString();
+                gearboxDic["CarCity"] = CollectionStyles.comboBoxSearchCity.SelectedItem.ToString();
+                countryDic["CarCity"] = CollectionStyles.comboBoxSearchCity.SelectedItem.ToString();
+                brandDic["CarCity"] = CollectionStyles.comboBoxSearchCity.SelectedItem.ToString();
+                searchDic["CarCity"] = CollectionStyles.comboBoxSearchCity.SelectedItem.ToString();
+            }
 
+            UpdateComboBoxValues();
         }
 
         public static void ButtonSearch_Click(object sender, EventArgs e)
         {
-
+            initialCarGenAmount = 6;
+            CollectionStyles.flowLayoutPanelCarCollection.Controls.Clear();
+            GenerateCollection(initialCarGenAmount, initialCarGenAmount - 6);
+            if ((CollectionStyles.flowLayoutPanelCarCollection.AutoScrollMinSize.Height - 25) / 65 > CollectionStyles.flowLayoutPanelCarCollection.Controls.Count)
+            {
+                CollectionStyles.buttonLoadMore.Enabled = false;
+            }
+            else
+            {
+                CollectionStyles.buttonLoadMore.Enabled = true;
+            }
+            Console.WriteLine((CollectionStyles.flowLayoutPanelCarCollection.AutoScrollMinSize.Height + 46) / 65);
+            Console.WriteLine(CollectionStyles.flowLayoutPanelCarCollection.Controls.Count);
         }
 
         public static async void ButtonCurrentCarMore_Click(object sender, EventArgs e)

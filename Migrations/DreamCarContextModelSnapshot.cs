@@ -159,6 +159,10 @@ namespace DreamCar.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("ReservationDate")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.HasKey("ReservationId");
 
                     b.HasIndex("CarId");

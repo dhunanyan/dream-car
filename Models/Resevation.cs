@@ -9,6 +9,7 @@ namespace DreamCar.Models
         [Key]
         public int ReservationId { get; set; }
         public string ReservationAuthor { get; set; } = null!;
+        public string ReservationDate { get; set; } = null!;
 
         public int? CarId { get; set; }
         public Car Car { get; set; } = null!;

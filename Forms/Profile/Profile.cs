@@ -39,6 +39,16 @@ namespace DreamCar.Forms.Profile
             //    SignIn.Visible = true;
         }
 
+        private void comboBox1_DropDown(object sender, EventArgs e)
+        {
+
+        }
+
+        private void comboBox1_DropDownClosed(object sender, EventArgs e)
+        {
+
+        }
+
         //private Color SelectThemeColor(string buttonName)
         //{
         //    //string color = ThemeColor.colorList[buttonName];
