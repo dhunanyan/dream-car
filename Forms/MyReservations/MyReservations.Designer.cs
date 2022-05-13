@@ -1,6 +1,6 @@
-﻿namespace DreamCar.Forms.Collection
+﻿namespace DreamCar.Forms.MyReservations
 {
-    public partial class Collection
+    partial class MyReservations
     {
         /// <summary>
         /// Required designer variable.
@@ -28,17 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.SuspendLayout();
-            // 
-            // Collection
-            // 
-            this.ClientSize = new System.Drawing.Size(284, 261);
-            this.Name = "Collection";
-            this.ResumeLayout(false);
-
+            this.components = new System.ComponentModel.Container();
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Text = "MyReservations";
         }
 
         #endregion
-
     }
 }

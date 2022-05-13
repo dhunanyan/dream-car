@@ -6,11 +6,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace DreamCar.Forms.MyCollection
+namespace DreamCar.Forms.MyReservations
 {
-    public partial class MyCollectionStyles
+    public partial class MyReservationsStyles
     {
-        public MyCollectionStyles()
+        public MyReservationsStyles()
         {
             //Console.WriteLine(currentUser);
         }
@@ -40,7 +40,7 @@ namespace DreamCar.Forms.MyCollection
                 labelEmpty.Name = "labelEmpty";
                 labelEmpty.Size = new Size(950, 65 * 6);
                 labelEmpty.TabIndex = 0;
-                labelEmpty.Text = "Your Collection list is empty go to publish to post some cars";
+                labelEmpty.Text = "Your Reservations list is empty go to collection and choose a car to reserve";
                 labelEmpty.TextAlign = ContentAlignment.MiddleCenter;
             }
             else
@@ -68,7 +68,7 @@ namespace DreamCar.Forms.MyCollection
             buttonLoadMore.Text = "Load More";
             buttonLoadMore.UseVisualStyleBackColor = true;
             buttonLoadMore.Cursor = Cursors.Hand;
-            buttonLoadMore.Click += new EventHandler(MyCollection.ButtonLoadMore_Click);
+            buttonLoadMore.Click += new EventHandler(MyReservations.ButtonLoadMore_Click);
             form.Controls.Add(buttonLoadMore);
             buttonLoadMore.BringToFront();
         }

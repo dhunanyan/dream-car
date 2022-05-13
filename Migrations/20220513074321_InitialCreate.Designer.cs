@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DreamCar.Migrations
 {
     [DbContext(typeof(DreamCarContext))]
-    [Migration("20220513015518_InitialCreate")]
+    [Migration("20220513074321_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

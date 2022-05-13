@@ -249,7 +249,9 @@ namespace DreamCar.Forms.Collection
             string startDate, 
             string endDate, 
             string imgUrl,
-            bool isFav)
+            float price,
+            bool isFav,
+            bool isReserved)
             {
             flowLayoutPanelPopup = new FlowLayoutPanel();
             panelPopupTop = new Panel();
@@ -273,6 +275,7 @@ namespace DreamCar.Forms.Collection
             flowLayoutPanelPopupDates = new FlowLayoutPanel();
             labelPopupStartDate = new Label();
             labelPopupBetweenDates = new Label();
+            labelPopupPrice = new Label();
             labelPopupEndDate = new Label();
             buttonPopupReserve = new Button();
             buttonPopupFav = new Button();
@@ -326,6 +329,7 @@ namespace DreamCar.Forms.Collection
             flowLayoutPanelPopupContainer.Controls.Add(panelPopupImg);
             flowLayoutPanelPopupContainer.Controls.Add(flowLayoutPanelPopupContent);
             flowLayoutPanelPopupContainer.Controls.Add(flowLayoutPanelPopupTags);
+            flowLayoutPanelPopupContainer.Controls.Add(labelPopupPrice);
             flowLayoutPanelPopupContainer.Controls.Add(flowLayoutPanelPopupDatesContainer);
             flowLayoutPanelPopupContainer.Controls.Add(buttonPopupReserve);
             flowLayoutPanelPopupContainer.Controls.Add(buttonPopupFav);
@@ -472,10 +476,24 @@ namespace DreamCar.Forms.Collection
             flowLayoutPanelPopupTags.Controls.Add(labelPopupTag);
             flowLayoutPanelPopupTags.Controls.Add(labelPopupTags);
             flowLayoutPanelPopupTags.Location = new System.Drawing.Point(30, 316);
-            flowLayoutPanelPopupTags.Margin = new Padding(0, 15, 0, 0);
+            flowLayoutPanelPopupTags.Margin = new Padding(0, 15, 15, 0);
             flowLayoutPanelPopupTags.Name = "flowLayoutPanelPopupTags" + "." + carId;
-            flowLayoutPanelPopupTags.Size = new System.Drawing.Size(737, 51);
+            flowLayoutPanelPopupTags.Size = new System.Drawing.Size(582, 51);
             flowLayoutPanelPopupTags.TabIndex = 2;
+            // 
+            // labelPopupPrice
+            // 
+            labelPopupPrice.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(106)))), ((int)(((byte)(184)))), ((int)(((byte)(119)))));
+            labelPopupPrice.Font = new System.Drawing.Font("Tw Cen MT Condensed", 18F, System.Drawing.FontStyle.Bold);
+            labelPopupPrice.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(225)))), ((int)(((byte)(225)))));
+            labelPopupPrice.Location = new System.Drawing.Point(0, 0);
+            labelPopupPrice.Margin = new Padding(0);
+            labelPopupPrice.Name = "labelPopupPrice" + "." + carId;
+            labelPopupPrice.Margin = new Padding(0, 15, 0, 0);
+            labelPopupPrice.Size = new System.Drawing.Size(140, 51);
+            labelPopupPrice.TabIndex = 9;
+            labelPopupPrice.Text = price.ToString() + "zł";
+            labelPopupPrice.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // labelPopupTag
             // 
@@ -500,7 +518,7 @@ namespace DreamCar.Forms.Collection
             labelPopupTags.Size = new System.Drawing.Size(631, 51);
             labelPopupTags.TabIndex = 10;
             labelPopupTags.Text = tags;
-            labelPopupTags.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            labelPopupTags.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // flowLayoutPanelPopupDatesContainer
             // 
@@ -563,6 +581,14 @@ namespace DreamCar.Forms.Collection
             // 
             // dateTimePickerPopupDate
             // 
+            if (isReserved)
+            {
+                dateTimePickerPopupDate.Enabled = false;
+            }
+            else
+            {
+                dateTimePickerPopupDate.Enabled = true;
+            }
             string[] maxDate = endDate.Split('/');
             string[] minDate = startDate.Split('/');
             dateTimePickerPopupDate.CalendarForeColor = Color.FromArgb(((int)(((byte)(65)))), ((int)(((byte)(65)))), ((int)(((byte)(65)))));
@@ -585,18 +611,30 @@ namespace DreamCar.Forms.Collection
             // 
             // buttonPopupReserve
             // 
-            buttonPopupReserve.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(106)))), ((int)(((byte)(184)))), ((int)(((byte)(119)))));
+            if (isReserved)
+            {
+                buttonPopupReserve.Text = "Reserved";
+                buttonPopupReserve.Enabled = false;
+                buttonPopupReserve.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
+                buttonPopupReserve.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(225)))), ((int)(((byte)(225)))));
+            }
+            else
+            {
+                buttonPopupReserve.Text = "Reserve";
+                buttonPopupReserve.Enabled = true;
+                buttonPopupReserve.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(106)))), ((int)(((byte)(184)))), ((int)(((byte)(119)))));
+                buttonPopupReserve.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(225)))), ((int)(((byte)(225)))));
+            }
             buttonPopupReserve.FlatStyle = FlatStyle.Flat;
             buttonPopupReserve.Font = new System.Drawing.Font("Tw Cen MT Condensed", 38F, System.Drawing.FontStyle.Bold);
-            buttonPopupReserve.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(225)))), ((int)(((byte)(225)))));
             buttonPopupReserve.Location = new System.Drawing.Point(417, 442);
             buttonPopupReserve.Margin = new Padding(15, 15, 0, 0);
             buttonPopupReserve.Name = "buttonPopupReserve" + "." + carId;
             buttonPopupReserve.Size = new System.Drawing.Size(231, 104);
             buttonPopupReserve.TabIndex = 3;
-            buttonPopupReserve.Text = "Reserve";
             buttonPopupReserve.UseVisualStyleBackColor = false;
             buttonPopupReserve.Cursor = Cursors.Hand;
+            buttonPopupReserve.Click += new EventHandler(Collection.ButtonPopupReserve_Click);
             // 
             // buttonPopupFav
             // 
@@ -941,6 +979,7 @@ namespace DreamCar.Forms.Collection
         private static Label labelPopupProdYear;
         private static Label labelPopupCapacity;
         private static Label labelPopupUsername;
+        private static Label labelPopupPrice;
         private static Button buttonPopupClose;
         private static Label labelPopupTag;
         private static FlowLayoutPanel flowLayoutPanelPopupTags;
@@ -949,7 +988,7 @@ namespace DreamCar.Forms.Collection
         private static Label labelPopupStartDate;
         private static Label labelPopupEndDate;
         private static Label labelPopupBetweenDates;
-        private static Button buttonPopupReserve;
+        public static Button buttonPopupReserve;
         public static Button buttonPopupFav;
         private static FlowLayoutPanel flowLayoutPanelPopupDates;
         public static DateTimePicker dateTimePickerPopupDate;

@@ -17,10 +17,12 @@ namespace DreamCar.Forms.MyFavourites
 
         public static void UpdateStyles(int take)
         {
+            flowLayoutPanelCarCollection.AutoScroll = false;
+            flowLayoutPanelCarCollection.AutoScrollMinSize = new Size(0, 0);
             flowLayoutPanelCarCollection.Location = new Point(take == 6 ? 25 : 15, 100);
             flowLayoutPanelCarCollection.AutoScroll = true;
             flowLayoutPanelCarCollection.AutoScrollMinSize = new Size(0, (65 * take) + 25);
-            flowLayoutPanelCarCollection.MinimumSize = new Size(take == 6 ? 1020 : 1040, take == 6 ? 65 * 6 + 25 : 65 * 6 + 50);
+            flowLayoutPanelCarCollection.MinimumSize = new Size(take == 6 ? 1020 : 1040, take == 6 ? 65 * 6 + 35 : 65 * 6 + 50);
         }
 
         public static void EmptyFlow()
@@ -38,7 +40,7 @@ namespace DreamCar.Forms.MyFavourites
                 labelEmpty.Name = "labelEmpty";
                 labelEmpty.Size = new Size(950, 65 * 6);
                 labelEmpty.TabIndex = 0;
-                labelEmpty.Text = "You Favourites list is empty go to collection to add cars here";
+                labelEmpty.Text = "Your Favourites list is empty go to collection to add cars here";
                 labelEmpty.TextAlign = ContentAlignment.MiddleCenter;
             }
             else
@@ -47,11 +49,36 @@ namespace DreamCar.Forms.MyFavourites
             }
         }
 
+        public static void CreateLoadMoreButton(Form form)
+        {
+            // 
+            // buttonLoadMore
+            // 
+            buttonLoadMore = new Button();
+            buttonLoadMore.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(106)))), ((int)(((byte)(184)))), ((int)(((byte)(119)))));
+            buttonLoadMore.FlatAppearance.BorderSize = 0;
+            buttonLoadMore.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            buttonLoadMore.Font = new System.Drawing.Font("Tw Cen MT Condensed", 18F);
+            buttonLoadMore.ForeColor = System.Drawing.Color.Gainsboro;
+            buttonLoadMore.Location = new System.Drawing.Point(50, 65);
+            buttonLoadMore.Margin = new System.Windows.Forms.Padding(0);
+            buttonLoadMore.Name = "buttonLoadMore";
+            buttonLoadMore.Size = new System.Drawing.Size(191, 36);
+            buttonLoadMore.TabIndex = 4;
+            buttonLoadMore.Text = "Load More";
+            buttonLoadMore.UseVisualStyleBackColor = true;
+            buttonLoadMore.Cursor = Cursors.Hand;
+            buttonLoadMore.Click += new EventHandler(MyFavourites.ButtonLoadMore_Click);
+            form.Controls.Add(buttonLoadMore);
+            buttonLoadMore.BringToFront();
+        }
+
 
         // COLLECTION
         public static FlowLayoutPanel flowLayoutPanelCarCollection;
         public static Panel panelMain;
         public static Label labelEmpty;
+        public static Button buttonLoadMore;
 
         // DETAILS
         public static FlowLayoutPanel flowLayoutPanelPopup;

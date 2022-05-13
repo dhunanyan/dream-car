@@ -27,6 +27,7 @@ namespace DreamCar.Forms.Profile
             buttonMyProfile = new System.Windows.Forms.Button();
             buttonMyCollection = new System.Windows.Forms.Button();
             buttonMyFavourites = new System.Windows.Forms.Button();
+            buttonMyReservations = new System.Windows.Forms.Button();
             labelTitle = new System.Windows.Forms.Label();
             panelMain = new System.Windows.Forms.Panel();
             panelMenu.SuspendLayout();
@@ -38,6 +39,7 @@ namespace DreamCar.Forms.Profile
             panelMenu.Controls.Add(buttonMyProfile);
             panelMenu.Controls.Add(buttonMyCollection);
             panelMenu.Controls.Add(buttonMyFavourites);
+            panelMenu.Controls.Add(buttonMyReservations);
             panelMenu.Dock = System.Windows.Forms.DockStyle.Top;
             panelMenu.Location = new System.Drawing.Point(0, 0);
             panelMenu.Margin = new System.Windows.Forms.Padding(2);
@@ -60,7 +62,7 @@ namespace DreamCar.Forms.Profile
             buttonMyProfile.Margin = new System.Windows.Forms.Padding(0);
             buttonMyProfile.Name = "buttonMyProfile";
             buttonMyProfile.Padding = new System.Windows.Forms.Padding(7, 6, 7, 6);
-            buttonMyProfile.Size = new System.Drawing.Size(362, 58);
+            buttonMyProfile.Size = new System.Drawing.Size(271, 58);
             buttonMyProfile.TabIndex = 3;
             buttonMyProfile.Text = "My Profile";
             buttonMyProfile.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -84,7 +86,7 @@ namespace DreamCar.Forms.Profile
             buttonMyCollection.Margin = new System.Windows.Forms.Padding(0);
             buttonMyCollection.Name = "buttonMyCollection";
             buttonMyCollection.Padding = new System.Windows.Forms.Padding(7, 6, 7, 6);
-            buttonMyCollection.Size = new System.Drawing.Size(362, 58);
+            buttonMyCollection.Size = new System.Drawing.Size(271, 58);
             buttonMyCollection.TabIndex = 2;
             buttonMyCollection.Text = "My Collection";
             buttonMyCollection.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -108,7 +110,7 @@ namespace DreamCar.Forms.Profile
             buttonMyFavourites.Margin = new System.Windows.Forms.Padding(0);
             buttonMyFavourites.Name = "buttonMyFavourites";
             buttonMyFavourites.Padding = new System.Windows.Forms.Padding(7, 6, 7, 6);
-            buttonMyFavourites.Size = new System.Drawing.Size(362, 58);
+            buttonMyFavourites.Size = new System.Drawing.Size(271, 58);
             buttonMyFavourites.TabIndex = 1;
             buttonMyFavourites.Text = "My Favourites";
             buttonMyFavourites.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -116,6 +118,30 @@ namespace DreamCar.Forms.Profile
             buttonMyFavourites.EnabledChanged += new System.EventHandler(Profile.ButtonMyFavourites_EnabledChanged);
             buttonMyFavourites.Click += new System.EventHandler(Profile.ButtonMyFavourites_Click);
             buttonMyFavourites.Paint += new System.Windows.Forms.PaintEventHandler(buttonFavourites_Paint);
+            // 
+            // buttonMyReservations
+            // 
+            buttonMyReservations.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            buttonMyReservations.Cursor = System.Windows.Forms.Cursors.Hand;
+            buttonMyReservations.Dock = System.Windows.Forms.DockStyle.Top;
+            buttonMyReservations.FlatAppearance.BorderSize = 0;
+            buttonMyReservations.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            buttonMyReservations.Font = new System.Drawing.Font("Tw Cen MT Condensed", 18F, System.Drawing.FontStyle.Bold);
+            buttonMyReservations.ForeColor = System.Drawing.Color.Gainsboro;
+            buttonMyReservations.Image = Resources.myReservations;
+            buttonMyReservations.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            buttonMyReservations.Location = new System.Drawing.Point(0, 58);
+            buttonMyReservations.Margin = new System.Windows.Forms.Padding(0);
+            buttonMyReservations.Name = "buttonMyReservations";
+            buttonMyReservations.Padding = new System.Windows.Forms.Padding(7, 6, 7, 6);
+            buttonMyReservations.Size = new System.Drawing.Size(271, 58);
+            buttonMyReservations.TabIndex = 1;
+            buttonMyReservations.Text = "My Reservations";
+            buttonMyReservations.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            buttonMyReservations.UseVisualStyleBackColor = true;
+            buttonMyReservations.EnabledChanged += new System.EventHandler(Profile.ButtonMyReservations_EnabledChanged);
+            buttonMyReservations.Click += new System.EventHandler(Profile.ButtonMyReservations_Click);
+            buttonMyReservations.Paint += new System.Windows.Forms.PaintEventHandler(ButtonReservations_Paint);
             // 
             // panelTitleBar
             // 
@@ -236,6 +262,22 @@ namespace DreamCar.Forms.Profile
             sf.Dispose();
         }
 
+        public static void ButtonReservations_Paint(object sender, PaintEventArgs e)
+        {
+            Button currentButton = (Button)sender;
+            buttonMyReservations.ForeColor = Color.Gainsboro;
+            SolidBrush drawBrush = new SolidBrush(currentButton.ForeColor);
+            StringFormat sf = new StringFormat
+            {
+                Alignment = StringAlignment.Center,
+                LineAlignment = StringAlignment.Center
+            };
+            buttonMyReservations.Text = string.Empty;
+            e.Graphics.DrawString("My Reservations", currentButton.Font, drawBrush, e.ClipRectangle, sf);
+            drawBrush.Dispose();
+            sf.Dispose();
+        }
+
         public static Panel panelMain;
         public static Panel panelTitleBar;
         public static FlowLayoutPanel panelMenu;
@@ -244,6 +286,7 @@ namespace DreamCar.Forms.Profile
         public static Label labelTitle;
 
         public static Button buttonMyFavourites;
+        public static Button buttonMyReservations;
         public static Button buttonMyProfile;
         public static Button buttonMyCollection;
     }

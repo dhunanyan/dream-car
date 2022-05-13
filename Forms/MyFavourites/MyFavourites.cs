@@ -21,6 +21,21 @@ namespace DreamCar.Forms.MyFavourites
             Collection.Collection.GenerateFavsCollection(MyFavouritesStyles.flowLayoutPanelCarCollection, initialCarGenAmount, initialCarGenAmount - 6);
             MyFavouritesStyles.UpdateStyles(initialCarGenAmount);
             MyFavouritesStyles.EmptyFlow();
+            MyFavouritesStyles.CreateLoadMoreButton(this);
+        }
+
+        public static void ButtonLoadMore_Click(object sender, EventArgs e)
+        {
+            initialCarGenAmount += 6;
+            Collection.Collection.GenerateFavsCollection(MyFavouritesStyles.flowLayoutPanelCarCollection, initialCarGenAmount, initialCarGenAmount - 6);
+            if ((MyFavouritesStyles.flowLayoutPanelCarCollection.AutoScrollMinSize.Height + 65) / 65 > initialCarGenAmount)
+            {
+                MyFavouritesStyles.buttonLoadMore.Enabled = false;
+            }
+            else
+            {
+                MyFavouritesStyles.buttonLoadMore.Enabled = true;
+            }
         }
     }
 }

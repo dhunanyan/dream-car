@@ -117,5 +117,35 @@ namespace DreamCar.Forms.Collection
             return GetCarsListByBrandModelYearGearboxCountryCity(brand, model, year, gearbox, country, city).OrderBy(x => x.CarCity).Select(c => c.CarCity).Distinct().ToArray();
         }
 
+        public static void AddReservation(string username, int cardId, string date)
+        {
+            using (DreamCarContext context = new DreamCarContext())
+            {
+                context.Reservations.Add(new Reservation()
+                {
+                    ReservationAuthor = username,
+                    ReservationDate = date,
+                    CarId = cardId
+                });
+                context.SaveChanges();
+            }
+        }
+
+        public static void SetCarIsReservedTrue(int carId)
+        {
+            using (DreamCarContext context = new DreamCarContext())
+            {
+                context.Cars.Where(c => c.CarId == carId).FirstOrDefault().CarIsReserved = true;
+                context.SaveChanges();
+            }
+        }
+
+        public static bool GetCarIsReserved(int carId)
+        {
+            using (DreamCarContext context = new DreamCarContext())
+            {
+                return context.Cars.Where(c => c.CarId == carId).FirstOrDefault().CarIsReserved;
+            }
+        }
     }
 }

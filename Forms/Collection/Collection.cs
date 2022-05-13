@@ -96,6 +96,7 @@ namespace DreamCar.Forms.Collection
             CollectionStyles.InitializeComponent(this);
 
             GenerateComboBoxValues();
+
         }
 
         public static void ButtonLoadMore_Click(object sender, EventArgs e)
@@ -485,9 +486,9 @@ namespace DreamCar.Forms.Collection
 
                 List<Favourite> favs = CollectionReq.GetFavsByUsername(context, currentUserUsername);
 
-                foreach(Favourite fav in favs)
+                try
                 {
-                    if (fav.CarId == currentCar.CarId)
+                    if(favs.Where(f => f.CarId == currentCar.CarId).Count() > 0)
                     {
                         isFav = true;
 
@@ -495,11 +496,14 @@ namespace DreamCar.Forms.Collection
                     else
                     {
                         isFav = false;
+
                     }
                 }
+                catch
+                {
+                    isFav = false;
+                }
 
-                Console.WriteLine(isFav);
-                Console.WriteLine(context.Favourites.Where(fav => fav.CarId == currentCar.CarId && fav.FavouriteAuthor == currentCar.CarAuthor));
 
                 CollectionStyles.GenerateDetails(
                 currentCar.CarId,
@@ -516,9 +520,29 @@ namespace DreamCar.Forms.Collection
                 currentCar.CarReservationDateStart,
                 currentCar.CarReservationDateEnd,
                 currentCar.CarImageUrl,
-                isFav
+                float.Parse(currentCar.CarPrice.ToString()),
+                isFav,
+                CollectionReq.GetCarIsReserved(currentCar.CarId)
                 );
             };
+        }
+
+        public static void ButtonPopupReserve_Click(object sender, EventArgs e)
+        {
+            CollectionReq.AddReservation(
+                currentUserUsername,
+                int.Parse(CollectionStyles.buttonPopupReserve.Name.Split('.')[1].ToString()),
+                CollectionStyles.dateTimePickerPopupDate.Value.ToShortDateString());
+
+            CollectionStyles.dateTimePickerPopupDate.Enabled = false;
+
+            CollectionReq.SetCarIsReservedTrue(int.Parse(CollectionStyles.buttonPopupReserve.Name.Split('.')[1].ToString()));
+            CollectionStyles.buttonPopupReserve.Text = "Reserved";
+            CollectionStyles.buttonPopupReserve.Enabled = false;
+            CollectionStyles.buttonPopupReserve.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
+            CollectionStyles.buttonPopupReserve.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(225)))), ((int)(((byte)(225)))));
+
+            MessageBox.Show($"You have reserved a test a drive on {CollectionStyles.dateTimePickerPopupDate.Value.ToShortDateString()}", "Reservation success", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
     }
 }

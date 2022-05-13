@@ -17,9 +17,27 @@ namespace DreamCar.Forms.Profile
             ProfileStyles.InitializeComponent(this);
 
             ProfileStyles.buttonMyFavourites.Enabled = true;
-            ProfileStyles.buttonMyProfile.Enabled = false;
+            ProfileStyles.buttonMyProfile.Enabled = true;
             ProfileStyles.buttonMyCollection.Enabled = true;
+            ProfileStyles.buttonMyReservations.Enabled = true;
 
+            if (currentProfileForm != null)
+            {
+                currentProfileForm.Close();
+            }
+            currentProfileButton = ProfileStyles.buttonMyProfile;
+            Color currentColor = SelectThemeColor(currentProfileButton.Name);
+            currentProfileButton.BackColor = currentColor;
+            currentProfileButton.ForeColor = Color.White;
+            Form childForm = new MyProfile.MyProfile();
+            currentProfileForm = childForm;
+            childForm.TopLevel = false;
+            childForm.FormBorderStyle = FormBorderStyle.None;
+            childForm.Dock = DockStyle.Fill;
+            ProfileStyles.panelMain.Controls.Add(childForm);
+            ProfileStyles.panelMain.Tag = childForm;
+            childForm.BringToFront();
+            childForm.Show();
         }
 
         public static Color SelectThemeColor(string buttonName)
@@ -82,6 +100,7 @@ namespace DreamCar.Forms.Profile
             ProfileStyles.buttonMyFavourites.Enabled = false;
             ProfileStyles.buttonMyProfile.Enabled = true;
             ProfileStyles.buttonMyCollection.Enabled = true;
+            ProfileStyles.buttonMyReservations.Enabled = true;
             OpenChildForm(new MyFavourites.MyFavourites(), sender);
         }
 
@@ -100,6 +119,7 @@ namespace DreamCar.Forms.Profile
             ProfileStyles.buttonMyCollection.Enabled = false;
             ProfileStyles.buttonMyProfile.Enabled = true;
             ProfileStyles.buttonMyFavourites.Enabled = true;
+            ProfileStyles.buttonMyReservations.Enabled = true;
             OpenChildForm(new MyCollection.MyCollection(), sender);
         }
 
@@ -112,6 +132,26 @@ namespace DreamCar.Forms.Profile
             ProfileStyles.buttonMyCollection.FlatAppearance.BorderColor = currentButton.Enabled ? ColorTranslator.FromHtml("#33334c") : ThemeColor.ChangeColorBrightness(ColorTranslator.FromHtml("#33334c"), 0.5);
         }
 
+        // MY RESERVATIONS
+        public static void ButtonMyReservations_Click(object sender, EventArgs e)
+        {
+            ProfileStyles.labelTitle.Text = "My Reservations";
+            ProfileStyles.buttonMyReservations.Enabled = false;
+            ProfileStyles.buttonMyProfile.Enabled = true;
+            ProfileStyles.buttonMyFavourites.Enabled = true;
+            ProfileStyles.buttonMyCollection.Enabled = true;
+            OpenChildForm(new MyReservations.MyReservations(), sender);
+        }
+
+
+        public static void ButtonMyReservations_EnabledChanged(object sender, EventArgs e)
+        {
+            Button currentButton = (Button)sender;
+            ProfileStyles.buttonMyReservations.ForeColor = Color.Gainsboro;
+            ProfileStyles.buttonMyReservations.BackColor = currentButton.Enabled ? ColorTranslator.FromHtml("#33334c") : ThemeColor.ChangeColorBrightness(ColorTranslator.FromHtml("#33334c"), 0.5);
+            ProfileStyles.buttonMyReservations.FlatAppearance.BorderColor = currentButton.Enabled ? ColorTranslator.FromHtml("#33334c") : ThemeColor.ChangeColorBrightness(ColorTranslator.FromHtml("#33334c"), 0.5);
+        }
+
         // MY PROFILE
         public static void ButtonMyProfile_Click(object sender, EventArgs e)
         {
@@ -119,6 +159,7 @@ namespace DreamCar.Forms.Profile
             ProfileStyles.buttonMyProfile.Enabled = false;
             ProfileStyles.buttonMyCollection.Enabled = true;
             ProfileStyles.buttonMyFavourites.Enabled = true;
+            ProfileStyles.buttonMyReservations.Enabled = true;
             OpenChildForm(new MyProfile.MyProfile(), sender);
         }
 

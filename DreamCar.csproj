@@ -531,12 +531,21 @@
       <DependentUpon>MyFavourites.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\MyFavourites\MyFavouritesStyles.cs" />
+    <Compile Include="Forms\MyProfile\MyProfileStyles.cs" />
     <Compile Include="Forms\MyProfile\MyProfile.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Forms\MyProfile\MyProfile.Designer.cs">
       <DependentUpon>MyProfile.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\MyProfile\MyProfileReq.cs" />
+    <Compile Include="Forms\MyReservations\MyReservations.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\MyReservations\MyReservations.Designer.cs">
+      <DependentUpon>MyReservations.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\MyReservations\MyReservationsStyles.cs" />
     <Compile Include="Forms\Profile\Profile.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -556,9 +565,9 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Helpers\ThemeColor.cs" />
-    <Compile Include="Migrations\20220513015518_InitialCreate.cs" />
-    <Compile Include="Migrations\20220513015518_InitialCreate.designer.cs">
-      <DependentUpon>20220513015518_InitialCreate.cs</DependentUpon>
+    <Compile Include="Migrations\20220513074321_InitialCreate.cs" />
+    <Compile Include="Migrations\20220513074321_InitialCreate.designer.cs">
+      <DependentUpon>20220513074321_InitialCreate.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\DreamCarContextModelSnapshot.cs" />
     <Compile Include="Models\Car.cs" />
@@ -663,6 +672,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\myCollection.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\myReservations.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\userGreen.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
