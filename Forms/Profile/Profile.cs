@@ -14,237 +14,121 @@ namespace DreamCar.Forms.Profile
     {
         public Profile()
         {
-            InitializeComponent();
+            ProfileStyles.InitializeComponent(this);
 
-            //    buttonTimes.Visible = false;
-            //    buttonCollection.Enabled = false;
-            //    buttonProfile.Enabled = false;
-            //    buttonPublish.Enabled = false;
+            ProfileStyles.buttonMyFavourites.Enabled = true;
+            ProfileStyles.buttonMyProfile.Enabled = false;
+            ProfileStyles.buttonMyCollection.Enabled = true;
 
-            //    Color color = ColorTranslator.FromHtml("#74d484");
-
-            //    buttonCollection.BackColor = ThemeColor.ChangeColorBrightness(ColorTranslator.FromHtml("#33334c"), 0.5);
-            //    buttonCollection.ForeColor = Color.Gainsboro;
-            //    buttonCollection.FlatAppearance.BorderColor = ThemeColor.SecondaryColor;
-
-            //    buttonProfile.BackColor = ThemeColor.ChangeColorBrightness(ColorTranslator.FromHtml("#33334c"), 0.5);
-            //    buttonProfile.ForeColor = Color.Gainsboro;
-            //    buttonProfile.FlatAppearance.BorderColor = ThemeColor.SecondaryColor;
-
-            //    buttonPublish.BackColor = ThemeColor.ChangeColorBrightness(ColorTranslator.FromHtml("#33334c"), 0.5);
-            //    buttonPublish.ForeColor = Color.Gainsboro;
-            //    buttonPublish.FlatAppearance.BorderColor = ThemeColor.SecondaryColor;
-
-            //    SignUp.Visible = false;
-            //    SignIn.Visible = true;
         }
 
-        private void comboBox1_DropDown(object sender, EventArgs e)
+        public static Color SelectThemeColor(string buttonName)
         {
-
+            //string color = ThemeColor.colorList[buttonName];
+            return ColorTranslator.FromHtml("#74d484");
         }
 
-        private void comboBox1_DropDownClosed(object sender, EventArgs e)
+        public static void ActivateButton(object buttonSender)
         {
+            if (buttonSender == null || currentProfileButton == (Button)buttonSender)
+            {
+                return;
+            }
+            DisableButton();
+            currentProfileButton = (Button)buttonSender;
+            Color currentColor = SelectThemeColor(currentProfileButton.Name);
+            currentProfileButton.BackColor = currentColor;
+            currentProfileButton.ForeColor = Color.White;
+            ProfileStyles.panelTitleBar.BackColor = currentColor;
+            ThemeColor.PrimaryColor = currentColor;
+            ThemeColor.SecondaryColor = ThemeColor.ChangeColorBrightness(currentColor, -0.3);
+            ThemeColor.TertiaryColor = ThemeColor.ChangeColorBrightness(currentColor, 0.5);
+        }
+
+        public static void DisableButton()
+        {
+            foreach (Control previousButton in ProfileStyles.panelMenu.Controls)
+            {
+                if (previousButton.GetType() == typeof(Button))
+                {
+                    previousButton.BackColor = ColorTranslator.FromHtml("#33334c");
+                    previousButton.ForeColor = ColorTranslator.FromHtml("#33334c");
+                }
+            }
+        }
+
+        public static void OpenChildForm(Form childForm, object buttonSender)
+        {
+            if (currentProfileForm != null)
+            {
+                currentProfileForm.Close();
+            }
+            ActivateButton(buttonSender);
+            currentProfileForm = childForm;
+            childForm.TopLevel = false;
+            childForm.FormBorderStyle = FormBorderStyle.None;
+            childForm.Dock = DockStyle.Fill;
+            ProfileStyles.panelMain.Controls.Add(childForm);
+            ProfileStyles.panelMain.Tag = childForm;
+            childForm.BringToFront();
+            childForm.Show();
 
         }
 
-        //private Color SelectThemeColor(string buttonName)
-        //{
-        //    //string color = ThemeColor.colorList[buttonName];
-        //    return ColorTranslator.FromHtml("#74d484");
-        //}
+        // MY FAVOURITES
+        public static void ButtonMyFavourites_Click(object sender, EventArgs e)
+        {
+            ProfileStyles.labelTitle.Text = "My Favourites";
+            ProfileStyles.buttonMyFavourites.Enabled = false;
+            ProfileStyles.buttonMyProfile.Enabled = true;
+            ProfileStyles.buttonMyCollection.Enabled = true;
+            OpenChildForm(new MyFavourites.MyFavourites(), sender);
+        }
 
-        //private void ActivateButton(object buttonSender)
-        //{
-        //    if (buttonSender == null || currentButton == (Button)buttonSender)
-        //    {
-        //        return;
-        //    }
-        //    DisableButton();
-        //    currentButton = (Button)buttonSender;
-        //    Color currentColor = SelectThemeColor(currentButton.Name);
-        //    currentButton.BackColor = currentColor;
-        //    currentButton.ForeColor = Color.White;
-        //    panelTitleBar.BackColor = currentColor;
-        //    ThemeColor.PrimaryColor = currentColor;
-        //    ThemeColor.SecondaryColor = ThemeColor.ChangeColorBrightness(currentColor, -0.3);
-        //    ThemeColor.TertiaryColor = ThemeColor.ChangeColorBrightness(currentColor, 0.5);
-        //    buttonTimes.Visible = true;
-        //}
+        public static void ButtonMyFavourites_EnabledChanged(object sender, EventArgs e)
+        {
+            Button currentButton = (Button)sender;
+            ProfileStyles.buttonMyFavourites.ForeColor = Color.Gainsboro;
+            ProfileStyles.buttonMyFavourites.BackColor = currentButton.Enabled ? ColorTranslator.FromHtml("#33334c") : ThemeColor.ChangeColorBrightness(ColorTranslator.FromHtml("#33334c"), 0.5);
+            ProfileStyles.buttonMyFavourites.FlatAppearance.BorderColor = currentButton.Enabled ? ColorTranslator.FromHtml("#33334c") : ThemeColor.ChangeColorBrightness(ColorTranslator.FromHtml("#33334c"), 0.5);
+        }
 
-        //private void DisableButton()
-        //{
-        //    foreach (Control previousButton in panelMenu.Controls)
-        //    {
-        //        if (previousButton.GetType() == typeof(Button))
-        //        {
-        //            previousButton.BackColor = ColorTranslator.FromHtml("#33334c");
-        //            previousButton.ForeColor = ColorTranslator.FromHtml("#33334c");
-        //        }
-        //    }
-        //}
-
-        //private void OpenChildForm(Form childForm, object buttonSender)
-        //{
-        //    if (currentForm != null)
-        //    {
-        //        currentForm.Close();
-        //    }
-        //    ActivateButton(buttonSender);
-        //    currentForm = childForm;
-        //    childForm.TopLevel = false;
-        //    childForm.FormBorderStyle = FormBorderStyle.None;
-        //    childForm.Dock = DockStyle.Fill;
-        //    panelMain.Controls.Add(childForm);
-        //    panelMain.Tag = childForm;
-        //    childForm.BringToFront();
-        //    childForm.Show();
-
-        //}
-
-        //// COLLECTION
-        //private void ButtonCollection_Click(object sender, EventArgs e)
-        //{
-        //    labelTitle.Text = "COLLECTION";
-        //    buttonCollection.Enabled = false;
-        //    buttonProfile.Enabled = true;
-        //    buttonPublish.Enabled = true;
-        //    OpenChildForm(new Forms.FormCollection(), sender);
-        //}
-
-        //private void ButtonCollection_EnabledChanged(object sender, EventArgs e)
-        //{
-        //    Button currentButton = (Button)sender;
-        //    buttonCollection.ForeColor = Color.Gainsboro;
-        //    buttonCollection.BackColor = currentButton.Enabled ? ColorTranslator.FromHtml("#33334c") : ThemeColor.ChangeColorBrightness(ColorTranslator.FromHtml("#33334c"), 0.5);
-        //    buttonCollection.FlatAppearance.BorderColor = currentButton.Enabled ? ColorTranslator.FromHtml("#33334c") : ThemeColor.ChangeColorBrightness(ColorTranslator.FromHtml("#33334c"), 0.5);
-        //}
-
-        //private void ButtonCollection_Paint(object sender, PaintEventArgs e)
-        //{
-        //    Button currentButton = (Button)sender;
-        //    buttonCollection.ForeColor = Color.Gainsboro;
-        //    SolidBrush drawBrush = new SolidBrush(currentButton.ForeColor);
-        //    StringFormat sf = new StringFormat
-        //    {
-        //        Alignment = StringAlignment.Center,
-        //        LineAlignment = StringAlignment.Center
-        //    };
-        //    buttonCollection.Text = string.Empty;
-        //    e.Graphics.DrawString("    Collection", currentButton.Font, drawBrush, e.ClipRectangle, sf);
-        //    drawBrush.Dispose();
-        //    sf.Dispose();
-        //}
-
-        //// PUBLISH
-        //private void ButtonPublish_Click(object sender, EventArgs e)
-        //{
-        //    //if (isLaunched)
-        //    //{
-        //    //    DialogResult dialog = MessageBox.Show("Youur current searching results will be lost, do you really want to leave?",
-        //    //        "Session Exit", MessageBoxButtons.YesNo);
-        //    //    if (dialog == DialogResult.No)
-        //    //    {
-        //    //        return;
-        //    //    }
-        //    //}
-
-        //    labelTitle.Text = "PUBLISH";
-        //    buttonPublish.Enabled = false;
-        //    buttonProfile.Enabled = true;
-        //    buttonCollection.Enabled = true;
-        //    OpenChildForm(new Forms.FormPublish(), sender);
-        //}
+        // MY COLLECTION
+        public static void ButtonMyCollection_Click(object sender, EventArgs e)
+        {
+            ProfileStyles.labelTitle.Text = "My Collection";
+            ProfileStyles.buttonMyCollection.Enabled = false;
+            ProfileStyles.buttonMyProfile.Enabled = true;
+            ProfileStyles.buttonMyFavourites.Enabled = true;
+            OpenChildForm(new MyCollection.MyCollection(), sender);
+        }
 
 
-        //private void ButtonPublish_EnabledChanged(object sender, EventArgs e)
-        //{
-        //    Button currentButton = (Button)sender;
-        //    buttonPublish.ForeColor = Color.Gainsboro;
-        //    buttonPublish.BackColor = currentButton.Enabled ? ColorTranslator.FromHtml("#33334c") : ThemeColor.ChangeColorBrightness(ColorTranslator.FromHtml("#33334c"), 0.5);
-        //    buttonPublish.FlatAppearance.BorderColor = currentButton.Enabled ? ColorTranslator.FromHtml("#33334c") : ThemeColor.ChangeColorBrightness(ColorTranslator.FromHtml("#33334c"), 0.5);
-        //}
+        public static void ButtonMyCollection_EnabledChanged(object sender, EventArgs e)
+        {
+            Button currentButton = (Button)sender;
+            ProfileStyles.buttonMyCollection.ForeColor = Color.Gainsboro;
+            ProfileStyles.buttonMyCollection.BackColor = currentButton.Enabled ? ColorTranslator.FromHtml("#33334c") : ThemeColor.ChangeColorBrightness(ColorTranslator.FromHtml("#33334c"), 0.5);
+            ProfileStyles.buttonMyCollection.FlatAppearance.BorderColor = currentButton.Enabled ? ColorTranslator.FromHtml("#33334c") : ThemeColor.ChangeColorBrightness(ColorTranslator.FromHtml("#33334c"), 0.5);
+        }
 
-        //private void ButtonPublish_Paint(object sender, PaintEventArgs e)
-        //{
-        //    Button currentButton = (Button)sender;
-        //    buttonPublish.ForeColor = Color.Gainsboro;
-        //    SolidBrush drawBrush = new SolidBrush(currentButton.ForeColor);
-        //    StringFormat sf = new StringFormat
-        //    {
-        //        Alignment = StringAlignment.Center,
-        //        LineAlignment = StringAlignment.Center
-        //    };
-        //    buttonPublish.Text = string.Empty;
-        //    e.Graphics.DrawString("Publish", currentButton.Font, drawBrush, e.ClipRectangle, sf);
-        //    drawBrush.Dispose();
-        //    sf.Dispose();
-        //}
-
-        //// PROFILE
-        //private void ButtonProfile_Click(object sender, EventArgs e)
-        //{
-        //    //if (isLaunched)
-        //    //{
-        //    //    DialogResult dialog = MessageBox.Show("Youur current searching results will be lost, do you really want to leave?",
-        //    //        "Session Exit", MessageBoxButtons.YesNo);
-        //    //    if (dialog == DialogResult.No)
-        //    //    {
-        //    //        return;
-        //    //    }
-        //    //}
-        //    labelTitle.Text = "PROFILE";
-        //    buttonProfile.Enabled = false;
-        //    buttonPublish.Enabled = true;
-        //    buttonCollection.Enabled = true;
-        //    OpenChildForm(new Forms.FormProfile(), sender);
-        //    //timer.Stop();
-        //}
+        // MY PROFILE
+        public static void ButtonMyProfile_Click(object sender, EventArgs e)
+        {
+            ProfileStyles.labelTitle.Text = "My Profile";
+            ProfileStyles.buttonMyProfile.Enabled = false;
+            ProfileStyles.buttonMyCollection.Enabled = true;
+            ProfileStyles.buttonMyFavourites.Enabled = true;
+            OpenChildForm(new MyProfile.MyProfile(), sender);
+        }
 
 
-        //private void ButtonProfile_EnabledChanged(object sender, EventArgs e)
-        //{
-        //    Button currentButton = (Button)sender;
-        //    buttonProfile.ForeColor = Color.Gainsboro;
-        //    buttonProfile.BackColor = currentButton.Enabled ? ColorTranslator.FromHtml("#33334c") : ThemeColor.ChangeColorBrightness(ColorTranslator.FromHtml("#33334c"), 0.5);
-        //    buttonProfile.FlatAppearance.BorderColor = currentButton.Enabled ? ColorTranslator.FromHtml("#33334c") : ThemeColor.ChangeColorBrightness(ColorTranslator.FromHtml("#33334c"), 0.5);
-        //}
-
-        //private void ButtonProfile_Paint(object sender, PaintEventArgs e)
-        //{
-        //    Button currentButton = (Button)sender;
-        //    buttonProfile.ForeColor = Color.Gainsboro;
-        //    SolidBrush drawBrush = new SolidBrush(currentButton.ForeColor);
-        //    StringFormat sf = new StringFormat
-        //    {
-        //        Alignment = StringAlignment.Center,
-        //        LineAlignment = StringAlignment.Center
-        //    };
-        //    buttonProfile.Text = string.Empty;
-        //    e.Graphics.DrawString("Profile", currentButton.Font, drawBrush, e.ClipRectangle, sf);
-        //    drawBrush.Dispose();
-        //    sf.Dispose();
-        //}
-
-        //private void Reset()
-        //{
-        //    DisableButton();
-        //    labelTitle.Text = "HOME";
-        //    currentButton = null;
-        //    buttonTimes.Visible = false;
-        //    buttonCollection.BackColor = buttonCollection.Enabled ? ColorTranslator.FromHtml("#33334c") : ThemeColor.ChangeColorBrightness(ColorTranslator.FromHtml("#33334c"), 0.5);
-        //    buttonCollection.ForeColor = Color.Gainsboro;
-        //    buttonCollection.FlatAppearance.BorderColor = ThemeColor.SecondaryColor;
-
-        //    buttonProfile.BackColor = buttonProfile.Enabled ? ColorTranslator.FromHtml("#33334c") : ThemeColor.ChangeColorBrightness(ColorTranslator.FromHtml("#33334c"), 0.5);
-        //    buttonProfile.ForeColor = Color.Gainsboro;
-        //    buttonProfile.FlatAppearance.BorderColor = ThemeColor.SecondaryColor;
-
-        //    buttonPublish.BackColor = buttonPublish.Enabled ? ColorTranslator.FromHtml("#33334c") : ThemeColor.ChangeColorBrightness(ColorTranslator.FromHtml("#33334c"), 0.5);
-        //    buttonPublish.ForeColor = Color.Gainsboro;
-        //    buttonPublish.FlatAppearance.BorderColor = ThemeColor.SecondaryColor;
-        //}
-
+        public static void ButtonMyProfile_EnabledChanged(object sender, EventArgs e)
+        {
+            Button currentButton = (Button)sender;
+            ProfileStyles.buttonMyProfile.ForeColor = Color.Gainsboro;
+            ProfileStyles.buttonMyProfile.BackColor = currentButton.Enabled ? ColorTranslator.FromHtml("#33334c") : ThemeColor.ChangeColorBrightness(ColorTranslator.FromHtml("#33334c"), 0.5);
+            ProfileStyles.buttonMyProfile.FlatAppearance.BorderColor = currentButton.Enabled ? ColorTranslator.FromHtml("#33334c") : ThemeColor.ChangeColorBrightness(ColorTranslator.FromHtml("#33334c"), 0.5);
+        }
     }
 }

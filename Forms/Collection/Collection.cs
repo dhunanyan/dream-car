@@ -88,10 +88,11 @@ namespace DreamCar.Forms.Collection
 
         public Collection()
         {
-            CollectionStyles.GerenerateCollectionContainer(this, initialCarGenAmount);
+            CollectionStyles.flowLayoutPanelCarCollection = new FlowLayoutPanel();
+            CollectionStyles.GerenerateCollectionContainer(this, CollectionStyles.flowLayoutPanelCarCollection, initialCarGenAmount);
             CollectionStyles.ChangeCollectionContainerScrollMinSize(initialCarGenAmount);
             CollectionStyles.GenerateSearch(this);
-            GenerateCollection(initialCarGenAmount, initialCarGenAmount - 6);
+            GenerateCollection(CollectionStyles.flowLayoutPanelCarCollection, initialCarGenAmount, initialCarGenAmount - 6);
             CollectionStyles.InitializeComponent(this);
 
             GenerateComboBoxValues();
@@ -109,36 +110,121 @@ namespace DreamCar.Forms.Collection
 
             }
             initialCarGenAmount += 6;
-            GenerateCollection(initialCarGenAmount, initialCarGenAmount - 6);
+            GenerateCollection(CollectionStyles.flowLayoutPanelCarCollection, initialCarGenAmount, initialCarGenAmount - 6);
         }
 
-        private static void GenerateCollection(int take, int skip)
+        public static void GenerateCollection(FlowLayoutPanel flow, int take, int skip)
         {
             using (DreamCarContext context = new DreamCarContext())
             {
-                using (DreamCarContext contexInner = new DreamCarContext())
+                List<Favourite> currentFavRecord = CollectionReq.GetFavsByUsername(context, currentUserUsername);
+                List<Car> carCollection = CollectionReq.GetSearchedCarWithSkipNTake(
+                        CollectionReq.GetCarsListByBrandModelYearGearboxCountryCity(
+                            searchDic["CarBrand"],
+                            searchDic["CarModel"],
+                            searchDic["CarProdYear"],
+                            searchDic["CarGearbox"],
+                            searchDic["CarCountry"],
+                            searchDic["CarCity"]),
+                        take,
+                        skip);
+                CollectionStyles.ChangeCollectionContainerScrollMinSize(take);
+                foreach (var car in carCollection)
                 {
-                    List<Favourite> currentFavRecord = CollectionReq.GetFavsByUsername(contexInner, currentUserUsername);
-                    List<Car> carCollection = CollectionReq.GetSearchedCarWithSkipNTake(
-                            CollectionReq.GetCarsListByBrandModelYearGearboxCountryCity(
-                                searchDic["CarBrand"],
-                                searchDic["CarModel"],
-                                searchDic["CarProdYear"],
-                                searchDic["CarGearbox"],
-                                searchDic["CarCountry"],
-                                searchDic["CarCity"]),
-                            take,
-                            skip);
-                    CollectionStyles.ChangeCollectionContainerScrollMinSize(take);
-                    foreach (var car in carCollection)
+                    bool isFav = false;
+                    if (currentFavRecord.Where(f => f.CarId == car.CarId).Count() > 0)
                     {
-                        bool isFav = false;
-                        if (currentFavRecord.Where(f => f.CarId == car.CarId).Count() > 0)
-                        {
-                            isFav = true;
-                        }
+                        isFav = true;
+                    }
 
-                        CollectionStyles.GenerateCar(car.CarImageUrl, car.CarBrand, car.CarModel, car.CarProdYear.ToString(), car.CarFuel, car.CarGearbox, car.CarId, isFav, take);
+                    CollectionStyles.GenerateCar(flow, car.CarImageUrl, car.CarBrand, car.CarModel, car.CarProdYear.ToString(), car.CarFuel, car.CarGearbox, car.CarId, isFav, take);
+                }
+            }
+        }
+
+        public static void GenerateFavsCollection(FlowLayoutPanel flow, int take, int skip)
+        {
+            using (DreamCarContext context = new DreamCarContext())
+            {
+                List<Favourite> currentFavRecord = CollectionReq.GetFavsByUsername(context, currentUserUsername);
+                List<Car> carCollection = CollectionReq.GetSearchedCarWithSkipNTake(
+                        CollectionReq.GetCarsListByBrandModelYearGearboxCountryCity(
+                            searchDic["CarBrand"],
+                            searchDic["CarModel"],
+                            searchDic["CarProdYear"],
+                            searchDic["CarGearbox"],
+                            searchDic["CarCountry"],
+                            searchDic["CarCity"]),
+                        take,
+                        skip);
+                CollectionStyles.ChangeCollectionContainerScrollMinSize(take);
+                foreach (var car in carCollection)
+                {
+                    bool isFav = false;
+                    if (currentFavRecord.Where(f => f.CarId == car.CarId).Count() > 0)
+                    {
+                        isFav = true;
+                        CollectionStyles.GenerateCar(flow, car.CarImageUrl, car.CarBrand, car.CarModel, car.CarProdYear.ToString(), car.CarFuel, car.CarGearbox, car.CarId, isFav, take);
+                    }
+                }
+            }
+        }
+
+        public static void GenerateReservationsCollection(FlowLayoutPanel flow, int take, int skip)
+        {
+            using (DreamCarContext context = new DreamCarContext())
+            {
+                List<Reservation> currentFavRecord = CollectionReq.GetReservationByUsername(context, currentUserUsername);
+                List<Car> carCollection = CollectionReq.GetSearchedCarWithSkipNTake(
+                        CollectionReq.GetCarsListByBrandModelYearGearboxCountryCity(
+                            searchDic["CarBrand"],
+                            searchDic["CarModel"],
+                            searchDic["CarProdYear"],
+                            searchDic["CarGearbox"],
+                            searchDic["CarCountry"],
+                            searchDic["CarCity"]),
+                        take,
+                        skip);
+                CollectionStyles.ChangeCollectionContainerScrollMinSize(take);
+                foreach (var car in carCollection)
+                {
+                    bool isFav = false;
+                    if (currentFavRecord.Where(f => f.CarId == car.CarId).Count() > 0)
+                    {
+                        isFav = true;
+                        CollectionStyles.GenerateCar(flow, car.CarImageUrl, car.CarBrand, car.CarModel, car.CarProdYear.ToString(), car.CarFuel, car.CarGearbox, car.CarId, isFav, take);
+                    }
+                }
+            }
+        }
+
+        public static void GeneratePublicationsCollection(FlowLayoutPanel flow, int take, int skip)
+        {
+            using (DreamCarContext context = new DreamCarContext())
+            {
+                List<Reservation> currentFavRecord = CollectionReq.GetReservationByUsername(context, currentUserUsername);
+                List<Models.Publication> currentPubRecord = CollectionReq.GetPublicationByUsername(context, currentUserUsername);
+                List<Car> carCollection = CollectionReq.GetSearchedCarWithSkipNTake(
+                        CollectionReq.GetCarsListByBrandModelYearGearboxCountryCity(
+                            searchDic["CarBrand"],
+                            searchDic["CarModel"],
+                            searchDic["CarProdYear"],
+                            searchDic["CarGearbox"],
+                            searchDic["CarCountry"],
+                            searchDic["CarCity"]),
+                        take,
+                        skip);
+                CollectionStyles.ChangeCollectionContainerScrollMinSize(take);
+                foreach (var car in carCollection)
+                {
+                    bool isFav = false;
+                    if (currentFavRecord.Where(f => f.CarId == car.CarId).Count() > 0)
+                    {
+                        isFav = true;
+                    }
+
+                    if(currentPubRecord.Where(p => p.CarId == car.CarId).Count() > 0){
+                        CollectionStyles.GenerateCar(flow, car.CarImageUrl, car.CarBrand, car.CarModel, car.CarProdYear.ToString(), car.CarFuel, car.CarGearbox, car.CarId, isFav, take);
                     }
                 }
             }
@@ -373,7 +459,7 @@ namespace DreamCar.Forms.Collection
         {
             initialCarGenAmount = 6;
             CollectionStyles.flowLayoutPanelCarCollection.Controls.Clear();
-            GenerateCollection(initialCarGenAmount, initialCarGenAmount - 6);
+            GenerateCollection(CollectionStyles.flowLayoutPanelCarCollection, initialCarGenAmount, initialCarGenAmount - 6);
             if ((CollectionStyles.flowLayoutPanelCarCollection.AutoScrollMinSize.Height - 25) / 65 > CollectionStyles.flowLayoutPanelCarCollection.Controls.Count)
             {
                 CollectionStyles.buttonLoadMore.Enabled = false;

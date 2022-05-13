@@ -18,6 +18,16 @@ namespace DreamCar.Forms.Collection
             return context.Favourites.Where(c => c.FavouriteAuthor == usernameToCompare).ToList();
         }
 
+        public static List<Reservation> GetReservationByUsername(DreamCarContext context, string usernameToCompare)
+        {
+            return context.Reservations.Where(c => c.ReservationAuthor == usernameToCompare).ToList();
+        }
+
+        public static List<Models.Publication> GetPublicationByUsername(DreamCarContext context, string usernameToCompare)
+        {
+            return context.Publications.Where(c => c.PublishAuthor == usernameToCompare).ToList();
+        }
+
         public static Car GetCarById(DreamCarContext context, int carIdToCompare)
         {
             return context.Cars.Where(c => c.CarId == carIdToCompare).FirstOrDefault();
@@ -106,5 +116,6 @@ namespace DreamCar.Forms.Collection
         {
             return GetCarsListByBrandModelYearGearboxCountryCity(brand, model, year, gearbox, country, city).OrderBy(x => x.CarCity).Select(c => c.CarCity).Distinct().ToArray();
         }
+
     }
 }

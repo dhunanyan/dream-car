@@ -24,7 +24,7 @@ namespace DreamCar.Forms.Collection
 
         }
 
-        public static void GerenerateCollectionContainer(Form form, int take)
+        public static void GerenerateCollectionContainer(Form form, FlowLayoutPanel flow, int take)
         {
             form.ResumeLayout(true);
             // 
@@ -39,20 +39,19 @@ namespace DreamCar.Forms.Collection
                 Padding = new Padding(30, 30, 30, 30),
                 Size = new Size(1576, 1064)
             };
-            flowLayoutPanelCarCollection = new FlowLayoutPanel();
-            flowLayoutPanelCarCollection.SuspendLayout();
-            flowLayoutPanelCarCollection.AutoScroll = true;
-            flowLayoutPanelCarCollection.AutoScrollMinSize = new Size(0, (65 * take) + 25);
-            flowLayoutPanelCarCollection.BackColor = Color.FromArgb(((int)(((byte)(85)))), ((int)(((byte)(85)))), ((int)(((byte)(110)))));
-            flowLayoutPanelCarCollection.Margin = new Padding(0);
-            flowLayoutPanelCarCollection.Name = "flowLayoutPanelCarCollection_" + take.ToString();
-            flowLayoutPanelCarCollection.Padding = new Padding(5);
-            flowLayoutPanelCarCollection.Location = new Point(take == 6 ? 35 : 25, 200);
-            flowLayoutPanelCarCollection.Size = new Size(take == 6 ? 1000 : 1020, take == 6 ? 65 * 6 + 25 : 65 * 6 + 30);
-            flowLayoutPanelCarCollection.MinimumSize = new Size(take == 6 ? 1000 : 1020, take == 6 ? 65 * 6 + 25 : 65 * 6 + 30);
-            flowLayoutPanelCarCollection.TabIndex = 0;
-            panelMain.Controls.Add(flowLayoutPanelCarCollection);
-            flowLayoutPanelCarCollection.ResumeLayout(false);
+            flow.SuspendLayout();
+            flow.AutoScroll = true;
+            flow.AutoScrollMinSize = new Size(0, (65 * take) + 25);
+            flow.BackColor = Color.FromArgb(((int)(((byte)(85)))), ((int)(((byte)(85)))), ((int)(((byte)(110)))));
+            flow.Margin = new Padding(0);
+            flow.Name = "flowLayoutPanelCarCollection_" + take.ToString();
+            flow.Padding = new Padding(5);
+            flow.Location = new Point(take == 6 ? 35 : 25, 200);
+            flow.Size = new Size(take == 6 ? 1000 : 1020, take == 6 ? 65 * 6 + 25 : 65 * 6 + 30);
+            flow.MinimumSize = new Size(take == 6 ? 1000 : 1020, take == 6 ? 65 * 6 + 25 : 65 * 6 + 30);
+            flow.TabIndex = 0;
+            panelMain.Controls.Add(flow);
+            flow.ResumeLayout(false);
             // 
             // Collection
             // 
@@ -75,7 +74,7 @@ namespace DreamCar.Forms.Collection
             flowLayoutPanelCarCollection.AutoScrollMinSize = new Size(0, (65 * take) + 25);
         }
 
-        public static void GenerateCar(string image, string brand, string model, string year, string fuel, string gearbox, int carId, bool isFav, int take)
+        public static void GenerateCar(FlowLayoutPanel flow, string image, string brand, string model, string year, string fuel, string gearbox, int carId, bool isFav, int take)
         {
             if(take == 4)
             {
@@ -231,7 +230,7 @@ namespace DreamCar.Forms.Collection
 
             //FlowLayoutPanel currentPanelContainer = (FlowLayoutPanel)Collection.panelMain.Controls.Find("flowLayoutPanelCarCollection_" + take.ToString(), true)[0];
             //currentPanelContainer.Controls.Add(flowLayoutPanelCurrentCar); 
-            flowLayoutPanelCarCollection.Controls.Add(flowLayoutPanelCurrentCar);
+            flow.Controls.Add(flowLayoutPanelCurrentCar);
             flowLayoutPanelCurrentCar.ResumeLayout(false);
         }
 

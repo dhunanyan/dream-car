@@ -513,3 +513,5 @@ C:\Users\dhunanyan\Desktop\AGH\sem4\programowanie-zaawansowane\DreamCar\bin\Debu
 C:\Users\dhunanyan\Desktop\AGH\sem4\programowanie-zaawansowane\DreamCar\bin\Debug\System.Security.Permissions.xml
 C:\Users\dhunanyan\Desktop\AGH\sem4\programowanie-zaawansowane\DreamCar\bin\Debug\System.Security.Principal.Windows.xml
 C:\Users\dhunanyan\Desktop\AGH\sem4\programowanie-zaawansowane\DreamCar\bin\Debug\TimeZoneConverter.xml
+C:\Users\dhunanyan\Desktop\AGH\sem4\programowanie-zaawansowane\DreamCar\obj\Debug\DreamCar.Forms.MyFavourites.MyFavourites.resources
+C:\Users\dhunanyan\Desktop\AGH\sem4\programowanie-zaawansowane\DreamCar\obj\Debug\DreamCar.Forms.MyProfile.MyProfile.resources

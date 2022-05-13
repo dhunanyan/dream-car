@@ -14,6 +14,9 @@ namespace DreamCar.Helpers
         public static Button currentButton = null!;
         public static Form currentForm = null!;
 
+        public static Button currentProfileButton = null!;
+        public static Form currentProfileForm = null!;
+
         public static string currentUserUsername = null!;
         public static int currentUserId;
 

@@ -1,6 +1,6 @@
-﻿namespace DreamCar.Forms.Profile
+﻿namespace DreamCar.Forms.MyProfile
 {
-    partial class Profile
+    partial class MyProfile
     {
         /// <summary>
         /// Required designer variable.
@@ -26,9 +26,22 @@
         /// Required method for Designer support - do not modify
         /// the contents of this method with the code editor.
         /// </summary>
+        private void InitializeComponent()
+        {
+            this.SuspendLayout();
+            // 
+            // MyProfile
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Name = "MyProfile";
+            this.Text = "MyProfile";
+            this.ResumeLayout(false);
+
+        }
 
         #endregion
-
-        private System.Windows.Forms.Panel panel1;
     }
 }
